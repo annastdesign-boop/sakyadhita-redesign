@@ -1,0 +1,568 @@
+---
+/**
+ * Branches & Chapters — filterable directory with a sticky interactive
+ * world map. Directory data lives in src/data/branches.json.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro'
+import data from '../data/branches.json'
+---
+
+<BaseLayout
+  title="Branches & Chapters · Sakyadhita"
+  description="Find Sakyadhita near you — national branches, local chapters, and partner organizations across 45 countries organize events, translation projects, and community."
+  active="branches"
+  ogImage="/assets/highlights.png"
+>
+  <section class="hero-compact">
+    <div class="shell">
+      <div class="eyebrow">BRANCHES &amp; CHAPTERS</div>
+      <h1 class="h-display">Sakyadhita near you</h1>
+      <p class="lede">
+        National branches and local chapters organize events, run translation projects, and bring
+        Sakyadhita's mission home. Active groups span 45 countries.
+      </p>
+    </div>
+  </section>
+
+  <section class="explore">
+    <div class="explore-grid">
+      <!-- LIST -->
+      <div class="list-col">
+        <div class="list-sticky">
+          <div class="list-head">
+            <h2 id="list-title">All locations</h2>
+            <span class="count" id="list-count">{data.branches.length} LISTINGS</span>
+          </div>
+          <div class="seg" id="seg-region" role="tablist" aria-label="Region">
+            <button class="opt is-active" data-v="">All regions</button>
+            <button class="opt" data-v="Asia">Asia</button>
+            <button class="opt" data-v="Americas">Americas</button>
+            <button class="opt" data-v="Europe">Europe</button>
+            <button class="opt" data-v="Africa">Africa</button>
+            <button class="opt" data-v="Oceania">Oceania</button>
+          </div>
+          <div class="seg" id="seg-type" role="tablist" aria-label="Type">
+            <button class="opt is-active" data-v="">All types</button>
+            <button class="opt" data-v="branch">National branches</button>
+            <button class="opt" data-v="local">Local chapters</button>
+            <button class="opt" data-v="partner">Partners</button>
+          </div>
+        </div>
+        <div class="br-list" id="br-list"></div>
+      </div>
+
+      <!-- MAP -->
+      <aside class="map-col">
+        <div class="map-wrap" id="map">
+          <div class="popup" id="popup"></div>
+          <div class="legend">
+            <div class="leg"><span class="swatch"></span> National branch</div>
+            <div class="leg"><span class="swatch local"></span> Local chapter</div>
+            <div class="leg"><span class="swatch partner"></span> Partner</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <script type="application/json" id="branches-data" set:html={JSON.stringify(data.branches)} />
+
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+
+  <script>
+    type Branch = {
+      id: string
+      name: string
+      region: string
+      type: 'branch' | 'local' | 'partner'
+      lat: number
+      lng: number
+      desc: string
+      contact: [string, string, string?][]
+      x?: number
+      y?: number
+    }
+    const BRANCHES = JSON.parse(document.getElementById('branches-data')!.textContent!) as Branch[]
+    const KIND_LABEL: Record<string, string> = { branch: 'National Branch', local: 'Local Chapter', partner: 'Partner' }
+
+    const listEl = document.getElementById('br-list')!
+    const mapEl = document.getElementById('map')!
+    const popupEl = document.getElementById('popup')!
+    const countEl = document.getElementById('list-count')!
+    const titleEl = document.getElementById('list-title')!
+    const filters = { region: '', type: '' }
+
+    function bindSeg(el: HTMLElement, key: 'region' | 'type') {
+      el.addEventListener('click', (e) => {
+        const opt = (e.target as Element).closest('.opt') as HTMLElement | null
+        if (!opt) return
+        el.querySelectorAll('.opt').forEach((o) => o.classList.toggle('is-active', o === opt))
+        filters[key] = opt.dataset.v || ''
+        render()
+      })
+    }
+    bindSeg(document.getElementById('seg-region')!, 'region')
+    bindSeg(document.getElementById('seg-type')!, 'type')
+
+    let activeId: string | null = null
+
+    function render() {
+      const matched = BRANCHES.filter((b) => {
+        if (filters.type && b.type !== filters.type) return false
+        if (filters.region && b.region !== filters.region) return false
+        return true
+      })
+
+      countEl.textContent = `${matched.length} ${matched.length === 1 ? 'LISTING' : 'LISTINGS'}`
+      titleEl.textContent = filters.region || 'All locations'
+
+      const byRegion: Record<string, Branch[]> = {}
+      matched.forEach((b) => (byRegion[b.region] = byRegion[b.region] || []).push(b))
+      listEl.innerHTML = matched.length
+        ? Object.entries(byRegion)
+            .map(
+              ([region, items]) => `
+        <div class="region-divider">
+          <span class="label">${region}</span>
+          <span class="rule"></span>
+          <span class="num">${items.length}</span>
+        </div>
+        ${items
+          .map(
+            (b) => `
+          <article class="br" data-id="${b.id}">
+            <div class="top-row">
+              <span class="kind ${b.type === 'local' ? 'local' : b.type === 'partner' ? 'partner' : ''}">${KIND_LABEL[b.type]}</span>
+              <span class="region-tag">${b.region}</span>
+            </div>
+            <h3>${b.name}</h3>
+            <p class="desc">${b.desc}</p>
+            <div class="contact">
+              ${b.contact.map((c) => `<div>${c[0]} ${c[2] ? `<a href="${c[2]}">${c[1]}</a>` : `<span>${c[1]}</span>`}</div>`).join('')}
+            </div>
+          </article>
+        `
+          )
+          .join('')}
+      `
+            )
+            .join('')
+        : `<div class="empty">No locations match your filters.</div>`
+
+      // Render pins (positions computed by the map placement code)
+      ;[...mapEl.querySelectorAll('.pin')].forEach((p) => p.remove())
+      matched.forEach((b) => {
+        if (b.x == null || b.y == null) return
+        const pin = document.createElement('button')
+        pin.className = `pin kind-${b.type}`
+        pin.style.left = `${b.x}%`
+        pin.style.top = `${b.y}%`
+        pin.dataset.id = b.id
+        pin.setAttribute('aria-label', b.name)
+        mapEl.appendChild(pin)
+      })
+
+      if (activeId && !matched.find((b) => b.id === activeId)) {
+        activeId = null
+        hidePopup()
+      } else if (activeId) {
+        markActive(activeId, false)
+      }
+    }
+
+    function markActive(id: string, scroll: boolean) {
+      document.querySelectorAll('.br').forEach((c) => c.classList.toggle('is-active', (c as HTMLElement).dataset.id === id))
+      document.querySelectorAll('.pin').forEach((p) => p.classList.toggle('is-active', (p as HTMLElement).dataset.id === id))
+      activeId = id
+      const b = BRANCHES.find((x) => x.id === id)
+      if (b) showPopup(b)
+      if (scroll) {
+        document.querySelector(`.br[data-id="${id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      }
+    }
+
+    function showPopup(b: Branch) {
+      if (b.x == null || b.y == null) return
+      popupEl.innerHTML = `
+        <div class="kind ${b.type === 'local' ? 'local' : b.type === 'partner' ? 'partner' : ''}">${KIND_LABEL[b.type]} · ${b.region}</div>
+        <h5>${b.name}</h5>
+        <p class="meta">${b.desc}</p>
+        ${b.contact?.length ? `<div class="plinks">${b.contact.map((c) => `<div>${c[0]} ${c[2] ? `<a href="${c[2]}">${c[1]}</a>` : `<span>${c[1]}</span>`}</div>`).join('')}</div>` : ''}
+      `
+      const box = mapEl.getBoundingClientRect()
+      const pw = popupEl.offsetWidth || 240
+      const ph = popupEl.offsetHeight || 160
+      const pinX = (b.x / 100) * box.width
+      const pinY = (b.y / 100) * box.height
+      const below = pinY - ph - 22 < 8
+      popupEl.classList.toggle('below', below)
+      const half = pw / 2
+      const cx = Math.max(half + 8, Math.min(pinX, box.width - half - 8))
+      let topEdge = below ? pinY + 14 : pinY - ph - 22
+      topEdge = Math.max(8, Math.min(topEdge, box.height - ph - 8))
+      popupEl.style.left = `${cx}px`
+      popupEl.style.top = `${topEdge}px`
+      popupEl.style.transform = 'translate(-50%, 0)'
+      popupEl.style.setProperty('--ax', `${Math.max(16, Math.min(pw - 16, half + (pinX - cx)))}px`)
+      popupEl.classList.add('is-open')
+    }
+    function hidePopup() {
+      popupEl.classList.remove('is-open')
+    }
+
+    listEl.addEventListener('click', (e) => {
+      const card = (e.target as Element).closest('.br') as HTMLElement | null
+      if (!card) return
+      if ((e.target as Element).closest('a')) return
+      markActive(card.dataset.id!, false)
+    })
+    listEl.addEventListener('mouseover', (e) => {
+      const card = (e.target as Element).closest('.br') as HTMLElement | null
+      if (!card) return
+      const b = BRANCHES.find((x) => x.id === card.dataset.id)
+      if (b) showPopup(b)
+      document.querySelectorAll('.pin').forEach((p) => p.classList.toggle('is-active', (p as HTMLElement).dataset.id === card.dataset.id))
+    })
+    listEl.addEventListener('mouseleave', () => {
+      if (!activeId) hidePopup()
+      document.querySelectorAll('.pin').forEach((p) => p.classList.toggle('is-active', (p as HTMLElement).dataset.id === activeId))
+    })
+    mapEl.addEventListener('click', (e) => {
+      const pin = (e.target as Element).closest('.pin') as HTMLElement | null
+      if (!pin) return
+      markActive(pin.dataset.id!, true)
+    })
+
+    render()
+
+    // ── World map drawing + pin placement ──
+    document.addEventListener('DOMContentLoaded', () => {
+      const d3 = (window as any).d3
+      const topojson = (window as any).topojson
+      if (!d3 || !topojson) return
+      const W = 1000
+      const H = 430
+      const svg = d3
+        .select('#map')
+        .insert('svg', ':first-child')
+        .attr('class', 'world')
+        .attr('viewBox', `0 0 ${W} ${H}`)
+        .attr('preserveAspectRatio', 'xMidYMid meet')
+        .attr('aria-hidden', 'true')
+
+      d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')
+        .then((topo: any) => {
+          const countries = topojson.feature(topo, topo.objects.countries)
+          countries.features = countries.features.filter((f: any) => f.id !== '010')
+          const projection = d3.geoNaturalEarth1()
+          projection.fitSize([W, H], countries)
+          const path = d3.geoPath(projection)
+
+          svg.append('g').selectAll('path').data(countries.features).join('path').attr('class', 'country').attr('d', path)
+
+          let placed = false
+          let rafTries = 0
+          function place() {
+            try {
+              const box = mapEl.getBoundingClientRect()
+              if (!box.width || !box.height) {
+                if (rafTries++ < 120) requestAnimationFrame(place)
+                return
+              }
+              rafTries = 0
+              const scale = Math.min(box.width / W, box.height / H) * 1.12 // match svg zoom
+              const dw = W * scale
+              const dh = H * scale
+              const ox = (box.width - dw) / 2
+              const oy = (box.height - dh) / 2
+              BRANCHES.forEach((b) => {
+                const p = projection([b.lng, b.lat])
+                b.x = ((ox + p[0] * scale) / box.width) * 100
+                b.y = ((oy + p[1] * scale) / box.height) * 100
+              })
+              placed = true
+              render()
+            } catch (err) {
+              console.error('map place() failed:', err)
+            }
+          }
+
+          let t: ReturnType<typeof setTimeout> | null = null
+          function schedule() {
+            if (t) clearTimeout(t)
+            t = setTimeout(place, 120)
+          }
+          window.addEventListener('resize', schedule)
+          if (typeof ResizeObserver !== 'undefined') new ResizeObserver(schedule).observe(mapEl)
+          requestAnimationFrame(place)
+          setTimeout(() => {
+            if (!placed) place()
+          }, 600)
+        })
+        .catch((err: unknown) => console.error('world map failed to load:', err))
+    })
+  </script>
+
+  <style is:global>
+    /* Split: list left scrolls naturally, map right sticks */
+    .explore { padding: 0; position: relative; }
+    .explore-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0;
+      align-items: start;
+    }
+    .list-col { padding: 0 40px 60px; min-width: 0; }
+
+    .list-sticky {
+      position: sticky;
+      top: 76px;
+      z-index: 12;
+      background: rgba(253, 249, 246, 0.78);
+      backdrop-filter: saturate(140%) blur(14px);
+      -webkit-backdrop-filter: saturate(140%) blur(14px);
+      padding: 22px 40px 14px;
+      margin: 0 -40px 16px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .list-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 14px;
+    }
+    .list-head h2 {
+      font-family: var(--font-title);
+      font-weight: 700; font-size: 22px;
+      color: var(--ink);
+    }
+    .list-head .count {
+      font-family: var(--font-num);
+      font-weight: 600; font-size: 12px;
+      color: var(--ink-subtle);
+      letter-spacing: 0.1em;
+    }
+    .br-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .br {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 18px;
+      display: flex; flex-direction: column; gap: 8px;
+      cursor: pointer;
+      transition: transform .15s, border-color .15s, box-shadow .15s;
+      scroll-margin-top: 120px;
+    }
+    .br:hover { transform: translateY(-2px); border-color: var(--lavender-2); box-shadow: var(--shadow-sm); }
+    .br.is-active {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 2px rgba(119,59,250,.18), var(--shadow-md);
+    }
+    .br .top-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .br .kind {
+      display: inline-flex; align-items: center; gap: 6px;
+      width: fit-content;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--purple);
+      padding: 3px 9px; background: var(--lavender);
+      border-radius: var(--r-pill);
+      white-space: nowrap;
+    }
+    .br .kind.local   { color: var(--coral-2); background: var(--bg-warm); }
+    .br .kind.partner { color: var(--ink); background: var(--bg-section); }
+    .br .region-tag {
+      font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink-subtle);
+      white-space: nowrap;
+    }
+    .br h3 {
+      font-family: var(--font-title);
+      font-weight: 700; font-size: 18px;
+      color: var(--ink); line-height: 1.2;
+    }
+    .br .desc { font-size: 13px; color: var(--ink-body); line-height: 1.5; }
+    .br .contact {
+      font-size: 12.5px; color: var(--ink-2);
+      line-height: 1.55;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border-soft);
+      margin-top: auto;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .br .contact a { color: var(--purple); }
+    .br .contact a:hover { text-decoration: underline; }
+    .br-list .empty {
+      grid-column: 1 / -1;
+      padding: 40px;
+      text-align: center;
+      color: var(--ink-subtle);
+      font-size: 14px;
+    }
+
+    .region-divider {
+      grid-column: 1 / -1;
+      display: flex; align-items: baseline; gap: 14px;
+      padding: 18px 0 4px;
+    }
+    .region-divider:first-child { padding-top: 0; }
+    .region-divider .label {
+      font-family: var(--font-title);
+      font-weight: 700; font-size: 18px;
+      color: var(--ink);
+    }
+    .region-divider .rule { flex: 1; height: 1px; background: var(--border-soft); }
+    .region-divider .num {
+      font-family: var(--font-num);
+      font-weight: 600; font-size: 11px;
+      color: var(--ink-subtle);
+      letter-spacing: 0.1em;
+    }
+
+    /* Sticky map */
+    .map-col {
+      position: sticky;
+      top: 76px;
+      height: calc(100vh - 76px);
+      padding: 16px 40px 16px 0;
+    }
+    .map-wrap {
+      position: relative;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      height: 100%;
+      background: #F9FAFC;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+    }
+    .map-wrap svg.world {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      display: block;
+      transform: scale(1.12);
+      transform-origin: center;
+    }
+    .map-wrap svg.world .country { fill: #BBDBF0; stroke: #fff; stroke-width: 0.5; }
+    .pin {
+      position: absolute;
+      width: 22px; height: 22px;
+      margin: -22px 0 0 -11px;
+      border-radius: 50% 50% 50% 0;
+      background: var(--purple);
+      transform: rotate(-45deg);
+      box-shadow: 0 4px 12px rgba(119,59,250,.4);
+      border: 2.5px solid #fff;
+      cursor: pointer;
+      transition: transform .15s, z-index 0s;
+      z-index: 1;
+    }
+    .pin:hover { transform: rotate(-45deg) scale(1.15); z-index: 3; }
+    .pin::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; background: #fff; }
+    .pin.kind-local   { background: var(--coral-2); box-shadow: 0 4px 12px rgba(243,154,108,.45); }
+    .pin.kind-partner { background: #fff; border-color: var(--ink); }
+    .pin.kind-partner::after { background: var(--ink); }
+    .pin.is-active {
+      transform: rotate(-45deg) scale(1.35);
+      z-index: 4;
+      animation: pin-pulse 1.4s ease-out infinite;
+    }
+    @keyframes pin-pulse {
+      0%   { box-shadow: 0 4px 12px rgba(119,59,250,.4), 0 0 0 0 rgba(119,59,250,.45); }
+      100% { box-shadow: 0 4px 12px rgba(119,59,250,.4), 0 0 0 24px rgba(119,59,250,0); }
+    }
+
+    /* Pin popup */
+    .popup {
+      position: absolute;
+      transform: translate(-50%, calc(-100% - 22px));
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      box-shadow: var(--shadow-lg);
+      padding: 12px 14px;
+      width: 240px;
+      z-index: 6;
+      pointer-events: none;
+      opacity: 0; transition: opacity .15s;
+    }
+    .popup.below::after {
+      bottom: auto; top: -8px;
+      transform: translateX(-50%) rotate(225deg);
+    }
+    .popup.is-open { opacity: 1; pointer-events: auto; }
+    .popup::after {
+      content: "";
+      position: absolute; left: var(--ax, 50%); bottom: -8px;
+      transform: translateX(-50%) rotate(45deg);
+      width: 14px; height: 14px;
+      background: #fff;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .popup h5 { font-family: var(--font-title); font-weight: 700; font-size: 16px; color: var(--ink); line-height: 1.2; margin-bottom: 6px; }
+    .popup .kind { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple); }
+    .popup .kind.local { color: var(--coral-2); }
+    .popup .kind.partner { color: var(--ink); }
+    .popup .meta { font-size: 12.5px; color: var(--ink-body); line-height: 1.45; margin-top: 4px; }
+    .popup .meta a { color: var(--purple); }
+    .popup .plinks {
+      margin-top: 8px; padding-top: 8px;
+      border-top: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 4px;
+      font-size: 12.5px; color: var(--ink-body);
+    }
+    .popup .plinks a { color: var(--purple); }
+
+    /* Segmented filters */
+    .seg { display: flex; flex-wrap: wrap; gap: 6px; }
+    .seg + .seg { margin-top: 8px; }
+    .seg .opt {
+      font-family: var(--font-ui);
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--ink-2);
+      padding: 7px 14px;
+      border-radius: var(--r-pill);
+      background: transparent;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .seg .opt:hover { color: var(--purple); border-color: var(--purple); }
+    .seg .opt.is-active {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    /* Legend */
+    .legend {
+      position: absolute;
+      left: 16px; right: 16px; bottom: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--ink-2);
+      background: rgba(255,255,255,0.92);
+      padding: 12px 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-pill);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 5;
+    }
+    .legend .leg { display: flex; gap: 8px; align-items: center; justify-content: center; font-weight: 500; }
+    .legend .swatch { width: 14px; height: 14px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--purple); border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.1); flex-shrink: 0; }
+    .legend .swatch.local { background: var(--coral-2); }
+    .legend .swatch.partner { background: #fff; border-color: var(--ink); }
+
+    @media (max-width: 900px) {
+      .explore-grid { grid-template-columns: 1fr; }
+      .map-col { position: static; height: 70vh; padding: 0 24px; }
+      .list-col { padding: 24px; }
+      .br-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</BaseLayout>

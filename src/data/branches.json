@@ -1,0 +1,89 @@
+{
+  "_comment": "Branch & chapter directory for the /branches page. type: branch | local | partner. lat/lng place the map pin. contact rows: [emoji, text, optional link]. To add a location: copy a block.",
+  "branches": [
+    {
+      "id": "korea", "name": "Sakyadhita Korea", "region": "Asia", "type": "branch",
+      "lat": 37.55, "lng": 126.99,
+      "desc": "Hosted the 18th International Conference in 2023.",
+      "contact": [["📧", "korea@sakyadhita.org", "mailto:korea@sakyadhita.org"]]
+    },
+    {
+      "id": "mongolia", "name": "Sakyadhita Mongolia", "region": "Asia", "type": "branch",
+      "lat": 47.92, "lng": 106.92,
+      "desc": "Active in translation and Buddhist education across Central Asia.",
+      "contact": [["📞", "+976 70183588"], ["📧", "mongolia@sakyadhita.org", "mailto:mongolia@sakyadhita.org"]]
+    },
+    {
+      "id": "malaysia", "name": "Sakyadhita Malaysia (KBS)", "region": "Asia", "type": "branch",
+      "lat": 1.55, "lng": 110.34,
+      "desc": "Hosted the 19th International Conference in Sarawak, 2025.",
+      "contact": [["📧", "malaysia@sakyadhita.org", "mailto:malaysia@sakyadhita.org"]]
+    },
+    {
+      "id": "india", "name": "India · Bodh Gaya", "region": "Asia", "type": "local",
+      "lat": 24.69, "lng": 84.99,
+      "desc": "Where Sakyadhita was founded in 1987. Coordinated by the Mahabodhi community.",
+      "contact": [["📧", "bodhgaya@sakyadhita.org", "mailto:bodhgaya@sakyadhita.org"]]
+    },
+    {
+      "id": "srilanka", "name": "Sri Lanka", "region": "Asia", "type": "local",
+      "lat": 6.93, "lng": 79.85,
+      "desc": "Active in bhikkhuni ordination support and educational outreach.",
+      "contact": [["📧", "srilanka@sakyadhita.org", "mailto:srilanka@sakyadhita.org"]]
+    },
+    {
+      "id": "taiwan", "name": "Taiwan", "region": "Asia", "type": "local",
+      "lat": 25.03, "lng": 121.56,
+      "desc": "Coordinated through Foguang Shan and Dharma Drum Mountain alumni networks.",
+      "contact": [["📧", "taiwan@sakyadhita.org", "mailto:taiwan@sakyadhita.org"]]
+    },
+    {
+      "id": "usa", "name": "Sakyadhita USA", "region": "Americas", "type": "branch",
+      "lat": 32.72, "lng": -117.16,
+      "desc": "Headquartered in San Diego, California. Administrative hub for the organization.",
+      "contact": [["📞", "+1 858-525-5173 (HST)"], ["📧", "service.sakyadhita@gmail.com", "mailto:service.sakyadhita@gmail.com"], ["📍", "San Diego, CA 92120"]]
+    },
+    {
+      "id": "brazil", "name": "Sakyadhita Brazil", "region": "Americas", "type": "branch",
+      "lat": -23.55, "lng": -46.63,
+      "desc": "Active community based in São Paulo with regional outreach.",
+      "contact": [["📞", "+55 11 9334-833244"], ["📧", "brazil@sakyadhita.org", "mailto:brazil@sakyadhita.org"]]
+    },
+    {
+      "id": "canada", "name": "Canada", "region": "Americas", "type": "local",
+      "lat": 43.65, "lng": -79.38,
+      "desc": "Local chapter with members in Toronto, Vancouver, and Montréal.",
+      "contact": [["📧", "canada@sakyadhita.org", "mailto:canada@sakyadhita.org"]]
+    },
+    {
+      "id": "france", "name": "Sakyadhita France", "region": "Europe", "type": "branch",
+      "lat": 48.58, "lng": 7.75,
+      "desc": "Strasbourg-based national branch. Active in European outreach and translation.",
+      "contact": [["📍", "71 Boulevard d'Anvers, Strasbourg"], ["📧", "france@sakyadhita.org", "mailto:france@sakyadhita.org"]]
+    },
+    {
+      "id": "germany", "name": "Sakyadhita Germany", "region": "Europe", "type": "branch",
+      "lat": 53.55, "lng": 9.99,
+      "desc": "German-speaking community. Coordinates with Hamburg University vinaya scholars.",
+      "contact": [["📧", "germany@sakyadhita.org", "mailto:germany@sakyadhita.org"]]
+    },
+    {
+      "id": "europe-net", "name": "Network of Buddhist Women in Europe", "region": "Europe", "type": "partner",
+      "lat": 50.85, "lng": 4.35,
+      "desc": "Pan-European federation of Buddhist women's organizations.",
+      "contact": [["🌐", "buddhistwomen.eu", "https://buddhistwomen.eu"]]
+    },
+    {
+      "id": "egypt", "name": "Egypt · Cairo", "region": "Africa", "type": "local",
+      "lat": 30.04, "lng": 31.24,
+      "desc": "Small but committed chapter. Newest addition to the directory (2024).",
+      "contact": [["📞", "+2 443-8982"]]
+    },
+    {
+      "id": "australia", "name": "Sakyadhita Australia", "region": "Oceania", "type": "branch",
+      "lat": -33.72, "lng": 150.31,
+      "desc": "Hosted the 16th International Conference in the Blue Mountains, 2019.",
+      "contact": [["🌐", "facebook.com/Sakyadhitaoz", "https://www.facebook.com/Sakyadhitaoz"]]
+    }
+  ]
+}
