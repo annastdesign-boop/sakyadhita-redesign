@@ -1,0 +1,181 @@
+---
+/**
+ * Donate page — impact amounts, the PayPal donate button, and
+ * more-ways-to-support cards.
+ *
+ * The button uses Sakyadhita's real PayPal hosted donate button
+ * (the design linked to PayPal's generic page by mistake).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const PAYPAL_DONATE_URL = 'https://www.paypal.com/donate?hosted_button_id=78ZSMXL4ZSYJQ'
+---
+
+<BaseLayout
+  title="Donate · Sakyadhita"
+  description="Support Sakyadhita's work for Buddhist women worldwide — conference scholarships, the newsletter, ordination advocacy, and branch development. Tax-deductible 501(c)3 donations."
+  active="get-involved"
+  ogImage="/assets/icon-donate.png"
+>
+  <section class="hero-compact">
+    <div class="shell">
+      <div class="eyebrow">GET INVOLVED · DONATE</div>
+      <h1 class="h-display">Your gift sustains 35+ years of work</h1>
+      <p class="lede">
+        Sakyadhita is a 501(c)3 nonprofit, volunteer-run. Your contribution goes directly to
+        conference scholarships, the newsletter, ordination advocacy, and branch development.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="section-head" style="text-align: center;">
+        <div class="eyebrow">WHERE YOUR MONEY GOES</div>
+        <h2 class="h-section">Your impact</h2>
+        <p class="lede" style="max-width: 640px; margin: 14px auto 0;">
+          Every gift makes a difference, and even $5 goes a long way. Your contribution helps
+          sustain our mission by funding the newsletter, sponsoring conference scholarships, and
+          advancing ordination advocacy across all traditions.
+        </p>
+      </div>
+      <div class="impact-amounts">
+        <div class="impact-amt">
+          <div class="v">$25</div>
+          <p>Funds one newsletter print run.</p>
+        </div>
+        <div class="impact-amt">
+          <div class="v">$100</div>
+          <p>Sponsors one conference scholarship application.</p>
+        </div>
+        <div class="impact-amt">
+          <div class="v">$500</div>
+          <p>Funds full conference travel for one nun from a developing country.</p>
+        </div>
+        <div class="impact-amt">
+          <div class="v">$1,000</div>
+          <p>Supports a year of ordination advocacy programming.</p>
+        </div>
+      </div>
+      <div class="impact-cta">
+        <a class="btn btn--primary btn--lg" href={PAYPAL_DONATE_URL} target="_blank" rel="noopener noreferrer">
+          Donate with PayPal <span class="arr">→</span>
+        </a>
+      </div>
+      <div class="tax-card" style="max-width: 640px; margin: 28px auto 0;">
+        <span style="font-size: 24px;">🧾</span>
+        <div>
+          <b>Tax-deductible.</b> Sakyadhita International is a registered 501(c)3 non-profit in the
+          United States. Donations from U.S. taxpayers are tax-deductible. EIN available on
+          request.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ways">
+    <div class="shell">
+      <div class="section-head">
+        <div class="eyebrow">BE INVOLVED</div>
+        <h2 class="h-section">More ways to support Sakyadhita</h2>
+      </div>
+      <div class="ways-grid">
+        <a class="way way--join" href="/join">
+          <div class="glyph" aria-hidden="true"></div>
+          <h3>Join Us</h3>
+          <p>Become a member of our global network. Member tiers start at $15 USD.</p>
+          <span class="btn btn--primary btn--sm" style="margin-top:6px;">Join Now</span>
+        </a>
+        <a class="way way--vol" href="/volunteer">
+          <div class="glyph" aria-hidden="true"></div>
+          <h3>Volunteer</h3>
+          <p>15 committees need help — from translation to conference planning.</p>
+          <span class="btn btn--ghost btn--sm" style="margin-top:6px;">Learn more</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style is:global>
+    .impact-amounts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 8px;
+    }
+    .impact-amt {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 28px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+    .impact-amt .v {
+      font-family: var(--font-num);
+      font-weight: 700;
+      font-size: 40px;
+      color: var(--purple);
+      line-height: 1;
+    }
+    .impact-amt p {
+      font-size: 14.5px;
+      color: var(--ink-body);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .impact-cta {
+      margin-top: 40px;
+      text-align: center;
+    }
+    @media (max-width: 900px) {
+      .impact-amounts { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .impact-amounts { grid-template-columns: 1fr; }
+    }
+
+    .tax-card {
+      margin-top: 18px;
+      padding: 16px 18px;
+      background: var(--bg-subtle);
+      border-radius: var(--r-md);
+      font-size: 13.5px;
+      color: var(--ink-2);
+      display: flex; gap: 12px;
+    }
+    .tax-card b { color: var(--ink); }
+
+    .site-footer { margin-top: 0; }
+
+    .ways { padding: 0 0 112px; }
+    .ways-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 760px; margin: 0 auto; }
+    .way {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 40px 32px 32px;
+      text-align: center;
+      display: flex; flex-direction: column; gap: 14px;
+      align-items: center;
+      text-decoration: none; color: inherit;
+      transition: transform .15s, box-shadow .2s;
+    }
+    .way:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .way .glyph {
+      width: 168px; height: 168px;
+      background-size: contain; background-position: center; background-repeat: no-repeat;
+    }
+    .way--join .glyph { background-image: url('/assets/icon-member.png'); }
+    .way--vol .glyph { background-image: url('/assets/icon-volunteer.png'); }
+    .way h3 { font-family: var(--font-title); font-weight: 700; font-size: 26px; color: var(--ink); }
+    .way p { font-size: 14.5px; color: var(--ink-body); line-height: 1.55; padding: 0 16px; }
+    @media (max-width: 640px) {
+      .ways-grid { grid-template-columns: 1fr; }
+      .way { padding: 32px 24px 28px; }
+    }
+  </style>
+</BaseLayout>

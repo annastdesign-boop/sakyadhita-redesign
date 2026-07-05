@@ -1,0 +1,365 @@
+---
+/**
+ * Join / Membership page — benefits, tiers, and the membership form
+ * (a real Netlify Form named "membership").
+ *
+ * NOTE: the PayPal payment step is NOT wired yet — submissions are
+ * safely recorded in Netlify → Forms → "membership", and the thank-you
+ * message explains payment instructions will follow. Connecting the
+ * live PayPal checkout is a separate, deliberate step.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title="Join · Sakyadhita"
+  description="Become a member of Sakyadhita — a global network of 5,000+ Buddhist women across 45 countries. Annual membership from $15, lifetime from $150."
+  active="get-involved"
+  ogImage="/assets/icon-member.png"
+>
+  <section class="hero-compact">
+    <div class="shell">
+      <div class="eyebrow">GET INVOLVED · MEMBERSHIP</div>
+      <h1 class="h-display">Join Sakyadhita</h1>
+      <p class="lede" style="max-width: 500px; margin-left: auto; margin-right: auto;">
+        Become part of a global network of 5,000+ Buddhist women across 45 countries.
+      </p>
+      <div style="display: flex; gap: 12px; justify-content: center; margin-top: 24px;">
+        <a class="btn btn--primary btn--lg" href="#join-form">Become a member</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section>
+    <div class="shell">
+      <div class="section-head">
+        <div class="eyebrow">WHAT YOU GET</div>
+        <h2 class="h-section">Why become a member?</h2>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h11v14H5a1 1 0 0 1-1-1V5z"/><path d="M15 8h3a1 1 0 0 1 1 1v8a2 2 0 0 1-2 2"/><line x1="7" y1="8.5" x2="12" y2="8.5"/><line x1="7" y1="11.5" x2="12" y2="11.5"/><line x1="7" y1="14.5" x2="10" y2="14.5"/></svg></div>
+          <h3>The newsletter</h3>
+          <p>Original scholarship and member essays from Buddhist women across 45 countries — mailed to your door once a year.</p>
+        </div>
+        <div class="benefit">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 0 0 4v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1a2 2 0 0 0 0-4V8z"/><line x1="14" y1="6.5" x2="14" y2="17.5" stroke-dasharray="2 2.4"/></svg></div>
+          <h3>Conference access</h3>
+          <p>Stand among thousands of Buddhist women — member-rate entry to the biennial international conference and regional gatherings.</p>
+        </div>
+        <div class="benefit">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8.5 12l2.2 2.2L15.5 9.5"/></svg></div>
+          <h3>A voice in decisions</h3>
+          <p>Help decide where Sakyadhita stands on ordination, education, and advocacy — your vote shapes the network's direction.</p>
+        </div>
+        <div class="benefit">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M4 12h16"/><path d="M12 4c2.6 2.2 2.6 13.8 0 16M12 4c-2.6 2.2-2.6 13.8 0 16"/></svg></div>
+          <h3>Branch connection</h3>
+          <p>We introduce you directly to your nearest branch or chapter, so community is never more than an introduction away.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIERS -->
+  <section class="tiers">
+    <div class="shell">
+      <div class="section-head">
+        <h2 class="h-section">Membership is open to everyone</h2>
+        <p class="muted" style="max-width: 62ch;">
+          Every member receives the same benefits. Reduced rates keep membership accessible to
+          nuns, students, and those who are unemployed, while lifetime and regular dues help fund
+          scholarships across the network.
+        </p>
+      </div>
+      <div class="tier-groups">
+        <div class="tier-group">
+          <div class="gh"><h3>Annual</h3><span class="freq">Renewed yearly</span></div>
+          <div class="tier-line">
+            <div class="amt">$30</div>
+            <div class="who"><div class="w-title">Regular member</div><div class="w-sub">For laypeople and supporters</div></div>
+          </div>
+          <div class="tier-line">
+            <div class="amt">$15</div>
+            <div class="who"><div class="w-title">Reduced rate</div><div class="w-sub">Nuns, students, and unemployed members</div></div>
+          </div>
+        </div>
+        <div class="tier-group">
+          <div class="gh"><h3>Lifetime</h3><span class="freq">One-time</span></div>
+          <div class="tier-line">
+            <div class="amt">$300</div>
+            <div class="who"><div class="w-title">Laypeople</div><div class="w-sub">Lifetime membership, paid once</div></div>
+          </div>
+          <div class="tier-line">
+            <div class="amt">$150</div>
+            <div class="who"><div class="w-title">Monastics</div><div class="w-sub">Lifetime membership, paid once</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tier-actions">
+        <a class="btn btn--primary btn--lg" href="#join-form">Become a member</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="form-section" id="join-form">
+    <div class="shell">
+      <div class="section-head">
+        <div class="eyebrow">BECOME A MEMBER</div>
+        <h2 class="h-section">Tell us about yourself</h2>
+      </div>
+
+      <form class="form-card" name="membership" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="membership" />
+        <p hidden aria-hidden="true">
+          <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+        </p>
+
+        <div class="field" style="margin-bottom: 6px;"><label>Membership tier *</label></div>
+        <div class="tier-pick">
+          <button type="button" class="tier-opt sel" data-name="Regular member ($30/year)"><span class="o-amt">$30 <small>/year</small></span><span class="o-text"><span class="o-name">Regular member</span><span class="o-sub">Laypeople &amp; supporters</span></span></button>
+          <button type="button" class="tier-opt" data-name="Reduced rate ($15/year)"><span class="o-amt">$15 <small>/year</small></span><span class="o-text"><span class="o-name">Reduced rate</span><span class="o-sub">Nuns, students, unemployed</span></span></button>
+          <button type="button" class="tier-opt" data-name="Lifetime — Laypeople ($300)"><span class="o-amt">$300 <small>once</small></span><span class="o-text"><span class="o-name">Lifetime · Laypeople</span><span class="o-sub">Paid once</span></span></button>
+          <button type="button" class="tier-opt" data-name="Lifetime — Monastics ($150)"><span class="o-amt">$150 <small>once</small></span><span class="o-text"><span class="o-name">Lifetime · Monastics</span><span class="o-sub">Paid once</span></span></button>
+        </div>
+        <input type="hidden" id="tier-value" name="membershipType" value="Regular member ($30/year)" />
+
+        <div class="stack-4">
+          <div class="form-row">
+            <div class="field"><label for="j-fname">First name *</label><input id="j-fname" name="fName" type="text" required placeholder="First name" autocomplete="given-name" /></div>
+            <div class="field"><label for="j-lname">Last name *</label><input id="j-lname" name="lName" type="text" required placeholder="Last name" autocomplete="family-name" /></div>
+          </div>
+          <div class="field"><label for="j-email">Email address *</label><input id="j-email" name="email" type="email" required placeholder="you@email.com" autocomplete="email" /></div>
+          <div class="form-row">
+            <div class="field"><label for="j-country">Country *</label><input id="j-country" name="country" type="text" required placeholder="Country" autocomplete="country-name" /></div>
+            <div class="field"><label for="j-city">City</label><input id="j-city" name="city" type="text" placeholder="City" autocomplete="address-level2" /></div>
+          </div>
+          <div class="field">
+            <label for="j-tradition">Buddhist tradition (optional)</label>
+            <select id="j-tradition" name="tradition">
+              <option>—</option>
+              <option>Theravada</option>
+              <option>Mahayana</option>
+              <option>Vajrayana</option>
+              <option>Other</option>
+              <option>Prefer not to say</option>
+            </select>
+          </div>
+
+          <div class="donate-box" id="donate-box">
+            <label class="check"><input type="checkbox" id="add-donation" /><span><b>I'd like to add a donation to my membership fee.</b> Donations support conference scholarships for nuns and students from developing countries.</span></label>
+            <div class="row-line">
+              <span style="font-size: 14px; color: var(--ink-2);">Donation amount (USD)</span>
+              <input class="field" name="donationAmount" type="number" min="0" placeholder="$ 0" style="border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; font: inherit; font-size: 14.5px;" />
+            </div>
+          </div>
+
+          <label class="check">
+            <input type="checkbox" name="consent" required />
+            <span>I agree to receive Sakyadhita communications. I can unsubscribe at any time.</span>
+          </label>
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn btn--primary btn--lg">Continue to payment <span class="arr">→</span></button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="renew" id="newsletter" style="margin-bottom: 0;">
+    <div class="shell shell--narrow">
+      <div class="eyebrow">NEWSLETTER</div>
+      <h2 class="h-section" style="margin: 12px 0 6px;">Subscribe to our newsletter</h2>
+      <p class="muted" style="margin-bottom: 18px;">Join our email list for newsletters, event news, and stories from the network.</p>
+      <form class="el-form" id="join-newsletter" style="max-width: 480px; margin: 0 auto;">
+        <input type="email" required placeholder="you@email.com" aria-label="Email address" />
+        <button type="submit" class="btn btn--primary">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    import { enhanceForm } from '../scripts/forms'
+
+    enhanceForm(document.querySelector('form[name="membership"]'), {
+      successTitle: 'Membership application received',
+      successText:
+        "Thank you for joining Sakyadhita! We've recorded your application and will email you shortly with payment instructions to complete your membership.",
+    })
+
+    // Membership tier picker
+    const opts = [...document.querySelectorAll('.tier-opt')]
+    const hidden = document.getElementById('tier-value') as HTMLInputElement | null
+    opts.forEach((opt) => {
+      opt.addEventListener('click', () => {
+        opts.forEach((o) => o.classList.remove('sel'))
+        opt.classList.add('sel')
+        if (hidden) hidden.value = (opt as HTMLElement).dataset.name || ''
+      })
+    })
+
+    // Conditional donation amount
+    const box = document.getElementById('donate-box')
+    const chk = document.getElementById('add-donation') as HTMLInputElement | null
+    chk?.addEventListener('change', () => box?.classList.toggle('on', chk.checked))
+
+    // Newsletter placeholder (until a real mailing list is connected)
+    const nl = document.getElementById('join-newsletter') as HTMLFormElement | null
+    nl?.addEventListener('submit', (e) => {
+      e.preventDefault()
+      nl.querySelector('input')!.value = ''
+      nl.querySelector('button')!.textContent = 'Thanks ✓'
+    })
+  </script>
+
+  <style is:global>
+    #join-form, #renew { scroll-margin-top: 96px; }
+    .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .benefit {
+      padding: 28px 22px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      display: flex; flex-direction: column; gap: 10px;
+      transition: transform .15s, box-shadow .2s;
+    }
+    .benefit:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .benefit .ico {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--lavender);
+      color: var(--purple);
+      display: grid; place-items: center;
+    }
+    .benefit .ico svg { width: 24px; height: 24px; display: block; }
+    .benefit h3 { font-family: var(--font-title); font-weight: 700; font-size: 22px; color: var(--ink); }
+    .benefit p { font-size: 14px; color: var(--ink-body); line-height: 1.5; }
+
+    .tiers { padding: 104px 0; }
+    .form-card .stack-4 { display: flex; flex-direction: column; gap: 16px; }
+    .form-card .field { gap: 4px; }
+    .tier-groups {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+      margin-top: 8px;
+    }
+    .tier-group {
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      background: #fff;
+      padding: 28px 32px;
+    }
+    .tier-group > .gh {
+      display: flex; align-items: baseline; gap: 10px;
+      padding-bottom: 16px; margin-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tier-group > .gh h3 {
+      font-family: var(--font-title); font-weight: 700;
+      font-size: 24px; color: var(--ink);
+    }
+    .tier-group > .gh .freq {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ink-2);
+    }
+    .tier-line {
+      display: flex; align-items: center; gap: 18px;
+      padding: 18px 0;
+    }
+    .tier-line + .tier-line { border-top: 1px solid var(--border); }
+    .tier-line .amt {
+      font-family: var(--font-num); font-weight: 700;
+      font-size: 34px; color: var(--purple); line-height: 1;
+      min-width: 84px;
+    }
+    .tier-line .who .w-title { font-size: 16px; font-weight: 600; color: var(--ink); }
+    .tier-line .who .w-sub { font-size: 13.5px; color: var(--ink-2); margin-top: 2px; }
+    @media (max-width: 760px) {
+      .tier-groups { grid-template-columns: 1fr; }
+      .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .benefits-grid { grid-template-columns: 1fr; }
+    }
+    .tier-actions {
+      display: flex; gap: 14px; justify-content: center;
+      margin-top: 32px; flex-wrap: wrap;
+    }
+
+    /* Tier picker (in form) */
+    .tier-pick {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+      margin-bottom: 24px;
+    }
+    .tier-opt {
+      text-align: left; cursor: pointer; font: inherit;
+      border: 1.5px solid var(--border); border-radius: 12px;
+      background: #fff; padding: 15px 17px;
+      display: flex; align-items: center; gap: 15px;
+      transition: border-color .15s, background .15s, box-shadow .15s;
+    }
+    .tier-opt:hover { border-color: var(--purple); }
+    .tier-opt.sel { border-color: var(--purple); background: var(--lavender); box-shadow: inset 0 0 0 1px var(--purple); }
+    .tier-opt .o-amt {
+      font-family: var(--font-num); font-weight: 700; font-size: 22px;
+      color: var(--purple); line-height: 1; white-space: nowrap;
+      display: flex; align-items: baseline; gap: 4px;
+    }
+    .tier-opt .o-amt small { font-size: 12px; font-weight: 500; color: var(--ink-2); }
+    .tier-opt .o-text { display: flex; flex-direction: column; gap: 2px; }
+    .tier-opt .o-name { font-size: 14.5px; font-weight: 600; color: var(--ink); }
+    .tier-opt .o-sub { font-size: 12.5px; color: var(--ink-2); }
+    @media (max-width: 520px) { .tier-pick { grid-template-columns: 1fr; } }
+
+    /* Conditional donation amount */
+    .donate-box .row-line { display: none; }
+    .donate-box.on .row-line { display: flex; }
+
+    .form-section { padding: 72px 0; }
+    .el-form { display: flex; gap: 10px; }
+    .el-form input {
+      flex: 1; min-width: 0;
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font: inherit; font-size: 14.5px;
+      color: var(--ink); outline: 0;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .el-form input:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 4px rgba(119,59,250,.12);
+    }
+    .el-form .btn { flex: none; }
+    .form-card {
+      max-width: 820px; margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+    }
+    .donate-box {
+      background: var(--bg-section);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 18px;
+      margin: 6px 0 4px;
+    }
+    .donate-box .row-line { align-items: center; gap: 12px; margin-top: 12px; }
+    .donate-box input { max-width: 200px; }
+    .form-card .submit-row {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; margin-top: 18px;
+      padding-top: 18px; border-top: 1px solid var(--border-soft);
+    }
+    .form-card .submit-row .btn { width: 100%; justify-content: center; }
+
+    .renew { padding: 60px 0 80px; text-align: center; }
+    .site-footer { margin-top: 0; }
+  </style>
+</BaseLayout>

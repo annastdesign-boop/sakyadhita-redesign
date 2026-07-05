@@ -1,0 +1,372 @@
+---
+/**
+ * Volunteer page — committees overview, the application form (a real
+ * Netlify Form named "volunteer"), and Q&A accordion.
+ *
+ * Submissions appear in Netlify → Forms → "volunteer".
+ */
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const committees = [
+  'Editing', 'Tech Support', 'Administration', 'Research', 'Social Justice',
+  'Writing', 'Building & Planning', 'Accounting', 'Programming',
+  'Conference Planning', 'Arts', 'Translation', 'Branches & Chapters',
+  'Design', 'Ordination',
+]
+---
+
+<BaseLayout
+  title="Volunteer · Sakyadhita"
+  description="Sakyadhita runs on volunteers — 15 committees need help, from translation to web development to conference planning. Apply to volunteer from anywhere in the world."
+  active="get-involved"
+  ogImage="/assets/member-voice.png"
+>
+  <section class="hero-compact">
+    <div class="shell">
+      <div class="eyebrow">GET INVOLVED · VOLUNTEER</div>
+      <h1 class="h-display">Sakyadhita runs on volunteers</h1>
+      <p class="lede">
+        We're a 501(c)3 non-profit, entirely volunteer-run. 15 committees need help — from
+        translation to web development to conference planning.
+      </p>
+      <div class="cta-row" style="margin-top: 28px;">
+        <a class="btn btn--primary btn--lg" href="#apply">Apply to become a volunteer <span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="committees">
+    <div class="shell">
+      <div class="com-split">
+        <div class="com-left">
+          <div class="section-head section-head--left">
+            <div class="eyebrow">15 COMMITTEES</div>
+            <h2 class="h-section">Where you can help</h2>
+            <p class="muted">
+              Each committee handles a specific part of Sakyadhita's work. Most accept volunteers
+              worldwide and operate remotely.
+            </p>
+            <a class="btn btn--primary" style="margin-top: 22px;" href="#apply">Become a volunteer <span class="arr">→</span></a>
+          </div>
+        </div>
+        <div class="com-right">
+          <div class="com-group">
+            <div class="com-group-head">Words &amp; Languages</div>
+            <div class="com-grid">
+              <div class="com"><div class="com-emoji">🌐</div><div class="com-body"><h3>Translation</h3><p>Translate newsletters and communications into multiple languages.</p></div></div>
+              <div class="com"><div class="com-emoji">✏️</div><div class="com-body"><h3>Editing</h3><p>Polish articles for the newsletter, conference proceedings, and website.</p></div></div>
+              <div class="com"><div class="com-emoji">📝</div><div class="com-body"><h3>Writing</h3><p>Draft blog posts, news updates, and member features.</p></div></div>
+              <div class="com"><div class="com-emoji">🔍</div><div class="com-body"><h3>Research</h3><p>Document the lives and contributions of Buddhist women, historical and present.</p></div></div>
+            </div>
+          </div>
+
+          <div class="com-group">
+            <div class="com-group-head">Technology &amp; Creative</div>
+            <div class="com-grid">
+              <div class="com"><div class="com-emoji">💻</div><div class="com-body"><h3>Tech Support</h3><p>Help with virtual meetings, digital platforms, and troubleshooting.</p></div></div>
+              <div class="com"><div class="com-emoji">⌨️</div><div class="com-body"><h3>Programming</h3><p>Develop web features, maintain the site, optimize infrastructure.</p></div></div>
+              <div class="com"><div class="com-emoji">🎨</div><div class="com-body"><h3>Design</h3><p>Create graphics, layouts, and branding for print and digital.</p></div></div>
+              <div class="com"><div class="com-emoji">🖌️</div><div class="com-body"><h3>Arts</h3><p>Visual arts, photography, music, traditional crafts.</p></div></div>
+            </div>
+          </div>
+
+          <div class="com-group">
+            <div class="com-group-head">Operations &amp; Finance</div>
+            <div class="com-grid">
+              <div class="com"><div class="com-emoji">📅</div><div class="com-body"><h3>Conference Planning</h3><p>Coordinate speakers, workshops, and logistics for the biennial conference.</p></div></div>
+              <div class="com"><div class="com-emoji">🗂️</div><div class="com-body"><h3>Administration</h3><p>Membership coordination and non-profit operations.</p></div></div>
+              <div class="com"><div class="com-emoji">📊</div><div class="com-body"><h3>Accounting</h3><p>Bookkeeping, financial reporting, non-profit compliance.</p></div></div>
+              <div class="com"><div class="com-emoji">🏗️</div><div class="com-body"><h3>Building &amp; Planning</h3><p>Strategic growth and infrastructure projects.</p></div></div>
+            </div>
+          </div>
+
+          <div class="com-group">
+            <div class="com-group-head">Community &amp; Advocacy</div>
+            <div class="com-grid">
+              <div class="com"><div class="com-emoji">🌏</div><div class="com-body"><h3>Branches &amp; Chapters</h3><p>Help establish and support local Sakyadhita communities worldwide.</p></div></div>
+              <div class="com"><div class="com-emoji">⚖️</div><div class="com-body"><h3>Social Justice</h3><p>Gender equality, sustainability, empowerment initiatives.</p></div></div>
+              <div class="com"><div class="com-emoji">🪷</div><div class="com-body"><h3>Ordination</h3><p>Research, advocacy, and educational resources on the ordination movement.</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vol-form" id="apply">
+    <div class="shell">
+      <div class="section-head" style="text-align: center; margin-bottom: 34px;">
+        <div class="eyebrow">SIGN ME UP</div>
+        <h2 class="h-section">Volunteer with Sakyadhita</h2>
+        <p class="muted" style="max-width: 620px; margin: 12px auto 0;">
+          We're always in search of volunteers — and especially in the years we hold our
+          international conference. Whatever time or skills you can offer, we'd be so grateful to
+          have you with us.
+        </p>
+      </div>
+
+      <form class="vform" name="volunteer" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="volunteer" />
+        <p hidden aria-hidden="true">
+          <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+        </p>
+
+        <fieldset class="fs">
+          <div class="fs-title">Your name</div>
+          <div class="stack">
+            <div class="form-row">
+              <div class="field"><label for="v-fname">First name *</label><input id="v-fname" name="fName" type="text" required placeholder="First name" autocomplete="given-name" /></div>
+              <div class="field"><label for="v-lname">Last name *</label><input id="v-lname" name="lName" type="text" required placeholder="Last name" autocomplete="family-name" /></div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="fs">
+          <div class="fs-title">Contact information</div>
+          <div class="stack">
+            <div class="field"><label for="v-email">Email address *</label><input id="v-email" name="email" type="email" required placeholder="you@email.com" autocomplete="email" /></div>
+            <div class="field"><label for="v-address">Full address *</label><input id="v-address" name="address" type="text" required placeholder="Street, city, state/province, postal code, country" autocomplete="street-address" /></div>
+            <div class="form-row">
+              <div class="field">
+                <label for="v-country">Country *</label>
+                <select id="v-country" name="country" required>
+                  <option value="">Select country</option>
+                  <option>Australia</option><option>Brazil</option><option>Canada</option>
+                  <option>France</option><option>Germany</option><option>India</option>
+                  <option>Indonesia</option><option>Japan</option><option>Korea, Republic of</option>
+                  <option>Malaysia</option><option>Mongolia</option><option>Nepal</option>
+                  <option>Sri Lanka</option><option>Taiwan</option><option>Thailand</option>
+                  <option>United Kingdom</option><option>United States</option>
+                  <option>Vietnam</option><option>Other</option>
+                </select>
+              </div>
+              <div class="field"><label for="v-city">City *</label><input id="v-city" name="city" type="text" required placeholder="City" autocomplete="address-level2" /></div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="fs">
+          <div class="fs-title">Committee interests</div>
+          <div class="fs-sub">Select any and all committees you're interested in joining.</div>
+          <div class="com-picks">
+            {
+              committees.map((c) => (
+                <label class="com-pick">
+                  <input type="checkbox" name="interests" value={c} />
+                  <span class="cp-name">{c}</span>
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+
+        <fieldset class="fs">
+          <div class="fs-title">Tell us about yourself</div>
+          <div class="fs-sub">Optional — share your background, skills, availability, or why you'd like to volunteer.</div>
+          <div class="field"><label for="v-about" class="sr-only" style="position:absolute; left:-9999px;">About yourself</label><textarea id="v-about" name="about" placeholder="A few words about yourself…"></textarea></div>
+        </fieldset>
+
+        <div class="submit-row">
+          <button type="submit" class="btn btn--primary btn--lg">Submit application <span class="arr">→</span></button>
+          <div class="req-note">* indicates a required field</div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="shell">
+      <div class="faq-split">
+        <div class="faq-pic" role="img" aria-label="Buddhist women in meditation at a Sakyadhita conference"></div>
+        <div>
+          <div class="section-head section-head--left" style="margin-bottom: 28px;">
+            <div class="eyebrow">QUESTIONS</div>
+            <h2 class="h-section">Volunteering Q&amp;A</h2>
+          </div>
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-q" type="button">Who can volunteer?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <div class="faq-a"><div class="faq-a-inner">Anyone, anywhere. You don't need to be a member or a Buddhist — just a willingness to support our work. We welcome laywomen and men, monastics, students, and professionals of all backgrounds.</div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" type="button">How much time does it take?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <div class="faq-a"><div class="faq-a-inner">It's entirely flexible. Some volunteers give a couple of hours around a single project or conference; others contribute regularly over years. You set a commitment that fits your life.</div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" type="button">Can I volunteer remotely?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <div class="faq-a"><div class="faq-a-inner">Yes. Most committees operate entirely online and accept volunteers worldwide. A few roles connected to the biennial conference may involve in-person work, but these are clearly marked.</div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" type="button">Do I need special skills?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <div class="faq-a"><div class="faq-a-inner">It depends on the committee. Some roles use specific skills — translation, web development, accounting — while others need only enthusiasm and reliability. Tell us your strengths and we'll find a good fit.</div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" type="button">Is volunteering paid?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <div class="faq-a"><div class="faq-a-inner">Sakyadhita is a 501(c)3 non-profit run entirely by volunteers, so roles are unpaid. What you gain is a global community, meaningful work, and a direct hand in supporting Buddhist women worldwide.</div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" type="button">How do I get started?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <div class="faq-a"><div class="faq-a-inner">Apply with the form above and let us know which committees interest you and roughly how much time you can offer. A coordinator will follow up to talk through where you'd like to help.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import { enhanceForm } from '../scripts/forms'
+    enhanceForm(document.querySelector('form[name="volunteer"]'), {
+      successTitle: 'Application received',
+      successText:
+        'Thank you for offering your time! A volunteer coordinator will follow up to talk through where you can help.',
+    })
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item .faq-q').forEach((q) => {
+      q.addEventListener('click', () => {
+        const item = q.closest('.faq-item')!
+        const ans = item.querySelector('.faq-a') as HTMLElement
+        const isOpen = item.classList.contains('is-open')
+        if (isOpen) {
+          item.classList.remove('is-open')
+          ans.style.maxHeight = ''
+        } else {
+          item.classList.add('is-open')
+          ans.style.maxHeight = `${ans.scrollHeight}px`
+        }
+      })
+    })
+  </script>
+
+  <style is:global>
+    .committees { padding: 80px 0; }
+    .com-split {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .com-left { position: sticky; top: 120px; padding: 24px 0; }
+    .com-group + .com-group { margin-top: 40px; }
+    .com-group-head {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--purple);
+      padding-bottom: 12px; margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .com-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (max-width: 900px) {
+      .com-split { grid-template-columns: 1fr; gap: 32px; }
+      .com-left { position: static; }
+    }
+    @media (max-width: 560px) {
+      .com-grid { grid-template-columns: 1fr; }
+    }
+    .com {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 22px;
+      display: flex; flex-direction: row; align-items: center; gap: 16px;
+      transition: transform .15s, border-color .15s;
+    }
+    .com .com-emoji { font-size: 30px; line-height: 1; flex: none; }
+    .com .com-body { display: flex; flex-direction: column; gap: 6px; }
+    .com:hover { transform: translateY(-2px); border-color: var(--lavender-2); }
+    .com h3 { font-family: var(--font-title); font-weight: 700; font-size: 20px; color: var(--ink); }
+    .com p { font-size: 14px; color: var(--ink-body); line-height: 1.5; }
+
+    .vol-form { padding: 80px 0; }
+    #apply { scroll-margin-top: 90px; }
+
+    .vform {
+      max-width: 820px; margin: 0 auto;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 40px 44px;
+      box-shadow: var(--shadow-md);
+    }
+    .vform .fs { border: 0; padding: 0; margin: 0; }
+    .vform .fs + .fs { margin-top: 30px; padding-top: 30px; border-top: 1px solid var(--border-soft); }
+    .vform .fs-title {
+      font-family: var(--font-title); font-weight: 700;
+      font-size: 20px; color: var(--ink); margin-bottom: 4px;
+    }
+    .vform .fs-sub { font-size: 14px; color: var(--ink-2); margin-bottom: 18px; }
+    .vform .stack { display: flex; flex-direction: column; gap: 16px; }
+    .vform .field { gap: 4px; }
+    .com-picks {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+    .com-pick {
+      display: flex; align-items: flex-start; gap: 10px;
+      border: 1px solid var(--border); border-radius: var(--r-md);
+      padding: 12px 14px; cursor: pointer;
+      transition: border-color .15s, background .15s;
+    }
+    .com-pick:hover { border-color: var(--lavender-2); background: var(--bg-subtle); }
+    .com-pick:has(input:checked) { border-color: var(--purple); background: rgba(119,59,250,.05); }
+    .com-pick input { margin-top: 3px; accent-color: var(--purple); flex: none; }
+    .com-pick .cp-name { font-size: 14.5px; font-weight: 600; color: var(--ink); }
+    .vform .submit-row {
+      margin-top: 30px; padding-top: 26px;
+      border-top: 1px solid var(--border-soft);
+    }
+    .vform .submit-row .btn { width: 100%; justify-content: center; }
+    .vform .req-note { font-size: 12.5px; color: var(--ink-subtle); margin-top: 12px; text-align: center; }
+    @media (max-width: 860px) {
+      .com-picks { grid-template-columns: repeat(2, 1fr); }
+      .vform { padding: 32px 24px; }
+    }
+    @media (max-width: 520px) {
+      .com-picks { grid-template-columns: 1fr; }
+    }
+
+    /* Q&A accordion */
+    .faq { padding: 80px 0; }
+    #faq.faq { scroll-margin-top: 90px; }
+    .faq-split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .faq-pic {
+      position: sticky; top: 120px;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 9/10;
+      background: url('/assets/member-voice.png') 60% 50%/cover no-repeat;
+      border: 1px solid var(--border);
+    }
+    @media (max-width: 900px) {
+      .faq-split { grid-template-columns: 1fr; gap: 32px; }
+      .faq-pic { position: static; aspect-ratio: 16/10; }
+    }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 20px 24px;
+      background: none; border: 0; cursor: pointer;
+      font: inherit; text-align: left;
+      font-family: var(--font-title); font-weight: 700; font-size: 18px; color: var(--ink);
+    }
+    .faq-q .chev {
+      flex: none; width: 22px; height: 22px; color: var(--purple);
+      transition: transform .25s ease;
+    }
+    .faq-item.is-open .faq-q .chev { transform: rotate(180deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .3s ease;
+    }
+    .faq-a-inner { padding: 0 24px 22px; font-size: 15px; line-height: 1.65; color: var(--ink-body); }
+  </style>
+</BaseLayout>

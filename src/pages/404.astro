@@ -1,0 +1,28 @@
+---
+/**
+ * 404 — friendly "page not found", with a path back home.
+ * Netlify serves this automatically for any address that doesn't exist.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title="Page not found · Sakyadhita"
+  description="The page you were looking for doesn't exist. Return to the Sakyadhita home page."
+>
+  <section class="hero-compact" style="padding-top: 96px; padding-bottom: 120px;">
+    <div class="shell" style="text-align: center;">
+      <img src="/assets/logo-flower.png" alt="" aria-hidden="true" style="width: 96px; height: 96px; object-fit: contain; margin: 0 auto 24px;" />
+      <div class="eyebrow">404 · PAGE NOT FOUND</div>
+      <h1 class="h-display">This path doesn't lead anywhere</h1>
+      <p class="lede" style="margin-top: 16px;">
+        The page you're looking for may have moved or never existed. Let's get you back on the
+        path.
+      </p>
+      <div style="display: flex; gap: 12px; justify-content: center; margin-top: 32px; flex-wrap: wrap;">
+        <a class="btn btn--primary btn--lg" href="/">Back to home <span class="arr">→</span></a>
+        <a class="btn btn--ghost btn--lg" href="/contact">Contact us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
