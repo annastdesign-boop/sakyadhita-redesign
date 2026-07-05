@@ -1,0 +1,8 @@
+# Netlify build configuration — lives in the repo so the settings
+# can never drift from what the code needs.
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
