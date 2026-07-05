@@ -1,0 +1,102 @@
+---
+/**
+ * BaseLayout — the shared shell every page sits inside.
+ * Gives each page: fonts, SEO tags, the site header, the soft
+ * "orb" background, and the footer.
+ *
+ * Usage:
+ *   <BaseLayout title="About · Sakyadhita" description="..." active="about">
+ *     ...page content...
+ *   </BaseLayout>
+ */
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+
+interface Props {
+  /** Browser-tab + search-result title */
+  title: string
+  /** One-sentence page summary for search engines and link previews */
+  description: string
+  /** Which top-nav item to highlight: home | conferences | resources | about | branches | get-involved | contact */
+  active?: string
+  /** Image used in social-media link previews (path under /assets) */
+  ogImage?: string
+}
+
+const { title, description, active = '', ogImage = '/assets/founders-1987-bodhgaya.png' } = Astro.props
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" href="/assets/logo-mark.png" type="image/png" />
+    <meta name="theme-color" content="#FDF9F6" />
+
+    <!-- Social link previews (Open Graph + Twitter) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sakyadhita International Association of Buddhist Women" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Brand fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/spu1aeb.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=League+Spartan:wght@400;500;600;700&display=swap"
+    />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <Header active={active} />
+
+    <main id="main">
+      <!-- Decorative blurred colour orbs that drift down the page -->
+      <div class="page-bg" aria-hidden="true">
+        <span class="orb-a"></span>
+        <span class="orb-b"></span>
+        <span class="orb-c"></span>
+        <span class="orb-d"></span>
+        <span class="orb-e"></span>
+        <span class="orb-f"></span>
+      </div>
+
+      <slot />
+    </main>
+
+    <Footer />
+
+    <style>
+      /* Accessibility: hidden link that appears when keyboard users press Tab */
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        z-index: 200;
+        background: var(--purple);
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 0 0 10px 0;
+        font-weight: 600;
+      }
+      .skip-link:focus {
+        left: 0;
+      }
+    </style>
+  </body>
+</html>

@@ -1,17 +1,28 @@
 ---
-
+/**
+ * Temporary home page — a friendly placeholder while the real
+ * home design is being built. Will be replaced with the full
+ * home.html design.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro'
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Sakyadhita · International Association of Buddhist Women"
+  description="Sakyadhita connects Buddhist women across traditions, cultures, and continents — building community since 1987."
+  active="home"
+>
+  <section class="hero-compact">
+    <div class="shell">
+      <div class="eyebrow">SAKYADHITA · NEW WEBSITE PREVIEW</div>
+      <h1 class="h-display">Awakening Buddhist Women</h1>
+      <p class="lede">
+        This is the work-in-progress preview of the redesigned Sakyadhita website. The home page is
+        coming soon — in the meantime, the About page is ready to view.
+      </p>
+      <div class="cta-row" style="display:flex; gap:12px; justify-content:center; margin-top:28px;">
+        <a class="btn btn--primary btn--lg" href="/about">View the About page <span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,133 @@
+---
+/**
+ * Header — the sticky top navigation bar.
+ *
+ * Unlike the design prototype (which built this with JavaScript),
+ * the menu here is real HTML rendered on the server. That means
+ * search engines can read it and it works even if JavaScript fails.
+ *
+ * To change menu items, edit the `links` list below.
+ */
+interface Props {
+  /** Key of the currently-active nav item, e.g. "about" */
+  active?: string
+}
+const { active = '' } = Astro.props
+
+const links = [
+  { k: 'home', href: '/', label: 'Home' },
+  { k: 'conferences', href: '/conferences', label: 'Conferences' },
+  {
+    k: 'resources',
+    href: '/publications',
+    label: 'Resources',
+    submenu: [
+      { href: '/newsletters', label: 'Newsletters' },
+      { href: '/publications', label: 'Publications' },
+      { href: '/ordination-issue', label: 'Ordination Issue' },
+    ],
+  },
+  { k: 'about', href: '/about', label: 'About' },
+  { k: 'branches', href: '/branches', label: 'Branches' },
+  {
+    k: 'get-involved',
+    href: '/join',
+    label: 'Get Involved',
+    submenu: [
+      { href: '/join', label: 'Become a member' },
+      { href: '/volunteer', label: 'Volunteer' },
+      { href: '/donate', label: 'Donate' },
+    ],
+  },
+  { k: 'contact', href: '/contact', label: 'Contact' },
+]
+---
+
+<header class="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="/">
+      <span class="mark" aria-hidden="true"></span>
+      <span class="wordmark">Sakyadhita</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span class="bars" aria-hidden="true"><span></span></span>
+    </button>
+    <ul class="nav-links">
+      {
+        links.map((l) => (
+          <li class:list={['nav-item', { 'has-submenu': !!l.submenu }]}>
+            <a
+              class:list={['nav-link', { 'has-caret': !!l.submenu, 'is-active': active === l.k }]}
+              href={l.href}
+              aria-haspopup={l.submenu ? 'true' : undefined}
+              aria-expanded={l.submenu ? 'false' : undefined}
+            >
+              {l.label}
+            </a>
+            {l.submenu && (
+              <ul class="nav-submenu" role="menu">
+                {l.submenu.map((s) => (
+                  <li role="none">
+                    <a role="menuitem" href={s.href}>
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+      <li><a class="btn btn--primary" href="/donate">Contribute</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  // Dropdown menus: click to open, click elsewhere or press Escape to close.
+  const items = document.querySelectorAll('.nav-item.has-submenu')
+  items.forEach((item) => {
+    const trigger = item.querySelector('.nav-link')
+    if (!trigger) return
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault()
+      const wasOpen = item.classList.contains('is-open')
+      items.forEach((i) => i.classList.remove('is-open'))
+      trigger.setAttribute('aria-expanded', wasOpen ? 'false' : 'true')
+      if (!wasOpen) item.classList.add('is-open')
+    })
+  })
+  document.addEventListener('click', (e) => {
+    if ((e.target as Element).closest('.nav-item.has-submenu')) return
+    items.forEach((i) => {
+      i.classList.remove('is-open')
+      i.querySelector('.nav-link')?.setAttribute('aria-expanded', 'false')
+    })
+  })
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') items.forEach((i) => i.classList.remove('is-open'))
+  })
+
+  // Mobile hamburger: opens the slide-in drawer.
+  const btn = document.querySelector('.nav-toggle')
+  const header = document.querySelector('.site-header')
+  if (btn && header) {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation()
+      const open = header.classList.toggle('is-open')
+      btn.classList.toggle('is-open', open)
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false')
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu')
+    })
+    // Tapping a link (or outside the drawer) closes the menu.
+    document.addEventListener('click', (e) => {
+      if (!header.classList.contains('is-open')) return
+      const t = e.target as Element
+      if (t.closest('.nav-toggle')) return
+      if (t.closest('.nav-links') && !t.closest('a')) return
+      header.classList.remove('is-open')
+      btn.classList.remove('is-open')
+      btn.setAttribute('aria-expanded', 'false')
+    })
+  }
+</script>

@@ -1,0 +1,809 @@
+---
+/**
+ * About page — "Daughters of the Buddha".
+ * Sections: Our Story · History timeline · Mission (7 objectives) ·
+ * Leadership (with term picker + bio popups) · International Projects ·
+ * Branches teaser map.
+ *
+ * Leadership names/bios live in src/data/leadership.json — edit there,
+ * not here.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro'
+import leadership from '../data/leadership.json'
+
+const terms = leadership.terms
+const firstTerm = terms[0]
+---
+
+<BaseLayout
+  title="About · Sakyadhita"
+  description="Founded in 1987 in Bodh Gaya, India, Sakyadhita International Association of Buddhist Women connects Buddhist women across traditions, cultures, and continents."
+  active="about"
+  ogImage="/assets/founders-1987-bodhgaya.png"
+>
+  <div class="shell">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">›</span><span>About</span>
+    </nav>
+  </div>
+
+  <section class="hero-compact about-hero">
+    <div class="shell">
+      <div class="eyebrow">ABOUT SAKYADHITA</div>
+      <h1 class="h-display">Daughters of the Buddha</h1>
+      <p class="lede">
+        Founded in 1987 in Bodh Gaya, India — the site of the Buddha's awakening — Sakyadhita has
+        spent nearly four decades connecting Buddhist women across traditions, cultures, and
+        continents.
+      </p>
+    </div>
+  </section>
+
+  <div class="onpage-nav">
+    <div class="shell">
+      <ul>
+        <li><a class="is-active" href="#story">Our Story</a></li>
+        <li><a href="#history">History &amp; Milestones</a></li>
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#leadership">Leadership</a></li>
+        <li><a href="#projects">International Projects</a></li>
+        <li><a href="#branches">Branches &amp; Chapters</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="story">
+    <div class="shell">
+      <div class="sidebar-layout">
+        <div>
+          <div class="eyebrow">OUR STORY</div>
+          <h2 style="margin-top: 12px;">A beacon of inspiration</h2>
+        </div>
+        <div class="body-stack">
+          <p>
+            In 1987, Ayya Khema, Chatsumarn Kabilsingh, and Karma Lekshe Tsomo gathered with a small
+            group of women in Bodh Gaya, India to talk about the difficulties women faced in various
+            Buddhist traditions. The organization was christened <em>Sakyadhita</em> — Daughters of
+            the Buddha.
+          </p>
+          <p>
+            By establishing and maintaining a communications network among Buddhist women
+            internationally, Sakyadhita has created links among some 400 million Buddhist women
+            worldwide, encouraging and supporting them in practice, scholarship, activism, and the
+            arts.
+          </p>
+          <div class="photo-row">
+            <img
+              class="ph-img"
+              src="/assets/1st-sakyadhita-conference-1987-dharamshala.png"
+              alt="Participants of the first Sakyadhita conference in 1987"
+              loading="lazy"
+            />
+            <img
+              class="ph-img"
+              src="/assets/founders-1987-bodhgaya.png"
+              alt="Sakyadhita founders at Bodh Gaya, 1987"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="history">
+    <div class="shell">
+      <div class="section-head">
+        <div class="eyebrow">HISTORY &amp; MILESTONES</div>
+        <h2 class="h-section">35+ years of building community</h2>
+      </div>
+      <div style="max-width: 880px; margin: 0 auto;">
+        <div class="timeline">
+          <div class="t-item">
+            <div class="year">1987</div>
+            <div>
+              <h3>Founded in Bodh Gaya, India</h3>
+              <p>
+                The first Sakyadhita International Conference is held at the site of the Buddha's
+                awakening. Founding members: Ayya Khema, Chatsumarn Kabilsingh, Karma Lekshe Tsomo.
+              </p>
+            </div>
+            <div class="t-pic" style="background-image:url('/assets/conf-1987-bodhgaya.jpg');" role="img" aria-label="First conference, Bodh Gaya 1987"></div>
+          </div>
+          <div class="t-item">
+            <div class="year">1991</div>
+            <div>
+              <h3>First Sakyadhita Newsletter</h3>
+              <p>
+                Launch of the biannual newsletter, now in its 33rd volume. Distributed in print and
+                PDF across 45 countries.
+              </p>
+            </div>
+            <div class="t-pic" style="background-image:url('/assets/conf-newsletter.png');" role="img" aria-label="Early Sakyadhita newsletters"></div>
+          </div>
+          <div class="t-item">
+            <div class="year">1996</div>
+            <div>
+              <h3>Sarnath ordinations</h3>
+              <p>
+                Sri Lankan women ordained in Sarnath, India, marking the restoration of the
+                Theravada bhikkhuni order after a centuries-long interruption.
+              </p>
+            </div>
+            <div class="t-pic" style="background-image:url('/assets/publication.png');" role="img" aria-label="Ordination publication"></div>
+          </div>
+          <div class="t-item">
+            <div class="year">2013</div>
+            <div>
+              <h3>Return to Vaishali</h3>
+              <p>
+                13th Conference held in Vaishali, India, where Mahapajapati Gotami became the first
+                Buddhist nun. A symbolic homecoming.
+              </p>
+            </div>
+            <div class="t-pic" style="background-image:url('/assets/hero-2.png');" role="img" aria-label="Conference gathering"></div>
+          </div>
+          <div class="t-item">
+            <div class="year">2021</div>
+            <div>
+              <h3>First virtual conference</h3>
+              <p>
+                17th Conference held online during the pandemic. Over 1,200 participants from 38
+                countries, in 7 working languages.
+              </p>
+            </div>
+            <div class="t-pic" style="background-image:url('/assets/hero-3.png');" role="img" aria-label="Virtual conference"></div>
+          </div>
+          <div class="t-item">
+            <div class="year">2025</div>
+            <div>
+              <h3>19th Conference, Sarawak</h3>
+              <p>
+                "Navigating Change: Buddhist Women in Transition" in Kuching, East Malaysia. Hosted
+                by the Buddhist Society of Sarawak.
+              </p>
+            </div>
+            <div class="t-pic" style="background-image:url('/assets/seoul.png');" role="img" aria-label="Conference audience"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mission" class="section--bg-cream">
+    <div class="shell">
+      <div class="obj-split">
+        <div class="obj-sticky">
+          <div class="section-head">
+            <div class="eyebrow">MISSION</div>
+            <h2 class="h-section">Sakyadhita's seven objectives</h2>
+            <p class="muted" style="max-width: 50ch;">
+              A working list, written in 1987 and barely changed since. They keep the organization
+              focused across 45 countries and 19 conferences.
+            </p>
+          </div>
+        </div>
+        <div class="obj-stack">
+          <div class="obj-card">
+            <img class="ico" src="/assets/obj-alliance.png" alt="" aria-hidden="true" loading="lazy" />
+            <div class="copy">
+              <h3>An international alliance</h3>
+              <p>A network of Buddhist women across schools, sanghas, and divisions.</p>
+            </div>
+          </div>
+          <div class="obj-card">
+            <img class="ico" src="/assets/obj-welfare.png" alt="" aria-hidden="true" loading="lazy" />
+            <div class="copy">
+              <h3>Welfare of women</h3>
+              <p>Advancing the spiritual and secular welfare of the world's women.</p>
+            </div>
+          </div>
+          <div class="obj-card">
+            <img class="ico" src="/assets/obj-equity.png" alt="" aria-hidden="true" loading="lazy" />
+            <div class="copy">
+              <h3>Gender equity</h3>
+              <p>In Buddhist education, training, institutions, and ordination.</p>
+            </div>
+          </div>
+          <div class="obj-card">
+            <img class="ico" src="/assets/obj-harmony.png" alt="" aria-hidden="true" loading="lazy" />
+            <div class="copy">
+              <h3>Harmony among traditions</h3>
+              <p>Dialogue across Buddhist traditions and with other religions.</p>
+            </div>
+          </div>
+          <div class="obj-card">
+            <img class="ico" src="/assets/obj-research.png" alt="" aria-hidden="true" loading="lazy" />
+            <div class="copy">
+              <h3>Research &amp; publications</h3>
+              <p>Scholarship on history, doctrine, practice, and lineage.</p>
+            </div>
+          </div>
+          <div class="obj-card">
+            <img class="ico" src="/assets/obj-compassion.png" alt="" aria-hidden="true" loading="lazy" />
+            <div class="copy">
+              <h3>Compassionate action</h3>
+              <p>Wisdom carried into the world as social action.</p>
+            </div>
+          </div>
+          <div class="obj-card">
+            <img class="ico" src="/assets/obj-peace.png" alt="" aria-hidden="true" loading="lazy" />
+            <div class="copy">
+              <h3>World peace</h3>
+              <p>Promoting peace through the teachings of the Buddha.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="leadership" class="section--bg-subtle">
+    <div class="shell">
+      <div
+        class="section-head section-head--left"
+        style="flex-direction:row; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap;"
+      >
+        <div>
+          <div class="eyebrow">LEADERSHIP</div>
+          <h2 class="h-section" style="margin-top:8px;">Executive Committee</h2>
+        </div>
+        <select class="term-select" id="termSelect" aria-label="Select executive committee term">
+          {terms.map((t, i) => <option value={i}>{t.label}</option>)}
+        </select>
+      </div>
+      <div class="lead-grid" id="leadGrid">
+        {
+          firstTerm.members.map((p, i) => (
+            <button class="person" type="button" data-idx={i}>
+              {p.img ? (
+                <div class="portrait" style={`background-image:url('${p.img}');`} />
+              ) : (
+                <div class="portrait no-photo">
+                  <img src="/assets/lead-logo-fallback.svg" alt="Sakyadhita" />
+                </div>
+              )}
+              <h3>{p.name}</h3>
+              <div class="role">{p.role}</div>
+              <p>{p.card}</p>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section--bg-subtle">
+    <div class="shell">
+      <div class="section-head">
+        <div class="eyebrow">INTERNATIONAL PROJECTS</div>
+        <h2 class="h-section" style="margin-top: 8px;">Centres supported around the world</h2>
+      </div>
+      <div class="proj-grid">
+        <a class="proj" href="http://www.sakyadhita-srilanka.org/" target="_blank" rel="noopener noreferrer">
+          <div class="proj-pic" style="background-image:url('/assets/proj-srilanka.jpg');" role="img" aria-label="Sakyadhita Training and Meditation Centre, Sri Lanka"></div>
+          <div class="proj-body">
+            <h3>Sakyadhita Training and Meditation Centre</h3>
+            <div class="proj-loc">Katubedda, Moratuwa, Sri Lanka</div>
+            <p>
+              Trains Buddhist nuns in Dhamma, Vinaya, and meditation while strengthening the
+              Bhikkhuni Order re-established in Sri Lanka after a thousand-year interruption. Its
+              nuns run counseling, children's Dhamma classes, and disaster-relief work across their
+              communities.
+            </p>
+            <span class="proj-link">Visit website →</span>
+          </div>
+        </a>
+        <a class="proj" href="http://www.jamyang.org/" target="_blank" rel="noopener noreferrer">
+          <div class="proj-pic" style="background-image:url('/assets/proj-sanghamitra.jpg');" role="img" aria-label="Sanghamitra Institute, Bodhgaya"></div>
+          <div class="proj-body">
+            <h3>Sanghamitra Institute</h3>
+            <div class="proj-loc">Bodhgaya, India</div>
+            <p>
+              Supported by the Jamyang Foundation, the institute is dedicated to improving life for
+              women and children from economically and socially disadvantaged backgrounds. It offers
+              new learning opportunities in harmony with the region's Buddhist heritage.
+            </p>
+            <span class="proj-link">Visit website →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="branches">
+    <div class="shell">
+      <div class="teaser">
+        <div class="pic" id="teaser-map" aria-hidden="true"></div>
+        <div>
+          <div class="eyebrow">BRANCHES &amp; CHAPTERS</div>
+          <h2 class="h-title" style="margin: 14px 0 16px;">A worldwide network</h2>
+          <p style="font-size: 17px; line-height: 1.6; color: var(--ink-body); margin-bottom: 22px;">
+            Branches and local chapters organize events, run translation projects, and help plan the
+            biennial international conference. Active groups span 45 countries — from Mongolia to
+            Brazil, Strasbourg to Cairo.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn--primary" href="/branches">View directory &amp; map <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bio popup (opens when a committee member is clicked) -->
+  <div class="bio-modal" id="bioModal" aria-hidden="true">
+    <div class="bio-backdrop" data-close></div>
+    <div class="bio-card" role="dialog" aria-modal="true" aria-labelledby="bioName">
+      <button class="bio-x" type="button" data-close aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="bio-head">
+        <div class="bio-portrait" id="bioPortrait"></div>
+        <div class="bio-meta">
+          <h3 id="bioName"></h3>
+          <div class="bio-role" id="bioRole"></div>
+        </div>
+      </div>
+      <p class="bio-text" id="bioText"></p>
+      <div class="bio-nav">
+        <button class="bio-arrow" type="button" id="bioPrev" aria-label="Previous person">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="bio-arrow" type="button" id="bioNext" aria-label="Next person">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leadership data for the term picker + bio popup -->
+  <script type="application/json" id="leadership-data" set:html={JSON.stringify(terms)} />
+
+  <!-- World map libraries (drawing only — loaded lazily) -->
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+
+  <script>
+    // ── On-page nav: smooth scroll + highlight the section in view ──
+    const nav = document.querySelector('.onpage-nav')
+    if (nav) {
+      document.documentElement.style.scrollBehavior = 'smooth'
+      const navLinks = [...nav.querySelectorAll('a[href^="#"]')] as HTMLAnchorElement[]
+      const sections: HTMLElement[] = []
+      const linkFor = new Map<HTMLElement, HTMLAnchorElement>()
+      navLinks.forEach((a) => {
+        const sec = document.getElementById(a.getAttribute('href')!.slice(1))
+        if (sec) {
+          sections.push(sec)
+          linkFor.set(sec, a)
+          sec.style.scrollMarginTop = '140px'
+        }
+      })
+      function update() {
+        const trigger = 160
+        let active = sections[0]
+        for (const sec of sections) {
+          if (sec.getBoundingClientRect().top - trigger <= 0) active = sec
+          else break
+        }
+        navLinks.forEach((a) => a.classList.remove('is-active'))
+        if (active) linkFor.get(active)?.classList.add('is-active')
+      }
+      let raf: number | null = null
+      const onScroll = () => {
+        if (raf) return
+        raf = requestAnimationFrame(() => {
+          raf = null
+          update()
+        })
+      }
+      window.addEventListener('scroll', onScroll, { passive: true })
+      window.addEventListener('resize', onScroll)
+      update()
+    }
+
+    // ── Leadership: term picker, cards, and bio popup ──
+    const terms = JSON.parse(document.getElementById('leadership-data')!.textContent!) as {
+      label: string
+      members: { name: string; role: string; img?: string; card: string; bio: string }[]
+    }[]
+
+    const grid = document.getElementById('leadGrid')!
+    const termSelect = document.getElementById('termSelect') as HTMLSelectElement
+    const modal = document.getElementById('bioModal')!
+    const elPortrait = document.getElementById('bioPortrait')!
+    const elName = document.getElementById('bioName')!
+    const elRole = document.getElementById('bioRole')!
+    const elText = document.getElementById('bioText')!
+    let members = terms[0].members
+    let cur = 0
+
+    function bindCards() {
+      grid.querySelectorAll('.person[data-idx]').forEach((btn) => {
+        btn.addEventListener('click', () => openModal(parseInt(btn.getAttribute('data-idx')!, 10)))
+      })
+    }
+
+    function renderGrid(termIdx: number) {
+      members = terms[termIdx].members
+      grid.innerHTML = members
+        .map((p, i) => {
+          const portrait = p.img
+            ? `<div class="portrait" style="background-image:url('${p.img}');"></div>`
+            : `<div class="portrait no-photo"><img src="/assets/lead-logo-fallback.svg" alt="Sakyadhita" /></div>`
+          return `<button class="person" type="button" data-idx="${i}">${portrait}<h3>${p.name}</h3><div class="role">${p.role}</div><p>${p.card}</p></button>`
+        })
+        .join('')
+      bindCards()
+    }
+
+    function renderBio(i: number) {
+      cur = (i + members.length) % members.length
+      const p = members[cur]
+      if (p.img) {
+        elPortrait.className = 'bio-portrait'
+        ;(elPortrait as HTMLElement).style.backgroundImage = `url('${p.img}')`
+        elPortrait.innerHTML = ''
+      } else {
+        elPortrait.className = 'bio-portrait no-photo'
+        ;(elPortrait as HTMLElement).style.backgroundImage = 'none'
+        elPortrait.innerHTML = '<img src="/assets/lead-logo-fallback.svg" alt="Sakyadhita" />'
+      }
+      elName.textContent = p.name
+      elRole.textContent = p.role
+      elText.textContent = p.bio
+    }
+    function openModal(i: number) {
+      renderBio(i)
+      modal.classList.add('is-open')
+      modal.setAttribute('aria-hidden', 'false')
+      document.body.style.overflow = 'hidden'
+    }
+    function closeModal() {
+      modal.classList.remove('is-open')
+      modal.setAttribute('aria-hidden', 'true')
+      document.body.style.overflow = ''
+    }
+
+    termSelect.addEventListener('change', () => renderGrid(parseInt(termSelect.value, 10)))
+    bindCards()
+
+    modal.querySelectorAll('[data-close]').forEach((el) => el.addEventListener('click', closeModal))
+    document.getElementById('bioPrev')!.addEventListener('click', () => renderBio(cur - 1))
+    document.getElementById('bioNext')!.addEventListener('click', () => renderBio(cur + 1))
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('is-open')) return
+      if (e.key === 'Escape') closeModal()
+      else if (e.key === 'ArrowLeft') renderBio(cur - 1)
+      else if (e.key === 'ArrowRight') renderBio(cur + 1)
+    })
+
+    // ── Branches teaser: draw the dotted world map ──
+    document.addEventListener('DOMContentLoaded', () => {
+      const el = document.getElementById('teaser-map')
+      const d3 = (window as any).d3
+      const topojson = (window as any).topojson
+      if (!el || !d3 || !topojson) return
+      const W = 1000
+      const H = 430
+      const SPOTS = [
+        [37.55, 126.99], [47.92, 106.92], [1.55, 110.34], [24.69, 84.99],
+        [6.93, 79.85], [25.03, 121.56], [32.72, -117.16], [-23.55, -46.63],
+        [43.65, -79.38], [48.58, 7.75], [53.55, 9.99], [50.85, 4.35], [30.04, 31.24],
+      ]
+      const svg = d3.select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('preserveAspectRatio', 'xMidYMid meet')
+      d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')
+        .then((topo: any) => {
+          const countries = topojson.feature(topo, topo.objects.countries)
+          countries.features = countries.features.filter((f: any) => f.id !== '010')
+          const projection = d3.geoNaturalEarth1()
+          projection.fitSize([W, H], countries)
+          const path = d3.geoPath(projection)
+          svg.append('g').selectAll('path').data(countries.features).join('path').attr('class', 'country').attr('d', path)
+          const g = svg
+            .append('g')
+            .selectAll('g')
+            .data(SPOTS)
+            .join('g')
+            .attr('transform', (d: number[]) => {
+              const p = projection([d[1], d[0]])
+              return `translate(${p[0]},${p[1]})`
+            })
+          g.append('circle').attr('class', 'spot-halo').attr('r', 10)
+          g.append('circle').attr('class', 'spot').attr('r', 5)
+        })
+        .catch((err: unknown) => console.error('teaser map failed:', err))
+    })
+  </script>
+
+  <style is:global>
+    .about-hero { position: relative; }
+
+    .sidebar-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .sidebar-layout h2 { font-family: var(--font-title); font-weight: 700; font-size: 40px; color: var(--ink); line-height: 1.06; }
+    .sidebar-layout p { font-size: 16.5px; line-height: 1.65; color: var(--ink-body); }
+    .sidebar-layout .body-stack { display: flex; flex-direction: column; gap: 24px; }
+    .sidebar-layout .photo-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;
+    }
+    .sidebar-layout .photo-row .ph-img {
+      aspect-ratio: 4/3;
+      border-radius: var(--r-md);
+      object-fit: cover;
+      width: 100%;
+    }
+
+    /* Objectives — sticky split */
+    .obj-split {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 8px;
+    }
+    .obj-sticky {
+      position: sticky;
+      top: 150px;
+      align-self: start;
+    }
+    .obj-sticky .section-head { margin: 0; align-items: flex-start; text-align: left; }
+    .obj-sticky .section-head h2 { text-align: left; }
+    .obj-sticky .section-head p { text-align: left; }
+    .obj-stack {
+      display: flex; flex-direction: column;
+      gap: 16px;
+    }
+    .obj-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    .obj-card .ico {
+      width: 60px; height: 60px;
+      display: block;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .obj-card h3 {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 19px;
+      line-height: 1.2;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+      margin-bottom: 6px;
+    }
+    .obj-card p {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--ink-body);
+    }
+    @media (max-width: 900px) {
+      .obj-split { grid-template-columns: 1fr; gap: 32px; }
+      .obj-sticky { position: static; }
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+    .timeline::before {
+      content: ""; position: absolute; left: 11px; top: 8px; bottom: 8px;
+      width: 2px; background: linear-gradient(180deg, var(--lavender-3), var(--coral-2));
+      border-radius: 2px;
+    }
+    .t-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 110px 1fr 250px;
+      gap: 28px;
+      padding: 18px 0;
+      align-items: center;
+    }
+    .t-item::before {
+      content: ""; position: absolute;
+      left: -32px; top: 50%; transform: translateY(-50%);
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 3px solid var(--purple);
+    }
+    .t-item .year {
+      font-family: var(--font-num);
+      font-weight: 700;
+      font-size: 32px;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .t-item h3 { font-family: var(--font-title); font-weight: 700; font-size: 22px; color: var(--ink); margin-bottom: 6px; }
+    .t-item p { font-size: 15px; color: var(--ink-body); line-height: 1.55; }
+    .t-item .t-pic {
+      align-self: stretch;
+      border-radius: var(--r-md);
+      background-size: cover;
+      background-position: center;
+      border: 1px solid var(--border);
+      min-height: 140px;
+    }
+    @media (max-width: 760px) {
+      .t-item { grid-template-columns: 90px 1fr; }
+      .t-item .t-pic { display: none; }
+    }
+
+    /* Leadership grid */
+    .lead-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .term-select {
+      appearance: none; -webkit-appearance: none; -moz-appearance: none;
+      font-family: var(--font-ui); font-weight: 600; font-size: 14px;
+      color: var(--ink); background: #fff;
+      border: 1px solid var(--border); border-radius: var(--r-pill);
+      padding: 9px 38px 9px 16px; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23736B8A' stroke-width='1.6' d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 15px center;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    .term-select:hover { border-color: var(--purple-2); }
+    .term-select:focus { outline: none; border-color: var(--purple); box-shadow: 0 0 0 4px rgba(119,59,250,.12); }
+    .portrait.no-photo {
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-subtle);
+    }
+    .portrait.no-photo img { width: 64%; height: 64%; object-fit: contain; }
+
+    /* International projects */
+    .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .proj {
+      display: flex; flex-direction: column;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--r-md); overflow: hidden;
+      padding: 8px;
+      text-decoration: none; color: inherit;
+      transition: transform .15s, box-shadow .2s, border-color .15s;
+    }
+    .proj:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--lavender-2); }
+    .proj .proj-pic { aspect-ratio: 16 / 10; background-size: cover; background-position: center; background-color: var(--bg-section); border-radius: 8px; }
+    .proj .proj-body { display: flex; flex-direction: column; gap: 8px; padding: 18px 18px 16px; }
+    .proj h3 { font-family: var(--font-title); font-weight: 700; font-size: 21px; color: var(--ink); line-height: 1.2; }
+    .proj .proj-loc { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
+    .proj p { font-size: 14.5px; color: var(--ink-body); line-height: 1.55; }
+    .proj .proj-link { margin-top: 4px; color: var(--purple); font-weight: 600; font-size: 14px; }
+    @media (max-width: 640px) {
+      .proj-grid { grid-template-columns: 1fr; }
+    }
+    .person {
+      text-align: center;
+      padding: 28px 18px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      font: inherit;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .2s, border-color .15s;
+    }
+    .person:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--lavender-2); }
+    .person .portrait {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      background-size: cover;
+      background-position: center top;
+      background-color: var(--bg-section);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .person h3 { font-family: var(--font-title); font-weight: 700; font-size: 18px; color: var(--ink); }
+    .person .role { font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--purple); margin: 8px 0 10px; }
+    .person p { font-size: 13.5px; color: var(--ink-body); line-height: 1.5; }
+
+    /* Bio modal */
+    .bio-modal {
+      position: fixed; inset: 0; z-index: 1200;
+      display: none; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .bio-modal.is-open { display: flex; }
+    .bio-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(22,3,79,.6);
+      backdrop-filter: blur(3px);
+    }
+    .bio-card {
+      position: relative;
+      width: min(680px, 100%);
+      max-height: 88vh; overflow-y: auto;
+      background: #fff;
+      border-radius: var(--r-lg);
+      box-shadow: 0 30px 80px rgba(22,3,79,.35);
+      padding: 40px;
+      animation: bioIn .25s ease;
+    }
+    @keyframes bioIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .bio-x {
+      position: absolute; top: 20px; right: 20px;
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-section); color: var(--ink); cursor: pointer;
+      border: 1px solid var(--border);
+      transition: background .15s;
+    }
+    .bio-x:hover { background: var(--lavender); }
+    .bio-x svg { width: 20px; height: 20px; }
+    .bio-head { display: flex; align-items: center; gap: 22px; margin-bottom: 24px; padding-right: 44px; }
+    .bio-portrait {
+      width: 120px; height: 120px; flex: none;
+      border-radius: 50%;
+      background-size: cover; background-position: center top;
+      background-color: var(--bg-section);
+      box-shadow: var(--shadow-md);
+    }
+    .bio-portrait.no-photo {
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-subtle);
+    }
+    .bio-portrait.no-photo img { width: 72%; height: 72%; object-fit: contain; }
+    .bio-meta h3 { font-family: var(--font-title); font-weight: 700; font-size: 28px; color: var(--ink); line-height: 1.1; }
+    .bio-role { font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--purple); margin-top: 8px; }
+    .bio-text { font-size: 15.5px; line-height: 1.65; color: var(--ink-body); }
+    .bio-nav { display: flex; justify-content: flex-end; gap: 12px; margin-top: 28px; }
+    .bio-arrow {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: #fff; color: var(--ink); cursor: pointer;
+      border: 1px solid var(--border);
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .bio-arrow:hover { background: var(--purple); color: #fff; border-color: var(--purple); }
+    .bio-arrow svg { width: 22px; height: 22px; }
+    @media (max-width: 520px) {
+      .bio-card { padding: 28px 22px; }
+      .bio-head { flex-direction: column; text-align: center; padding-right: 0; }
+    }
+
+    /* Branches teaser */
+    .teaser {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+      align-items: center;
+    }
+    .teaser .pic {
+      position: relative;
+      aspect-ratio: 5/4;
+      border-radius: var(--r-lg);
+      background: #F9FAFC;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .teaser .pic svg { width: 100%; height: 100%; display: block; }
+    .teaser .pic .country { fill: #BBDBF0; stroke: #fff; stroke-width: 0.5; }
+    .teaser .pic .spot { fill: var(--purple); stroke: #fff; stroke-width: 1.5; }
+    .teaser .pic .spot-halo { fill: rgba(119,59,250,.15); }
+
+    /* Page-level responsive */
+    @media (max-width: 1000px) {
+      .sidebar-layout { grid-template-columns: 1fr; gap: 32px; }
+      .lead-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 760px) {
+      .teaser { grid-template-columns: 1fr; gap: 28px; }
+    }
+    @media (max-width: 560px) {
+      .lead-grid { grid-template-columns: repeat(2, 1fr); }
+      .sidebar-layout .photo-row { grid-template-columns: 1fr; }
+      .t-item { grid-template-columns: 70px 1fr; gap: 18px; }
+    }
+    .site-footer { margin-top: 0; }
+  </style>
+</BaseLayout>
