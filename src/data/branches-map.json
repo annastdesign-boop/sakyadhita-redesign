@@ -1,0 +1,110 @@
+{
+  "_comment": "Pins on the home-page world map. kind: branch (purple) | local (coral) | partner (dark). contact rows: [emoji, text, optional link]. To add a pin: copy a block and fill in latitude/longitude.",
+  "kinds": { "branch": "National Branch", "local": "Local Chapter", "partner": "Partner" },
+  "spots": [
+    {
+      "name": "Sakyadhita Korea",
+      "kind": "branch",
+      "lat": 37.55,
+      "lng": 126.99,
+      "desc": "Hosted the 18th International Conference in 2023.",
+      "contact": [["📧", "korea@sakyadhita.org", "mailto:korea@sakyadhita.org"]]
+    },
+    {
+      "name": "Sakyadhita Mongolia",
+      "kind": "branch",
+      "lat": 47.92,
+      "lng": 106.92,
+      "desc": "Active in translation and Buddhist education across Central Asia.",
+      "contact": [["📞", "+976 70183588"], ["📧", "mongolia@sakyadhita.org", "mailto:mongolia@sakyadhita.org"]]
+    },
+    {
+      "name": "Sakyadhita Malaysia (KBS)",
+      "kind": "branch",
+      "lat": 1.55,
+      "lng": 110.34,
+      "desc": "Hosted the 19th International Conference in Sarawak, 2025.",
+      "contact": [["📧", "malaysia@sakyadhita.org", "mailto:malaysia@sakyadhita.org"]]
+    },
+    {
+      "name": "India · Bodh Gaya",
+      "kind": "local",
+      "lat": 24.69,
+      "lng": 84.99,
+      "desc": "Where Sakyadhita was founded in 1987.",
+      "contact": [["📧", "bodhgaya@sakyadhita.org", "mailto:bodhgaya@sakyadhita.org"]]
+    },
+    {
+      "name": "Sri Lanka",
+      "kind": "local",
+      "lat": 6.93,
+      "lng": 79.85,
+      "desc": "Active in bhikkhuni ordination support and educational outreach.",
+      "contact": [["📧", "srilanka@sakyadhita.org", "mailto:srilanka@sakyadhita.org"]]
+    },
+    {
+      "name": "Taiwan",
+      "kind": "local",
+      "lat": 25.03,
+      "lng": 121.56,
+      "desc": "Coordinated through Foguang Shan and Dharma Drum Mountain alumni networks.",
+      "contact": [["📧", "taiwan@sakyadhita.org", "mailto:taiwan@sakyadhita.org"]]
+    },
+    {
+      "name": "Sakyadhita USA",
+      "kind": "branch",
+      "lat": 32.72,
+      "lng": -117.16,
+      "desc": "Headquartered in San Diego, California.",
+      "contact": [["📞", "+1 858-525-5173 (HST)"], ["📧", "service.sakyadhita@gmail.com", "mailto:service.sakyadhita@gmail.com"]]
+    },
+    {
+      "name": "Sakyadhita Brazil",
+      "kind": "branch",
+      "lat": -23.55,
+      "lng": -46.63,
+      "desc": "Active community based in São Paulo.",
+      "contact": [["📞", "+55 11 9334-833244"], ["📧", "brazil@sakyadhita.org", "mailto:brazil@sakyadhita.org"]]
+    },
+    {
+      "name": "Canada",
+      "kind": "local",
+      "lat": 43.65,
+      "lng": -79.38,
+      "desc": "Members in Toronto, Vancouver, and Montréal.",
+      "contact": [["📧", "canada@sakyadhita.org", "mailto:canada@sakyadhita.org"]]
+    },
+    {
+      "name": "Sakyadhita France",
+      "kind": "branch",
+      "lat": 48.58,
+      "lng": 7.75,
+      "desc": "Strasbourg-based national branch.",
+      "contact": [["📍", "71 Boulevard d'Anvers, Strasbourg"], ["📧", "france@sakyadhita.org", "mailto:france@sakyadhita.org"]]
+    },
+    {
+      "name": "Sakyadhita Germany",
+      "kind": "branch",
+      "lat": 53.55,
+      "lng": 9.99,
+      "desc": "Coordinates with Hamburg University vinaya scholars.",
+      "contact": [["📧", "germany@sakyadhita.org", "mailto:germany@sakyadhita.org"]]
+    },
+    {
+      "name": "Network of Buddhist Women in Europe",
+      "kind": "partner",
+      "lat": 50.85,
+      "lng": 4.35,
+      "desc": "Pan-European federation of Buddhist women's organizations.",
+      "contact": [["🌐", "buddhistwomen.eu", "https://buddhistwomen.eu"]]
+    },
+    {
+      "name": "Egypt · Cairo",
+      "kind": "local",
+      "lat": 30.04,
+      "lng": 31.24,
+      "desc": "Newest addition to the directory (2024).",
+      "contact": [["📞", "+2 443-8982"]]
+    }
+  ]
+}

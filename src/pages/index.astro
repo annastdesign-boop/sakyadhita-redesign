@@ -1,28 +1,953 @@
 ---
 /**
- * Temporary home page — a friendly placeholder while the real
- * home design is being built. Will be replaced with the full
- * home.html design.
+ * Home page — hero with photo marquee, impact numbers, mission pillars,
+ * featured + past conferences, latest news, press logos, interactive
+ * branches map, and the three ways to support.
+ *
+ * The map pins live in src/data/branches-map.json — edit there.
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
+import branchesMap from '../data/branches-map.json'
 ---
 
 <BaseLayout
   title="Sakyadhita · International Association of Buddhist Women"
-  description="Sakyadhita connects Buddhist women across traditions, cultures, and continents — building community since 1987."
+  description="Since 1987, Sakyadhita has brought together laywomen, monastics, and scholars from across all Buddhist traditions to advance equality, education, and spiritual practice."
   active="home"
+  ogImage="/assets/hero-1.png"
 >
-  <section class="hero-compact">
-    <div class="shell">
-      <div class="eyebrow">SAKYADHITA · NEW WEBSITE PREVIEW</div>
-      <h1 class="h-display">Awakening Buddhist Women</h1>
-      <p class="lede">
-        This is the work-in-progress preview of the redesigned Sakyadhita website. The home page is
-        coming soon — in the meantime, the About page is ready to view.
+  <!-- HERO -->
+  <section class="home-hero">
+    <div class="content">
+      <img class="hero-logo" src="/assets/logo-flower.png" alt="Sakyadhita lotus emblem" />
+      <h1>
+        <span class="name">Sakyadhita</span>
+        <span class="full">International Association of Buddhist Women</span>
+      </h1>
+      <p>
+        Since 1987, we have been bringing together laywomen, monastics, and scholars from across
+        all Buddhist traditions to advance equality, education, and spiritual practice.
       </p>
-      <div class="cta-row" style="display:flex; gap:12px; justify-content:center; margin-top:28px;">
-        <a class="btn btn--primary btn--lg" href="/about">View the About page <span class="arr">→</span></a>
+      <div class="cta-row">
+        <a class="btn btn--primary btn--lg" href="/conferences">Join the 20th Conference <span class="arr">→</span></a>
+        <a class="btn btn--ghost btn--lg" href="/join">Become a Member</a>
+      </div>
+    </div>
+    <div class="hero-marquee" aria-hidden="true">
+      <div class="track">
+        <img src="/assets/member-voice.png" alt="" style="object-position: 60% 50%;" loading="eager" />
+        <img src="/assets/tenzin-lekshe.jpg" alt="" />
+        <img src="/assets/feat-conf.png" alt="" />
+        <img src="/assets/highlights.png" alt="" />
+        <img src="/assets/hero-1.png" alt="" />
+        <img src="/assets/seoul.png" alt="" />
+        <img src="/assets/hero-2.png" alt="" />
+        <img src="/assets/hero-3.png" alt="" />
+        <!-- duplicate set for the seamless loop -->
+        <img src="/assets/member-voice.png" alt="" style="object-position: 60% 50%;" />
+        <img src="/assets/tenzin-lekshe.jpg" alt="" />
+        <img src="/assets/feat-conf.png" alt="" />
+        <img src="/assets/highlights.png" alt="" />
+        <img src="/assets/hero-1.png" alt="" />
+        <img src="/assets/seoul.png" alt="" />
+        <img src="/assets/hero-2.png" alt="" />
+        <img src="/assets/hero-3.png" alt="" />
+      </div>
+    </div>
+    <p class="marquee-credit">
+      For photos, special thanks to
+      <a href="https://www.olivieradam.net/" target="_blank" rel="noopener noreferrer">Olivier Adam</a>
+    </p>
+  </section>
+
+  <!-- IMPACT NUMBERS -->
+  <section>
+    <div class="shell">
+      <div class="section-head">
+        <div class="eyebrow">SINCE 1987</div>
+        <h2 class="h-section">A growing global community</h2>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="h-stat">5,000+</div><div class="lab">Members</div></div>
+        <div class="stat"><div class="h-stat">45</div><div class="lab">Countries</div></div>
+        <div class="stat"><div class="h-stat">19</div><div class="lab">Conferences</div></div>
+        <div class="stat"><div class="h-stat">42</div><div class="lab">Newsletters Published</div></div>
       </div>
     </div>
   </section>
+
+  <!-- MISSION · THREE PILLARS -->
+  <section class="mission-alt">
+    <div class="shell">
+      <div class="section-head">
+        <div class="eyebrow">OUR MISSION</div>
+        <h2 class="h-section">Three pillars of our work</h2>
+        <div class="intro">
+          <p>
+            Sakyadhita is a grassroots network connecting Buddhist women worldwide. We promote
+            research on Buddhist women's history and work for equal opportunity across all Buddhist
+            traditions. Through local branches, free online resources, and our biannual
+            conferences, we help empower the world's 300 million Buddhist women to work for peace
+            and social justice.
+          </p>
+        </div>
+      </div>
+      <div class="layout">
+        <div class="pillar-card connect">
+          <h3>Connect</h3>
+          <p>
+            A communications network linking some 300 million Buddhist women worldwide through
+            branches, chapters, and online community.
+          </p>
+        </div>
+        <div class="mandala" aria-hidden="true"></div>
+        <div class="pillar-card equality">
+          <h3>Advance Equality</h3>
+          <p>
+            Working for gender equity in Buddhist education, training, institutional structures,
+            and full ordination across traditions.
+          </p>
+        </div>
+        <div class="pillar-card convene" style="width: 500px">
+          <h3>Convene</h3>
+          <p>
+            Hosting the world's largest gathering of Buddhist women — our biennial international
+            conference, now in its 19th edition.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED CONFERENCE -->
+  <section class="feat-conf">
+    <div class="shell">
+      <div class="section-head">
+        <div class="eyebrow">UPCOMING CONFERENCE</div>
+        <h2 class="h-section">20th International Conference</h2>
+      </div>
+      <div class="feat-card">
+        <div class="pic" aria-hidden="true"></div>
+        <div class="body">
+          <div class="eyebrow">20TH INTERNATIONAL CONFERENCE</div>
+          <h3>Sakyadhita International Conference on Buddhist Women</h3>
+          <div class="meta-row">Coming in 2027</div>
+          <p>
+            The 20th Sakyadhita International Conference travels to Jakarta, bringing together
+            Buddhist women from across the world's traditions for teachings, scholarship, and
+            friendship. Coming in 2027.
+          </p>
+          <div class="ctas">
+            <a class="btn btn--primary" href="/conferences">Conference Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 19TH CONFERENCE HIGHLIGHTS -->
+  <section class="highlights-19">
+    <div class="shell">
+      <div class="eyebrow">19TH INTERNATIONAL CONFERENCE</div>
+      <h2>Highlights of the 19th Sakyadhita Conference in Sarawak, East Malaysia.</h2>
+      <div class="stage" aria-label="Conference highlights video">
+        <span class="caption">SARAWAK · JUNE 2025</span>
+        <button class="play-pill" aria-label="Play highlights video"></button>
+      </div>
+      <a class="btn btn--ghost more" href="/conferences">Previous Conference</a>
+    </div>
+  </section>
+
+  <!-- PAST CONFERENCES -->
+  <section>
+    <div class="shell">
+      <div class="section-head section-head--left" style="flex-direction:row; justify-content:space-between; align-items:flex-end;">
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="eyebrow">PAST CONFERENCES</div>
+          <h2 class="h-section">19 conferences of history</h2>
+        </div>
+        <a href="/conferences" class="btn btn--ghost btn--sm">See all 19 <span class="arr">→</span></a>
+      </div>
+      <div class="past-row">
+        <a class="past-card" href="/conferences">
+          <div class="pic" style="background-image:url('/assets/seoul.png');"><span class="num">#19</span></div>
+          <div class="body">
+            <div class="meta">2025 · SARAWAK, MALAYSIA</div>
+            <h3>Navigating Change: Buddhist Women in Transition</h3>
+            <span class="view">View conference →</span>
+          </div>
+        </a>
+        <a class="past-card" href="/conferences">
+          <div class="pic" style="background-image:url('/assets/feat-conf.png');"><span class="num">#18</span></div>
+          <div class="body">
+            <div class="meta">2023 · SEOUL, KOREA</div>
+            <h3>Living in a Precarious World</h3>
+            <span class="view">View conference →</span>
+          </div>
+        </a>
+        <a class="past-card" href="/conferences">
+          <div class="pic" style="background-image:url('/assets/hero-2.png');"><span class="num">#17</span></div>
+          <div class="body">
+            <div class="meta">2021 · ONLINE</div>
+            <h3>Buddhist Women Beyond Boundaries</h3>
+            <span class="view">View conference →</span>
+          </div>
+        </a>
+        <a class="past-card" href="/conferences">
+          <div class="pic" style="background-image:url('/assets/highlights.png');"><span class="num">#16</span></div>
+          <div class="body">
+            <div class="meta">2019 · BLUE MOUNTAINS</div>
+            <h3>New Horizons in Buddhism</h3>
+            <span class="view">View conference →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST -->
+  <section>
+    <div class="shell">
+      <div class="section-head section-head--left" style="flex-direction:row; justify-content:space-between; align-items:flex-end;">
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="eyebrow">LATEST FROM SAKYADHITA</div>
+          <h2 class="h-section">News, stories, and publications</h2>
+        </div>
+        <a href="/publications" class="btn btn--ghost btn--sm">See all <span class="arr">→</span></a>
+      </div>
+
+      <div class="latest-row">
+        <article class="latest-feature">
+          <div class="media" style="background-image:url('/assets/newsletter-v33.png'); background-position: center top;"></div>
+          <div class="body">
+            <div class="eyebrow">NEWSLETTER · 2025</div>
+            <h3>Volume 33, Number 1</h3>
+            <p>Reflections from the 18th Conference in Seoul, and a preview of Sarawak 2025.</p>
+            <a class="latest-link" href="/newsletters">Read latest issue →</a>
+          </div>
+        </article>
+
+        <div class="latest-stack">
+          <article class="latest-mini">
+            <div class="media" style="background-image:url('/assets/seoul.png')"></div>
+            <div class="body">
+              <div class="eyebrow">STORY · MEMBER VOICES</div>
+              <h3>Building a chapter in Mongolia</h3>
+              <a class="latest-link" href="/branches">Read story →</a>
+            </div>
+          </article>
+
+          <article class="latest-mini">
+            <div class="media" style="background-image:url('/assets/highlights.png')"></div>
+            <div class="body">
+              <div class="eyebrow">CONFERENCE · SARAWAK 2025</div>
+              <h3>Highlights from the 19th Conference</h3>
+              <a class="latest-link" href="/conferences?n=19">See highlights →</a>
+            </div>
+          </article>
+
+          <article class="latest-mini">
+            <div class="media" style="background-image:url('/assets/bhutan-2025-ordination.png')"></div>
+            <div class="body">
+              <div class="eyebrow">ORDINATION · MILESTONE</div>
+              <h3>265 nuns receive full ordination in Bhutan</h3>
+              <a class="latest-link" href="/ordination-issue">Learn more →</a>
+            </div>
+          </article>
+
+          <article class="latest-mini">
+            <div class="media" style="background-image:url('/assets/publication.png')"></div>
+            <div class="body">
+              <div class="eyebrow">PUBLICATION</div>
+              <h3>Bridging Worlds: Buddhist Women's Voices Across Generations</h3>
+              <a class="latest-link" href="/publications">Browse library →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESS -->
+  <section class="press">
+    <div class="shell">
+      <div class="section-head">
+        <div class="eyebrow">AS COVERED BY</div>
+        <h2 class="h-section">Featured in leading Buddhist publications</h2>
+      </div>
+      <div class="press-grid">
+        <a class="press-tile" href="https://tricycle.org/article/buddhist-women-conference/" target="_blank" rel="noopener noreferrer"
+          ><img class="logo" src="/assets/logo-tricycle.png" alt="Tricycle" style="width: 132px; height: 132px" loading="lazy" /></a
+        >
+        <a class="press-tile" href="https://www.lionsroar.com/the-sakyadhita-movement/" target="_blank" rel="noopener noreferrer"
+          ><img class="logo" src="/assets/logo-lionsroar.png" alt="Lion's Roar" style="width: 156px; height: 156px" loading="lazy" /></a
+        >
+        <a class="press-tile" href="https://www.buddhistdoor.net/features/daughters-of-the-buddha-18th-sakyadhita-conference-in-seoul-celebrates-the-sacred-feminine/" target="_blank" rel="noopener noreferrer"
+          ><img class="logo" src="/assets/logo-bdg.png" alt="Buddhistdoor Global" style="width: 132px; height: 132px" loading="lazy" /></a
+        >
+        <a class="press-tile" href="https://buddhistuniversity.net/content/articles/sakyadhita_fenn-koppedrayer" target="_blank" rel="noopener noreferrer"
+          ><img class="logo" src="/assets/logo-obu.png" alt="The Open Buddhist University" style="width: 150px; height: auto" loading="lazy" /></a
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANCHES MAP -->
+  <section class="branches">
+    <div class="shell">
+      <div class="section-head">
+        <div class="eyebrow">LOCAL BRANCHES</div>
+        <h2 class="h-section">Find Sakyadhita near you</h2>
+        <p class="muted" style="max-width:62ch;">
+          National branches and local chapters organize events, run translation projects, and bring
+          Sakyadhita's mission to communities worldwide. Click a pin to find your nearest branch.
+        </p>
+      </div>
+      <div class="map-wrap" id="home-map">
+        <div class="map-popup" id="map-popup">
+          <button class="x" type="button" aria-label="Close">✕</button>
+          <div class="kind"></div>
+          <h3></h3>
+          <p></p>
+          <div class="plinks"></div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:24px;">
+        <a class="btn btn--white" href="/branches" style="border:1px solid var(--border);">View branch directory <span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAYS TO SUPPORT -->
+  <section class="ways">
+    <div class="shell">
+      <div class="section-head">
+        <div class="eyebrow">BE INVOLVED</div>
+        <h2 class="h-section">Three ways to support Sakyadhita</h2>
+      </div>
+      <div class="ways-grid">
+        <a class="way way--join" href="/join">
+          <div class="glyph" aria-hidden="true"></div>
+          <h3>Join Us</h3>
+          <p>Become a member of our global network. Member tiers start at $15 USD.</p>
+          <span class="btn btn--primary btn--sm" style="margin-top:6px;">Join Now</span>
+        </a>
+        <a class="way way--vol" href="/volunteer">
+          <div class="glyph" aria-hidden="true"></div>
+          <h3>Volunteer</h3>
+          <p>15 committees need help — from translation to conference planning.</p>
+          <span class="btn btn--ghost btn--sm" style="margin-top:6px;">Learn more</span>
+        </a>
+        <a class="way way--don" href="/donate">
+          <div class="glyph" aria-hidden="true"></div>
+          <h3>Donate</h3>
+          <p>Fund conference scholarships, ordination advocacy, and the newsletter.</p>
+          <span class="btn btn--ghost btn--sm" style="margin-top:6px;">Learn more</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map pin data -->
+  <script type="application/json" id="branches-map-data" set:html={JSON.stringify(branchesMap)} />
+
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+
+  <script>
+    // ── Interactive branches world map ──
+    document.addEventListener('DOMContentLoaded', () => {
+      const wrap = document.getElementById('home-map')
+      const popup = document.getElementById('map-popup')
+      const d3 = (window as any).d3
+      const topojson = (window as any).topojson
+      if (!wrap || !popup || !d3 || !topojson) return
+
+      const data = JSON.parse(document.getElementById('branches-map-data')!.textContent!)
+      const KIND: Record<string, string> = data.kinds
+      const SPOTS: {
+        name: string
+        kind: string
+        lat: number
+        lng: number
+        desc: string
+        contact?: [string, string, string?][]
+      }[] = data.spots
+
+      const W = 1000
+      const H = 430
+      const svg = d3
+        .select(wrap)
+        .insert('svg', ':first-child')
+        .attr('viewBox', `0 0 ${W} ${H}`)
+        .attr('role', 'img')
+        .attr('aria-label', 'World map of Sakyadhita branches and chapters')
+
+      d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json').then((topo: any) => {
+        const countries = topojson.feature(topo, topo.objects.countries)
+        countries.features = countries.features.filter((f: any) => f.id !== '010') // drop Antarctica
+        const projection = d3.geoNaturalEarth1()
+        projection.fitSize([W, H], countries)
+        const path = d3.geoPath(projection)
+
+        svg.append('g').selectAll('path').data(countries.features).join('path').attr('class', 'country').attr('d', path)
+
+        const dots = svg
+          .append('g')
+          .selectAll('g')
+          .data(SPOTS)
+          .join('g')
+          .attr('class', (d: any) => `map-dot kind-${d.kind}`)
+          .attr('transform', (d: any) => {
+            const p = projection([d.lng, d.lat])
+            return `translate(${p[0]},${p[1]})`
+          })
+        dots.append('circle').attr('class', 'halo').attr('r', 10).attr('fill', 'rgba(119,59,250,.15)')
+        dots.append('circle').attr('class', 'core').attr('r', 5)
+
+        dots.on('click', (event: MouseEvent, d: any) => {
+          const p = projection([d.lng, d.lat])
+          const box = wrap.getBoundingClientRect()
+          const x = (p[0] / W) * box.width
+          const y = (p[1] / H) * box.height
+          popup.querySelector('.kind')!.textContent = KIND[d.kind]
+          popup.querySelector('h3')!.textContent = d.name
+          popup.querySelector('p')!.textContent = d.desc
+          popup.querySelector('.plinks')!.innerHTML = (d.contact || [])
+            .map(
+              (c: [string, string, string?]) =>
+                `<div>${c[0]} ${c[2] ? `<a href="${c[2]}">${c[1]}</a>` : `<span>${c[1]}</span>`}</div>`
+            )
+            .join('')
+          popup.classList.add('is-open')
+          // Keep the card fully visible inside the map panel.
+          const pw = (popup as HTMLElement).offsetWidth || 260
+          const ph = (popup as HTMLElement).offsetHeight || 120
+          const px = Math.min(Math.max(x + 14, 8), box.width - pw - 8)
+          const py = Math.min(Math.max(y - 20, 8), box.height - ph - 8)
+          ;(popup as HTMLElement).style.left = `${px}px`
+          ;(popup as HTMLElement).style.top = `${py}px`
+          event.stopPropagation()
+        })
+
+        popup.querySelector('.x')!.addEventListener('click', () => popup.classList.remove('is-open'))
+        wrap.addEventListener('click', (e) => {
+          const t = e.target as Element
+          if (!t.closest('.map-dot') && !t.closest('.map-popup')) popup.classList.remove('is-open')
+        })
+      })
+    })
+  </script>
+
+  <style is:global>
+    /* Home-only — noise texture overlay above the orb gradients gives
+       the cream surface a paper-grain feel. */
+    .page-bg::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: url('/assets/noise-bg.png') repeat;
+      background-size: 480px 480px;
+      mix-blend-mode: multiply;
+      opacity: .55;
+      pointer-events: none;
+    }
+
+    .home-hero {
+      position: relative;
+      margin: 0;
+      padding: 36px 32px 0;
+      overflow: hidden;
+      text-align: center;
+    }
+    .home-hero .content {
+      position: relative;
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .home-hero .hero-logo {
+      width: 96px; height: 96px;
+      object-fit: contain;
+      margin-bottom: 20px;
+    }
+    .home-hero h1 {
+      font-family: var(--font-title);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--ink);
+      margin: 0 0 16px;
+    }
+    .home-hero h1 .name { display: block; font-size: 40px; margin-bottom: 2px; }
+    .home-hero h1 .full { display: block; font-size: 40px; letter-spacing: -0.01em; white-space: nowrap; }
+    .home-hero p {
+      color: var(--ink-body);
+      font-size: 18px;
+      max-width: 900px;
+      line-height: 1.6;
+      margin: 0 auto 24px;
+    }
+    .home-hero .cta-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+    /* Infinite image marquee */
+    .hero-marquee {
+      margin-top: 36px;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      width: 100vw;
+      overflow: hidden;
+    }
+    .home-hero .marquee-credit {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 16px;
+      color: #888888;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+    .home-hero .marquee-credit a {
+      color: #888888;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .hero-marquee .track {
+      display: flex;
+      gap: 24px;
+      width: max-content;
+      animation: heroScroll 60s linear infinite;
+    }
+    .hero-marquee .track img {
+      width: 360px;
+      height: 440px;
+      object-fit: cover;
+      border-radius: var(--r-lg);
+      flex: none;
+    }
+    @keyframes heroScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-marquee .track { animation: none; }
+    }
+    @media (max-width: 1024px) {
+      .home-hero h1 .full { font-size: clamp(28px, 4.6vw, 40px); }
+    }
+    @media (max-width: 720px) {
+      .home-hero h1 .name { font-size: 30px; }
+      .home-hero h1 .full { font-size: 28px; white-space: normal; }
+      .home-hero p { font-size: 16px; }
+      .hero-marquee .track { gap: 16px; }
+      .hero-marquee .track img { width: 240px; height: 300px; }
+    }
+    @media (max-width: 640px) {
+      .home-hero { padding-left: 16px; padding-right: 16px; }
+    }
+
+    /* Mission with central mandala */
+    .mission-alt {
+      position: relative;
+      padding: 32px 0 80px;
+    }
+    .mission-alt .intro {
+      max-width: 70ch;
+      margin: 0 auto 20px;
+      text-align: center;
+    }
+    .mission-alt .intro p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink-body);
+      margin-top: 16px;
+    }
+    .mission-alt .layout {
+      display: grid;
+      grid-template-columns: 1fr minmax(280px, 360px) 1fr;
+      grid-template-areas:
+        "connect mandala equality"
+        "convene convene convene";
+      gap: 28px;
+      align-items: center;
+      justify-items: center;
+    }
+    .mission-alt .layout > * { min-width: 0; }
+    .mission-alt .mandala {
+      grid-area: mandala;
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 1/1;
+      background: url('/assets/mission-mandala.svg') center/contain no-repeat;
+    }
+    .mission-alt .pillar-card { width: 100%; max-width: min(460px, 100%); min-width: 0; box-sizing: border-box; }
+    .mission-alt .pillar-card.connect  { grid-area: connect; }
+    .mission-alt .pillar-card.equality { grid-area: equality; }
+    .mission-alt .pillar-card.convene  { grid-area: convene; max-width: min(720px, 100%); }
+    .mission-alt .pillar-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 28px 32px;
+      display: flex; flex-direction: column;
+      gap: 12px;
+      text-align: center;
+      transition: transform .15s, box-shadow .2s, border-color .15s;
+    }
+    .mission-alt .pillar-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--lavender-2); }
+    .mission-alt .pillar-card h3 {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 26px;
+      color: var(--purple);
+      line-height: 1.1;
+    }
+    .mission-alt .pillar-card p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink-body);
+    }
+    @media (max-width: 900px) {
+      .mission-alt .layout {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "mandala"
+          "connect"
+          "equality"
+          "convene";
+        gap: 18px;
+      }
+      .mission-alt .mandala { max-width: 240px; margin-bottom: 8px; }
+      .mission-alt .pillar-card,
+      .mission-alt .pillar-card.convene { max-width: 100%; width: auto !important; }
+    }
+
+    /* Featured conference */
+    .feat-conf { position: relative; }
+    .feat-card {
+      position: relative;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 16px;
+      min-height: 480px;
+      z-index: 1;
+    }
+    .feat-card .pic {
+      background: url('/assets/feat-conf.png') center/cover no-repeat;
+      min-height: 380px;
+      border-radius: 8px;
+    }
+    .feat-card .body { padding: 24px 32px; display: flex; flex-direction: column; gap: 18px; justify-content: center; }
+    .feat-card .meta-row { font-weight: 600; color: var(--ink-2); font-size: 14.5px; }
+    .feat-card h3 { font-family: var(--font-title); font-weight: 700; font-size: 36px; color: var(--ink); line-height: 1.08; }
+    .feat-card p { font-size: 15.5px; line-height: 1.6; color: var(--ink-body); }
+    .feat-card .ctas { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+
+    /* Impact numbers */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .stats-row .stat {
+      padding: 8px 16px;
+      background: transparent;
+      border: 0;
+      text-align: center;
+      align-items: center;
+    }
+    .stats-row .stat .h-stat {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 64px;
+      letter-spacing: -0.01em;
+    }
+
+    /* Latest row */
+    .latest-row {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    .latest-feature {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 16px;
+      display: flex; flex-direction: column;
+      transition: transform .15s, box-shadow .2s, border-color .15s;
+    }
+    .latest-feature:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--lavender-2); }
+    .latest-feature .media {
+      border-radius: 8px;
+      background-size: cover; background-position: center;
+      flex: 1; min-height: 260px;
+    }
+    .latest-feature .body { padding: 18px 16px 14px; display: flex; flex-direction: column; gap: 10px; }
+    .latest-feature h3 { font-family: var(--font-title); font-weight: 700; font-size: 28px; line-height: 1.15; color: var(--ink); }
+    .latest-feature p { font-size: 15px; color: var(--ink-body); line-height: 1.55; }
+    .latest-stack {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .latest-mini {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 16px;
+      display: flex; flex-direction: column;
+      transition: transform .15s, box-shadow .2s, border-color .15s;
+    }
+    .latest-mini:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--lavender-2); }
+    .latest-mini .media {
+      border-radius: 8px;
+      background-size: cover; background-position: center;
+      aspect-ratio: 16/10;
+    }
+    .latest-mini .body { padding: 12px 10px 8px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .latest-mini h3 { font-family: var(--font-title); font-weight: 700; font-size: 18px; line-height: 1.2; color: var(--ink); }
+    .latest-mini .latest-link { margin-top: auto; }
+    .latest-link { color: var(--purple); font-weight: 600; font-size: 14px; text-decoration: none; }
+    .latest-link:hover { text-decoration: underline; }
+    @media (max-width: 980px) {
+      .latest-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .latest-stack { grid-template-columns: 1fr; }
+    }
+
+    /* Past conferences strip */
+    .past-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .past-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 16px;
+      display: flex; flex-direction: column;
+      text-decoration: none; color: inherit;
+      transition: transform .15s, box-shadow .2s, border-color .15s;
+    }
+    .past-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--lavender-2); }
+    .past-card .pic {
+      aspect-ratio: 4/3;
+      background-size: cover; background-position: center;
+      border-radius: 8px;
+      position: relative;
+    }
+    .past-card .pic .num {
+      position: absolute; left: 14px; top: 14px;
+      background: rgba(22,3,79,.85);
+      color: #fff;
+      font-family: var(--font-num);
+      font-weight: 700; font-size: 16px;
+      padding: 5px 11px;
+      border-radius: var(--r-pill);
+      letter-spacing: 0.04em;
+    }
+    .past-card .body { padding: 18px 6px 6px; display:flex; flex-direction:column; gap:6px; flex:1; }
+    .past-card .meta { font-size: 11.5px; letter-spacing: 0.08em; color: var(--ink-subtle); text-transform: uppercase; font-weight: 600; }
+    .past-card h3 { font-family: var(--font-title); font-weight: 700; font-size: 19px; color: var(--ink); line-height: 1.3; }
+    .past-card .view { color: var(--purple); font-weight: 600; font-size: 13px; margin-top: auto; padding-top: 8px; }
+
+    /* 19th Conference highlights */
+    .highlights-19 {
+      padding: 80px 0;
+      text-align: center;
+    }
+    .highlights-19 .eyebrow { color: var(--ink-2); }
+    .highlights-19 h2 {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 1.15;
+      color: var(--ink);
+      max-width: 30ch;
+      margin: 14px auto 0;
+    }
+    .highlights-19 .stage {
+      max-width: 880px;
+      margin: 40px auto 0;
+      aspect-ratio: 16/9;
+      border-radius: 16px;
+      overflow: hidden;
+      background: url('/assets/highlights.png') center/cover no-repeat;
+      position: relative;
+    }
+    .highlights-19 .stage::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(22,3,79,.35));
+      pointer-events: none;
+    }
+    .highlights-19 .play-pill {
+      position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: rgba(22,3,79,.85);
+      color: #fff;
+      display: grid; place-items: center;
+      z-index: 1;
+      transition: transform .15s, background .15s;
+      cursor: pointer;
+    }
+    .highlights-19 .play-pill:hover { transform: translate(-50%, -50%) scale(1.06); background: var(--ink); }
+    .highlights-19 .play-pill::after {
+      content: "";
+      width: 0; height: 0;
+      margin-left: 6px;
+      border-left: 18px solid #fff;
+      border-top: 11px solid transparent;
+      border-bottom: 11px solid transparent;
+    }
+    .highlights-19 .caption {
+      position: absolute;
+      left: 24px; bottom: 22px;
+      color: #fff;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+    .highlights-19 .more { margin-top: 32px; display: inline-block; }
+
+    /* Press */
+    .press-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .press-tile {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 28px 22px;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+      transition: border-color .15s, transform .15s;
+    }
+    .press-tile .logo {
+      height: 52px;
+      max-width: 80%;
+      object-fit: contain;
+    }
+    .press-tile:hover { border-color: var(--lavender-2); transform: translateY(-2px); }
+
+    /* Branches map */
+    .branches {
+      position: relative;
+      padding-bottom: 60px;
+    }
+    .map-wrap {
+      position: relative;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      background: #F9FAFC;
+      border: 1px solid var(--border);
+    }
+    .map-wrap svg { display: block; width: 100%; height: auto; }
+    .map-wrap .country { fill: #BBDBF0; stroke: #fff; stroke-width: 0.5; }
+    .map-wrap .map-dot { cursor: pointer; }
+    .map-wrap .map-dot circle.core { fill: var(--purple); stroke: #fff; stroke-width: 1.5; transition: r .15s; }
+    .map-wrap .map-dot.kind-local circle.core { fill: var(--coral); }
+    .map-wrap .map-dot.kind-partner circle.core { fill: var(--ink); }
+    .map-wrap .map-dot:hover circle.core { r: 7; }
+    .map-popup {
+      position: absolute;
+      max-width: 260px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      box-shadow: var(--shadow-md);
+      padding: 14px 16px;
+      z-index: 5;
+      display: none;
+    }
+    .map-popup.is-open { display: block; }
+    .map-popup h3 { font-family: var(--font-title); font-weight: 700; font-size: 17px; color: var(--ink); margin-bottom: 4px; }
+    .map-popup .kind { font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple); margin-bottom: 6px; }
+    .map-popup p { font-size: 12.5px; color: var(--ink-body); line-height: 1.5; }
+    .map-popup .plinks {
+      margin-top: 8px; padding-top: 8px;
+      border-top: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 4px;
+      font-size: 12.5px; color: var(--ink-body);
+    }
+    .map-popup .plinks:empty { display: none; }
+    .map-popup .plinks a { color: var(--purple); }
+    .map-popup .x {
+      position: absolute; top: 8px; right: 8px;
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 0; background: var(--bg-section); color: var(--ink);
+      cursor: pointer; font-size: 12px; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Ways to support */
+    .ways-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .way {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 40px 32px 32px;
+      text-align: center;
+      display: flex; flex-direction: column; gap: 14px;
+      align-items: center;
+      transition: transform .15s, box-shadow .2s;
+    }
+    .way:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .way .glyph {
+      width: 168px; height: 168px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .way--join .glyph { background-image: url('/assets/icon-member.png'); }
+    .way--vol .glyph { background-image: url('/assets/icon-volunteer.png'); }
+    .way--don .glyph { background-image: url('/assets/icon-donate.png'); }
+    .way h3 { font-family: var(--font-title); font-weight: 700; font-size: 26px; color: var(--ink); }
+    .way p { font-size: 14.5px; color: var(--ink-body); line-height: 1.55; padding: 0 16px; }
+
+    /* Responsive */
+    @media (max-width: 1000px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); gap: 28px 24px; }
+      .past-row  { grid-template-columns: repeat(2, 1fr); }
+      .feat-card { grid-template-columns: 1fr; min-height: 0; }
+      .feat-card .pic { min-height: 0; aspect-ratio: 16/10; }
+      .feat-card h3 { font-size: 30px; }
+    }
+    @media (max-width: 820px) {
+      .ways-grid  { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) and (min-width: 561px) {
+      .latest-stack { grid-template-columns: 1fr 1fr; }
+      .way { padding: 32px 24px 28px; }
+    }
+    @media (max-width: 560px) {
+      .way { padding: 32px 24px 28px; }
+      .stats-row { grid-template-columns: 1fr 1fr; gap: 20px 14px; }
+      .stats-row .stat { padding: 8px 6px; }
+      .stats-row .h-stat { font-size: 34px; }
+      .past-row  { grid-template-columns: 1fr; }
+      .press-grid { grid-template-columns: 1fr; }
+      .feat-card .body { padding: 20px 18px; }
+      .feat-card h3 { font-size: 26px; }
+      .home-hero .cta-row { width: 100%; flex-direction: column; align-items: stretch; }
+      .home-hero .cta-row .btn { flex: none; width: 100%; justify-content: center; }
+    }
+  </style>
 </BaseLayout>
