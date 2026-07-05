@@ -1,0 +1,1112 @@
+---
+/**
+ * ConferenceDetail — sidebar archive + full detail view for one conference.
+ * Used by /conferences (shows the upcoming one) and /conferences/[n].
+ *
+ * All content comes from src/data/conferences.json — edit there.
+ * Unlike the prototype (which rendered everything with JavaScript),
+ * every conference is a real page with a real address.
+ */
+import data from '../data/conferences.json'
+
+interface Props {
+  /** Conference number to display, e.g. 19 */
+  n: number
+}
+const { n } = Astro.props
+
+type Conf = (typeof data.conferences)[number] & {
+  upcoming?: boolean
+  heroImg?: string
+  thumb?: string
+  noPhotoCredit?: boolean
+  subtitle?: string
+  video?: { yt: string; title?: string; caption?: string; thumb?: string }
+  coverage?: any
+  photos: { f?: string; yt?: string; caption: string }[]
+}
+
+const list = data.conferences as Conf[]
+const c = (list.find((x) => x.n === n) ?? list[0]) as Conf
+
+/** 1 → "1st", 2 → "2nd", 19 → "19th" */
+const ord = (num: number) => {
+  const s = ['th', 'st', 'nd', 'rd']
+  const v = num % 100
+  return num + (s[(v - 20) % 10] || s[v] || s[0])
+}
+
+const DECADES = [
+  { label: 'Upcoming', test: (x: Conf) => !!x.upcoming },
+  { label: '2020s', test: (x: Conf) => !x.upcoming && +x.year >= 2020 },
+  { label: '2010s', test: (x: Conf) => +x.year >= 2010 && +x.year < 2020 },
+  { label: '2000s', test: (x: Conf) => +x.year >= 2000 && +x.year < 2010 },
+  { label: '1990s', test: (x: Conf) => +x.year >= 1990 && +x.year < 2000 },
+  { label: '1980s', test: (x: Conf) => +x.year >= 1980 && +x.year < 1990 },
+]
+
+/** Compact place name for the sidebar, e.g. "Kuching" */
+const shortLoc = (x: Conf) => x.loc.split('·').pop()!.split(',')[0].trim()
+
+const heroUrl = c.heroImg ?? c.photos?.find((p) => p.f)?.f ?? ''
+const coverageItems = c.coverage ? (Array.isArray(c.coverage) ? c.coverage : [c.coverage]) : null
+const prevConfs = list.filter((x) => !x.upcoming && x.n !== c.n).slice(0, 3)
+const prevThumb = (x: Conf) => x.thumb ?? x.photos?.find((p) => p.f)?.f ?? x.heroImg ?? ''
+const nPhotos = c.photos?.filter((p) => !p.yt).length ?? 0
+const nVideos = c.photos?.filter((p) => p.yt).length ?? 0
+
+const materials = [
+  { c1: '#BB8FDB', c2: '#773BFA', vol: c.year, ttl: 'Conference Brochure', file: `Conference Brochure ${c.year}`, chip: 'PROGRAM' },
+  { c1: '#F39A6C', c2: '#DE7386', vol: 'SCHEDULE', ttl: 'Program at a glance', file: 'Full Program Schedule', chip: 'SCHEDULE' },
+  { c1: '#16034F', c2: '#4F3E81', vol: 'PAPERS', ttl: 'Abstract Book', file: 'Abstract Book', chip: 'PAPERS' },
+]
+---
+
+<div class="cd-layout">
+  <!-- SIDEBAR — the conference archive -->
+  <aside class="cd-side">
+    <div class="cd-side-inner">
+      <div class="brand-h">
+        <div class="wm">SAKYADHITA</div>
+        <div class="sub">Conference Archive · 19 events</div>
+      </div>
+      {
+        DECADES.map((d) => {
+          const items = list.filter(d.test)
+          if (!items.length) return null
+          return (
+            <>
+              <div class="cd-decade">{d.label}</div>
+              {items.map((x) => (
+                <a class:list={['cd-entry', { 'is-active': x.n === c.n }]} href={x.upcoming ? '/conferences' : `/conferences/${x.n}`}>
+                  <div class="badge">#{x.n}</div>
+                  <div class="info">
+                    <div class="yr">{x.year}</div>
+                    <div class="loc">{shortLoc(x)}</div>
+                  </div>
+                </a>
+              ))}
+            </>
+          )
+        })
+      }
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="cd-main">
+    <section class="cd-hero">
+      <div class="col-text">
+        {c.upcoming && <div class="upcoming-tag">COMING SOON</div>}
+        <div class="badges">
+          <span class="badge outlined">{ord(c.n).toUpperCase()} CONFERENCE</span>
+          <span class="badge filled">{c.year}</span>
+        </div>
+        <h1>{c.title}</h1>
+        {!c.upcoming && c.subtitle && <div class="subtitle">{c.subtitle}</div>}
+        <div class="meta">
+          <div class="meta-item"><span class="emoji">{c.flag}</span> {c.loc}</div>
+          <div class="meta-item"><span class="emoji">🗓️</span> {c.dates}</div>
+          <div class="meta-item"><span class="emoji">🤝</span> Hosted by {c.host}</div>
+        </div>
+      </div>
+      <div
+        class="pic"
+        aria-hidden="true"
+        style={heroUrl ? `background-image:url('${heroUrl}'); background-size:cover; background-position:center;` : undefined}
+      >
+      </div>
+    </section>
+
+    {
+      c.upcoming ? (
+        <section class="about-card">
+          <p>{c.about}</p>
+          <p style="margin-top: 16px;">
+            <strong>Registration will be opening soon.</strong>
+          </p>
+        </section>
+      ) : (
+        <section class="about-card">
+          <h3>About the conference</h3>
+          <p>{c.about}</p>
+        </section>
+      )
+    }
+
+    {
+      !c.upcoming && c.video?.yt && (
+        <section class="conf-video">
+          <div class="cv-head">
+            <div class="eyebrow">{ord(c.n).toUpperCase()} INTERNATIONAL CONFERENCE</div>
+            {c.video.title && <h2 class="cv-title">{c.video.title}</h2>}
+          </div>
+          <div
+            class="cv-stage"
+            data-yt={c.video.yt}
+            style={`background-image:url('${c.video.thumb ?? `https://img.youtube.com/vi/${c.video.yt}/maxresdefault.jpg`}');`}
+          >
+            {c.video.caption && <span class="cv-caption">{c.video.caption}</span>}
+            <button class="cv-play" type="button" aria-label="Play video" />
+          </div>
+        </section>
+      )
+    }
+
+    {
+      !c.upcoming && c.photos?.length > 0 && (
+        <section class="photos-block">
+          <div class="photos-head">
+            <div class="left">
+              <span class="label" style="font-family: var(--font-title); font-weight: 700; font-size: 24px; color: var(--ink);">
+                Photos &amp; video
+              </span>
+              {!c.noPhotoCredit && (
+                <span class="photos-credit">
+                  Big thank you for these beautiful photos to{' '}
+                  <a href="https://www.olivieradam.net/" target="_blank" rel="noopener noreferrer">
+                    Olivier Adam
+                  </a>
+                  .
+                </span>
+              )}
+            </div>
+            <div class="right">
+              <span class="count">{nVideos ? `${nPhotos} photos · ${nVideos} video${nVideos > 1 ? 's' : ''}` : `${nPhotos} photos`}</span>
+            </div>
+          </div>
+          <div class="carousel" id="photo-carousel">
+            {c.photos.map((p) =>
+              p.yt ? (
+                <div
+                  class="photo-tile video"
+                  data-type="video"
+                  data-yt={p.yt}
+                  data-src={p.f ?? `https://img.youtube.com/vi/${p.yt}/hqdefault.jpg`}
+                  data-caption={p.caption}
+                  style={`background-image:url('${p.f ?? `https://img.youtube.com/vi/${p.yt}/hqdefault.jpg`}');`}
+                >
+                  <span class="v-badge">VIDEO</span>
+                  <span class="play" />
+                </div>
+              ) : (
+                <div class="photo-tile" data-type="image" data-src={p.f} data-caption={p.caption} style={`background-image:url('${p.f}');`} />
+              )
+            )}
+          </div>
+          <button class="photos-more" id="photos-see-more" type="button">
+            See more images →
+          </button>
+        </section>
+      )
+    }
+
+    {
+      !c.upcoming && (
+        <section>
+          <div class="panel-head">
+            <span class="label">Media coverage</span>
+          </div>
+          <div class="coverage-list">
+            {coverageItems ? (
+              coverageItems.map((cv: any) => (
+                <article class="h-card-row">
+                  <div
+                    class="thumb"
+                    style={cv.img ? `background-image:url('${cv.img}');` : 'background: linear-gradient(135deg, var(--lavender), var(--coral-2));'}
+                  />
+                  <div class="body">
+                    <div class="top-row">
+                      <span class="outlet-tag">{cv.outlet}</span>
+                      <span class="date">{cv.date}</span>
+                    </div>
+                    <div class="headline">{cv.headline}</div>
+                    <p class="excerpt">{cv.excerpt}</p>
+                    <a class="read-link" href={cv.href} target="_blank" rel="noopener noreferrer">
+                      Read coverage ↗
+                    </a>
+                  </div>
+                </article>
+              ))
+            ) : (
+              <article class="h-card-row">
+                <div
+                  class="thumb"
+                  style={
+                    c.photos?.[0]?.f
+                      ? `background-image:url('${c.photos[0].f}');`
+                      : 'background: linear-gradient(135deg, var(--lavender), var(--coral-2));'
+                  }
+                />
+                <div class="body">
+                  <div class="top-row">
+                    <span class="outlet-tag">SAKYADHITA NEWSLETTER</span>
+                    <span class="date">{c.year}</span>
+                  </div>
+                  <div class="headline">
+                    {ord(c.n)} Sakyadhita International Conference — {c.title}
+                  </div>
+                  <p class="excerpt">
+                    Reflections and reports from the gathering in {shortLoc(c)}, {c.year}.
+                  </p>
+                  <a class="read-link" href="/newsletters">Read coverage ↗</a>
+                </div>
+              </article>
+            )}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      !c.upcoming && (
+        <section>
+          <div class="panel-head">
+            <span class="label">Conference materials</span>
+          </div>
+          {materials.map((m) => (
+            <article class="h-card-row">
+              <div class="thumb doc" style={`--c1:${m.c1}; --c2:${m.c2};`}>
+                <div>
+                  <div class="doc-vol">{m.vol}</div>
+                  <div class="doc-ttl">{m.ttl}</div>
+                </div>
+              </div>
+              <div class="body">
+                <span class="chip">{m.chip}</span>
+                <div class="file-title">{m.file}</div>
+                <div class="file-meta">Coming soon</div>
+              </div>
+              <button class="get" disabled style="opacity:.5; cursor:not-allowed;">
+                <svg class="dl-ico" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2 L8 11 M4 7 L8 11 L12 7 M3 13 L13 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Soon
+              </button>
+            </article>
+          ))}
+        </section>
+      )
+    }
+
+    {
+      prevConfs.length > 0 && (
+        <section>
+          <div class="panel-head">
+            <span class="label">See previous conferences</span>
+          </div>
+          <div class="prev-grid">
+            {prevConfs.map((x) => (
+              <a class="prev-card" href={`/conferences/${x.n}`}>
+                <div class="pic" style={prevThumb(x) ? `background-image:url('${prevThumb(x)}');` : undefined}>
+                  <span class="num">#{x.n}</span>
+                </div>
+                <div class="body">
+                  <div class="meta">
+                    {x.year} · {shortLoc(x).toUpperCase()}
+                  </div>
+                  <h3>{x.title}</h3>
+                  <span class="view">View conference →</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )
+    }
+  </div>
+</div>
+
+<!-- Lightbox (photo/video viewer) -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <div class="stage">
+    <button class="close" id="lb-close" aria-label="Close">✕</button>
+    <button class="nav prev" id="lb-prev" aria-label="Previous">←</button>
+    <div class="media-slot" id="lb-slot"></div>
+    <button class="nav next" id="lb-next" aria-label="Next">→</button>
+    <div class="caption-bar"><div class="cap" id="lb-cap"></div></div>
+    <div class="thumbs" id="lb-thumbs"></div>
+  </div>
+</div>
+
+<script>
+  // ── Lightbox + inline video player (ported from the design prototype) ──
+  const lb: { items: { src: string; caption: string; yt: string }[]; idx: number; open: boolean } = {
+    items: [],
+    idx: 0,
+    open: false,
+  }
+  const lbBox = () => document.getElementById('lightbox')
+
+  function thumbs() {
+    const el = document.getElementById('lb-thumbs')
+    if (!el) return
+    const counter = `<div class="counter">${lb.idx + 1} / ${lb.items.length}</div>`
+    el.innerHTML =
+      counter +
+      lb.items
+        .map((it, i) => `<button class="t ${i === lb.idx ? 'is-current' : ''}" data-i="${i}" style="background-image:url('${it.src}');"></button>`)
+        .join('')
+  }
+  function show(i: number) {
+    const slot = document.getElementById('lb-slot')
+    const cap = document.getElementById('lb-cap')
+    if (!slot) return
+    lb.idx = (i + lb.items.length) % lb.items.length
+    const it = lb.items[lb.idx]
+    if (it.yt) {
+      slot.innerHTML = `<iframe class="media-video" src="https://www.youtube.com/embed/${it.yt}?autoplay=1&rel=0" title="${it.caption}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+    } else {
+      slot.innerHTML = `<img class="media" src="${it.src}" alt="${it.caption}" />`
+    }
+    if (cap) cap.textContent = it.caption
+    thumbs()
+  }
+  function openAt(i: number) {
+    const b = lbBox()
+    if (!b) return
+    show(i)
+    b.classList.add('is-open')
+    lb.open = true
+    document.body.style.overflow = 'hidden'
+  }
+  function closeLb() {
+    const b = lbBox()
+    if (!b) return
+    b.classList.remove('is-open')
+    const s = document.getElementById('lb-slot')
+    if (s) s.innerHTML = ''
+    lb.open = false
+    document.body.style.overflow = ''
+  }
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as Element
+    const tile = target.closest('#photo-carousel .photo-tile') as HTMLElement | null
+    if (tile) {
+      const tiles = [...document.querySelectorAll('#photo-carousel .photo-tile')] as HTMLElement[]
+      lb.items = tiles.map((t) => ({ src: t.dataset.src || '', caption: t.dataset.caption || '', yt: t.dataset.yt || '' }))
+      openAt(tiles.indexOf(tile))
+      return
+    }
+    if (target.closest('#photos-see-more')) {
+      const tiles = [...document.querySelectorAll('#photo-carousel .photo-tile')] as HTMLElement[]
+      lb.items = tiles.map((t) => ({ src: t.dataset.src || '', caption: t.dataset.caption || '', yt: t.dataset.yt || '' }))
+      openAt(0)
+      return
+    }
+    const cv = target.closest('.cv-stage') as HTMLElement | null
+    if (cv && cv.dataset.yt && !cv.classList.contains('is-playing')) {
+      cv.innerHTML = `<iframe class="cv-frame" src="https://www.youtube.com/embed/${cv.dataset.yt}?autoplay=1&rel=0" title="Conference highlights" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+      cv.classList.add('is-playing')
+      return
+    }
+    if (target.closest('#lb-prev')) { e.stopPropagation(); show(lb.idx - 1); return }
+    if (target.closest('#lb-next')) { e.stopPropagation(); show(lb.idx + 1); return }
+    if (target.closest('#lb-close')) { closeLb(); return }
+    const th = target.closest('#lb-thumbs .t') as HTMLElement | null
+    if (th) { show(parseInt(th.dataset.i || '0', 10)); return }
+    if (e.target === lbBox()) { closeLb(); return }
+  })
+  document.addEventListener('keydown', (e) => {
+    if (!lb.open) return
+    if (e.key === 'Escape') closeLb()
+    if (e.key === 'ArrowLeft') show(lb.idx - 1)
+    if (e.key === 'ArrowRight') show(lb.idx + 1)
+  })
+</script>
+
+<style is:global>
+  /* On this page the layout butts right up against the footer. */
+  .site-footer { margin-top: 0 !important; }
+
+  .cd-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: calc(100vh - 76px);
+  }
+
+  /* SIDEBAR */
+  .cd-side {
+    background: #fff;
+    border-right: 1px solid var(--border);
+  }
+  .cd-side-inner {
+    position: sticky;
+    top: 76px;
+    height: calc(100vh - 76px);
+    overflow-y: auto;
+    padding: 28px 0 32px;
+    scrollbar-width: none;
+  }
+  .cd-side-inner::-webkit-scrollbar { display: none; }
+
+  .cd-side-inner .brand-h {
+    padding: 0 28px 14px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .cd-side-inner .brand-h .wm {
+    font-family: var(--font-num);
+    font-weight: 700; font-size: 22px;
+    letter-spacing: 0.15em;
+    color: var(--coral-2);
+  }
+  .cd-side-inner .brand-h .sub {
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  .cd-decade {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: #9183C9;
+    text-transform: uppercase;
+    padding: 12px 28px 6px;
+  }
+
+  .cd-entry {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    gap: 14px;
+    align-items: center;
+    padding: 8px 22px 8px 12px;
+    margin: 0 8px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: background .12s;
+    cursor: pointer;
+  }
+  .cd-entry:hover { background: var(--bg-section); }
+  .cd-entry.is-active { background: var(--lavender); }
+
+  .cd-entry .badge {
+    width: 46px; height: 38px;
+    border-radius: 6px;
+    display: grid; place-items: center;
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--purple);
+    letter-spacing: 0.02em;
+  }
+  .cd-entry.is-active .badge {
+    background: #E8C9FA;
+    color: var(--ink);
+  }
+  .cd-entry .info .yr {
+    font-family: var(--font-num);
+    font-weight: 400; font-size: 17px;
+    color: var(--ink); line-height: 1;
+  }
+  .cd-entry .info .loc {
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-top: 3px;
+    line-height: 1.2;
+  }
+
+  /* MAIN COLUMN */
+  .cd-main {
+    padding: 32px max(40px, calc(50vw - 680px)) 80px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  /* HERO */
+  .cd-hero {
+    display: grid;
+    grid-template-columns: 1fr 460px;
+    gap: 48px;
+    align-items: center;
+  }
+  .cd-hero .col-text {
+    display: flex; flex-direction: column; gap: 20px;
+    max-width: 524px;
+  }
+  .cd-hero .badges { display: flex; gap: 8px; }
+  .cd-hero .badge {
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+  }
+  .cd-hero .badge.outlined {
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+  }
+  .cd-hero .badge.filled {
+    background: var(--coral-2);
+    color: #fff;
+  }
+  .cd-hero h1 {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .cd-hero .subtitle {
+    font-family: var(--font-num);
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--purple);
+    line-height: 1.2;
+  }
+  .cd-hero .meta {
+    display: flex; flex-direction: column; gap: 10px;
+    padding-top: 12px;
+  }
+  .cd-hero .meta-item {
+    display: flex; gap: 12px; align-items: center;
+    font-size: 16px; color: var(--ink-body);
+  }
+  .cd-hero .meta-item .emoji {
+    font-size: 20px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .cd-hero .pic {
+    aspect-ratio: 460/352;
+    border-radius: 16px;
+    background:
+      linear-gradient(0deg, rgba(212,181,154,.2), rgba(212,181,154,.2)),
+      url('/assets/feat-conf.png') center/cover no-repeat;
+  }
+  .cd-hero .upcoming-tag {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 4px;
+  }
+
+  /* ABOUT card */
+  .about-card {
+    background: var(--bg-section);
+    border-radius: 16px;
+    padding: 32px 36px;
+  }
+  .about-card h3 {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .about-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-body);
+  }
+
+  /* Previous conferences */
+  .prev-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 4px;
+  }
+  .prev-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    padding: 8px;
+    transition: transform .15s, box-shadow .2s, border-color .15s;
+  }
+  .prev-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--lavender-2); }
+  .prev-card .pic {
+    aspect-ratio: 16/10;
+    background-size: cover; background-position: center;
+    background-color: var(--bg-section);
+    position: relative;
+    border-radius: 8px;
+  }
+  .prev-card .pic .num {
+    position: absolute; left: 12px; top: 12px;
+    background: rgba(22,3,79,.78);
+    color: #fff;
+    font-family: var(--font-num);
+    font-weight: 700; font-size: 13px;
+    padding: 4px 10px; border-radius: 999px;
+  }
+  .prev-card .body { padding: 12px 10px 6px; display: flex; flex-direction: column; gap: 6px; }
+  .prev-card .meta { font-size: 11.5px; letter-spacing: 0.08em; color: var(--ink-subtle); text-transform: uppercase; font-weight: 600; }
+  .prev-card h3 { font-family: var(--font-title); font-weight: 700; font-size: 18px; color: var(--ink); line-height: 1.25; }
+  .prev-card .view { color: var(--purple); font-weight: 600; font-size: 13px; margin-top: auto; padding-top: 6px; }
+
+  @media (max-width: 1280px) {
+    .cd-hero { grid-template-columns: 1fr minmax(300px, 400px); gap: 36px; }
+  }
+  @media (max-width: 1080px) {
+    .cd-hero { grid-template-columns: 1fr; gap: 28px; }
+    .cd-hero .pic { aspect-ratio: 16/9; }
+    .prev-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .cd-layout { grid-template-columns: 1fr; min-height: 0; }
+    .cd-side, .cd-main { min-width: 0; }
+    .cd-main { padding: 28px 24px 64px; }
+    .cd-side { border-right: 0; border-bottom: 1px solid var(--border); position: sticky; top: 64px; z-index: 20; overflow-x: clip; }
+    .cd-side-inner {
+      position: static; height: auto; max-height: none;
+      display: flex; gap: 6px; align-items: stretch;
+      overflow-x: auto; overflow-y: hidden;
+      padding: 12px 16px;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(8px);
+    }
+    .cd-side-inner .brand-h { display: none; }
+    .cd-decade { display: none; }
+    .cd-entry {
+      flex: 0 0 auto; margin: 0; padding: 6px 12px 6px 8px;
+      white-space: nowrap;
+    }
+    .cd-entry .badge { width: 36px; height: 30px; font-size: 15px; }
+    .cd-hero { grid-template-columns: 1fr; gap: 28px; }
+    .carousel { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .cd-main { padding: 20px 24px 64px; }
+    .cd-hero { gap: 20px; }
+    .cd-hero .col-text { gap: 14px; }
+    .cd-hero h1 { font-size: 30px; }
+    .cd-hero .subtitle { font-size: 18px; }
+    .cd-hero .meta { gap: 8px; padding-top: 6px; }
+    .cd-hero .meta-item { font-size: 15px; }
+    .cd-hero .pic { aspect-ratio: 16/10; }
+    .prev-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---- Lightbox ---- */
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(10, 1, 36, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 200;
+    padding: 64px 20px 40px;
+  }
+  .lightbox.is-open { display: flex; }
+  .lightbox .stage {
+    position: relative;
+    width: 100%; height: 100%;
+    max-width: 1200px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-start;
+    padding-top: 8px;
+  }
+  .lightbox .media-slot {
+    width: 100%;
+    height: calc(100vh - 280px);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px;
+  }
+  .lightbox .media {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto; height: 100%;
+    object-fit: contain;
+    border-radius: var(--r-md);
+    box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    background: #000;
+    display: block;
+  }
+  .lightbox .media-video {
+    width: min(100%, calc((100vh - 280px) * 16 / 9));
+    aspect-ratio: 16/9;
+    height: auto;
+    max-height: 100%;
+    border: 0;
+    border-radius: var(--r-md);
+    box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    background: #000;
+  }
+  .lightbox .caption-bar {
+    position: relative;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    color: #fff;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    width: 100%; max-width: 800px; text-align: center;
+  }
+  .lightbox .caption-bar .cap {
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.3;
+  }
+  .lightbox .close {
+    position: absolute;
+    top: -52px; right: -64px;
+    width: 52px; height: 52px;
+    flex-shrink: 0;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,.7);
+    border: 0;
+    color: var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    transition: background .15s, transform .15s;
+  }
+  .lightbox .close:hover { background: rgba(255,255,255,.92); transform: scale(1.05); }
+  .lightbox .nav {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    width: 52px; height: 52px;
+    flex-shrink: 0;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,.92);
+    border: 0;
+    color: var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    transition: transform .15s, background .15s;
+  }
+  .lightbox .nav:hover:not(:disabled) { transform: translateY(-50%) scale(1.06); background: #fff; }
+  .lightbox .nav:disabled { opacity: .35; cursor: not-allowed; }
+  .lightbox .nav.prev { left: -64px; }
+  .lightbox .nav.next { right: -64px; }
+
+  .lightbox .thumbs {
+    position: relative;
+    margin: 0 auto;
+    display: flex; gap: 10px; align-items: center;
+    padding: 12px 16px;
+    background: rgba(255,255,255,.08);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,.12);
+    max-width: 92vw;
+    overflow-x: auto;
+  }
+  .lightbox .thumbs .counter {
+    font-family: var(--font-num);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,.9);
+    padding-right: 14px;
+    margin-right: 4px;
+    border-right: 1px solid rgba(255,255,255,.18);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .lightbox .thumbs .t {
+    width: 96px; height: 64px;
+    border-radius: 6px;
+    background-size: cover;
+    background-position: center;
+    background-color: #000;
+    border: 2px solid transparent;
+    cursor: pointer;
+    opacity: .65;
+    transition: opacity .15s, border-color .15s, transform .15s;
+    flex-shrink: 0;
+    display: grid; place-items: center;
+    color: #fff; font-size: 14px; font-weight: 700;
+    padding: 0;
+  }
+  .lightbox .thumbs .t.is-current { opacity: 1; border-color: #fff; }
+  .lightbox .thumbs .t:hover { opacity: 1; transform: scale(1.04); }
+
+  @media (max-width: 760px) {
+    .lightbox .nav.prev { left: 6px; }
+    .lightbox .nav.next { right: 6px; }
+    .lightbox .nav { background: rgba(255,255,255,.85); }
+    .lightbox .close { top: -50px; right: 6px; }
+  }
+
+  /* Conference highlight video */
+  .conf-video { margin: 4px 0 8px; }
+  .conf-video .cv-head { text-align: center; }
+  .conf-video .cv-title {
+    font-family: var(--font-title); font-weight: 700;
+    font-size: 26px; color: var(--ink); line-height: 1.15;
+    margin: 8px auto 0; max-width: 60ch;
+  }
+  .cv-stage {
+    position: relative; margin: 24px auto 0; max-width: 880px;
+    aspect-ratio: 16/9; border-radius: 16px; overflow: hidden;
+    background-size: cover; background-position: center; cursor: pointer;
+  }
+  .cv-stage::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(22,3,79,.35));
+    pointer-events: none;
+  }
+  .cv-stage.is-playing { cursor: default; }
+  .cv-stage.is-playing::after { display: none; }
+  .cv-play {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: 72px; height: 72px; border-radius: 50%; border: 0;
+    background: rgba(22,3,79,.85); cursor: pointer; z-index: 1;
+    transition: transform .15s, background .15s;
+  }
+  .cv-play:hover { transform: translate(-50%, -50%) scale(1.06); background: var(--ink); }
+  .cv-play::after {
+    content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-40%, -50%);
+    width: 0; height: 0;
+    border-left: 18px solid #fff;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+  }
+  .cv-caption {
+    position: absolute; left: 20px; bottom: 16px; z-index: 1;
+    color: #fff; font-family: var(--font-num); font-weight: 600;
+    font-size: 12px; letter-spacing: 0.1em;
+  }
+  .cv-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  /* Photos */
+  .photos-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 14px;
+  }
+  .photos-head .left { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+  .photos-head .left .photos-credit {
+    font-family: var(--font-ui);
+    font-size: 13.5px;
+    color: var(--ink-body);
+  }
+  .photos-head .left .photos-credit a { color: var(--purple); font-weight: 600; }
+  .photos-head .left .photos-credit a:hover { text-decoration: underline; }
+  .photos-head .right { display: flex; gap: 14px; align-items: center; }
+  .photos-head .count {
+    font-family: var(--font-num);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+
+  .carousel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .photo-tile {
+    aspect-ratio: 243/170;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    background: #D4B59A;
+    background-size: cover; background-position: center;
+    cursor: pointer;
+  }
+  .photo-tile.video {
+    display: grid; place-items: center;
+  }
+  .photo-tile.video::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: rgba(22,3,79,.05);
+  }
+  .photo-tile .play {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--ink);
+    display: grid; place-items: center;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+  }
+  .photo-tile .play::after {
+    content: "";
+    width: 10px; height: 10px;
+    background: #fff;
+    margin-left: 2px;
+  }
+  .photo-tile .v-badge {
+    position: absolute; left: 12px; top: 12px;
+    background: var(--purple);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    display: inline-flex; gap: 6px; align-items: center;
+  }
+  .photo-tile .v-badge::before {
+    content: "";
+    width: 8px; height: 8px;
+    background: #fff;
+  }
+  .photos-more {
+    display: none;
+    width: 100%;
+    margin-top: 16px;
+    padding: 14px 20px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--r-pill);
+    font-family: var(--font-ui);
+    font-weight: 600; font-size: 15px;
+    color: var(--purple);
+    cursor: pointer;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .photos-more:hover { background: var(--purple); color: #fff; border-color: var(--purple); }
+  @media (max-width: 900px) {
+    .carousel { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .carousel { grid-template-columns: 1fr; }
+    #photo-carousel .photo-tile:nth-child(n+4) { display: none; }
+    .photos-more { display: block; }
+  }
+
+  /* Panels (media coverage / materials) */
+  .panel-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 22px;
+  }
+  .panel-head .label {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--ink);
+  }
+
+  .coverage-list { display: flex; flex-direction: column; gap: 16px; }
+  .h-card-row {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    gap: 24px;
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    transition: transform .15s, box-shadow .2s, border-color .15s;
+  }
+  .h-card-row:last-child { margin-bottom: 0; }
+  .h-card-row:hover { border-color: var(--lavender-2); box-shadow: var(--shadow-sm); }
+
+  .h-card-row .thumb {
+    aspect-ratio: 16/10;
+    border-radius: 8px;
+    background-size: cover; background-position: center;
+    background-color: var(--bg-section);
+    position: relative;
+    overflow: hidden;
+  }
+  .h-card-row .thumb.doc {
+    display: grid; place-items: center;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,.5), transparent 50%),
+      linear-gradient(135deg, var(--c1, var(--lavender-3)) 0%, var(--c2, var(--coral-2)) 100%);
+    color: #fff;
+    padding: 14px;
+    text-align: center;
+  }
+  .h-card-row .thumb.doc .doc-vol {
+    font-family: var(--font-num); font-weight: 700;
+    font-size: 11px; letter-spacing: 0.18em; opacity: .9;
+  }
+  .h-card-row .thumb.doc .doc-ttl {
+    font-family: var(--font-title); font-weight: 700;
+    font-size: 14px; line-height: 1.15;
+    margin-top: 6px;
+  }
+
+  .h-card-row .body { display: flex; flex-direction: column; gap: 6px; min-width: 0; align-items: flex-start; }
+  .h-card-row .top-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .h-card-row .outlet-tag {
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: #FBE0C8;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+  }
+  .h-card-row .date { font-size: 13px; color: var(--ink-2); }
+  .h-card-row .headline {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .h-card-row .excerpt {
+    font-size: 14px;
+    color: var(--ink-body);
+    line-height: 1.5;
+  }
+  .h-card-row .read-link {
+    color: var(--purple);
+    font-weight: 600;
+    font-size: 14px;
+    align-self: flex-start;
+  }
+  .h-card-row .read-link:hover { text-decoration: underline; }
+
+  .h-card-row .file-title {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .h-card-row .file-meta {
+    font-size: 13px;
+    color: var(--ink-2);
+    display: flex; gap: 10px; align-items: center;
+  }
+  .h-card-row .chip {
+    display: inline-block;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: #FBE0C8;
+    color: var(--ink);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+  .h-card-row .get {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-size: 13.5px;
+    font-weight: 600;
+    background: transparent;
+    transition: background .12s, color .12s;
+    white-space: nowrap;
+  }
+  .h-card-row .get:hover:not(:disabled) { background: var(--ink); color: #fff; }
+  .h-card-row .get .dl-ico {
+    width: 14px; height: 14px;
+    display: inline-block;
+  }
+
+  @media (max-width: 900px) {
+    .h-card-row { grid-template-columns: 1fr; gap: 12px; align-items: stretch; }
+  }
+  @media (max-width: 700px) {
+    .h-card-row .thumb { aspect-ratio: 16/9; }
+    .h-card-row .get { width: 100%; justify-content: center; padding: 13px 22px; }
+  }
+</style>

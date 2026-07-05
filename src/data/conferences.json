@@ -1,0 +1,285 @@
+{
+  "_comment": "All Sakyadhita International Conferences, newest first. Each becomes a page at /conferences/<n>. Photos: 'f' is an image path or URL, 'yt' is a YouTube video id. 'coverage' can be one item or a list. To add conference #21: copy the top block and edit.",
+  "conferences": [
+    {
+      "n": 20, "year": "2027", "flag": "🇮🇩", "loc": "Indonesia",
+      "title": "Sakyadhita International Conference on Buddhist Women in Indonesia",
+      "subtitle": "",
+      "dates": "June 2027 (dates will be announced soon)",
+      "host": "Indonesian Buddhist Association",
+      "upcoming": true,
+      "about": "The 20th Sakyadhita International Conference travels to Indonesia — bringing together Buddhist women from across the world's traditions for five days of teachings, scholarship, and friendship. Hosted by the Indonesian Buddhist Association, the program will feature plenary lectures, panel discussions, meditation sessions, cultural performances, and opportunities to connect with practitioners and scholars from over 30 countries. We look forward to welcoming you to Indonesia in June 2027.",
+      "photos": []
+    },
+    {
+      "n": 19, "year": "2025", "flag": "🇲🇾", "loc": "Kuching · Sarawak, East Malaysia",
+      "title": "Navigating Change: Buddhist Women in Transition",
+      "subtitle": "Adapting Across Personal, Social, and Spiritual Worlds",
+      "dates": "June 15–23, 2025",
+      "host": "Buddhist Society of Sarawak",
+      "about": "The 19th Sakyadhita International Conference gathered Buddhist women from across the world in Kuching, the capital of Sarawak in East Malaysia. Over nine days, participants explored how Buddhist women navigate change — personal, social, and spiritual — in a rapidly transforming world. Hosted by the Buddhist Society of Sarawak, the program featured plenary lectures, paper presentations, meditation sessions, and cultural performances celebrating the rich Buddhist heritage of Borneo.",
+      "coverage": {
+        "outlet": "TRICYCLE",
+        "date": "Jul 2025",
+        "headline": "Buddhist Women Gather to Discuss Ordination, Social Justice, and Solidarity",
+        "excerpt": "The 19th Sakyadhita Conference brought together 400 participants from twenty-five countries in Kuching, Malaysia, to address issues facing Buddhist women. Photos by Olivier Adam.",
+        "href": "https://tricycle.org/article/buddhist-women-conference/",
+        "img": "https://tricycle.org/wp-content/uploads/2025/07/Adam_181_KUC0531.jpg"
+      },
+      "video": { "yt": "IRr-CQYdQ8o", "title": "Highlights of the 19th Sakyadhita Conference in Sarawak, East Malaysia.", "caption": "SARAWAK · JUNE 2025" },
+      "photos": [
+        { "f": "/assets/conf/conf19-banner.jpg", "caption": "Sarawak 2025" },
+        { "f": "/assets/conf/conf19-borneo.jpg", "caption": "Borneo gathering" },
+        { "f": "/assets/conf/conf19-mountains.jpg", "caption": "Highlands of Sarawak" }
+      ]
+    },
+    {
+      "n": 18, "year": "2023", "flag": "🇰🇷", "loc": "Coex Convention Center · Seoul, Korea",
+      "title": "Living in a Precarious World",
+      "subtitle": "Impermanence, Resilience, Awakening",
+      "dates": "June 23–27, 2023",
+      "host": "Korean Bhiksuni Association & Sakyadhita Korea",
+      "heroImg": "/assets/conf/conf18-seoul.jpg",
+      "thumb": "/assets/conf/conf18-seoul.jpg",
+      "about": "The largest gathering in Sakyadhita's history. More than 3,000 Buddhist monastics, laypeople, and dignitaries from over 30 countries convened in Seoul to explore impermanence, resilience, and awakening in a world reshaped by pandemic, conflict, and climate crisis. Held at the Coex Convention Center in Gangnam, the five-day program featured plenary lectures, workshops, cultural performances, and a temple stay program at historic Korean monasteries.",
+      "coverage": {
+        "outlet": "BUDDHISTDOOR GLOBAL",
+        "date": "Jul 2023",
+        "headline": "Daughters of the Buddha: 18th Sakyadhita Conference in Seoul Celebrates the Sacred Feminine",
+        "excerpt": "Buddhist monastics and laywomen from around the world gathered in Seoul for the largest conference in Sakyadhita's history — a shining example of the alignment between Buddhist scholarship, activism, and practice. Photos by Olivier Adam.",
+        "href": "https://www.buddhistdoor.net/features/daughters-of-the-buddha-18th-sakyadhita-conference-in-seoul-celebrates-the-sacred-feminine/",
+        "img": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/001-3.jpg"
+      },
+      "photos": [
+        { "yt": "YGxVoV13hg8", "caption": "18th Sakyadhita Conference — Seoul 2023" },
+        { "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/001-3.jpg", "caption": "Monastics gather for the opening of the 18th Conference" },
+        { "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/002.jpg", "caption": "Participants from over 30 countries in Seoul" },
+        { "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/004.jpg", "caption": "Bhikshunis in the robes of many traditions" },
+        { "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/005-1.jpg", "caption": "Plenary session at the Coex Convention Center" },
+        { "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/007-1.jpg", "caption": "Cultural performance during the program" },
+        { "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/011.jpg", "caption": "Sisters in the Dharma share experiences" },
+        { "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/031.jpg", "caption": "A global sangha of Buddhist women" }
+      ]
+    },
+    {
+      "n": 17, "year": "2021", "flag": "🌐", "loc": "Online",
+      "title": "Buddhist Women Beyond Boundaries",
+      "subtitle": "Interfaith, Interdependence, and Environment",
+      "dates": "2021",
+      "host": "Sakyadhita International",
+      "about": "Held entirely online during the pandemic, the 17th conference connected over 1,200 participants from 38 countries in seven working languages. Sessions explored interfaith dialogue, interdependence, and the environment — proving that the Sakyadhita community could gather and flourish across any boundary.",
+      "photos": [
+        { "f": "/assets/conf/conf17-zoom.jpg", "caption": "Online gathering, 2021" }
+      ]
+    },
+    {
+      "n": 16, "year": "2019", "flag": "🇦🇺", "loc": "Blue Mountains, Australia",
+      "title": "New Horizons in Buddhism",
+      "subtitle": "",
+      "dates": "2019",
+      "host": "Sakyadhita Australia",
+      "about": "The 16th conference convened in the Blue Mountains of Australia — Sakyadhita's first gathering in Oceania. Participants explored new horizons for Buddhist practice, scholarship, and community in the West.",
+      "coverage": {
+        "outlet": "BLUE MOUNTAINS INSIGHT MEDITATION CENTRE",
+        "date": "2019",
+        "headline": "Sakyadhita comes to the Blue Mountains",
+        "excerpt": "Ahead of the 16th Sakyadhita International Conference, Buddhist women from around the world gathered in the Blue Mountains for retreat and reflection — the association's first conference in Australia.",
+        "href": "https://bmimc.org.au/sakydhita-comes-to-the-blue-mountains/",
+        "img": "https://bmimc.org.au/wp/wp-content/uploads/2019/08/sunims_bowing.jpg"
+      },
+      "photos": [
+        { "f": "https://bmimc.org.au/wp/wp-content/uploads/2019/08/sunims_bowing.jpg", "caption": "Bhikkhunis bowing, Blue Mountains 2019" },
+        { "f": "https://bmimc.org.au/wp/wp-content/uploads/2019/08/joan_halifax_sakydhita2019.jpg", "caption": "Roshi Joan Halifax at the gathering" }
+      ]
+    },
+    {
+      "n": 15, "year": "2017", "flag": "🇭🇰", "loc": "University of Hong Kong",
+      "title": "Contemporary Buddhist Women",
+      "subtitle": "Contemplation, Cultural Exchange & Social Action",
+      "dates": "2017",
+      "host": "Centre of Buddhist Studies, University of Hong Kong",
+      "about": "Hosted at the University of Hong Kong, the 15th conference brought together contemporary Buddhist women for contemplation, cultural exchange, and social action — bridging academic scholarship and lived practice.",
+      "coverage": [
+        {
+          "outlet": "TRICYCLE",
+          "date": "Jul 2017",
+          "headline": "Photos from the 15th Sakyadhita International Conference on Buddhist Women",
+          "excerpt": "Buddhist nuns and laywomen from around the world traveled to Hong Kong for the 15th conference — marking 30 years since the first gathering in Bodhgaya in 1987. Photos by Olivier Adam.",
+          "href": "https://tricycle.org/article/photos-15th-sakyadhita-international-conference-buddhist-women/",
+          "img": "https://tricycle.org/wp-content/uploads/2017/07/Sakyadhita-1.jpg"
+        },
+        {
+          "outlet": "SRAVASTI ABBEY",
+          "date": "Jul 2017",
+          "headline": "Sakyadhita in Hong Kong 2017",
+          "excerpt": "Ven. Thubten Jampa reflects on the 15th Sakyadhita Conference, which drew around 900 participants from around the world to celebrate Sakyadhita's 30-year anniversary at the University of Hong Kong.",
+          "href": "https://sravastiabbey.org/37049-2/",
+          "img": "https://sravastiabbey.org/wp-content/uploads/2017/07/jul17-news-sakyadhita.jpg"
+        }
+      ],
+      "photos": [
+        { "f": "https://tricycle.org/wp-content/uploads/2017/07/Sakyadhita-1.jpg", "caption": "Three Korean nuns take a selfie outside the University of Hong Kong" },
+        { "f": "https://tricycle.org/wp-content/uploads/2017/07/Sakyadhita-2.jpg", "caption": "Tibetan nuns welcome Jetsunma Tenzin Palmo" },
+        { "f": "https://tricycle.org/wp-content/uploads/2017/07/Sakyadhita-4.jpg", "caption": "Korean nuns at the Lotus Pond Temple, Lantau Island" },
+        { "f": "https://tricycle.org/wp-content/uploads/2017/07/Sakyadhita-6.jpg", "caption": "Chinese nuns chant during the opening ceremony" },
+        { "f": "https://tricycle.org/wp-content/uploads/2017/07/Sakyadhita-8.jpg", "caption": "Nuns from Vietnam visit the Tian Tan Buddha" }
+      ]
+    },
+    {
+      "n": 14, "year": "2015", "flag": "🇮🇩", "loc": "Sambi Resort · Yogyakarta, Indonesia",
+      "title": "Compassion & Social Justice",
+      "subtitle": "",
+      "dates": "2015",
+      "host": "Sakyadhita Indonesia",
+      "about": "Set near the ancient temples of Yogyakarta, the 14th conference focused on compassion and social justice — examining how Buddhist women translate contemplative insight into action for the benefit of society.",
+      "photos": [
+        { "f": "/assets/conf/conf14-yogyakarta.jpg", "caption": "Yogyakarta, 2015" }
+      ]
+    },
+    {
+      "n": 13, "year": "2013", "flag": "🇮🇳", "loc": "Vaishali, India",
+      "title": "Buddhism at the Grassroots",
+      "subtitle": "",
+      "dates": "2013",
+      "host": "Sakyadhita International",
+      "about": "The 13th conference returned to India — to Vaishali, where Mahapajapati Gotami became the first Buddhist nun. Participants explored Buddhism at the grassroots, honoring the lay communities and local practitioners who sustain the tradition.",
+      "photos": [
+        { "f": "/assets/conf/conf13-vaishali.jpg", "caption": "Vaishali, 2013" }
+      ]
+    },
+    {
+      "n": 12, "year": "2011", "flag": "🇹🇭", "loc": "Sathira-Dhammasathan · Bangkok, Thailand",
+      "title": "Leading to Liberation",
+      "subtitle": "",
+      "dates": "2011",
+      "host": "Sathira-Dhammasathan",
+      "about": "The 12th conference gathered at Sathira-Dhammasathan in Bangkok, a renowned center of contemplative practice. The theme, Leading to Liberation, explored Buddhist women's paths of practice and realization.",
+      "photos": [
+        { "f": "/assets/conf/conf12-bangkok.jpg", "caption": "Bangkok, 2011" }
+      ]
+    },
+    {
+      "n": 11, "year": "2009", "flag": "🇻🇳", "loc": "Universal Light Monastery · Ho Chi Minh City, Vietnam",
+      "title": "Eminent Buddhist Women",
+      "subtitle": "",
+      "dates": "2009",
+      "host": "Sakyadhita International",
+      "about": "Held in Ho Chi Minh City, the 11th conference celebrated eminent Buddhist women across history and the present day — honoring the teachers, scholars, and practitioners who have shaped the tradition.",
+      "photos": [
+        { "f": "/assets/conf/conf11-vietnam.jpg", "caption": "Ho Chi Minh City, 2009" }
+      ]
+    },
+    {
+      "n": 10, "year": "2008", "flag": "🇲🇳", "loc": "Hotel Mongolia · Ulaanbaatar, Mongolia",
+      "title": "Buddhism in Transition",
+      "subtitle": "Tradition, Changes, & Challenges",
+      "dates": "2008",
+      "host": "Sakyadhita Mongolia",
+      "about": "The 10th conference convened in Ulaanbaatar — Sakyadhita's first gathering in Mongolia. Participants examined Buddhism in transition: the traditions, changes, and challenges facing practitioners in a rapidly modernizing world.",
+      "photos": [
+        { "f": "/assets/conf/conf10-mongolia.jpg", "caption": "Ulaanbaatar, 2008" }
+      ]
+    },
+    {
+      "n": 9, "year": "2006", "flag": "🇲🇾", "loc": "Kuala Lumpur, Malaysia",
+      "title": "Buddhist Women in a Global Multicultural Community",
+      "subtitle": "",
+      "dates": "2006",
+      "host": "Sakyadhita Malaysia",
+      "about": "Hosted in Kuala Lumpur, the 9th conference reflected on the place of Buddhist women within a global, multicultural community — drawing strength from diversity across traditions and nations.",
+      "photos": [
+        { "f": "/assets/conf/conf09-kl.jpg", "caption": "Kuala Lumpur, 2006" }
+      ]
+    },
+    {
+      "n": 8, "year": "2004", "flag": "🇰🇷", "loc": "Seoul, Korea",
+      "title": "Discipline & Practice of Buddhist Women",
+      "subtitle": "Present & Past",
+      "dates": "2004",
+      "host": "Sakyadhita Korea",
+      "about": "The 8th conference gathered in Seoul to examine the discipline and practice of Buddhist women, present and past — with particular attention to the vinaya and the living monastic traditions of Korea.",
+      "photos": [
+        { "f": "/assets/conf/conf08-seoul.jpg", "caption": "Seoul, 2004" }
+      ]
+    },
+    {
+      "n": 7, "year": "2002", "flag": "🇹🇼", "loc": "Huafan University · Taipei, Taiwan",
+      "title": "Bridging Worlds",
+      "subtitle": "",
+      "dates": "2002",
+      "host": "Huafan University",
+      "about": "Held at Huafan University in Taipei, the 7th conference focused on bridging worlds — connecting Buddhist traditions, cultures, and generations of women across Asia and beyond.",
+      "photos": [
+        { "f": "/assets/conf/conf07-taipei.jpg", "caption": "Taipei, 2002" }
+      ]
+    },
+    {
+      "n": 6, "year": "2000", "flag": "🇳🇵", "loc": "Lumbini, Nepal",
+      "title": "Women as Peacemakers",
+      "subtitle": "Self, Family, Community, World",
+      "dates": "2000",
+      "host": "Sakyadhita International",
+      "about": "At the millennium, the 6th conference gathered at Lumbini, the birthplace of the Buddha, with the theme Women as Peacemakers — exploring peace at every scale, from the self to the wider world.",
+      "photos": [
+        { "f": "/assets/conf/conf06-lumbini.jpg", "caption": "Lumbini, 2000" }
+      ]
+    },
+    {
+      "n": 5, "year": "1997", "flag": "🇰🇭", "loc": "Wat Onaloum · Phnom Penh, Cambodia",
+      "title": "Women in Buddhism: Unity & Diversity",
+      "subtitle": "",
+      "dates": "1997",
+      "host": "Sakyadhita International",
+      "about": "The 5th conference convened at Wat Onaloum in Phnom Penh, exploring unity and diversity among Buddhist women — a gathering of resilience in a nation rebuilding its Buddhist institutions.",
+      "photos": [
+        { "f": "/assets/conf/conf05-cambodia.jpg", "caption": "Phnom Penh, 1997" }
+      ]
+    },
+    {
+      "n": 4, "year": "1995", "flag": "🇮🇳", "loc": "Mahabodhi Meditation Center · Leh, Ladakh, India",
+      "title": "Women & the Power of Compassion",
+      "subtitle": "Survival in the 21st Century",
+      "dates": "1995",
+      "host": "Mahabodhi Meditation Center",
+      "about": "High in the Himalayas at Leh, Ladakh, the 4th conference reflected on women and the power of compassion — and what compassion means for human survival in the coming century.",
+      "photos": [
+        { "f": "/assets/conf/conf04-ladakh.jpg", "caption": "Leh, Ladakh, 1995" }
+      ]
+    },
+    {
+      "n": 3, "year": "1993", "flag": "🇱🇰", "loc": "International Centre · Colombo, Sri Lanka",
+      "title": "Buddhist Women in Modern Society",
+      "subtitle": "",
+      "dates": "1993",
+      "host": "Sakyadhita International",
+      "about": "The 3rd conference gathered in Colombo, Sri Lanka, examining the role of Buddhist women in modern society — and laying groundwork for the restoration of the bhikkhuni order in the Theravada tradition.",
+      "photos": [
+        { "f": "/assets/conf/conf03-colombo.jpg", "caption": "Colombo, 1993" }
+      ]
+    },
+    {
+      "n": 2, "year": "1991", "flag": "🇹🇭", "loc": "Thammasat University · Bangkok, Thailand",
+      "title": "Buddhist Women in the Modern World",
+      "subtitle": "",
+      "dates": "1991",
+      "host": "Thammasat University",
+      "about": "The 2nd conference convened at Thammasat University in Bangkok, broadening the conversation on Buddhist women in the modern world and strengthening the international network founded four years earlier.",
+      "photos": [
+        { "f": "/assets/conf/conf02-bangkok.jpg", "caption": "Bangkok, 1991" }
+      ]
+    },
+    {
+      "n": 1, "year": "1987", "flag": "🇮🇳", "loc": "Kalachakra Temple · Bodhgaya, India",
+      "title": "Buddhist Nuns in Society",
+      "subtitle": "",
+      "dates": "1987",
+      "host": "Founders: Ayya Khema, Chatsumarn Kabilsingh, Karma Lekshe Tsomo",
+      "heroImg": "/assets/conf-1987-bodhgaya.jpg",
+      "noPhotoCredit": true,
+      "about": "The very first Sakyadhita International Conference, held at the Kalachakra Temple in Bodhgaya, India — the site of the Buddha's awakening. Founded by Ayya Khema, Chatsumarn Kabilsingh, and Karma Lekshe Tsomo, it established Sakyadhita and named women's ordination as the movement's signature concern.",
+      "photos": [
+        { "f": "/assets/conf-1987-bodhgaya.jpg", "caption": "Opening ceremony of the International Conference on Buddhist Nuns · Bodhgaya, 1987" }
+      ]
+    }
+  ]
+}

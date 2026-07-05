@@ -1,0 +1,17 @@
+---
+/**
+ * /conferences — shows the upcoming conference, with the archive
+ * sidebar for browsing all past conferences.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import ConferenceDetail from '../../components/ConferenceDetail.astro'
+---
+
+<BaseLayout
+  title="Conferences · Sakyadhita"
+  description="Sakyadhita International Conferences on Buddhist Women — the world's largest gathering of Buddhist women, held every two years since 1987. Browse all 19 conferences and the upcoming 20th in Indonesia."
+  active="conferences"
+  ogImage="/assets/feat-conf.png"
+>
+  <ConferenceDetail n={20} />
+</BaseLayout>

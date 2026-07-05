@@ -1,0 +1,32 @@
+---
+/**
+ * /conferences/1 … /conferences/20 — one real page per conference.
+ * These addresses match the old website's structure (e.g. /conferences/19),
+ * so existing links keep working.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import ConferenceDetail from '../../components/ConferenceDetail.astro'
+import data from '../../data/conferences.json'
+
+export function getStaticPaths() {
+  return data.conferences.map((c) => ({ params: { n: String(c.n) } }))
+}
+
+const n = Number(Astro.params.n)
+const c = data.conferences.find((x) => x.n === n)!
+const ord = (num: number) => {
+  const s = ['th', 'st', 'nd', 'rd']
+  const v = num % 100
+  return num + (s[(v - 20) % 10] || s[v] || s[0])
+}
+const heroImg = (c as any).heroImg ?? c.photos?.find((p: any) => p.f)?.f ?? '/assets/feat-conf.png'
+---
+
+<BaseLayout
+  title={`${ord(n)} Conference (${c.year}) · Sakyadhita`}
+  description={`${c.title}${(c as any).subtitle ? ' — ' + (c as any).subtitle : ''}. The ${ord(n)} Sakyadhita International Conference on Buddhist Women, ${c.loc}, ${c.year}.`}
+  active="conferences"
+  ogImage={heroImg}
+>
+  <ConferenceDetail n={n} />
+</BaseLayout>
