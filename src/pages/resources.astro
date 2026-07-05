@@ -1,0 +1,194 @@
+---
+/**
+ * Resources landing page — the library hub linking to newsletters,
+ * publications, stories, and Buddhist culture.
+ *
+ * NOTE: "Stories & Articles" and "Buddhist Culture" sections don't have
+ * their own pages yet (dead links in the design too) — they currently
+ * point to the nearest real page until that content is migrated.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title="Resources · Sakyadhita"
+  description="35+ years of newsletters, scholarship, brochures, member stories, and translations from Sakyadhita — free and open to all."
+  active="resources"
+  ogImage="/assets/conf-newsletter.png"
+>
+  <div class="shell">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">›</span><span>Resources</span>
+    </nav>
+  </div>
+
+  <section class="hero-compact">
+    <div class="shell">
+      <div class="eyebrow">RESOURCES</div>
+      <h1 class="h-display">A library built by Buddhist women, for Buddhist women</h1>
+      <p class="lede">
+        35+ years of newsletters, scholarship, brochures, member stories, and translations — free
+        and open to all.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4 LIBRARY CARDS -->
+  <section>
+    <div class="shell">
+      <div class="lib-grid">
+        <a class="lib" href="/newsletters">
+          <div class="pic" style="background-image:url('/assets/conf-newsletter.png')">
+            <span class="count">LIBRARY · 42 ISSUES</span>
+          </div>
+          <div class="body">
+            <h3>Newsletter Archive</h3>
+            <p>Every issue of the Sakyadhita Newsletter, 1991 to today. Searchable by year, theme, and conference.</p>
+            <span class="cta">Browse newsletters →</span>
+          </div>
+        </a>
+        <a class="lib" href="/publications">
+          <div class="pic" style="background-image:url('/assets/publication.png')">
+            <span class="count">LIBRARY · 60+ RESOURCES</span>
+          </div>
+          <div class="body">
+            <h3>Publications Library</h3>
+            <p>Books, bibliographies, scholarly articles, and multilingual brochures in 9 languages.</p>
+            <span class="cta">Browse publications →</span>
+          </div>
+        </a>
+        <a class="lib" href="/newsletters">
+          <div class="pic" style="background-image:url('/assets/member-voice.png')">
+            <span class="count">STORIES · NEW</span>
+          </div>
+          <div class="body">
+            <h3>Stories &amp; Articles</h3>
+            <p>Member essays, conference reflections, news, dharma teachings — published throughout the year.</p>
+            <span class="cta">Read stories →</span>
+          </div>
+        </a>
+        <a class="lib" href="/publications">
+          <div class="pic" style="background-image:url('/assets/seoul.png')">
+            <span class="count">VISUAL · CULTURAL</span>
+          </div>
+          <div class="body">
+            <h3>Buddhist Culture</h3>
+            <p>Images, art, music, ritual, and architecture documenting Buddhist women across cultures and centuries.</p>
+            <span class="cta">Explore culture →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED THIS MONTH -->
+  <section>
+    <div class="shell">
+      <div class="section-head">
+        <div class="eyebrow">FEATURED · THIS MONTH</div>
+        <h2 class="h-section">New &amp; noteworthy</h2>
+      </div>
+      <div class="feat-row">
+        <article class="feat-cd">
+          <div class="pic" style="background-image:url('/assets/conf-newsletter.png')"></div>
+          <div class="body">
+            <div class="eyebrow">NEWSLETTER · 2025</div>
+            <h3>Volume 33, Number 1</h3>
+            <p>Sarawak 2025 preview · Reflections from Seoul · Branch updates</p>
+            <a class="cta" href="/newsletters">Read latest →</a>
+          </div>
+        </article>
+        <article class="feat-cd">
+          <div class="pic" style="background-image:url('/assets/publication.png')"></div>
+          <div class="body">
+            <div class="eyebrow">PUBLICATION · 2024</div>
+            <h3>Bridging Worlds</h3>
+            <p>Karma Lekshe Tsomo's new anthology of Buddhist women's voices across generations.</p>
+            <a class="cta" href="/publications">Download PDF →</a>
+          </div>
+        </article>
+        <article class="feat-cd">
+          <div class="pic" style="background-image:url('/assets/member-voice.png')"></div>
+          <div class="body">
+            <div class="eyebrow">STORY · MEMBER VOICE</div>
+            <h3>What ordination meant to me</h3>
+            <p>A bhiksuni's reflection on the path, 30 years on.</p>
+            <a class="cta" href="/ordination-issue">Read story →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <style is:global>
+    .lib-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .lib {
+      position: relative;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 16px;
+      min-height: 280px;
+      transition: transform .15s, box-shadow .2s, border-color .15s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .lib:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--lavender-2); }
+    .lib .pic {
+      background-size: cover; background-position: center;
+      border-radius: 8px;
+      position: relative;
+    }
+    .lib .pic .count {
+      position: absolute; left: 16px; top: 16px;
+      background: rgba(22,3,79,.78); color: #fff;
+      padding: 6px 12px; border-radius: var(--r-pill);
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+    }
+    .lib .body {
+      padding: 16px 24px 20px;
+      display: flex; flex-direction: column; gap: 12px; justify-content: center;
+    }
+    .lib h3 {
+      font-family: var(--font-title); font-weight: 700;
+      font-size: 28px; color: var(--ink); line-height: 1.1;
+    }
+    .lib p { font-size: 14.5px; color: var(--ink-body); line-height: 1.55; }
+    .lib .cta { color: var(--purple); font-weight: 600; font-size: 14px; }
+
+    .feat-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .feat-cd {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 16px;
+      display: flex; flex-direction: column;
+      transition: transform .15s, box-shadow .2s, border-color .15s;
+    }
+    .feat-cd:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .feat-cd .pic { aspect-ratio: 16/10; background-size: cover; background-position: center; border-radius: 8px; }
+    .feat-cd .body { padding: 18px 6px 6px; display: flex; flex-direction: column; gap: 8px; }
+    .feat-cd h3 { font-family: var(--font-title); font-weight: 700; font-size: 22px; color: var(--ink); line-height: 1.15; }
+    .feat-cd p { font-size: 14px; color: var(--ink-body); line-height: 1.55; }
+    .feat-cd .cta { color: var(--purple); font-weight: 600; font-size: 13.5px; margin-top: 4px; }
+
+    @media (max-width: 880px) {
+      .lib-grid { grid-template-columns: 1fr; }
+      .feat-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .lib { grid-template-columns: 1fr; }
+      .lib .pic { aspect-ratio: 16/10; }
+      .lib .body { padding: 8px 4px 10px; }
+    }
+  </style>
+</BaseLayout>

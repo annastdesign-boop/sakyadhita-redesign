@@ -1,0 +1,110 @@
+{
+  "_comment": "Newsletter archive. 'carousel' = the 5 featured issues at the top. 'decades' = the full archive grid. 'pdf' currently points to the old site's files — these will move to stable paths (e.g. /newsletters/2025.pdf) during content migration. To add a new issue: add it to the top of both lists.",
+  "carousel": [
+    {
+      "year": "2025", "vol": "VOL 33 · NO 1", "title": "Volume 33",
+      "eyebrow": "LATEST ISSUE · 2025",
+      "desc": "Featuring: Sarawak 2025 conference preview, reflections from Seoul 18th, ordination news from Sri Lanka, member essays from Mongolia and Brazil, and a full review of Karma Lekshe Tsomo's Bridging Worlds.",
+      "img": "/assets/newsletter-v33.png",
+      "pdf": "https://sakyadhita.org/_astro/2025%20Sakyadhita%20Newsletter%20lg.CBO-SgTK.pdf",
+      "cta": "Read latest issue (PDF)"
+    },
+    {
+      "year": "2024", "vol": "VOL 32 · NO 1", "title": "Volume 32",
+      "eyebrow": "ISSUE · 2024",
+      "desc": "The 2024 annual issue — news from branches worldwide, scholarship on Buddhist women, and updates from the international community.",
+      "img": "/assets/newsletter-v32.png",
+      "pdf": "https://sakyadhita.org/_astro/2024%20Sakyadhita%20Newsletter.BkziFFGG.pdf",
+      "cta": "Read this issue (PDF)"
+    },
+    {
+      "year": "2023", "vol": "VOL 31 · NO 1", "title": "Volume 31",
+      "eyebrow": "ISSUE · 2023",
+      "desc": "The 2023 annual issue — coverage of the 18th Sakyadhita Conference in Seoul and stories from members across the traditions.",
+      "img": "/assets/newsletter-v31.png",
+      "pdf": "https://sakyadhita.org/_astro/2023%20Sakyadhita%20Newsletter.TXG_acmf.pdf",
+      "cta": "Read this issue (PDF)"
+    },
+    {
+      "year": "2022", "vol": "VOL 30 · NO 1", "title": "Volume 30",
+      "eyebrow": "ISSUE · 2022",
+      "desc": "The 2022 annual issue — ordination news, branch reports, and research on the lives of Buddhist women.",
+      "img": "/assets/newsletter-v30.png",
+      "pdf": "https://sakyadhita.org/_astro/2022%20Sakyadhita%20Newsletter%20Vol.%2030.sNsIxhb6.pdf",
+      "cta": "Read this issue (PDF)"
+    },
+    {
+      "year": "2021", "vol": "VOL 29 · NO 1", "title": "Volume 29",
+      "eyebrow": "ISSUE · 2021",
+      "desc": "The 2021 annual issue — community news, practice essays, and scholarship from the global network.",
+      "img": "/assets/newsletter-v29.png",
+      "pdf": "https://sakyadhita.org/_astro/2021%20Sakyadhita%20Newsletter%20Vol.%2029.BOCPWoWp.pdf",
+      "cta": "Read this issue (PDF)"
+    }
+  ],
+  "decades": [
+    {
+      "label": "2020s",
+      "issues": [
+        { "year": "2025", "title": "Volume 33", "img": "/assets/newsletter-v33.png", "pdf": "https://sakyadhita.org/_astro/2025%20Sakyadhita%20Newsletter%20lg.CBO-SgTK.pdf" },
+        { "year": "2024", "title": "Volume 32", "img": "/assets/newsletter-v32.png", "pdf": "https://sakyadhita.org/_astro/2024%20Sakyadhita%20Newsletter.BkziFFGG.pdf" },
+        { "year": "2023", "title": "Volume 31", "img": "/assets/newsletter-v31.png", "pdf": "https://sakyadhita.org/_astro/2023%20Sakyadhita%20Newsletter.TXG_acmf.pdf" },
+        { "year": "2022", "title": "Volume 30", "img": "/assets/newsletter-v30.png", "pdf": "https://sakyadhita.org/_astro/2022%20Sakyadhita%20Newsletter%20Vol.%2030.sNsIxhb6.pdf" },
+        { "year": "2021", "title": "Volume 29", "img": "/assets/newsletter-v29.png", "pdf": "https://sakyadhita.org/_astro/2021%20Sakyadhita%20Newsletter%20Vol.%2029.BOCPWoWp.pdf" }
+      ]
+    },
+    {
+      "label": "2010s",
+      "issues": [
+        { "year": "2019", "vol": "VOL 28 · NO 1", "title": "Volume 28", "c1": "#4F3E81", "c2": "#773BFA", "pdf": "https://sakyadhita.org/_astro/2019%20Sakyadhita%20Newsletter.Spu3UxzT.pdf" },
+        { "year": "2018", "vol": "VOL 27 · NO 1", "title": "Volume 27", "c1": "#F39A6C", "c2": "#FAB2BE", "pdf": "https://sakyadhita.org/_astro/2018%20Sakyadhita%20Newsletter.B7pJKcxw.pdf" },
+        { "year": "2017", "vol": "VOL 26 · NO 1", "title": "Volume 26", "c1": "#BB8FDB", "c2": "#DE7386", "pdf": "https://sakyadhita.org/_astro/2017%20Sakyadhita%20Newsletter.n6sbuMx6.pdf" },
+        { "year": "2016", "vol": "VOL 25 · NO 1", "title": "Volume 25", "c1": "#773BFA", "c2": "#16034F", "pdf": "https://sakyadhita.org/_astro/2016%20Sakyadhita%20Newsletter.BeF8ENfV.pdf" },
+        { "year": "2015", "vol": "VOL 24 · NO 1", "title": "Volume 24", "c1": "#FAB2BE", "c2": "#F39A6C", "pdf": "https://sakyadhita.org/_astro/24-1-2015.CwjsVdEw.pdf" },
+        { "year": "2014", "vol": "VOL 23 · NO 1", "title": "Volume 23", "c1": "#BB8FDB", "c2": "#773BFA", "pdf": "https://sakyadhita.org/_astro/23-1-2014.C1REifE5.pdf" },
+        { "year": "2013", "vol": "VOL 22 · NO 1", "title": "Volume 22", "c1": "#F39A6C", "c2": "#DE7386", "pdf": "https://sakyadhita.org/_astro/22-1-2013.CoIOAjMo.pdf" },
+        { "year": "2012", "vol": "VOL 21 · NO 1", "title": "Volume 21", "c1": "#16034F", "c2": "#4F3E81", "pdf": "https://sakyadhita.org/_astro/21-1-2012.BLScIxMS.pdf" },
+        { "year": "2011", "vol": "VOL 20 · NO 1", "title": "Volume 20", "c1": "#DE7386", "c2": "#16034F", "pdf": "https://sakyadhita.org/_astro/20-1-2011.CSJkX7zK.pdf" },
+        { "year": "2010", "vol": "VOL 19 · NO 1", "title": "Volume 19", "c1": "#FAB2BE", "c2": "#BB8FDB", "pdf": "https://sakyadhita.org/_astro/19.1-2010.DhiH-NTV.pdf" }
+      ]
+    },
+    {
+      "label": "2000s",
+      "issues": [
+        { "year": "2009", "vol": "VOL 18 · NO 1", "title": "Volume 18", "c1": "#4F3E81", "c2": "#773BFA", "pdf": "https://sakyadhita.org/_astro/18-1-2009.1rKyysNl.pdf" },
+        { "year": "2008", "vol": "VOL 16 · NO 2", "title": "Volume 16", "c1": "#F39A6C", "c2": "#FAB2BE", "pdf": "https://sakyadhita.org/_astro/16-2-2008.DlEHAAE3.pdf" },
+        { "year": "2007", "vol": "VOL 16 · NO 1", "title": "Volume 16", "c1": "#BB8FDB", "c2": "#DE7386", "pdf": "https://sakyadhita.org/_astro/16-1-2007.hc8srA_t.pdf" },
+        { "year": "2006", "vol": "VOL 15 · NO 2", "title": "Volume 15", "c1": "#773BFA", "c2": "#16034F", "pdf": "https://sakyadhita.org/_astro/15-2-2006.BvL1zRb0.pdf" },
+        { "year": "2006", "vol": "VOL 15 · NO 1", "title": "Volume 15", "c1": "#FAB2BE", "c2": "#F39A6C", "pdf": "https://sakyadhita.org/_astro/15-1-2006.CaRvrub1.pdf" },
+        { "year": "2004", "vol": "VOL 14 · NO 1", "title": "Volume 14", "c1": "#BB8FDB", "c2": "#773BFA", "pdf": "https://sakyadhita.org/_astro/14-1-2004.Bq_z6Xqq.pdf" },
+        { "year": "2003", "vol": "VOL 13 · NO 2", "title": "Volume 13", "c1": "#F39A6C", "c2": "#DE7386", "pdf": "https://sakyadhita.org/_astro/13-2-2003.CorXcz8E.pdf" },
+        { "year": "2002", "vol": "VOL 13 · NO 1", "title": "Volume 13", "c1": "#16034F", "c2": "#4F3E81", "pdf": "https://sakyadhita.org/_astro/12.3.2002.BGBhJZbJ.pdf" },
+        { "year": "2002", "vol": "VOL 12 · NO 2", "title": "Volume 12", "c1": "#DE7386", "c2": "#16034F", "pdf": "https://sakyadhita.org/_astro/12.2.2002.CxaDjh5B.pdf" },
+        { "year": "2002", "vol": "VOL 12 · NO 1", "title": "Volume 12", "c1": "#FAB2BE", "c2": "#BB8FDB", "pdf": "https://sakyadhita.org/_astro/12.1.2002.CJ3mJ7QB.pdf" },
+        { "year": "2000", "vol": "VOL 11 · NO 2", "title": "Volume 11", "c1": "#4F3E81", "c2": "#773BFA", "pdf": "https://sakyadhita.org/_astro/11.2.2000.BhmLlJ14.pdf" },
+        { "year": "2000", "vol": "VOL 11 · NO 1", "title": "Volume 11", "c1": "#F39A6C", "c2": "#FAB2BE", "pdf": "https://sakyadhita.org/_astro/11-1-2000.cLFOGzWX.pdf" }
+      ]
+    },
+    {
+      "label": "1990s",
+      "issues": [
+        { "year": "1999", "vol": "VOL 10 · NO 1", "title": "Volume 10", "c1": "#BB8FDB", "c2": "#DE7386", "pdf": "https://sakyadhita.org/_astro/10.1.1999.bIkhuFNr.pdf" },
+        { "year": "1998", "vol": "VOL 9 · NO 1", "title": "Volume 9", "c1": "#773BFA", "c2": "#16034F", "pdf": "https://sakyadhita.org/_astro/9.1.1998.CHJ2VBD7.pdf" },
+        { "year": "1997", "vol": "VOL 8 · NO 2", "title": "Volume 8", "c1": "#FAB2BE", "c2": "#F39A6C", "pdf": "https://sakyadhita.org/_astro/8.2.1997.CPdF6IoS.pdf" },
+        { "year": "1997", "vol": "VOL 8 · NO 1", "title": "Volume 8", "c1": "#BB8FDB", "c2": "#773BFA", "pdf": "https://sakyadhita.org/_astro/8.1.1997.BHkDDeEL.pdf" },
+        { "year": "1996", "vol": "VOL 7 · NO 2", "title": "Volume 7", "c1": "#F39A6C", "c2": "#DE7386", "pdf": "https://sakyadhita.org/_astro/7.2.1996.CM536js1.pdf" },
+        { "year": "1996", "vol": "VOL 7 · NO 1", "title": "Volume 7", "c1": "#16034F", "c2": "#4F3E81", "pdf": "https://sakyadhita.org/_astro/7.1.1996.C5uOJrAZ.pdf" },
+        { "year": "1995", "vol": "VOL 6 · NO 2", "title": "Volume 6", "c1": "#DE7386", "c2": "#16034F", "pdf": "https://sakyadhita.org/_astro/6.2.1995.DZK_8ifF.pdf" },
+        { "year": "1995", "vol": "VOL 6 · NO 1", "title": "Volume 6", "c1": "#FAB2BE", "c2": "#BB8FDB", "pdf": "https://sakyadhita.org/_astro/6.1.1995.BxdHo0fL.pdf" },
+        { "year": "1994", "vol": "VOL 5 · NO 2", "title": "Volume 5", "c1": "#4F3E81", "c2": "#773BFA", "pdf": "https://sakyadhita.org/_astro/5.2.1994.DFK4MnPs.pdf" },
+        { "year": "1994", "vol": "VOL 5 · NO 1", "title": "Volume 5", "c1": "#F39A6C", "c2": "#FAB2BE", "pdf": "https://sakyadhita.org/_astro/5.1.1994.CfUjLTqE.pdf" },
+        { "year": "1993", "vol": "VOL 4 · NO 2", "title": "Volume 4", "c1": "#BB8FDB", "c2": "#DE7386", "pdf": "https://sakyadhita.org/_astro/4.2.1993.CpgIYoxP.pdf" },
+        { "year": "1993", "vol": "VOL 4 · NO 1", "title": "Volume 4", "c1": "#773BFA", "c2": "#16034F", "pdf": "https://sakyadhita.org/_astro/4-1-1993.BZMtHIKM.pdf" },
+        { "year": "1992", "vol": "VOL 3 · NO 2", "title": "Volume 3", "c1": "#FAB2BE", "c2": "#F39A6C", "pdf": "https://sakyadhita.org/_astro/3-2-1992.Ba31wIWj.pdf" },
+        { "year": "1992", "vol": "VOL 3 · NO 1", "title": "Volume 3", "c1": "#BB8FDB", "c2": "#773BFA", "pdf": "https://sakyadhita.org/_astro/3-1-1992.S8umjebd.pdf" },
+        { "year": "1991", "vol": "VOL 2 · NO 2", "title": "Volume 2", "c1": "#F39A6C", "c2": "#DE7386", "pdf": "https://sakyadhita.org/_astro/2-2-1991.RB2jje4u.pdf" },
+        { "year": "1991", "vol": "VOL 2 · NO 1", "title": "Volume 2", "c1": "#16034F", "c2": "#4F3E81", "pdf": "https://sakyadhita.org/_astro/2-1-1991.BFw2a6PR.pdf" }
+      ]
+    }
+  ]
+}

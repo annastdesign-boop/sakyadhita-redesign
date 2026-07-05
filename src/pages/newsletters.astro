@@ -1,0 +1,527 @@
+---
+/**
+ * Newsletters — cover-flow carousel of recent issues + the full
+ * 43-issue archive grouped by decade.
+ *
+ * All issue data lives in src/data/newsletters.json — edit there.
+ * PDF links currently point at the old site's files; they will move to
+ * stable paths under this site during content migration.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro'
+import data from '../data/newsletters.json'
+
+const totalIssues = data.decades.reduce((sum, d) => sum + d.issues.length, 0)
+/** First two decades show immediately; the rest sit behind "Show all". */
+const visibleDecades = data.decades.slice(0, 2)
+const hiddenDecades = data.decades.slice(2)
+---
+
+<BaseLayout
+  title="Newsletter Archive · Sakyadhita"
+  description="Every issue of the Sakyadhita Newsletter since 1991 — 43 issues documenting the work, scholarship, and lives of Buddhist women worldwide. Free to read."
+  active="resources"
+  ogImage="/assets/newsletter-v33.png"
+>
+  <!-- COVER-FLOW CAROUSEL HERO -->
+  <section class="nl-carousel-section" style="border-top: none; padding-top: 20px;">
+    <div class="shell">
+      <div class="nl-stage" id="nl-stage" aria-label="Newsletter issues carousel"></div>
+      <div class="nl-copy" id="nl-copy">
+        <div class="eyebrow" id="nl-eyebrow"></div>
+        <h1 id="nl-title"></h1>
+        <p id="nl-desc"></p>
+        <div class="ctas">
+          <a class="btn btn--primary" id="nl-read" href={data.carousel[0].pdf} target="_blank" rel="noopener noreferrer">Read latest issue (PDF)</a>
+          <a class="btn btn--ghost" href="#" id="nl-subscribe-btn">Subscribe to future issues</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL ISSUES -->
+  <section class="all-section">
+    <div class="shell">
+      <div class="all-head">
+        <div>
+          <h2>{totalIssues} issues. 35 years. One movement's voice.</h2>
+          <p class="muted" style="margin-top: 10px; max-width: 64ch;">
+            The Sakyadhita Newsletter has documented the work, scholarship, and lives of Buddhist
+            women since 1991.
+          </p>
+        </div>
+        <span class="count">Showing {totalIssues} issues</span>
+      </div>
+
+      {
+        visibleDecades.map((d) => (
+          <>
+            <div class="decade-label">
+              {d.label} <span class="num">· {d.issues.length} issues</span>
+            </div>
+            <div class="issue-grid">
+              {d.issues.map((issue: any) => (
+                <div class="issue">
+                  {issue.img ? (
+                    <div class="cv" style={`background-image:url('${issue.img}');`}>
+                      <span class="yr-stamp">{issue.year}</span>
+                    </div>
+                  ) : (
+                    <div class="cv cv--gen" style={`--c1:${issue.c1}; --c2:${issue.c2};`}>
+                      <span class="yr-stamp">{issue.year}</span>
+                      <span class="vol">{issue.vol}</span>
+                      <span class="ttl">{issue.title}</span>
+                    </div>
+                  )}
+                  <div class="body">
+                    <div class="ttl-line">{issue.title}</div>
+                    <a class="dl" href={issue.pdf} target="_blank" rel="noopener noreferrer">
+                      See PDF →
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        ))
+      }
+
+      <div id="more-issues" hidden>
+        {
+          hiddenDecades.map((d) => (
+            <>
+              <div class="decade-label">
+                {d.label} <span class="num">· {d.issues.length} issues</span>
+              </div>
+              <div class="issue-grid">
+                {d.issues.map((issue: any) => (
+                  <div class="issue">
+                    {issue.img ? (
+                      <div class="cv" style={`background-image:url('${issue.img}');`}>
+                        <span class="yr-stamp">{issue.year}</span>
+                      </div>
+                    ) : (
+                      <div class="cv cv--gen" style={`--c1:${issue.c1}; --c2:${issue.c2};`}>
+                        <span class="yr-stamp">{issue.year}</span>
+                        <span class="vol">{issue.vol}</span>
+                        <span class="ttl">{issue.title}</span>
+                      </div>
+                    )}
+                    <div class="body">
+                      <div class="ttl-line">{issue.title}</div>
+                      <a class="dl" href={issue.pdf} target="_blank" rel="noopener noreferrer">
+                        See PDF →
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ))
+        }
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;" id="show-all-wrap">
+        <button class="btn btn--ghost btn--lg" type="button" id="show-all-btn">
+          Show all {totalIssues} issues <span class="arr">→</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSCRIBE MODAL -->
+  <div class="sub-modal" id="sub-modal" aria-hidden="true">
+    <div class="sub-modal__overlay" data-close></div>
+    <div class="sub-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="sub-modal-title">
+      <button class="sub-modal__close" type="button" aria-label="Close" data-close>&times;</button>
+      <div class="eyebrow">STAY IN TOUCH</div>
+      <h2 id="sub-modal-title">Subscribe to our newsletter</h2>
+      <form id="sub-form">
+        <label for="sub-email">Email address</label>
+        <input id="sub-email" type="email" required placeholder="you@email.com" />
+        <button type="submit" class="btn btn--primary btn--lg">Subscribe</button>
+      </form>
+      <div class="sub-modal__done" id="sub-done" hidden>
+        Thank you — you're on the list. We'll be in touch when the next issue is ready.
+      </div>
+    </div>
+  </div>
+
+  <!-- Carousel data -->
+  <script type="application/json" id="nl-data" set:html={JSON.stringify(data.carousel)} />
+
+  <script>
+    // ── Cover-flow carousel (ported from the design prototype) ──
+    const ISSUES = JSON.parse(document.getElementById('nl-data')!.textContent!) as {
+      year: string
+      vol: string
+      title: string
+      eyebrow: string
+      desc: string
+      img?: string
+      c1?: string
+      c2?: string
+      pdf: string
+      cta: string
+    }[]
+
+    const stage = document.getElementById('nl-stage')
+    if (stage) {
+      const cards = ISSUES.map((it, i) => {
+        const card = document.createElement('div')
+        card.className = 'nl-card'
+        if (it.img) {
+          const img = document.createElement('img')
+          img.src = it.img
+          img.alt = `Sakyadhita Newsletter ${it.title} cover`
+          card.appendChild(img)
+        } else {
+          const gen = document.createElement('div')
+          gen.className = 'gen'
+          gen.style.setProperty('--c1', it.c1 || '#BB8FDB')
+          gen.style.setProperty('--c2', it.c2 || '#F39A6C')
+          gen.innerHTML = `<span class="yr">${it.year}</span><span class="vol">${it.vol}</span><span class="ttl">${it.title}</span>`
+          card.appendChild(gen)
+        }
+        card.addEventListener('click', () => setActive(i))
+        const shade = document.createElement('div')
+        shade.className = 'shade'
+        card.appendChild(shade)
+        const grad = document.createElement('div')
+        grad.className = 'grad'
+        card.appendChild(grad)
+        const lbl = document.createElement('div')
+        lbl.className = 'lbl'
+        lbl.innerHTML = `<span class="yr">${it.year}</span><span class="vol">${it.vol.replace(/ · NO.*$/, '')}</span>`
+        card.appendChild(lbl)
+        stage.appendChild(card)
+        return card
+      })
+
+      let active = 0
+      const N = ISSUES.length
+
+      function layout() {
+        const compact = window.innerWidth <= 760
+        const step1 = compact ? 175 : 295
+        const step2 = compact ? 270 : 445
+        cards.forEach((card, i) => {
+          let off = i - active
+          if (off > N / 2) off -= N
+          if (off < -N / 2) off += N
+          const abs = Math.abs(off)
+          const scale = off === 0 ? 1 : abs === 1 ? 0.8 : 0.66
+          const x = off === 0 ? 0 : Math.sign(off) * (abs === 1 ? step1 : step2)
+          card.style.setProperty('--x', `${x}px`)
+          card.style.setProperty('--s', String(scale))
+          card.style.zIndex = String(10 - abs)
+          card.style.opacity = abs > 2 ? '0' : '1'
+          card.style.pointerEvents = abs > 2 ? 'none' : 'auto'
+          card.style.boxShadow = off === 0 ? 'var(--shadow-lg)' : 'var(--shadow-md)'
+          const shade = card.querySelector('.shade') as HTMLElement
+          const grad = card.querySelector('.grad') as HTMLElement
+          const lbl = card.querySelector('.lbl') as HTMLElement
+          if (shade) shade.style.opacity = off === 0 ? '0' : abs === 1 ? '0.2' : '0.3'
+          if (grad) grad.style.opacity = off === 0 ? '0' : '1'
+          if (lbl) {
+            lbl.style.opacity = off === 0 ? '0' : '1'
+            lbl.style.alignItems = off > 0 ? 'flex-end' : 'flex-start'
+            lbl.style.textAlign = off > 0 ? 'right' : 'left'
+          }
+        })
+      }
+
+      function renderCopy() {
+        const it = ISSUES[active]
+        document.getElementById('nl-eyebrow')!.textContent = it.eyebrow
+        document.getElementById('nl-title')!.textContent = it.title
+        document.getElementById('nl-desc')!.textContent = it.desc
+        const read = document.getElementById('nl-read') as HTMLAnchorElement
+        read.textContent = it.cta
+        read.href = it.pdf
+      }
+
+      function setActive(i: number) {
+        if (i === active) return
+        active = i
+        layout()
+        renderCopy()
+      }
+
+      window.addEventListener('resize', layout)
+      layout()
+      renderCopy()
+    }
+
+    // ── Show-all archive toggle ──
+    document.getElementById('show-all-btn')?.addEventListener('click', () => {
+      document.getElementById('more-issues')!.hidden = false
+      document.getElementById('show-all-wrap')!.style.display = 'none'
+    })
+
+    // ── Subscribe modal (placeholder until connected to a real list) ──
+    const modal = document.getElementById('sub-modal')!
+    const openBtn = document.getElementById('nl-subscribe-btn')
+    const form = document.getElementById('sub-form') as HTMLFormElement | null
+    const done = document.getElementById('sub-done')!
+    function openModal(e?: Event) {
+      if (e) e.preventDefault()
+      modal.classList.add('is-open')
+      modal.setAttribute('aria-hidden', 'false')
+      const em = document.getElementById('sub-email')
+      if (em) setTimeout(() => em.focus(), 40)
+    }
+    function closeModal() {
+      modal.classList.remove('is-open')
+      modal.setAttribute('aria-hidden', 'true')
+    }
+    openBtn?.addEventListener('click', openModal)
+    modal.querySelectorAll('[data-close]').forEach((el) => el.addEventListener('click', closeModal))
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal()
+    })
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault()
+      form.hidden = true
+      done.hidden = false
+    })
+  </script>
+
+  <style is:global>
+    /* Archive grid */
+    .all-section { padding: 80px 0; }
+    .all-head {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 24px;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .all-head h2 { font-family: var(--font-title); font-weight: 700; font-size: 32px; color: var(--ink); }
+    .all-head .count { font-size: 13px; color: var(--ink-subtle); }
+
+    .decade-label {
+      font-family: var(--font-num);
+      font-weight: 700; font-size: 14px;
+      letter-spacing: 0.2em;
+      color: var(--ink); text-transform: uppercase;
+      margin: 32px 0 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .decade-label::after {
+      content: ""; flex: 1; height: 1px; background: var(--border);
+    }
+    .decade-label .num {
+      font-size: 12px; color: var(--ink-subtle); letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+    .issue-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .issue {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 16px;
+      transition: transform .15s, box-shadow .2s;
+      display: flex; flex-direction: column;
+    }
+    .issue:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .issue .cv {
+      aspect-ratio: 4/3;
+      background-size: 110% auto;
+      background-position: center top;
+      background-color: #ECDDC5;
+      border-radius: 8px;
+      position: relative;
+      display: grid; place-items: center;
+      overflow: hidden;
+    }
+    .issue .cv .yr-stamp {
+      position: absolute; right: 10px; top: 10px;
+      background: rgba(22,3,79,.85); color: #fff;
+      padding: 5px 9px 4px;
+      border-radius: var(--r-pill);
+      font-family: var(--font-num); font-weight: 700;
+      font-size: 11px; letter-spacing: 0.06em;
+      line-height: 1;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .cv--gen {
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,.5), transparent 50%),
+        linear-gradient(135deg, var(--c1, var(--lavender-3)) 0%, var(--c2, var(--coral-2)) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 18px 12px;
+      display: flex; flex-direction: column; gap: 4px; justify-content: center;
+    }
+    .cv--gen .vol {
+      font-family: var(--font-num); font-weight: 700;
+      font-size: 12px; letter-spacing: 0.18em;
+      color: rgba(255,255,255,.85);
+    }
+    .cv--gen .ttl {
+      font-family: var(--font-title); font-weight: 700;
+      font-size: 17px; line-height: 1.15;
+      color: #fff;
+    }
+    .issue .body {
+      padding: 14px 6px 6px;
+      display: flex; flex-direction: row; align-items: baseline; justify-content: space-between; gap: 12px;
+    }
+    .issue .ttl-line { font-weight: 600; font-size: 14.5px; color: var(--ink); line-height: 1.2; }
+    .issue .dl { color: var(--purple); font-weight: 600; font-size: 12.5px; white-space: nowrap; }
+
+    .site-footer { margin-top: 0; }
+
+    /* Subscribe modal */
+    .sub-modal {
+      position: fixed; inset: 0; z-index: 2000;
+      display: none;
+      align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .sub-modal.is-open { display: flex; }
+    .sub-modal__overlay {
+      position: absolute; inset: 0;
+      background: rgba(22, 3, 79, .55);
+      backdrop-filter: blur(2px);
+    }
+    .sub-modal__dialog {
+      position: relative;
+      background: #fff;
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-lg);
+      max-width: 460px; width: 100%;
+      padding: 40px 36px 36px;
+      text-align: center;
+    }
+    .sub-modal__close {
+      position: absolute; top: 14px; right: 16px;
+      width: 36px; height: 36px;
+      border: 0; background: transparent;
+      font-size: 26px; line-height: 1; color: var(--ink-2);
+      cursor: pointer; border-radius: 50%;
+      transition: background .12s, color .12s;
+    }
+    .sub-modal__close:hover { background: var(--bg-section); color: var(--ink); }
+    .sub-modal__dialog h2 {
+      font-family: var(--font-title); font-weight: 700;
+      font-size: 26px; color: var(--ink); margin: 10px 0 8px;
+    }
+    .sub-modal__dialog p { font-size: 15px; color: var(--ink-body); line-height: 1.55; }
+    #sub-form { display: flex; flex-direction: column; gap: 6px; margin-top: 22px; text-align: left; }
+    #sub-form label { font-size: 13px; font-weight: 600; color: var(--ink); }
+    #sub-form input {
+      border: 1px solid var(--border); border-radius: var(--r-md);
+      padding: 12px 14px; font-size: 15px; font-family: inherit;
+      background: var(--bg-section);
+    }
+    #sub-form input:focus {
+      outline: none; border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(119,59,250,.14);
+    }
+    #sub-form .btn { margin-top: 12px; justify-content: center; }
+    .sub-modal__done {
+      margin-top: 22px; padding: 16px 18px;
+      background: var(--bg-warm); border-radius: var(--r-md);
+      font-size: 14.5px; color: var(--ink-body); line-height: 1.5;
+    }
+
+    /* Cover-flow carousel hero */
+    .nl-carousel-section {
+      padding: 40px 0 56px;
+      border-top: 1px solid var(--border);
+    }
+    .nl-stage {
+      position: relative;
+      height: 545px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .nl-card {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 390px; height: 515px;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      transition: transform .45s cubic-bezier(.22,.9,.3,1), opacity .45s, box-shadow .45s;
+      background: #fff;
+    }
+    .nl-card img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.05); }
+    .nl-card { transform: translate(calc(-50% + var(--x, 0px)), -50%) scale(var(--s, 1)); }
+    .nl-card:hover { transform: translate(calc(-50% + var(--x, 0px)), -50%) scale(calc(var(--s, 1) * 1.04)); }
+    .nl-card .grad {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(22,3,79,.55) 0%, rgba(22,3,79,0) 38%);
+      opacity: 0;
+      transition: opacity .45s;
+      pointer-events: none;
+    }
+    .nl-card .shade {
+      position: absolute; inset: 0;
+      background: #16034F;
+      opacity: 0;
+      transition: opacity .45s;
+      pointer-events: none;
+    }
+    .nl-card .lbl {
+      position: absolute; left: 20px; bottom: 18px; right: 20px;
+      display: flex; flex-direction: column; gap: 4px;
+      opacity: 0;
+      transition: opacity .45s;
+      pointer-events: none;
+    }
+    .nl-card .lbl .yr {
+      font-family: var(--font-num); font-weight: 700; font-size: 22px;
+      color: #fff; line-height: 1;
+    }
+    .nl-card .lbl .vol {
+      font-family: var(--font-ui); font-weight: 600; font-size: 12px;
+      letter-spacing: 0.14em; color: rgba(255,255,255,.85);
+    }
+    .nl-card .gen {
+      width: 100%; height: 100%;
+      background: linear-gradient(150deg, var(--c1), var(--c2));
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 22px;
+    }
+    .nl-card .gen .vol {
+      font-family: var(--font-ui); font-weight: 600; font-size: 12px;
+      letter-spacing: 0.14em; color: rgba(255,255,255,.85);
+    }
+    .nl-card .gen .ttl {
+      font-family: var(--font-title); font-weight: 700; font-size: 24px;
+      color: #fff; line-height: 1.15; margin-top: 6px;
+    }
+    .nl-card .gen .yr {
+      font-family: var(--font-num); font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,.9); margin-bottom: auto;
+    }
+    .nl-copy {
+      max-width: 640px;
+      margin: 20px auto 0;
+      text-align: center;
+      transition: opacity .3s;
+    }
+    .nl-copy .eyebrow { color: var(--purple); }
+    .nl-copy h1 {
+      font-family: var(--font-title); font-weight: 700;
+      font-size: 30px; line-height: 1.15; color: var(--ink);
+      margin: 10px 0 12px;
+    }
+    .nl-copy p { font-size: 15px; line-height: 1.6; color: var(--ink-body); }
+    .nl-copy .ctas { display: flex; gap: 12px; justify-content: center; margin-top: 22px; }
+    @media (max-width: 760px) {
+      .nl-stage { height: 360px; }
+      .nl-card { width: 240px; height: 320px; }
+    }
+    @media (max-width: 1000px) {
+      .issue-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .issue-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</BaseLayout>
