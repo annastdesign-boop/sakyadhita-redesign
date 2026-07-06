@@ -36,6 +36,11 @@ const branches = Object.values(modules)
             <h2 id="list-title">All locations</h2>
             <span class="count" id="list-count">{branches.length} LISTINGS</span>
           </div>
+          <button class="filters-toggle" id="filters-toggle" type="button" aria-expanded="false" aria-controls="filters">
+            Filters
+            <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="filters" id="filters">
           <div class="seg" id="seg-region" role="tablist" aria-label="Region">
             <button class="opt is-active" data-v="">All regions</button>
             <button class="opt" data-v="Asia">Asia</button>
@@ -49,6 +54,7 @@ const branches = Object.values(modules)
             <button class="opt" data-v="branch">National branches</button>
             <button class="opt" data-v="local">Local chapters</button>
             <button class="opt" data-v="partner">Partners</button>
+          </div>
           </div>
         </div>
         <div class="br-list" id="br-list"></div>
@@ -107,6 +113,15 @@ const branches = Object.values(modules)
     }
     bindSeg(document.getElementById('seg-region')!, 'region')
     bindSeg(document.getElementById('seg-type')!, 'type')
+
+    // Mobile: filters live behind a "Filters" dropdown to save space
+    const filtersToggle = document.getElementById('filters-toggle')!
+    const filtersBox = document.getElementById('filters')!
+    filtersToggle.addEventListener('click', () => {
+      const open = filtersBox.classList.toggle('is-open')
+      filtersToggle.classList.toggle('is-open', open)
+      filtersToggle.setAttribute('aria-expanded', open ? 'true' : 'false')
+    })
 
     let activeId: string | null = null
 
@@ -514,6 +529,23 @@ const branches = Object.values(modules)
     }
     .popup .plinks a { color: var(--purple); }
 
+    /* Filters dropdown toggle (mobile only) */
+    .filters-toggle {
+      display: none;
+      align-items: center; gap: 8px;
+      font-family: var(--font-ui); font-size: 13px; font-weight: 600;
+      color: var(--ink-2);
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-pill);
+      background: #fff;
+      cursor: pointer;
+      transition: border-color .15s, color .15s;
+    }
+    .filters-toggle:hover { color: var(--purple); border-color: var(--purple); }
+    .filters-toggle .chev { width: 16px; height: 16px; transition: transform .2s; }
+    .filters-toggle.is-open .chev { transform: rotate(180deg); }
+
     /* Segmented filters */
     .seg { display: flex; flex-wrap: wrap; gap: 6px; }
     .seg + .seg { margin-top: 8px; }
@@ -566,6 +598,17 @@ const branches = Object.values(modules)
       .map-col { position: static; height: 70vh; padding: 0 24px; }
       .list-col { padding: 24px; }
       .br-list { grid-template-columns: 1fr; }
+
+      /* Filters collapse behind the dropdown to save vertical space */
+      .filters-toggle { display: inline-flex; }
+      .filters { display: none; }
+      .filters.is-open { display: block; margin-top: 10px; }
+      .list-sticky { padding-top: 14px; padding-bottom: 12px; }
+      .list-head { margin-bottom: 10px; }
+    }
+    @media (max-width: 640px) {
+      /* Sub-bar sits flush under the 64px mobile header — no gap */
+      .list-sticky { top: 64px; }
     }
   </style>
 </BaseLayout>
