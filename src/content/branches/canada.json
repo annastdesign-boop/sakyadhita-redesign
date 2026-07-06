@@ -1,18 +1,28 @@
 {
   "id": "canada",
-  "name": "Canada",
+  "name": "Sakyadhita Canada",
   "region": "Americas",
-  "type": "local",
+  "type": "branch",
   "lat": 43.65,
   "lng": -79.38,
-  "desc": "Local chapter with members in Toronto, Vancouver, and Montréal.",
+  "desc": "Sakyadhita Canada Association of Buddhist Women — a registered charity with members across Toronto, Vancouver, and Montréal.",
+  "homeMap": true,
+  "homeDesc": "Registered charity with members across Toronto, Vancouver, and Montréal.",
   "contact": [
     {
+      "icon": "🌐",
+      "text": "sakyadhitacanada.org",
+      "url": "https://www.sakyadhitacanada.org/"
+    },
+    {
       "icon": "📧",
-      "text": "canada@sakyadhita.org",
-      "url": "mailto:canada@sakyadhita.org"
+      "text": "info@sakyadhitacanada.org",
+      "url": "mailto:info@sakyadhitacanada.org"
+    },
+    {
+      "icon": "📘",
+      "text": "facebook.com/SakyadhitaCanada",
+      "url": "https://www.facebook.com/SakyadhitaCanada"
     }
-  ],
-  "homeMap": true,
-  "homeDesc": "Members in Toronto, Vancouver, and Montréal."
+  ]
 }

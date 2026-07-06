@@ -1,0 +1,23 @@
+{
+  "id": "uk",
+  "name": "Sakyadhita UK",
+  "region": "Europe",
+  "type": "branch",
+  "lat": 51.51,
+  "lng": -0.13,
+  "desc": "Promotes fellowship, friendship, and understanding between Buddhist women's traditions, and cooperation on shared interests within the UK and internationally.",
+  "homeMap": true,
+  "homeDesc": "Fellowship and cooperation between Buddhist women's traditions across the UK.",
+  "contact": [
+    {
+      "icon": "🌐",
+      "text": "sakyadhitauk.org",
+      "url": "https://sakyadhitauk.org/"
+    },
+    {
+      "icon": "📘",
+      "text": "facebook.com/SakyadhitaUK",
+      "url": "https://www.facebook.com/SakyadhitaUK"
+    }
+  ]
+}
