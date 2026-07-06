@@ -1,0 +1,97 @@
+# ────────────────────────────────────────────────────────────
+# Redirects from OLD site addresses to the new site.
+# Keeps every old link, bookmark, and search result working
+# after the domain moves to the new site.
+# Format: old-path  new-path  301 (= moved permanently)
+# ────────────────────────────────────────────────────────────
+
+# Old zero-padded conference addresses (/conferences/01 → /conferences/1)
+/conferences/01  /conferences/1  301
+/conferences/01/  /conferences/1  301
+/conferences/02  /conferences/2  301
+/conferences/02/  /conferences/2  301
+/conferences/03  /conferences/3  301
+/conferences/03/  /conferences/3  301
+/conferences/04  /conferences/4  301
+/conferences/04/  /conferences/4  301
+/conferences/05  /conferences/5  301
+/conferences/05/  /conferences/5  301
+/conferences/06  /conferences/6  301
+/conferences/06/  /conferences/6  301
+/conferences/07  /conferences/7  301
+/conferences/07/  /conferences/7  301
+/conferences/08  /conferences/8  301
+/conferences/08/  /conferences/8  301
+/conferences/09  /conferences/9  301
+/conferences/09/  /conferences/9  301
+
+# Pages that don't exist on the new site (yet) → nearest home
+/buddhist-culture  /resources  301
+/buddhist-culture/  /resources  301
+
+# Old PDF files (hashed names) → their stable new locations
+/_astro/04a%20Bibliographies%20Historical.CsfjfmWO.pdf  /uploads/publication-04a-bibliographies-historical.pdf  301
+/_astro/04b%20Bibliographies%20Textual.BdG7lsOM.pdf  /uploads/publication-04b-bibliographies-textual.pdf  301
+/_astro/04c%20Bibliographies%20Profiles%20Interviews.P_Ue7r36.pdf  /uploads/publication-04c-bibliographies-profiles-interviews.pdf  301
+/_astro/04d%20Bibliographies%20Contemporary.CppzMjnx.pdf  /uploads/publication-04d-bibliographies-contemporary.pdf  301
+/_astro/04e%20General%20and%20Miscellaneous.B5QfkFni.pdf  /uploads/publication-04e-general-and-miscellaneous.pdf  301
+/_astro/10.1.1999.bIkhuFNr.pdf  /uploads/newsletter-10.1.1999.pdf  301
+/_astro/11-1-2000.cLFOGzWX.pdf  /uploads/newsletter-11-1-2000.pdf  301
+/_astro/11-EnglishBrochure.B-NIieWG.pdf  /uploads/publication-11-englishbrochure.pdf  301
+/_astro/11.2.2000.BhmLlJ14.pdf  /uploads/newsletter-11.2.2000.pdf  301
+/_astro/12-EnglishBrochure.DfBnztwH.pdf  /uploads/publication-12-englishbrochure.pdf  301
+/_astro/12.1.2002.CJ3mJ7QB.pdf  /uploads/newsletter-12.1.2002.pdf  301
+/_astro/12.2.2002.CxaDjh5B.pdf  /uploads/newsletter-12.2.2002.pdf  301
+/_astro/12.3.2002.BGBhJZbJ.pdf  /uploads/newsletter-12.3.2002.pdf  301
+/_astro/13-2-2003.CorXcz8E.pdf  /uploads/newsletter-13-2-2003.pdf  301
+/_astro/13-English-SakyadhitaBrochure.Di_hKFnZ.pdf  /uploads/publication-13-english-sakyadhitabrochure.pdf  301
+/_astro/14-1-2004.Bq_z6Xqq.pdf  /uploads/newsletter-14-1-2004.pdf  301
+/_astro/14-EnglishBrochure_02142015.BTZtX3ko.pdf  /uploads/publication-14-englishbrochure-02142015.pdf  301
+/_astro/15-1-2006.CaRvrub1.pdf  /uploads/newsletter-15-1-2006.pdf  301
+/_astro/15-2-2006.BvL1zRb0.pdf  /uploads/newsletter-15-2-2006.pdf  301
+/_astro/16-1-2007.hc8srA_t.pdf  /uploads/newsletter-16-1-2007.pdf  301
+/_astro/16-2-2008.DlEHAAE3.pdf  /uploads/newsletter-16-2-2008.pdf  301
+/_astro/18-1-2009.1rKyysNl.pdf  /uploads/newsletter-18-1-2009.pdf  301
+/_astro/19.1-2010.DhiH-NTV.pdf  /uploads/newsletter-19.1-2010.pdf  301
+/_astro/2-1-1991.BFw2a6PR.pdf  /uploads/newsletter-2-1-1991.pdf  301
+/_astro/2-2-1991.RB2jje4u.pdf  /uploads/newsletter-2-2-1991.pdf  301
+/_astro/20-1-2011.CSJkX7zK.pdf  /uploads/newsletter-20-1-2011.pdf  301
+/_astro/2016%20Sakyadhita%20Newsletter.BeF8ENfV.pdf  /uploads/newsletter-2016-sakyadhita-newsletter.pdf  301
+/_astro/2017%20Sakyadhita%20Brochure%20Hong%20Kong.BwdrHUdd.pdf  /uploads/publication-2017-sakyadhita-brochure-hong-kong.pdf  301
+/_astro/2017%20Sakyadhita%20Newsletter.n6sbuMx6.pdf  /uploads/newsletter-2017-sakyadhita-newsletter.pdf  301
+/_astro/2018%20Sakyadhita%20Newsletter.B7pJKcxw.pdf  /uploads/newsletter-2018-sakyadhita-newsletter.pdf  301
+/_astro/2019%20Sakyadhita%20Newsletter.Spu3UxzT.pdf  /uploads/newsletter-2019-sakyadhita-newsletter.pdf  301
+/_astro/2021%20Sakyadhita%20Newsletter%20Vol.%2029.BOCPWoWp.pdf  /uploads/newsletter-2021-sakyadhita-newsletter-vol.-29.pdf  301
+/_astro/2022%20Sakyadhita%20Newsletter%20Vol.%2030.sNsIxhb6.pdf  /uploads/newsletter-2022-sakyadhita-newsletter-vol.-30.pdf  301
+/_astro/2023%20Brochure%2018th%20Sakyadhita%20Seoul%20.ePB1kzYe.pdf  /uploads/publication-2023-brochure-18th-sakyadhita-seoul-.pdf  301
+/_astro/2023%20Sakyadhita%20Newsletter.TXG_acmf.pdf  /uploads/newsletter-2023-sakyadhita-newsletter.pdf  301
+/_astro/2024%20Sakyadhita%20Newsletter.BkziFFGG.pdf  /uploads/newsletter-2024-sakyadhita-newsletter.pdf  301
+/_astro/2025%20Sakyadhita%20Newsletter%20lg.CBO-SgTK.pdf  /uploads/newsletter-2025-sakyadhita-newsletter-lg.pdf  301
+/_astro/21-1-2012.BLScIxMS.pdf  /uploads/newsletter-21-1-2012.pdf  301
+/_astro/22-1-2013.CoIOAjMo.pdf  /uploads/newsletter-22-1-2013.pdf  301
+/_astro/23-1-2014.C1REifE5.pdf  /uploads/newsletter-23-1-2014.pdf  301
+/_astro/24-1-2015.CwjsVdEw.pdf  /uploads/newsletter-24-1-2015.pdf  301
+/_astro/3-1-1992.S8umjebd.pdf  /uploads/newsletter-3-1-1992.pdf  301
+/_astro/3-2-1992.Ba31wIWj.pdf  /uploads/newsletter-3-2-1992.pdf  301
+/_astro/4-1-1993.BZMtHIKM.pdf  /uploads/newsletter-4-1-1993.pdf  301
+/_astro/4.2.1993.CpgIYoxP.pdf  /uploads/newsletter-4.2.1993.pdf  301
+/_astro/5.1.1994.CfUjLTqE.pdf  /uploads/newsletter-5.1.1994.pdf  301
+/_astro/5.2.1994.DFK4MnPs.pdf  /uploads/newsletter-5.2.1994.pdf  301
+/_astro/6.1.1995.BxdHo0fL.pdf  /uploads/newsletter-6.1.1995.pdf  301
+/_astro/6.2.1995.DZK_8ifF.pdf  /uploads/newsletter-6.2.1995.pdf  301
+/_astro/7.1.1996.C5uOJrAZ.pdf  /uploads/newsletter-7.1.1996.pdf  301
+/_astro/7.2.1996.CM536js1.pdf  /uploads/newsletter-7.2.1996.pdf  301
+/_astro/8.1.1997.BHkDDeEL.pdf  /uploads/newsletter-8.1.1997.pdf  301
+/_astro/8.2.1997.CPdF6IoS.pdf  /uploads/newsletter-8.2.1997.pdf  301
+/_astro/9.1.1998.CHJ2VBD7.pdf  /uploads/newsletter-9.1.1998.pdf  301
+/_astro/Bangla-SI-mbrshp-brochure2011.GuTmaxxF.pdf  /uploads/membership-brochure-bangla-si-mbrshp-brochure2011.pdf  301
+/_astro/BuddhistWomenInAMulticulturalCommunity-Sakyadhita2009.D7tB4OeL.pdf  /uploads/publication-buddhistwomeninamulticulturalcommunity-sakyadhita2009.pdf  301
+/_astro/English-sakyadhitabrochure2011.N8FrYTkE.pdf  /uploads/membership-brochure-english-sakyadhitabrochure2011.pdf  301
+/_astro/French-SI-mbership-brochure-2011.Dnw2ubBg.pdf  /uploads/membership-brochure-french-si-mbership-brochure-2011.pdf  301
+/_astro/Indonesia-sak-brochure2010-sm.ARcTdE95.pdf  /uploads/membership-brochure-indonesia-sak-brochure2010-sm.pdf  301
+/_astro/Japanese-brochure2010sm.CggTUzs_.pdf  /uploads/membership-brochure-japanese-brochure2010sm.pdf  301
+/_astro/Korean-sakbrochure2011.CcpMwKKD.pdf  /uploads/membership-brochure-korean-sakbrochure2011.pdf  301
+/_astro/Mongolian-Sakyadhita-brochure.CErph9lS.pdf  /uploads/membership-brochure-mongolian-sakyadhita-brochure.pdf  301
+/_astro/SimplfiedChns-SakBroch.PHaJpsEU.pdf  /uploads/membership-brochure-simplfiedchns-sakbroch.pdf  301
+/_astro/TradChns-SakBroch-2010-sm.BoRLy-yo.pdf  /uploads/membership-brochure-tradchns-sakbroch-2010-sm.pdf  301
+/_astro/Tsomo%20Bridging%20Worlds.Ecisyfxi.pdf  /uploads/publication-tsomo-bridging-worlds.pdf  301
