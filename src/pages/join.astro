@@ -181,7 +181,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
       <div class="eyebrow" style="text-align:center;">SECURE PAYMENT</div>
-      <h2 id="pay-title">Choose your payment method</h2>
+      <h2 id="pay-title">Pay with PayPal</h2>
       <p class="pay-amount">Total: <b id="pay-amount-value">$30</b> USD</p>
       <div id="paypal-button-container"></div>
       <p class="pay-note">🔒 Processed securely by PayPal — card payments accepted, no PayPal account needed.</p>
@@ -345,17 +345,71 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       })
     }
 
+    /**
+     * Fallback while the embedded PayPal buttons are unavailable:
+     * record the application, then send the member to Sakyadhita's
+     * hosted PayPal page (which works independently) with the amount
+     * pre-filled. Membership is confirmed by staff when the payment
+     * arrives in PayPal.
+     */
+    const PAYPAL_HOSTED_URL = 'https://www.paypal.com/donate?hosted_button_id=78ZSMXL4ZSYJQ'
+
+    function renderFallback() {
+      const container = document.getElementById('paypal-button-container')!
+      container.innerHTML = `
+        <button type="button" class="btn btn--primary btn--lg" id="pp-fallback"
+          style="width:100%; justify-content:center; padding:16px;">
+          Continue to PayPal <span class="arr">→</span>
+        </button>`
+      document.getElementById('pp-fallback')!.addEventListener('click', async () => {
+        if (recording) return
+        recording = true
+        const btn = document.getElementById('pp-fallback') as HTMLButtonElement
+        btn.disabled = true
+        btn.textContent = 'One moment…'
+        const total = (document.getElementById('total-paid') as HTMLInputElement).value
+        try {
+          // 1. Save the application (payment reference stays empty = pending)
+          await recordMembership('', total)
+          // 2. Send the member to PayPal with the amount pre-filled
+          window.open(`${PAYPAL_HOSTED_URL}&amount=${encodeURIComponent(total)}&currency_code=USD`, '_blank', 'noopener')
+          // 3. Confirm what happens next
+          closeModal()
+          const panel = document.createElement('div')
+          panel.className = 'form-success'
+          panel.setAttribute('role', 'status')
+          panel.innerHTML = `
+            <div class="fs-icon" aria-hidden="true">🪷</div>
+            <h3>Almost there — complete your payment</h3>
+            <p>We've recorded your application, and a PayPal page has opened to pay your <b>$${total}</b> membership fee. Your membership is confirmed as soon as the payment arrives.</p>
+            <p style="margin-top:10px; font-size:13px; color:var(--ink-subtle);">PayPal page didn't open? <a href="${PAYPAL_HOSTED_URL}&amount=${encodeURIComponent(total)}&currency_code=USD" target="_blank" rel="noopener noreferrer" style="color:var(--purple); font-weight:600;">Open it here</a>.</p>`
+          form.style.display = 'none'
+          form.insertAdjacentElement('afterend', panel)
+          panel.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        } catch {
+          showPayError(
+            'Something went wrong saving your application. Your answers are still here — please try again, or email service.sakyadhita@gmail.com.'
+          )
+          btn.disabled = false
+          btn.innerHTML = 'Continue to PayPal <span class="arr">→</span>'
+        } finally {
+          recording = false
+        }
+      })
+    }
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault()
       if (recording) return
       if (!validateForm(form)) return
       openModal()
       try {
+        // Best path: PayPal's embedded buttons (records the transaction
+        // id automatically). Falls back to the hosted PayPal page if
+        // they can't load.
         await initPayPal()
       } catch {
-        showPayError(
-          'Online payment is temporarily unavailable. Please email service.sakyadhita@gmail.com and we will help you complete your membership.'
-        )
+        renderFallback()
       }
     })
 
