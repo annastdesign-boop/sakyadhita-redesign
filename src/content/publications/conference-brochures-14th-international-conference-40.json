@@ -1,12 +1,12 @@
 {
   "kind": "2015 · INDONESIA",
   "title": "14th International Conference",
-  "href": "https://sakyadhita.org/_astro/14-EnglishBrochure_02142015.BTZtX3ko.pdf",
+  "href": "/uploads/publication-14-englishbrochure-02142015.pdf",
   "source": "Yogyakarta",
   "linkLabel": "PDF →",
   "cover": {
     "style": "photo",
-    "image": "/assets/conf/conf14-yogyakarta.jpg"
+    "image": "/uploads/conf14-yogyakarta.jpg"
   },
   "section": "conference-brochures",
   "sort": 40

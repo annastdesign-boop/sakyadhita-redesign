@@ -1,12 +1,12 @@
 {
   "kind": "TEXTUAL STUDIES",
   "title": "Texts Documenting Buddhist Women",
-  "href": "https://sakyadhita.org/_astro/04b%20Bibliographies%20Textual.BdG7lsOM.pdf",
+  "href": "/uploads/publication-04b-bibliographies-textual.pdf",
   "source": "Sakyadhita",
   "linkLabel": "PDF →",
   "cover": {
     "style": "photo",
-    "image": "/assets/bib-textual.jpg"
+    "image": "/uploads/bib-textual.jpg"
   },
   "section": "bibliographies",
   "sort": 20

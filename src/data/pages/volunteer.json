@@ -1,0 +1,174 @@
+{
+  "_comment": "Volunteer page copy. The form's technical field names/ids stay in code — this file holds the headings, committee cards, checkbox list, Q&A, and the thank-you message.",
+  "seo": {
+    "title": "Volunteer · Sakyadhita",
+    "description": "Sakyadhita runs on volunteers — 15 committees need help, from translation to web development to conference planning. Apply to volunteer from anywhere in the world.",
+    "ogImage": "/uploads/member-voice.png"
+  },
+  "hero": {
+    "eyebrow": "GET INVOLVED · VOLUNTEER",
+    "title": "Sakyadhita runs on volunteers",
+    "lede": "We're a 501(c)3 non-profit, entirely volunteer-run. 15 committees need help — from translation to web development to conference planning.",
+    "buttonLabel": "Apply to become a volunteer"
+  },
+  "committees": {
+    "eyebrow": "15 COMMITTEES",
+    "heading": "Where you can help",
+    "text": "Each committee handles a specific part of Sakyadhita's work. Most accept volunteers worldwide and operate remotely.",
+    "buttonLabel": "Become a volunteer",
+    "groups": [
+      {
+        "heading": "Words & Languages",
+        "items": [
+          {
+            "emoji": "🌐",
+            "title": "Translation",
+            "text": "Translate newsletters and communications into multiple languages."
+          },
+          {
+            "emoji": "✏️",
+            "title": "Editing",
+            "text": "Polish articles for the newsletter, conference proceedings, and website."
+          },
+          {
+            "emoji": "📝",
+            "title": "Writing",
+            "text": "Draft blog posts, news updates, and member features."
+          },
+          {
+            "emoji": "🔍",
+            "title": "Research",
+            "text": "Document the lives and contributions of Buddhist women, historical and present."
+          }
+        ]
+      },
+      {
+        "heading": "Technology & Creative",
+        "items": [
+          {
+            "emoji": "💻",
+            "title": "Tech Support",
+            "text": "Help with virtual meetings, digital platforms, and troubleshooting."
+          },
+          {
+            "emoji": "⌨️",
+            "title": "Programming",
+            "text": "Develop web features, maintain the site, optimize infrastructure."
+          },
+          {
+            "emoji": "🎨",
+            "title": "Design",
+            "text": "Create graphics, layouts, and branding for print and digital."
+          },
+          {
+            "emoji": "🖌️",
+            "title": "Arts",
+            "text": "Visual arts, photography, music, traditional crafts."
+          }
+        ]
+      },
+      {
+        "heading": "Operations & Finance",
+        "items": [
+          {
+            "emoji": "📅",
+            "title": "Conference Planning",
+            "text": "Coordinate speakers, workshops, and logistics for the biennial conference."
+          },
+          {
+            "emoji": "🗂️",
+            "title": "Administration",
+            "text": "Membership coordination and non-profit operations."
+          },
+          {
+            "emoji": "📊",
+            "title": "Accounting",
+            "text": "Bookkeeping, financial reporting, non-profit compliance."
+          },
+          {
+            "emoji": "🏗️",
+            "title": "Building & Planning",
+            "text": "Strategic growth and infrastructure projects."
+          }
+        ]
+      },
+      {
+        "heading": "Community & Advocacy",
+        "items": [
+          {
+            "emoji": "🌏",
+            "title": "Branches & Chapters",
+            "text": "Help establish and support local Sakyadhita communities worldwide."
+          },
+          {
+            "emoji": "⚖️",
+            "title": "Social Justice",
+            "text": "Gender equality, sustainability, empowerment initiatives."
+          },
+          {
+            "emoji": "🪷",
+            "title": "Ordination",
+            "text": "Research, advocacy, and educational resources on the ordination movement."
+          }
+        ]
+      }
+    ]
+  },
+  "formHead": {
+    "eyebrow": "SIGN ME UP",
+    "heading": "Volunteer with Sakyadhita",
+    "text": "We're always in search of volunteers — and especially in the years we hold our international conference. Whatever time or skills you can offer, we'd be so grateful to have you with us.",
+    "submitLabel": "Submit application"
+  },
+  "interests": [
+    "Editing",
+    "Tech Support",
+    "Administration",
+    "Research",
+    "Social Justice",
+    "Writing",
+    "Building & Planning",
+    "Accounting",
+    "Programming",
+    "Conference Planning",
+    "Arts",
+    "Translation",
+    "Branches & Chapters",
+    "Design",
+    "Ordination"
+  ],
+  "faq": {
+    "eyebrow": "QUESTIONS",
+    "heading": "Volunteering Q&A",
+    "items": [
+      {
+        "question": "Who can volunteer?",
+        "answer": "Anyone, anywhere. You don't need to be a member or a Buddhist — just a willingness to support our work. We welcome laywomen and men, monastics, students, and professionals of all backgrounds."
+      },
+      {
+        "question": "How much time does it take?",
+        "answer": "It's entirely flexible. Some volunteers give a couple of hours around a single project or conference; others contribute regularly over years. You set a commitment that fits your life."
+      },
+      {
+        "question": "Can I volunteer remotely?",
+        "answer": "Yes. Most committees operate entirely online and accept volunteers worldwide. A few roles connected to the biennial conference may involve in-person work, but these are clearly marked."
+      },
+      {
+        "question": "Do I need special skills?",
+        "answer": "It depends on the committee. Some roles use specific skills — translation, web development, accounting — while others need only enthusiasm and reliability. Tell us your strengths and we'll find a good fit."
+      },
+      {
+        "question": "Is volunteering paid?",
+        "answer": "Sakyadhita is a 501(c)3 non-profit run entirely by volunteers, so roles are unpaid. What you gain is a global community, meaningful work, and a direct hand in supporting Buddhist women worldwide."
+      },
+      {
+        "question": "How do I get started?",
+        "answer": "Apply with the form above and let us know which committees interest you and roughly how much time you can offer. A coordinator will follow up to talk through where you'd like to help."
+      }
+    ]
+  },
+  "success": {
+    "title": "Application received",
+    "text": "Thank you for offering your time! A volunteer coordinator will follow up to talk through where you can help."
+  }
+}

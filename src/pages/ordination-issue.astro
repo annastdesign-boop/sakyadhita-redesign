@@ -9,33 +9,30 @@
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
 import timelines from '../data/timelines.json'
+import ordinationPage from '../data/pages/ordination.json'
 ---
 
 <BaseLayout
-  title="The Ordination Issue · Sakyadhita"
-  description="Full ordination for women — becoming a Bhikkhunī or Gelongma — has been one of the most contested issues in modern Buddhism. The history, milestones, and current state of the movement."
+  title={ordinationPage.seo.title}
+  description={ordinationPage.seo.description}
   active="resources"
-  ogImage="/assets/bhutan-2025-ordination.png"
+  ogImage={ordinationPage.seo.ogImage}
 >
   <section class="ord-hero">
     <div class="content">
-      <h1>Ordination issue</h1>
-      <p>
-        Full ordination for women — becoming a Bhikkhunī (Pali) or Gelongma (Tibetan) — has been
-        one of the most contested issues in modern Buddhism. The picture in 2026 is dramatically
-        different from even fifteen years ago, but it's uneven across schools, countries, and
-        lineages.
-      </p>
+      <h1>{ordinationPage.hero.title}</h1>
+      <p>{ordinationPage.hero.text}</p>
     </div>
     <div class="ord-hero-imgs">
-      <figure><img src="/assets/1st-sakyadhita-conference-1987-dharamshala.png" alt="Participants of the first Sakyadhita conference, 1987" /></figure>
-      <figure><img src="/assets/hero-2.png" alt="Buddhist nuns gathered in ceremony" style="object-position: 50% 30%;" /></figure>
-      <figure><img src="/assets/hero-3.png" alt="Buddhist women in practice" /></figure>
-      <figure><img src="/assets/bhutan-2025-ordination.png" alt="Nuns receiving full ordination in Bhutan, 2025" /></figure>
+      {
+        ordinationPage.hero.images.map((img: any) => (
+          <figure><img src={img.src} alt={img.alt} style={img.objectPosition ? `object-position: ${img.objectPosition};` : undefined} /></figure>
+        ))
+      }
     </div>
     <p class="marquee-credit">
-      For photos, special thanks to
-      <a href="https://www.olivieradam.net/" target="_blank" rel="noopener noreferrer">Olivier Adam</a>
+      {ordinationPage.hero.credit.text}
+      <a href={ordinationPage.hero.credit.linkHref} target="_blank" rel="noopener noreferrer">{ordinationPage.hero.credit.linkLabel}</a>
     </p>
   </section>
 
@@ -54,25 +51,17 @@ import timelines from '../data/timelines.json'
     <div class="shell">
       <div class="overview">
         <div>
-          <div class="eyebrow">OVERVIEW</div>
-          <h2 style="margin-top: 12px;">Why this matters</h2>
+          <div class="eyebrow">{ordinationPage.overview.eyebrow}</div>
+          <h2 style="margin-top: 12px;">{ordinationPage.overview.heading}</h2>
         </div>
         <div>
-          <p>
-            Full ordination — taking the complete set of monastic vows as a <em>bhikkhuni</em>
-            (Pali) or <em>bhiksuni</em> (Sanskrit) — is the deepest formal commitment a Buddhist
-            woman can make to monastic life. For centuries, the path was open in some traditions
-            and closed or interrupted in others.
-          </p>
-          <p>
-            Since 1987, Sakyadhita has worked alongside scholars, monastics, and practitioners to
-            restore and expand access to full ordination across all Buddhist traditions. The work
-            is ongoing.
-          </p>
+          {ordinationPage.overview.paragraphs.map((text: string) => <p set:html={text} />)}
           <div class="stats-3">
-            <div class="s"><div class="num">2,000+</div><div class="lab">Theravada bhikkhunis today</div></div>
-            <div class="s"><div class="num">29</div><div class="lab">Years since Theravada restoration</div></div>
-            <div class="s"><div class="num">19</div><div class="lab">Conferences advancing the cause</div></div>
+            {
+              ordinationPage.overview.stats.map((stat: any) => (
+                <div class="s"><div class="num">{stat.num}</div><div class="lab">{stat.label}</div></div>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -83,33 +72,21 @@ import timelines from '../data/timelines.json'
     <div class="shell">
       <div class="origins-split">
         <div class="origins-text">
-          <div class="eyebrow">ORIGINS</div>
-          <h2 class="h-section" style="margin-top: 8px;">Origins in ancient India</h2>
-          <p style="margin-top: 18px; font-size: 17px; line-height: 1.7; color: var(--ink-body);">
-            In the 6th century BCE, the Buddha affirmed the equal potential of women and men to
-            achieve liberation. This affirmation represented a significant departure from
-            prevailing views that defined women primarily in terms of their reproductive function
-            and capacity for productive labor.
-          </p>
-          <p style="margin-top: 16px; font-size: 17px; line-height: 1.7; color: var(--ink-body);">
-            The bhikkhuni sangha founded by Mahapajapati, the Buddha's aunt and foster mother, may
-            have been the first monastic order for nuns in history. Since its inception, Buddhism
-            has been unique in recognizing the equal spiritual potential of women and men.
-          </p>
-          <p style="margin-top: 16px; font-size: 17px; line-height: 1.7; color: var(--ink-body);">
-            Despite this egalitarian philosophy, unequal social structures persist in most Buddhist
-            cultures today. Today, the bhikkhuni sangha survives primarily in three traditions —
-            Chinese, Korean, and Vietnamese — but efforts to establish or revive full ordination
-            for women are underway in India, Indonesia, Sri Lanka, Thailand, and elsewhere.
-          </p>
+          <div class="eyebrow">{ordinationPage.origins.eyebrow}</div>
+          <h2 class="h-section" style="margin-top: 8px;">{ordinationPage.origins.heading}</h2>
+          {
+            ordinationPage.origins.paragraphs.map((text: string, i: number) => (
+              <p style={`margin-top: ${i === 0 ? '18px' : '16px'}; font-size: 17px; line-height: 1.7; color: var(--ink-body);`}>{text}</p>
+            ))
+          }
         </div>
         <figure class="origins-fig">
           <img
-            src="https://commons.wikimedia.org/wiki/Special:FilePath/Prince_Siddhartha_with_his_maternal_aunt_Queen_Mahaprajapati_Gotami.JPG?width=700"
-            alt="Prince Siddhartha with his foster mother Mahaprajapati, painting by Maligawage Sarlis"
+            src={ordinationPage.origins.image}
+            alt={ordinationPage.origins.imageAlt}
             loading="lazy"
           />
-          <figcaption>Painting by Maligawage Sarlis. Photo by MediaJet, 2009.</figcaption>
+          <figcaption>{ordinationPage.origins.caption}</figcaption>
         </figure>
       </div>
     </div>
@@ -119,7 +96,7 @@ import timelines from '../data/timelines.json'
     <div class="shell">
       <div class="section-head">
         <div class="eyebrow">THE MOVEMENT</div>
-        <h2 class="h-section">Milestones in the restoration of full ordination</h2>
+        <h2 class="h-section">{ordinationPage.movement.heading}</h2>
       </div>
       <div class="move-tl">
         {
@@ -146,55 +123,37 @@ import timelines from '../data/timelines.json'
   <section id="watch">
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">WATCH &amp; LEARN</div>
-        <h2 class="h-section">Voices on full ordination</h2>
+        <div class="eyebrow">{ordinationPage.watch.eyebrow}</div>
+        <h2 class="h-section">{ordinationPage.watch.heading}</h2>
       </div>
       <div class="video-layout">
         <div class="video-main">
           <div class="video-frame">
             <iframe
               id="vid-player"
-              src="https://www.youtube-nocookie.com/embed/_j90nTgMs_Q?rel=0"
+              src={`https://www.youtube-nocookie.com/embed/${ordinationPage.watch.videos[0].id}?rel=0`}
               title="Video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
             ></iframe>
           </div>
-          <h3 class="now-title" id="vid-now-title">The Geshema is Born | Award-winning Film | Malati Rao</h3>
-          <p class="now-desc" id="vid-now-desc">
-            Malati Rao's award-winning documentary follows Tibetan Buddhist nuns who, empowered by
-            His Holiness the Dalai Lama, become the first to receive the Geshema — the highest
-            monastic degree, equivalent to a PhD.
-          </p>
+          <h3 class="now-title" id="vid-now-title">{ordinationPage.watch.videos[0].title}</h3>
+          <p class="now-desc" id="vid-now-desc">{ordinationPage.watch.videos[0].longDesc}</p>
         </div>
         <div class="video-list" id="vid-list">
-          <button
-            class="vid-card active"
-            data-id="_j90nTgMs_Q"
-            data-title="The Geshema is Born | Award-winning Film | Malati Rao"
-            data-desc="Malati Rao's award-winning documentary follows Tibetan Buddhist nuns who, empowered by His Holiness the Dalai Lama, become the first to receive the Geshema — the highest monastic degree, equivalent to a PhD."
-          >
-            <span class="thumb" style="background-image:url('https://i.ytimg.com/vi/_j90nTgMs_Q/hqdefault.jpg')"></span>
-            <span class="v-body"><span class="v-title">The Geshema is Born | Award-winning Film | Malati Rao</span><span class="v-desc">Tibetan nuns earn the Geshema, Buddhism's highest monastic degree.</span></span>
-          </button>
-          <button
-            class="vid-card"
-            data-id="O10XPiF1wJw"
-            data-title="Issues around the ordination of women in Buddhism"
-            data-desc="A Q&A session from the 4th Global Conference in Perth (2006), organised by the Buddhist Society of Western Australia, addressing the questions surrounding women's ordination."
-          >
-            <span class="thumb" style="background-image:url('https://i.ytimg.com/vi/O10XPiF1wJw/hqdefault.jpg')"></span>
-            <span class="v-body"><span class="v-title">Issues around the ordination of women in Buddhism</span><span class="v-desc">A 2006 Perth conference Q&amp;A on women's ordination.</span></span>
-          </button>
-          <button
-            class="vid-card"
-            data-id="yoNF0o3bDRQ"
-            data-title="Fulfilling Buddha's Vision | Nuns seek equality through ordination (S1, E08) | 52 Documentary"
-            data-desc="This documentary examines the reemergence of bhikkhunis — fully ordained female monastics — reclaiming their place in the Buddhist hierarchy some 1,000 years after nuns were last fully ordained."
-          >
-            <span class="thumb" style="background-image:url('https://i.ytimg.com/vi/yoNF0o3bDRQ/hqdefault.jpg')"></span>
-            <span class="v-body"><span class="v-title">Fulfilling Buddha's Vision | Nuns seek equality through ordination (S1, E08) | 52 Documentary</span><span class="v-desc">The reemergence of fully ordained Buddhist nuns.</span></span>
-          </button>
+          {
+            ordinationPage.watch.videos.map((video: any, i: number) => (
+              <button
+                class={`vid-card${i === 0 ? ' active' : ''}`}
+                data-id={video.id}
+                data-title={video.title}
+                data-desc={video.longDesc}
+              >
+                <span class="thumb" style={`background-image:url('https://i.ytimg.com/vi/${video.id}/hqdefault.jpg')`} />
+                <span class="v-body"><span class="v-title">{video.title}</span><span class="v-desc">{video.shortDesc}</span></span>
+              </button>
+            ))
+          }
         </div>
       </div>
     </div>
@@ -204,36 +163,20 @@ import timelines from '../data/timelines.json'
     <div class="shell">
       <div class="overview">
         <div>
-          <div class="eyebrow">SEE ALSO</div>
-          <h2 style="margin-top: 12px;">Further reading</h2>
-          <p style="margin-top: 14px;">Background reading on full ordination, the movement's history, and the women who shaped it.</p>
+          <div class="eyebrow">{ordinationPage.seeAlso.eyebrow}</div>
+          <h2 style="margin-top: 12px;">{ordinationPage.seeAlso.heading}</h2>
+          <p style="margin-top: 14px;">{ordinationPage.seeAlso.intro}</p>
         </div>
         <div class="asp-grid">
-          <a class="asp" href="https://en.wikipedia.org/wiki/Bhikkhuni" target="_blank" rel="noopener noreferrer">
-            <h3>Bhikkhunī</h3>
-            <p>The history, ordination, and modern revival of the order of fully ordained Buddhist nuns.</p>
-            <span class="link">Read on Wikipedia →</span>
-          </a>
-          <a class="asp" href="https://en.wikipedia.org/wiki/International_Congress_on_Buddhist_Women%27s_Role_in_the_Sangha" target="_blank" rel="noopener noreferrer">
-            <h3>1987 Bodhgaya Congress</h3>
-            <p>The International Congress on Buddhist Women's Role in the Sangha, where Sakyadhita was founded.</p>
-            <span class="link">Read on Wikipedia →</span>
-          </a>
-          <a class="asp" href="https://en.wikipedia.org/wiki/Engaged_Buddhism" target="_blank" rel="noopener noreferrer">
-            <h3>Engaged Buddhism</h3>
-            <p>Applying Buddhist teachings to social, political, economic, and environmental justice.</p>
-            <span class="link">Read on Wikipedia →</span>
-          </a>
-          <a class="asp" href="https://en.wikipedia.org/wiki/Women_in_Buddhism" target="_blank" rel="noopener noreferrer">
-            <h3>Women in Buddhism</h3>
-            <p>An overview of women's roles, status, and contributions across the Buddhist traditions.</p>
-            <span class="link">Read on Wikipedia →</span>
-          </a>
-          <a class="asp" href="https://en.wikipedia.org/wiki/Ayya_Khema" target="_blank" rel="noopener noreferrer">
-            <h3>Ayya Khema</h3>
-            <p>The pioneering nun who helped convene the first Sakyadhita conference and founded monastic centres for women.</p>
-            <span class="link">Read on Wikipedia →</span>
-          </a>
+          {
+            ordinationPage.seeAlso.cards.map((card: any) => (
+              <a class="asp" href={card.href} target="_blank" rel="noopener noreferrer">
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+                <span class="link">Read on Wikipedia →</span>
+              </a>
+            ))
+          }
         </div>
       </div>
     </div>

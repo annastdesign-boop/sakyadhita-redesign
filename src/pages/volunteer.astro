@@ -6,31 +6,24 @@
  * Submissions appear in Netlify → Forms → "volunteer".
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
+import volunteerPage from '../data/pages/volunteer.json'
 
-const committees = [
-  'Editing', 'Tech Support', 'Administration', 'Research', 'Social Justice',
-  'Writing', 'Building & Planning', 'Accounting', 'Programming',
-  'Conference Planning', 'Arts', 'Translation', 'Branches & Chapters',
-  'Design', 'Ordination',
-]
+const committees = volunteerPage.interests
 ---
 
 <BaseLayout
-  title="Volunteer · Sakyadhita"
-  description="Sakyadhita runs on volunteers — 15 committees need help, from translation to web development to conference planning. Apply to volunteer from anywhere in the world."
+  title={volunteerPage.seo.title}
+  description={volunteerPage.seo.description}
   active="get-involved"
-  ogImage="/assets/member-voice.png"
+  ogImage={volunteerPage.seo.ogImage}
 >
   <section class="hero-compact">
     <div class="shell">
-      <div class="eyebrow">GET INVOLVED · VOLUNTEER</div>
-      <h1 class="h-display">Sakyadhita runs on volunteers</h1>
-      <p class="lede">
-        We're a 501(c)3 non-profit, entirely volunteer-run. 15 committees need help — from
-        translation to web development to conference planning.
-      </p>
+      <div class="eyebrow">{volunteerPage.hero.eyebrow}</div>
+      <h1 class="h-display">{volunteerPage.hero.title}</h1>
+      <p class="lede">{volunteerPage.hero.lede}</p>
       <div class="cta-row" style="margin-top: 28px;">
-        <a class="btn btn--primary btn--lg" href="#apply">Apply to become a volunteer <span class="arr">→</span></a>
+        <a class="btn btn--primary btn--lg" href="#apply">{volunteerPage.hero.buttonLabel} <span class="arr">→</span></a>
       </div>
     </div>
   </section>
@@ -40,54 +33,25 @@ const committees = [
       <div class="com-split">
         <div class="com-left">
           <div class="section-head section-head--left">
-            <div class="eyebrow">15 COMMITTEES</div>
-            <h2 class="h-section">Where you can help</h2>
-            <p class="muted">
-              Each committee handles a specific part of Sakyadhita's work. Most accept volunteers
-              worldwide and operate remotely.
-            </p>
-            <a class="btn btn--primary" style="margin-top: 22px;" href="#apply">Become a volunteer <span class="arr">→</span></a>
+            <div class="eyebrow">{volunteerPage.committees.eyebrow}</div>
+            <h2 class="h-section">{volunteerPage.committees.heading}</h2>
+            <p class="muted">{volunteerPage.committees.text}</p>
+            <a class="btn btn--primary" style="margin-top: 22px;" href="#apply">{volunteerPage.committees.buttonLabel} <span class="arr">→</span></a>
           </div>
         </div>
         <div class="com-right">
-          <div class="com-group">
-            <div class="com-group-head">Words &amp; Languages</div>
-            <div class="com-grid">
-              <div class="com"><div class="com-emoji">🌐</div><div class="com-body"><h3>Translation</h3><p>Translate newsletters and communications into multiple languages.</p></div></div>
-              <div class="com"><div class="com-emoji">✏️</div><div class="com-body"><h3>Editing</h3><p>Polish articles for the newsletter, conference proceedings, and website.</p></div></div>
-              <div class="com"><div class="com-emoji">📝</div><div class="com-body"><h3>Writing</h3><p>Draft blog posts, news updates, and member features.</p></div></div>
-              <div class="com"><div class="com-emoji">🔍</div><div class="com-body"><h3>Research</h3><p>Document the lives and contributions of Buddhist women, historical and present.</p></div></div>
-            </div>
-          </div>
-
-          <div class="com-group">
-            <div class="com-group-head">Technology &amp; Creative</div>
-            <div class="com-grid">
-              <div class="com"><div class="com-emoji">💻</div><div class="com-body"><h3>Tech Support</h3><p>Help with virtual meetings, digital platforms, and troubleshooting.</p></div></div>
-              <div class="com"><div class="com-emoji">⌨️</div><div class="com-body"><h3>Programming</h3><p>Develop web features, maintain the site, optimize infrastructure.</p></div></div>
-              <div class="com"><div class="com-emoji">🎨</div><div class="com-body"><h3>Design</h3><p>Create graphics, layouts, and branding for print and digital.</p></div></div>
-              <div class="com"><div class="com-emoji">🖌️</div><div class="com-body"><h3>Arts</h3><p>Visual arts, photography, music, traditional crafts.</p></div></div>
-            </div>
-          </div>
-
-          <div class="com-group">
-            <div class="com-group-head">Operations &amp; Finance</div>
-            <div class="com-grid">
-              <div class="com"><div class="com-emoji">📅</div><div class="com-body"><h3>Conference Planning</h3><p>Coordinate speakers, workshops, and logistics for the biennial conference.</p></div></div>
-              <div class="com"><div class="com-emoji">🗂️</div><div class="com-body"><h3>Administration</h3><p>Membership coordination and non-profit operations.</p></div></div>
-              <div class="com"><div class="com-emoji">📊</div><div class="com-body"><h3>Accounting</h3><p>Bookkeeping, financial reporting, non-profit compliance.</p></div></div>
-              <div class="com"><div class="com-emoji">🏗️</div><div class="com-body"><h3>Building &amp; Planning</h3><p>Strategic growth and infrastructure projects.</p></div></div>
-            </div>
-          </div>
-
-          <div class="com-group">
-            <div class="com-group-head">Community &amp; Advocacy</div>
-            <div class="com-grid">
-              <div class="com"><div class="com-emoji">🌏</div><div class="com-body"><h3>Branches &amp; Chapters</h3><p>Help establish and support local Sakyadhita communities worldwide.</p></div></div>
-              <div class="com"><div class="com-emoji">⚖️</div><div class="com-body"><h3>Social Justice</h3><p>Gender equality, sustainability, empowerment initiatives.</p></div></div>
-              <div class="com"><div class="com-emoji">🪷</div><div class="com-body"><h3>Ordination</h3><p>Research, advocacy, and educational resources on the ordination movement.</p></div></div>
-            </div>
-          </div>
+          {
+            volunteerPage.committees.groups.map((group) => (
+              <div class="com-group">
+                <div class="com-group-head">{group.heading}</div>
+                <div class="com-grid">
+                  {group.items.map((item) => (
+                    <div class="com"><div class="com-emoji">{item.emoji}</div><div class="com-body"><h3>{item.title}</h3><p>{item.text}</p></div></div>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>
@@ -96,13 +60,9 @@ const committees = [
   <section class="vol-form" id="apply">
     <div class="shell">
       <div class="section-head" style="text-align: center; margin-bottom: 34px;">
-        <div class="eyebrow">SIGN ME UP</div>
-        <h2 class="h-section">Volunteer with Sakyadhita</h2>
-        <p class="muted" style="max-width: 620px; margin: 12px auto 0;">
-          We're always in search of volunteers — and especially in the years we hold our
-          international conference. Whatever time or skills you can offer, we'd be so grateful to
-          have you with us.
-        </p>
+        <div class="eyebrow">{volunteerPage.formHead.eyebrow}</div>
+        <h2 class="h-section">{volunteerPage.formHead.heading}</h2>
+        <p class="muted" style="max-width: 620px; margin: 12px auto 0;">{volunteerPage.formHead.text}</p>
       </div>
 
       <form class="vform" name="volunteer" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
@@ -167,7 +127,7 @@ const committees = [
         </fieldset>
 
         <div class="submit-row">
-          <button type="submit" class="btn btn--primary btn--lg">Submit application <span class="arr">→</span></button>
+          <button type="submit" class="btn btn--primary btn--lg">{volunteerPage.formHead.submitLabel} <span class="arr">→</span></button>
           <div class="req-note">* indicates a required field</div>
         </div>
       </form>
@@ -180,46 +140,31 @@ const committees = [
         <div class="faq-pic" role="img" aria-label="Buddhist women in meditation at a Sakyadhita conference"></div>
         <div>
           <div class="section-head section-head--left" style="margin-bottom: 28px;">
-            <div class="eyebrow">QUESTIONS</div>
-            <h2 class="h-section">Volunteering Q&amp;A</h2>
+            <div class="eyebrow">{volunteerPage.faq.eyebrow}</div>
+            <h2 class="h-section">{volunteerPage.faq.heading}</h2>
           </div>
           <div class="faq-list">
-            <div class="faq-item">
-              <button class="faq-q" type="button">Who can volunteer?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <div class="faq-a"><div class="faq-a-inner">Anyone, anywhere. You don't need to be a member or a Buddhist — just a willingness to support our work. We welcome laywomen and men, monastics, students, and professionals of all backgrounds.</div></div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-q" type="button">How much time does it take?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <div class="faq-a"><div class="faq-a-inner">It's entirely flexible. Some volunteers give a couple of hours around a single project or conference; others contribute regularly over years. You set a commitment that fits your life.</div></div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-q" type="button">Can I volunteer remotely?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <div class="faq-a"><div class="faq-a-inner">Yes. Most committees operate entirely online and accept volunteers worldwide. A few roles connected to the biennial conference may involve in-person work, but these are clearly marked.</div></div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-q" type="button">Do I need special skills?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <div class="faq-a"><div class="faq-a-inner">It depends on the committee. Some roles use specific skills — translation, web development, accounting — while others need only enthusiasm and reliability. Tell us your strengths and we'll find a good fit.</div></div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-q" type="button">Is volunteering paid?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <div class="faq-a"><div class="faq-a-inner">Sakyadhita is a 501(c)3 non-profit run entirely by volunteers, so roles are unpaid. What you gain is a global community, meaningful work, and a direct hand in supporting Buddhist women worldwide.</div></div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-q" type="button">How do I get started?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <div class="faq-a"><div class="faq-a-inner">Apply with the form above and let us know which committees interest you and roughly how much time you can offer. A coordinator will follow up to talk through where you'd like to help.</div></div>
-            </div>
+            {
+              volunteerPage.faq.items.map((item) => (
+                <div class="faq-item">
+                  <button class="faq-q" type="button">{item.question}<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  <div class="faq-a"><div class="faq-a-inner">{item.answer}</div></div>
+                </div>
+              ))
+            }
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <script type="application/json" id="volunteer-copy" set:html={JSON.stringify(volunteerPage.success)} />
   <script>
     import { enhanceForm } from '../scripts/forms'
+    const copy = JSON.parse(document.getElementById('volunteer-copy')?.textContent || '{}')
     enhanceForm(document.querySelector('form[name="volunteer"]'), {
-      successTitle: 'Application received',
-      successText:
-        'Thank you for offering your time! A volunteer coordinator will follow up to talk through where you can help.',
+      successTitle: copy.title || 'Application received',
+      successText: copy.text || '',
     })
 
     // FAQ accordion

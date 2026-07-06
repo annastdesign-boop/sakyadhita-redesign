@@ -1,0 +1,111 @@
+{
+  "seo": {
+    "title": "About · Sakyadhita",
+    "description": "Founded in 1987 in Bodh Gaya, India, Sakyadhita International Association of Buddhist Women connects Buddhist women across traditions, cultures, and continents.",
+    "ogImage": "/uploads/founders-1987-bodhgaya.png"
+  },
+  "hero": {
+    "eyebrow": "ABOUT SAKYADHITA",
+    "title": "Daughters of the Buddha",
+    "lede": "Founded in 1987 in Bodh Gaya, India — the site of the Buddha's awakening — Sakyadhita has spent nearly four decades connecting Buddhist women across traditions, cultures, and continents."
+  },
+  "story": {
+    "eyebrow": "OUR STORY",
+    "heading": "A beacon of inspiration",
+    "paragraphs": [
+      "In 1987, Ayya Khema, Chatsumarn Kabilsingh, and Karma Lekshe Tsomo gathered with a small group of women in Bodh Gaya, India to talk about the difficulties women faced in various Buddhist traditions. The organization was christened <em>Sakyadhita</em> — Daughters of the Buddha.",
+      "By establishing and maintaining a communications network among Buddhist women internationally, Sakyadhita has created links among some 400 million Buddhist women worldwide, encouraging and supporting them in practice, scholarship, activism, and the arts."
+    ],
+    "photos": [
+      {
+        "src": "/uploads/1st-sakyadhita-conference-1987-dharamshala.png",
+        "alt": "Participants of the first Sakyadhita conference in 1987"
+      },
+      {
+        "src": "/uploads/founders-1987-bodhgaya.png",
+        "alt": "Sakyadhita founders at Bodh Gaya, 1987"
+      }
+    ]
+  },
+  "history": {
+    "heading": "35+ years of building community"
+  },
+  "mission": {
+    "eyebrow": "MISSION",
+    "heading": "Sakyadhita's seven objectives",
+    "sub": "A working list, written in 1987 and barely changed since. They keep the organization focused across 45 countries and 19 conferences.",
+    "objectives": [
+      {
+        "icon": "/uploads/obj-alliance.png",
+        "title": "An international alliance",
+        "text": "A network of Buddhist women across schools, sanghas, and divisions."
+      },
+      {
+        "icon": "/uploads/obj-welfare.png",
+        "title": "Welfare of women",
+        "text": "Advancing the spiritual and secular welfare of the world's women."
+      },
+      {
+        "icon": "/uploads/obj-equity.png",
+        "title": "Gender equity",
+        "text": "In Buddhist education, training, institutions, and ordination."
+      },
+      {
+        "icon": "/uploads/obj-harmony.png",
+        "title": "Harmony among traditions",
+        "text": "Dialogue across Buddhist traditions and with other religions."
+      },
+      {
+        "icon": "/uploads/obj-research.png",
+        "title": "Research & publications",
+        "text": "Scholarship on history, doctrine, practice, and lineage."
+      },
+      {
+        "icon": "/uploads/obj-compassion.png",
+        "title": "Compassionate action",
+        "text": "Wisdom carried into the world as social action."
+      },
+      {
+        "icon": "/uploads/obj-peace.png",
+        "title": "World peace",
+        "text": "Promoting peace through the teachings of the Buddha."
+      }
+    ]
+  },
+  "leadership": {
+    "heading": "Executive Committee"
+  },
+  "projects": {
+    "eyebrow": "INTERNATIONAL PROJECTS",
+    "heading": "Centres supported around the world",
+    "cards": [
+      {
+        "image": "/uploads/proj-srilanka.jpg",
+        "imageAlt": "Sakyadhita Training and Meditation Centre, Sri Lanka",
+        "title": "Sakyadhita Training and Meditation Centre",
+        "location": "Katubedda, Moratuwa, Sri Lanka",
+        "text": "Trains Buddhist nuns in Dhamma, Vinaya, and meditation while strengthening the Bhikkhuni Order re-established in Sri Lanka after a thousand-year interruption. Its nuns run counseling, children's Dhamma classes, and disaster-relief work across their communities.",
+        "href": "http://www.sakyadhita-srilanka.org/",
+        "linkLabel": "Visit website →"
+      },
+      {
+        "image": "/uploads/proj-sanghamitra.jpg",
+        "imageAlt": "Sanghamitra Institute, Bodhgaya",
+        "title": "Sanghamitra Institute",
+        "location": "Bodhgaya, India",
+        "text": "Supported by the Jamyang Foundation, the institute is dedicated to improving life for women and children from economically and socially disadvantaged backgrounds. It offers new learning opportunities in harmony with the region's Buddhist heritage.",
+        "href": "http://www.jamyang.org/",
+        "linkLabel": "Visit website →"
+      }
+    ]
+  },
+  "branches": {
+    "eyebrow": "BRANCHES & CHAPTERS",
+    "heading": "A worldwide network",
+    "text": "Branches and local chapters organize events, run translation projects, and help plan the biennial international conference. Active groups span 45 countries — from Mongolia to Brazil, Strasbourg to Cairo.",
+    "button": {
+      "label": "View directory & map",
+      "href": "/branches"
+    }
+  }
+}

@@ -7,67 +7,51 @@
  * (the design linked to PayPal's generic page by mistake).
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
+import donatePage from '../data/pages/donate.json'
 
-const PAYPAL_DONATE_URL = 'https://www.paypal.com/donate?hosted_button_id=78ZSMXL4ZSYJQ'
+const PAYPAL_DONATE_URL = donatePage.paypalUrl
 ---
 
 <BaseLayout
-  title="Donate · Sakyadhita"
-  description="Support Sakyadhita's work for Buddhist women worldwide — conference scholarships, the newsletter, ordination advocacy, and branch development. Tax-deductible 501(c)3 donations."
+  title={donatePage.seo.title}
+  description={donatePage.seo.description}
   active="get-involved"
-  ogImage="/assets/icon-donate.png"
+  ogImage={donatePage.seo.ogImage}
 >
   <section class="hero-compact">
     <div class="shell">
-      <div class="eyebrow">GET INVOLVED · DONATE</div>
-      <h1 class="h-display">Your gift sustains 35+ years of work</h1>
-      <p class="lede">
-        Sakyadhita is a 501(c)3 nonprofit, volunteer-run. Your contribution goes directly to
-        conference scholarships, the newsletter, ordination advocacy, and branch development.
-      </p>
+      <div class="eyebrow">{donatePage.hero.eyebrow}</div>
+      <h1 class="h-display">{donatePage.hero.title}</h1>
+      <p class="lede">{donatePage.hero.lede}</p>
     </div>
   </section>
 
   <section>
     <div class="shell">
       <div class="section-head" style="text-align: center;">
-        <div class="eyebrow">WHERE YOUR MONEY GOES</div>
-        <h2 class="h-section">Your impact</h2>
-        <p class="lede" style="max-width: 640px; margin: 14px auto 0;">
-          Every gift makes a difference, and even $5 goes a long way. Your contribution helps
-          sustain our mission by funding the newsletter, sponsoring conference scholarships, and
-          advancing ordination advocacy across all traditions.
-        </p>
+        <div class="eyebrow">{donatePage.impact.eyebrow}</div>
+        <h2 class="h-section">{donatePage.impact.heading}</h2>
+        <p class="lede" style="max-width: 640px; margin: 14px auto 0;">{donatePage.impact.lede}</p>
       </div>
       <div class="impact-amounts">
-        <div class="impact-amt">
-          <div class="v">$25</div>
-          <p>Funds one newsletter print run.</p>
-        </div>
-        <div class="impact-amt">
-          <div class="v">$100</div>
-          <p>Sponsors one conference scholarship application.</p>
-        </div>
-        <div class="impact-amt">
-          <div class="v">$500</div>
-          <p>Funds full conference travel for one nun from a developing country.</p>
-        </div>
-        <div class="impact-amt">
-          <div class="v">$1,000</div>
-          <p>Supports a year of ordination advocacy programming.</p>
-        </div>
+        {
+          donatePage.impact.cards.map((card) => (
+            <div class="impact-amt">
+              <div class="v">{card.value}</div>
+              <p>{card.text}</p>
+            </div>
+          ))
+        }
       </div>
       <div class="impact-cta">
         <a class="btn btn--primary btn--lg" href={PAYPAL_DONATE_URL} target="_blank" rel="noopener noreferrer">
-          Donate with PayPal <span class="arr">→</span>
+          {donatePage.donateButtonLabel} <span class="arr">→</span>
         </a>
       </div>
       <div class="tax-card" style="max-width: 640px; margin: 28px auto 0;">
         <span style="font-size: 24px;">🧾</span>
         <div>
-          <b>Tax-deductible.</b> Sakyadhita International is a registered 501(c)3 non-profit in the
-          United States. Donations from U.S. taxpayers are tax-deductible. EIN available on
-          request.
+          <b>{donatePage.taxNote.lead}</b> {donatePage.taxNote.text}
         </div>
       </div>
     </div>
@@ -76,22 +60,20 @@ const PAYPAL_DONATE_URL = 'https://www.paypal.com/donate?hosted_button_id=78ZSMX
   <section class="ways">
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">BE INVOLVED</div>
-        <h2 class="h-section">More ways to support Sakyadhita</h2>
+        <div class="eyebrow">{donatePage.ways.eyebrow}</div>
+        <h2 class="h-section">{donatePage.ways.heading}</h2>
       </div>
       <div class="ways-grid">
-        <a class="way way--join" href="/join">
-          <div class="glyph" aria-hidden="true"></div>
-          <h3>Join Us</h3>
-          <p>Become a member of our global network. Member tiers start at $15 USD.</p>
-          <span class="btn btn--primary btn--sm" style="margin-top:6px;">Join Now</span>
-        </a>
-        <a class="way way--vol" href="/volunteer">
-          <div class="glyph" aria-hidden="true"></div>
-          <h3>Volunteer</h3>
-          <p>15 committees need help — from translation to conference planning.</p>
-          <span class="btn btn--ghost btn--sm" style="margin-top:6px;">Learn more</span>
-        </a>
+        {
+          donatePage.ways.cards.map((card, i) => (
+            <a class="way" href={card.href}>
+              <div class="glyph" aria-hidden="true" style={`background-image: url('${card.img}');`}></div>
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+              <span class={i === 0 ? 'btn btn--primary btn--sm' : 'btn btn--ghost btn--sm'} style="margin-top:6px;">{card.buttonLabel}</span>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -169,8 +151,6 @@ const PAYPAL_DONATE_URL = 'https://www.paypal.com/donate?hosted_button_id=78ZSMX
       width: 168px; height: 168px;
       background-size: contain; background-position: center; background-repeat: no-repeat;
     }
-    .way--join .glyph { background-image: url('/assets/icon-member.png'); }
-    .way--vol .glyph { background-image: url('/assets/icon-volunteer.png'); }
     .way h3 { font-family: var(--font-title); font-weight: 700; font-size: 26px; color: var(--ink); }
     .way p { font-size: 14.5px; color: var(--ink-body); line-height: 1.55; padding: 0 16px; }
     @media (max-width: 640px) {

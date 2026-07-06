@@ -10,6 +10,7 @@
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
 import timelines from '../data/timelines.json'
+import aboutPage from '../data/pages/about.json'
 
 const leadershipModules = import.meta.glob('../content/leadership/*.json', { eager: true })
 const terms = Object.values(leadershipModules)
@@ -19,10 +20,10 @@ const firstTerm = terms[0]
 ---
 
 <BaseLayout
-  title="About · Sakyadhita"
-  description="Founded in 1987 in Bodh Gaya, India, Sakyadhita International Association of Buddhist Women connects Buddhist women across traditions, cultures, and continents."
+  title={aboutPage.seo.title}
+  description={aboutPage.seo.description}
   active="about"
-  ogImage="/assets/founders-1987-bodhgaya.png"
+  ogImage={aboutPage.seo.ogImage}
 >
   <div class="shell">
     <nav class="crumb" aria-label="Breadcrumb">
@@ -32,13 +33,9 @@ const firstTerm = terms[0]
 
   <section class="hero-compact about-hero">
     <div class="shell">
-      <div class="eyebrow">ABOUT SAKYADHITA</div>
-      <h1 class="h-display">Daughters of the Buddha</h1>
-      <p class="lede">
-        Founded in 1987 in Bodh Gaya, India — the site of the Buddha's awakening — Sakyadhita has
-        spent nearly four decades connecting Buddhist women across traditions, cultures, and
-        continents.
-      </p>
+      <div class="eyebrow">{aboutPage.hero.eyebrow}</div>
+      <h1 class="h-display">{aboutPage.hero.title}</h1>
+      <p class="lede">{aboutPage.hero.lede}</p>
     </div>
   </section>
 
@@ -59,35 +56,17 @@ const firstTerm = terms[0]
     <div class="shell">
       <div class="sidebar-layout">
         <div>
-          <div class="eyebrow">OUR STORY</div>
-          <h2 style="margin-top: 12px;">A beacon of inspiration</h2>
+          <div class="eyebrow">{aboutPage.story.eyebrow}</div>
+          <h2 style="margin-top: 12px;">{aboutPage.story.heading}</h2>
         </div>
         <div class="body-stack">
-          <p>
-            In 1987, Ayya Khema, Chatsumarn Kabilsingh, and Karma Lekshe Tsomo gathered with a small
-            group of women in Bodh Gaya, India to talk about the difficulties women faced in various
-            Buddhist traditions. The organization was christened <em>Sakyadhita</em> — Daughters of
-            the Buddha.
-          </p>
-          <p>
-            By establishing and maintaining a communications network among Buddhist women
-            internationally, Sakyadhita has created links among some 400 million Buddhist women
-            worldwide, encouraging and supporting them in practice, scholarship, activism, and the
-            arts.
-          </p>
+          {aboutPage.story.paragraphs.map((text) => <p set:html={text} />)}
           <div class="photo-row">
-            <img
-              class="ph-img"
-              src="/assets/1st-sakyadhita-conference-1987-dharamshala.png"
-              alt="Participants of the first Sakyadhita conference in 1987"
-              loading="lazy"
-            />
-            <img
-              class="ph-img"
-              src="/assets/founders-1987-bodhgaya.png"
-              alt="Sakyadhita founders at Bodh Gaya, 1987"
-              loading="lazy"
-            />
+            {
+              aboutPage.story.photos.map((photo) => (
+                <img class="ph-img" src={photo.src} alt={photo.alt} loading="lazy" />
+              ))
+            }
           </div>
         </div>
       </div>
@@ -98,7 +77,7 @@ const firstTerm = terms[0]
     <div class="shell">
       <div class="section-head">
         <div class="eyebrow">HISTORY &amp; MILESTONES</div>
-        <h2 class="h-section">35+ years of building community</h2>
+        <h2 class="h-section">{aboutPage.history.heading}</h2>
       </div>
       <div style="max-width: 880px; margin: 0 auto;">
         <div class="timeline">
@@ -124,64 +103,23 @@ const firstTerm = terms[0]
       <div class="obj-split">
         <div class="obj-sticky">
           <div class="section-head">
-            <div class="eyebrow">MISSION</div>
-            <h2 class="h-section">Sakyadhita's seven objectives</h2>
-            <p class="muted" style="max-width: 50ch;">
-              A working list, written in 1987 and barely changed since. They keep the organization
-              focused across 45 countries and 19 conferences.
-            </p>
+            <div class="eyebrow">{aboutPage.mission.eyebrow}</div>
+            <h2 class="h-section">{aboutPage.mission.heading}</h2>
+            <p class="muted" style="max-width: 50ch;">{aboutPage.mission.sub}</p>
           </div>
         </div>
         <div class="obj-stack">
-          <div class="obj-card">
-            <img class="ico" src="/assets/obj-alliance.png" alt="" aria-hidden="true" loading="lazy" />
-            <div class="copy">
-              <h3>An international alliance</h3>
-              <p>A network of Buddhist women across schools, sanghas, and divisions.</p>
-            </div>
-          </div>
-          <div class="obj-card">
-            <img class="ico" src="/assets/obj-welfare.png" alt="" aria-hidden="true" loading="lazy" />
-            <div class="copy">
-              <h3>Welfare of women</h3>
-              <p>Advancing the spiritual and secular welfare of the world's women.</p>
-            </div>
-          </div>
-          <div class="obj-card">
-            <img class="ico" src="/assets/obj-equity.png" alt="" aria-hidden="true" loading="lazy" />
-            <div class="copy">
-              <h3>Gender equity</h3>
-              <p>In Buddhist education, training, institutions, and ordination.</p>
-            </div>
-          </div>
-          <div class="obj-card">
-            <img class="ico" src="/assets/obj-harmony.png" alt="" aria-hidden="true" loading="lazy" />
-            <div class="copy">
-              <h3>Harmony among traditions</h3>
-              <p>Dialogue across Buddhist traditions and with other religions.</p>
-            </div>
-          </div>
-          <div class="obj-card">
-            <img class="ico" src="/assets/obj-research.png" alt="" aria-hidden="true" loading="lazy" />
-            <div class="copy">
-              <h3>Research &amp; publications</h3>
-              <p>Scholarship on history, doctrine, practice, and lineage.</p>
-            </div>
-          </div>
-          <div class="obj-card">
-            <img class="ico" src="/assets/obj-compassion.png" alt="" aria-hidden="true" loading="lazy" />
-            <div class="copy">
-              <h3>Compassionate action</h3>
-              <p>Wisdom carried into the world as social action.</p>
-            </div>
-          </div>
-          <div class="obj-card">
-            <img class="ico" src="/assets/obj-peace.png" alt="" aria-hidden="true" loading="lazy" />
-            <div class="copy">
-              <h3>World peace</h3>
-              <p>Promoting peace through the teachings of the Buddha.</p>
-            </div>
-          </div>
+          {
+            aboutPage.mission.objectives.map((obj) => (
+              <div class="obj-card">
+                <img class="ico" src={obj.icon} alt="" aria-hidden="true" loading="lazy" />
+                <div class="copy">
+                  <h3>{obj.title}</h3>
+                  <p>{obj.text}</p>
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>
@@ -195,7 +133,7 @@ const firstTerm = terms[0]
       >
         <div>
           <div class="eyebrow">LEADERSHIP</div>
-          <h2 class="h-section" style="margin-top:8px;">Executive Committee</h2>
+          <h2 class="h-section" style="margin-top:8px;">{aboutPage.leadership.heading}</h2>
         </div>
         <select class="term-select" id="termSelect" aria-label="Select executive committee term">
           {terms.map((t, i) => <option value={i}>{t.label}</option>)}
@@ -225,37 +163,23 @@ const firstTerm = terms[0]
   <section id="projects" class="section--bg-subtle">
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">INTERNATIONAL PROJECTS</div>
-        <h2 class="h-section" style="margin-top: 8px;">Centres supported around the world</h2>
+        <div class="eyebrow">{aboutPage.projects.eyebrow}</div>
+        <h2 class="h-section" style="margin-top: 8px;">{aboutPage.projects.heading}</h2>
       </div>
       <div class="proj-grid">
-        <a class="proj" href="http://www.sakyadhita-srilanka.org/" target="_blank" rel="noopener noreferrer">
-          <div class="proj-pic" style="background-image:url('/assets/proj-srilanka.jpg');" role="img" aria-label="Sakyadhita Training and Meditation Centre, Sri Lanka"></div>
-          <div class="proj-body">
-            <h3>Sakyadhita Training and Meditation Centre</h3>
-            <div class="proj-loc">Katubedda, Moratuwa, Sri Lanka</div>
-            <p>
-              Trains Buddhist nuns in Dhamma, Vinaya, and meditation while strengthening the
-              Bhikkhuni Order re-established in Sri Lanka after a thousand-year interruption. Its
-              nuns run counseling, children's Dhamma classes, and disaster-relief work across their
-              communities.
-            </p>
-            <span class="proj-link">Visit website →</span>
-          </div>
-        </a>
-        <a class="proj" href="http://www.jamyang.org/" target="_blank" rel="noopener noreferrer">
-          <div class="proj-pic" style="background-image:url('/assets/proj-sanghamitra.jpg');" role="img" aria-label="Sanghamitra Institute, Bodhgaya"></div>
-          <div class="proj-body">
-            <h3>Sanghamitra Institute</h3>
-            <div class="proj-loc">Bodhgaya, India</div>
-            <p>
-              Supported by the Jamyang Foundation, the institute is dedicated to improving life for
-              women and children from economically and socially disadvantaged backgrounds. It offers
-              new learning opportunities in harmony with the region's Buddhist heritage.
-            </p>
-            <span class="proj-link">Visit website →</span>
-          </div>
-        </a>
+        {
+          aboutPage.projects.cards.map((card) => (
+            <a class="proj" href={card.href} target="_blank" rel="noopener noreferrer">
+              <div class="proj-pic" style={`background-image:url('${card.image}');`} role="img" aria-label={card.imageAlt} />
+              <div class="proj-body">
+                <h3>{card.title}</h3>
+                <div class="proj-loc">{card.location}</div>
+                <p>{card.text}</p>
+                <span class="proj-link">{card.linkLabel}</span>
+              </div>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -265,15 +189,13 @@ const firstTerm = terms[0]
       <div class="teaser">
         <div class="pic" id="teaser-map" aria-hidden="true"></div>
         <div>
-          <div class="eyebrow">BRANCHES &amp; CHAPTERS</div>
-          <h2 class="h-title" style="margin: 14px 0 16px;">A worldwide network</h2>
+          <div class="eyebrow">{aboutPage.branches.eyebrow}</div>
+          <h2 class="h-title" style="margin: 14px 0 16px;">{aboutPage.branches.heading}</h2>
           <p style="font-size: 17px; line-height: 1.6; color: var(--ink-body); margin-bottom: 22px;">
-            Branches and local chapters organize events, run translation projects, and help plan the
-            biennial international conference. Active groups span 45 countries — from Mongolia to
-            Brazil, Strasbourg to Cairo.
+            {aboutPage.branches.text}
           </p>
           <div class="cta-row">
-            <a class="btn btn--primary" href="/branches">View directory &amp; map <span class="arr">→</span></a>
+            <a class="btn btn--primary" href={aboutPage.branches.button.href}>{aboutPage.branches.button.label} <span class="arr">→</span></a>
           </div>
         </div>
       </div>

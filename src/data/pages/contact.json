@@ -1,0 +1,101 @@
+{
+  "_comment": "Contact page copy. The form's technical field names/ids stay in code — this file holds the headings, cards, contact details, and the thank-you message.",
+  "seo": {
+    "title": "Contact · Sakyadhita",
+    "description": "Get in touch with Sakyadhita International Association of Buddhist Women — general inquiries, branch contacts, press, and partnerships."
+  },
+  "hero": {
+    "eyebrow": "CONTACT",
+    "title": "Get in touch",
+    "lede": "We're a volunteer-run organization. We'll get back to you as soon as we can — usually within a week."
+  },
+  "routing": {
+    "eyebrow": "FIRST, WHAT'S YOUR INQUIRY ABOUT?",
+    "heading": "Route your message to the right team",
+    "sub": "Picking a category helps us reply faster.",
+    "cards": [
+      {
+        "icon": "📨",
+        "iconBg": "",
+        "title": "General inquiry",
+        "text": "Questions, comments, dharma offerings, general correspondence.",
+        "cta": "Use this form ↓",
+        "href": "#form",
+        "id": ""
+      },
+      {
+        "icon": "🌏",
+        "iconBg": "var(--bg-warm)",
+        "title": "Branch contact",
+        "text": "Looking for your local branch or chapter? See the directory.",
+        "cta": "Branch directory →",
+        "href": "/branches",
+        "id": ""
+      },
+      {
+        "icon": "📰",
+        "iconBg": "rgba(243,154,108,.25)",
+        "title": "Press & partnerships",
+        "text": "Media inquiries, interview requests, partnership proposals.",
+        "cta": "Press contact →",
+        "href": "#form",
+        "id": "press"
+      }
+    ]
+  },
+  "form": {
+    "eyebrow": "GENERAL INQUIRY",
+    "heading": "Send us a message",
+    "submitLabel": "Submit"
+  },
+  "direct": {
+    "eyebrow": "REACH US DIRECTLY",
+    "heading": "Direct contact",
+    "blocks": [
+      {
+        "icon": "📧",
+        "iconBg": "",
+        "label": "General Email",
+        "value": "service.sakyadhita@gmail.com",
+        "note": "",
+        "href": "mailto:service.sakyadhita@gmail.com",
+        "callout": false
+      },
+      {
+        "icon": "📞",
+        "iconBg": "var(--bg-warm)",
+        "label": "Phone (USA)",
+        "value": "+1 858-525-5173",
+        "note": "Hawaii Standard Time (HST)",
+        "href": "",
+        "callout": false
+      },
+      {
+        "icon": "📍",
+        "iconBg": "rgba(243,154,108,.25)",
+        "label": "Address",
+        "value": "7331 Princess View Drive",
+        "note": "San Diego, CA 92120, USA",
+        "href": "",
+        "callout": false
+      },
+      {
+        "icon": "⏳",
+        "iconBg": "#fff",
+        "label": "Response time",
+        "value": "We're volunteer-run — please allow up to a week for a reply. For urgent conference matters, contact the host organization directly.",
+        "note": "",
+        "href": "",
+        "callout": true
+      }
+    ]
+  },
+  "social": {
+    "eyebrow": "CONNECT",
+    "heading": "Follow Sakyadhita on social"
+  },
+  "success": {
+    "title": "Message sent",
+    "text": "Thank you for reaching out. We're volunteer-run, so please allow up to a week for a reply."
+  }
+}

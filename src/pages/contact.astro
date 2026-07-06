@@ -6,11 +6,12 @@
  * Submissions appear in Netlify → Forms → "contact".
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
+import contactPage from '../data/pages/contact.json'
 ---
 
 <BaseLayout
-  title="Contact · Sakyadhita"
-  description="Get in touch with Sakyadhita International Association of Buddhist Women — general inquiries, branch contacts, press, and partnerships."
+  title={contactPage.seo.title}
+  description={contactPage.seo.description}
   active="contact"
 >
   <div class="shell">
@@ -21,41 +22,30 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
   <section class="hero-compact">
     <div class="shell">
-      <div class="eyebrow">CONTACT</div>
-      <h1 class="h-display">Get in touch</h1>
-      <p class="lede">
-        We're a volunteer-run organization. We'll get back to you as soon as we can — usually
-        within a week.
-      </p>
+      <div class="eyebrow">{contactPage.hero.eyebrow}</div>
+      <h1 class="h-display">{contactPage.hero.title}</h1>
+      <p class="lede">{contactPage.hero.lede}</p>
     </div>
   </section>
 
   <section>
     <div class="shell">
       <div class="section-head section-head--left">
-        <div class="eyebrow">FIRST, WHAT'S YOUR INQUIRY ABOUT?</div>
-        <h2 class="h-section" style="margin-top: 8px;">Route your message to the right team</h2>
-        <p class="muted" style="margin-top: 6px;">Picking a category helps us reply faster.</p>
+        <div class="eyebrow">{contactPage.routing.eyebrow}</div>
+        <h2 class="h-section" style="margin-top: 8px;">{contactPage.routing.heading}</h2>
+        <p class="muted" style="margin-top: 6px;">{contactPage.routing.sub}</p>
       </div>
       <div class="routes">
-        <a class="route" href="#form">
-          <div class="ico">📨</div>
-          <h3>General inquiry</h3>
-          <p>Questions, comments, dharma offerings, general correspondence.</p>
-          <span class="cta">Use this form ↓</span>
-        </a>
-        <a class="route" href="/branches">
-          <div class="ico" style="background: var(--bg-warm);">🌏</div>
-          <h3>Branch contact</h3>
-          <p>Looking for your local branch or chapter? See the directory.</p>
-          <span class="cta">Branch directory →</span>
-        </a>
-        <a class="route" href="#form" id="press">
-          <div class="ico" style="background: rgba(243,154,108,.25);">📰</div>
-          <h3>Press &amp; partnerships</h3>
-          <p>Media inquiries, interview requests, partnership proposals.</p>
-          <span class="cta">Press contact →</span>
-        </a>
+        {
+          contactPage.routing.cards.map((card) => (
+            <a class="route" href={card.href} id={card.id || undefined}>
+              <div class="ico" style={card.iconBg ? `background: ${card.iconBg};` : undefined}>{card.icon}</div>
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+              <span class="cta">{card.cta}</span>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -76,8 +66,8 @@ import BaseLayout from '../layouts/BaseLayout.astro'
             <label>Don't fill this out if you're human: <input name="bot-field" /></label>
           </p>
 
-          <div class="eyebrow">GENERAL INQUIRY</div>
-          <h2>Send us a message</h2>
+          <div class="eyebrow">{contactPage.form.eyebrow}</div>
+          <h2>{contactPage.form.heading}</h2>
           <div class="stack-4">
             <div class="form-row">
               <div class="field">
@@ -113,47 +103,26 @@ import BaseLayout from '../layouts/BaseLayout.astro'
             </div>
           </div>
           <div class="submit-wrap" style="margin-top: 24px; display: flex; justify-content: flex-end;">
-            <button type="submit" class="btn btn--primary btn--lg">Submit <span class="arr">→</span></button>
+            <button type="submit" class="btn btn--primary btn--lg">{contactPage.form.submitLabel} <span class="arr">→</span></button>
           </div>
         </form>
 
         <div>
-          <div class="eyebrow" style="margin-bottom: 8px;">REACH US DIRECTLY</div>
-          <h2 class="h-section" style="margin-bottom: 22px;">Direct contact</h2>
+          <div class="eyebrow" style="margin-bottom: 8px;">{contactPage.direct.eyebrow}</div>
+          <h2 class="h-section" style="margin-bottom: 22px;">{contactPage.direct.heading}</h2>
           <div class="contact-info">
-            <div class="info-block">
-              <div class="ico">📧</div>
-              <div>
-                <div class="l">General Email</div>
-                <a class="v" href="mailto:service.sakyadhita@gmail.com">service.sakyadhita@gmail.com</a>
-              </div>
-            </div>
-            <div class="info-block">
-              <div class="ico" style="background: var(--bg-warm);">📞</div>
-              <div>
-                <div class="l">Phone (USA)</div>
-                <div class="v">+1 858-525-5173</div>
-                <div class="m">Hawaii Standard Time (HST)</div>
-              </div>
-            </div>
-            <div class="info-block">
-              <div class="ico" style="background: rgba(243,154,108,.25);">📍</div>
-              <div>
-                <div class="l">Address</div>
-                <div class="v">7331 Princess View Drive</div>
-                <div class="m">San Diego, CA 92120, USA</div>
-              </div>
-            </div>
-            <div class="info-block callout">
-              <div class="ico" style="background: #fff;">⏳</div>
-              <div>
-                <div class="l">Response time</div>
-                <div class="v">
-                  We're volunteer-run — please allow up to a week for a reply. For urgent conference
-                  matters, contact the host organization directly.
+            {
+              contactPage.direct.blocks.map((block) => (
+                <div class:list={['info-block', block.callout && 'callout']}>
+                  <div class="ico" style={block.iconBg ? `background: ${block.iconBg};` : undefined}>{block.icon}</div>
+                  <div>
+                    <div class="l">{block.label}</div>
+                    {block.href ? <a class="v" href={block.href}>{block.value}</a> : <div class="v">{block.value}</div>}
+                    {block.note && <div class="m">{block.note}</div>}
+                  </div>
                 </div>
-              </div>
-            </div>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -162,8 +131,8 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
   <section class="social">
     <div class="shell">
-      <div class="eyebrow">CONNECT</div>
-      <h2 class="h-section" style="margin-top: 12px;">Follow Sakyadhita on social</h2>
+      <div class="eyebrow">{contactPage.social.eyebrow}</div>
+      <h2 class="h-section" style="margin-top: 12px;">{contactPage.social.heading}</h2>
       <div class="social-row">
         <a href="https://www.facebook.com/sakyadhita.international" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3l.4-3H14V4.2c0-.85.25-1.45 1.5-1.45H17V.1C16.7.05 15.8 0 14.7 0 12.4 0 10.8 1.4 10.8 4v2H8v3h2.8v8H14V9z"/></svg></a>
         <a href="https://www.youtube.com/@sakyadhitainternational" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 0 0 .5 6.5C.1 8.4.1 12 .1 12s0 3.6.4 5.5a3 3 0 0 0 2.1 2.1C4.5 20 12 20 12 20s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1c.4-1.9.4-5.5.4-5.5s0-3.6-.4-5.5zM9.6 15.5v-7l6.3 3.5-6.3 3.5z"/></svg></a>
@@ -174,11 +143,13 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     </div>
   </section>
 
+  <script type="application/json" id="contact-copy" set:html={JSON.stringify(contactPage.success)} />
   <script>
     import { enhanceForm } from '../scripts/forms'
+    const copy = JSON.parse(document.getElementById('contact-copy')?.textContent || '{}')
     enhanceForm(document.querySelector('form[name="contact"]'), {
-      successTitle: 'Message sent',
-      successText: "Thank you for reaching out. We're volunteer-run, so please allow up to a week for a reply.",
+      successTitle: copy.title || 'Message sent',
+      successText: copy.text || '',
     })
   </script>
 

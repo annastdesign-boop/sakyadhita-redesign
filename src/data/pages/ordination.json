@@ -1,0 +1,128 @@
+{
+  "seo": {
+    "title": "The Ordination Issue · Sakyadhita",
+    "description": "Full ordination for women — becoming a Bhikkhunī or Gelongma — has been one of the most contested issues in modern Buddhism. The history, milestones, and current state of the movement.",
+    "ogImage": "/uploads/bhutan-2025-ordination.png"
+  },
+  "hero": {
+    "title": "Ordination issue",
+    "text": "Full ordination for women — becoming a Bhikkhunī (Pali) or Gelongma (Tibetan) — has been one of the most contested issues in modern Buddhism. The picture in 2026 is dramatically different from even fifteen years ago, but it's uneven across schools, countries, and lineages.",
+    "images": [
+      {
+        "src": "/uploads/1st-sakyadhita-conference-1987-dharamshala.png",
+        "alt": "Participants of the first Sakyadhita conference, 1987"
+      },
+      {
+        "src": "/uploads/hero-2.png",
+        "alt": "Buddhist nuns gathered in ceremony",
+        "objectPosition": "50% 30%"
+      },
+      {
+        "src": "/uploads/hero-3.png",
+        "alt": "Buddhist women in practice"
+      },
+      {
+        "src": "/uploads/bhutan-2025-ordination.png",
+        "alt": "Nuns receiving full ordination in Bhutan, 2025"
+      }
+    ],
+    "credit": {
+      "text": "For photos, special thanks to",
+      "linkLabel": "Olivier Adam",
+      "linkHref": "https://www.olivieradam.net/"
+    }
+  },
+  "overview": {
+    "eyebrow": "OVERVIEW",
+    "heading": "Why this matters",
+    "paragraphs": [
+      "Full ordination — taking the complete set of monastic vows as a <em>bhikkhuni</em> (Pali) or <em>bhiksuni</em> (Sanskrit) — is the deepest formal commitment a Buddhist woman can make to monastic life. For centuries, the path was open in some traditions and closed or interrupted in others.",
+      "Since 1987, Sakyadhita has worked alongside scholars, monastics, and practitioners to restore and expand access to full ordination across all Buddhist traditions. The work is ongoing."
+    ],
+    "stats": [
+      {
+        "num": "2,000+",
+        "label": "Theravada bhikkhunis today"
+      },
+      {
+        "num": "29",
+        "label": "Years since Theravada restoration"
+      },
+      {
+        "num": "19",
+        "label": "Conferences advancing the cause"
+      }
+    ]
+  },
+  "origins": {
+    "eyebrow": "ORIGINS",
+    "heading": "Origins in ancient India",
+    "paragraphs": [
+      "In the 6th century BCE, the Buddha affirmed the equal potential of women and men to achieve liberation. This affirmation represented a significant departure from prevailing views that defined women primarily in terms of their reproductive function and capacity for productive labor.",
+      "The bhikkhuni sangha founded by Mahapajapati, the Buddha's aunt and foster mother, may have been the first monastic order for nuns in history. Since its inception, Buddhism has been unique in recognizing the equal spiritual potential of women and men.",
+      "Despite this egalitarian philosophy, unequal social structures persist in most Buddhist cultures today. Today, the bhikkhuni sangha survives primarily in three traditions — Chinese, Korean, and Vietnamese — but efforts to establish or revive full ordination for women are underway in India, Indonesia, Sri Lanka, Thailand, and elsewhere."
+    ],
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Prince_Siddhartha_with_his_maternal_aunt_Queen_Mahaprajapati_Gotami.JPG?width=700",
+    "imageAlt": "Prince Siddhartha with his foster mother Mahaprajapati, painting by Maligawage Sarlis",
+    "caption": "Painting by Maligawage Sarlis. Photo by MediaJet, 2009."
+  },
+  "movement": {
+    "heading": "Milestones in the restoration of full ordination"
+  },
+  "watch": {
+    "eyebrow": "WATCH & LEARN",
+    "heading": "Voices on full ordination",
+    "videos": [
+      {
+        "id": "_j90nTgMs_Q",
+        "title": "The Geshema is Born | Award-winning Film | Malati Rao",
+        "shortDesc": "Tibetan nuns earn the Geshema, Buddhism's highest monastic degree.",
+        "longDesc": "Malati Rao's award-winning documentary follows Tibetan Buddhist nuns who, empowered by His Holiness the Dalai Lama, become the first to receive the Geshema — the highest monastic degree, equivalent to a PhD."
+      },
+      {
+        "id": "O10XPiF1wJw",
+        "title": "Issues around the ordination of women in Buddhism",
+        "shortDesc": "A 2006 Perth conference Q&A on women's ordination.",
+        "longDesc": "A Q&A session from the 4th Global Conference in Perth (2006), organised by the Buddhist Society of Western Australia, addressing the questions surrounding women's ordination."
+      },
+      {
+        "id": "yoNF0o3bDRQ",
+        "title": "Fulfilling Buddha's Vision | Nuns seek equality through ordination (S1, E08) | 52 Documentary",
+        "shortDesc": "The reemergence of fully ordained Buddhist nuns.",
+        "longDesc": "This documentary examines the reemergence of bhikkhunis — fully ordained female monastics — reclaiming their place in the Buddhist hierarchy some 1,000 years after nuns were last fully ordained."
+      }
+    ]
+  },
+  "seeAlso": {
+    "eyebrow": "SEE ALSO",
+    "heading": "Further reading",
+    "intro": "Background reading on full ordination, the movement's history, and the women who shaped it.",
+    "cards": [
+      {
+        "title": "Bhikkhunī",
+        "text": "The history, ordination, and modern revival of the order of fully ordained Buddhist nuns.",
+        "href": "https://en.wikipedia.org/wiki/Bhikkhuni"
+      },
+      {
+        "title": "1987 Bodhgaya Congress",
+        "text": "The International Congress on Buddhist Women's Role in the Sangha, where Sakyadhita was founded.",
+        "href": "https://en.wikipedia.org/wiki/International_Congress_on_Buddhist_Women%27s_Role_in_the_Sangha"
+      },
+      {
+        "title": "Engaged Buddhism",
+        "text": "Applying Buddhist teachings to social, political, economic, and environmental justice.",
+        "href": "https://en.wikipedia.org/wiki/Engaged_Buddhism"
+      },
+      {
+        "title": "Women in Buddhism",
+        "text": "An overview of women's roles, status, and contributions across the Buddhist traditions.",
+        "href": "https://en.wikipedia.org/wiki/Women_in_Buddhism"
+      },
+      {
+        "title": "Ayya Khema",
+        "text": "The pioneering nun who helped convene the first Sakyadhita conference and founded monastic centres for women.",
+        "href": "https://en.wikipedia.org/wiki/Ayya_Khema"
+      }
+    ]
+  }
+}

@@ -1,12 +1,12 @@
 {
   "kind": "BIOGRAPHIES & PROFILES",
   "title": "Recounting the Stories of Buddhist Women",
-  "href": "https://sakyadhita.org/_astro/04c%20Bibliographies%20Profiles%20Interviews.P_Ue7r36.pdf",
+  "href": "/uploads/publication-04c-bibliographies-profiles-interviews.pdf",
   "source": "Sakyadhita",
   "linkLabel": "PDF →",
   "cover": {
     "style": "photo",
-    "image": "/assets/bib-profiles.jpg"
+    "image": "/uploads/bib-profiles.jpg"
   },
   "section": "bibliographies",
   "sort": 30

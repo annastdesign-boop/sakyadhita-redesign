@@ -5,8 +5,12 @@
  * branches map, and the three ways to support.
  *
  * The map pins live in src/data/branches-map.json — edit there.
+ * All editable copy lives in src/data/pages/home.json.
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
+import homePage from '../data/pages/home.json'
+// Fixed grid positions for the three support cards (glyph image is inline, from JSON)
+const wayMods = ['way--join', 'way--vol', 'way--don']
 const branchModules = import.meta.glob('../content/branches/*.json', { eager: true })
 const homeSpots = Object.values(branchModules)
   .map((m: any) => m.default)
@@ -26,52 +30,41 @@ const branchesMap = {
 ---
 
 <BaseLayout
-  title="Sakyadhita · International Association of Buddhist Women"
-  description="Since 1987, Sakyadhita has brought together laywomen, monastics, and scholars from across all Buddhist traditions to advance equality, education, and spiritual practice."
+  title={homePage.seo.title}
+  description={homePage.seo.description}
   active="home"
-  ogImage="/assets/hero-1.png"
+  ogImage={homePage.seo.ogImage}
 >
   <!-- HERO -->
   <section class="home-hero">
     <div class="content">
-      <img class="hero-logo" src="/assets/logo-flower.png" alt="Sakyadhita lotus emblem" />
+      <img class="hero-logo" src={homePage.hero.logo} alt={homePage.hero.logoAlt} />
       <h1>
-        <span class="name">Sakyadhita</span>
-        <span class="full">International Association of Buddhist Women</span>
+        <span class="name">{homePage.hero.titleName}</span>
+        <span class="full">{homePage.hero.titleFull}</span>
       </h1>
       <p>
-        Since 1987, we have been bringing together laywomen, monastics, and scholars from across
-        all Buddhist traditions to advance equality, education, and spiritual practice.
+        {homePage.hero.text}
       </p>
       <div class="cta-row">
-        <a class="btn btn--primary btn--lg" href="/conferences">Join the 20th Conference <span class="arr">→</span></a>
-        <a class="btn btn--ghost btn--lg" href="/join">Become a Member</a>
+        <a class="btn btn--primary btn--lg" href={homePage.hero.primaryCta.href}>{homePage.hero.primaryCta.label} <span class="arr">→</span></a>
+        <a class="btn btn--ghost btn--lg" href={homePage.hero.secondaryCta.href}>{homePage.hero.secondaryCta.label}</a>
       </div>
     </div>
     <div class="hero-marquee" aria-hidden="true">
       <div class="track">
-        <img src="/assets/member-voice.png" alt="" style="object-position: 60% 50%;" loading="eager" />
-        <img src="/assets/tenzin-lekshe.jpg" alt="" />
-        <img src="/assets/feat-conf.png" alt="" />
-        <img src="/assets/highlights.png" alt="" />
-        <img src="/assets/hero-1.png" alt="" />
-        <img src="/assets/seoul.png" alt="" />
-        <img src="/assets/hero-2.png" alt="" />
-        <img src="/assets/hero-3.png" alt="" />
+        {homePage.hero.marquee.map((m, i) => (
+          <img src={m.img} alt="" style={m.focus ? `object-position: ${m.focus};` : undefined} loading={i === 0 ? 'eager' : undefined} />
+        ))}
         <!-- duplicate set for the seamless loop -->
-        <img src="/assets/member-voice.png" alt="" style="object-position: 60% 50%;" />
-        <img src="/assets/tenzin-lekshe.jpg" alt="" />
-        <img src="/assets/feat-conf.png" alt="" />
-        <img src="/assets/highlights.png" alt="" />
-        <img src="/assets/hero-1.png" alt="" />
-        <img src="/assets/seoul.png" alt="" />
-        <img src="/assets/hero-2.png" alt="" />
-        <img src="/assets/hero-3.png" alt="" />
+        {homePage.hero.marquee.map((m) => (
+          <img src={m.img} alt="" style={m.focus ? `object-position: ${m.focus};` : undefined} />
+        ))}
       </div>
     </div>
     <p class="marquee-credit">
-      For photos, special thanks to
-      <a href="https://www.olivieradam.net/" target="_blank" rel="noopener noreferrer">Olivier Adam</a>
+      {homePage.hero.credit.text}
+      <a href={homePage.hero.credit.linkUrl} target="_blank" rel="noopener noreferrer">{homePage.hero.credit.linkLabel}</a>
     </p>
   </section>
 
@@ -79,14 +72,13 @@ const branchesMap = {
   <section>
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">SINCE 1987</div>
-        <h2 class="h-section">A growing global community</h2>
+        <div class="eyebrow">{homePage.stats.eyebrow}</div>
+        <h2 class="h-section">{homePage.stats.heading}</h2>
       </div>
       <div class="stats-row">
-        <div class="stat"><div class="h-stat">5,000+</div><div class="lab">Members</div></div>
-        <div class="stat"><div class="h-stat">45</div><div class="lab">Countries</div></div>
-        <div class="stat"><div class="h-stat">19</div><div class="lab">Conferences</div></div>
-        <div class="stat"><div class="h-stat">42</div><div class="lab">Newsletters Published</div></div>
+        {homePage.stats.items.map((s) => (
+          <div class="stat"><div class="h-stat">{s.value}</div><div class="lab">{s.label}</div></div>
+        ))}
       </div>
     </div>
   </section>
@@ -95,39 +87,32 @@ const branchesMap = {
   <section class="mission-alt">
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">OUR MISSION</div>
-        <h2 class="h-section">Three pillars of our work</h2>
+        <div class="eyebrow">{homePage.mission.eyebrow}</div>
+        <h2 class="h-section">{homePage.mission.heading}</h2>
         <div class="intro">
           <p>
-            Sakyadhita is a grassroots network connecting Buddhist women worldwide. We promote
-            research on Buddhist women's history and work for equal opportunity across all Buddhist
-            traditions. Through local branches, free online resources, and our biannual
-            conferences, we help empower the world's 300 million Buddhist women to work for peace
-            and social justice.
+            {homePage.mission.intro}
           </p>
         </div>
       </div>
       <div class="layout">
         <div class="pillar-card connect">
-          <h3>Connect</h3>
+          <h3>{homePage.mission.pillars[0].title}</h3>
           <p>
-            A communications network linking some 300 million Buddhist women worldwide through
-            branches, chapters, and online community.
+            {homePage.mission.pillars[0].text}
           </p>
         </div>
         <div class="mandala" aria-hidden="true"></div>
         <div class="pillar-card equality">
-          <h3>Advance Equality</h3>
+          <h3>{homePage.mission.pillars[1].title}</h3>
           <p>
-            Working for gender equity in Buddhist education, training, institutional structures,
-            and full ordination across traditions.
+            {homePage.mission.pillars[1].text}
           </p>
         </div>
         <div class="pillar-card convene" style="width: 500px">
-          <h3>Convene</h3>
+          <h3>{homePage.mission.pillars[2].title}</h3>
           <p>
-            Hosting the world's largest gathering of Buddhist women — our biennial international
-            conference, now in its 19th edition.
+            {homePage.mission.pillars[2].text}
           </p>
         </div>
       </div>
@@ -138,22 +123,20 @@ const branchesMap = {
   <section class="feat-conf">
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">UPCOMING CONFERENCE</div>
-        <h2 class="h-section">20th International Conference</h2>
+        <div class="eyebrow">{homePage.featuredConference.eyebrow}</div>
+        <h2 class="h-section">{homePage.featuredConference.heading}</h2>
       </div>
       <div class="feat-card">
-        <div class="pic" aria-hidden="true"></div>
+        <div class="pic" aria-hidden="true" style={`background-image:url('${homePage.featuredConference.card.img}')`}></div>
         <div class="body">
-          <div class="eyebrow">20TH INTERNATIONAL CONFERENCE</div>
-          <h3>Sakyadhita International Conference on Buddhist Women</h3>
-          <div class="meta-row">Coming in 2027</div>
+          <div class="eyebrow">{homePage.featuredConference.card.eyebrow}</div>
+          <h3>{homePage.featuredConference.card.title}</h3>
+          <div class="meta-row">{homePage.featuredConference.card.meta}</div>
           <p>
-            The 20th Sakyadhita International Conference travels to Jakarta, bringing together
-            Buddhist women from across the world's traditions for teachings, scholarship, and
-            friendship. Coming in 2027.
+            {homePage.featuredConference.card.text}
           </p>
           <div class="ctas">
-            <a class="btn btn--primary" href="/conferences">Conference Details</a>
+            <a class="btn btn--primary" href={homePage.featuredConference.card.cta.href}>{homePage.featuredConference.card.cta.label}</a>
           </div>
         </div>
       </div>
@@ -163,13 +146,13 @@ const branchesMap = {
   <!-- 19TH CONFERENCE HIGHLIGHTS -->
   <section class="highlights-19">
     <div class="shell">
-      <div class="eyebrow">19TH INTERNATIONAL CONFERENCE</div>
-      <h2>Highlights of the 19th Sakyadhita Conference in Sarawak, East Malaysia.</h2>
-      <div class="stage" id="highlights-stage" data-yt="IRr-CQYdQ8o" aria-label="Conference highlights video">
-        <span class="caption">SARAWAK · JUNE 2025</span>
+      <div class="eyebrow">{homePage.highlights.eyebrow}</div>
+      <h2>{homePage.highlights.heading}</h2>
+      <div class="stage" id="highlights-stage" data-yt={homePage.highlights.youtubeId} style={`background-image:url('${homePage.highlights.img}')`} aria-label="Conference highlights video">
+        <span class="caption">{homePage.highlights.caption}</span>
         <button class="play-pill" aria-label="Play highlights video"></button>
       </div>
-      <a class="btn btn--ghost more" href="/conferences">Previous Conference</a>
+      <a class="btn btn--ghost more" href={homePage.highlights.cta.href}>{homePage.highlights.cta.label}</a>
     </div>
   </section>
 
@@ -178,44 +161,22 @@ const branchesMap = {
     <div class="shell">
       <div class="section-head section-head--left" style="flex-direction:row; justify-content:space-between; align-items:flex-end;">
         <div style="display:flex; flex-direction:column; gap:8px;">
-          <div class="eyebrow">PAST CONFERENCES</div>
-          <h2 class="h-section">19 conferences of history</h2>
+          <div class="eyebrow">{homePage.pastConferences.eyebrow}</div>
+          <h2 class="h-section">{homePage.pastConferences.heading}</h2>
         </div>
-        <a href="/conferences" class="btn btn--ghost btn--sm">See all 19 <span class="arr">→</span></a>
+        <a href={homePage.pastConferences.seeAll.href} class="btn btn--ghost btn--sm">{homePage.pastConferences.seeAll.label} <span class="arr">→</span></a>
       </div>
       <div class="past-row">
-        <a class="past-card" href="/conferences">
-          <div class="pic" style="background-image:url('/assets/seoul.png');"><span class="num">#19</span></div>
-          <div class="body">
-            <div class="meta">2025 · SARAWAK, MALAYSIA</div>
-            <h3>Navigating Change: Buddhist Women in Transition</h3>
-            <span class="view">View conference →</span>
-          </div>
-        </a>
-        <a class="past-card" href="/conferences">
-          <div class="pic" style="background-image:url('/assets/feat-conf.png');"><span class="num">#18</span></div>
-          <div class="body">
-            <div class="meta">2023 · SEOUL, KOREA</div>
-            <h3>Living in a Precarious World</h3>
-            <span class="view">View conference →</span>
-          </div>
-        </a>
-        <a class="past-card" href="/conferences">
-          <div class="pic" style="background-image:url('/assets/hero-2.png');"><span class="num">#17</span></div>
-          <div class="body">
-            <div class="meta">2021 · ONLINE</div>
-            <h3>Buddhist Women Beyond Boundaries</h3>
-            <span class="view">View conference →</span>
-          </div>
-        </a>
-        <a class="past-card" href="/conferences">
-          <div class="pic" style="background-image:url('/assets/highlights.png');"><span class="num">#16</span></div>
-          <div class="body">
-            <div class="meta">2019 · BLUE MOUNTAINS</div>
-            <h3>New Horizons in Buddhism</h3>
-            <span class="view">View conference →</span>
-          </div>
-        </a>
+        {homePage.pastConferences.cards.map((c) => (
+          <a class="past-card" href={c.href}>
+            <div class="pic" style={`background-image:url('${c.img}');`}><span class="num">{c.num}</span></div>
+            <div class="body">
+              <div class="meta">{c.meta}</div>
+              <h3>{c.title}</h3>
+              <span class="view">{c.linkLabel}</span>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -225,59 +186,34 @@ const branchesMap = {
     <div class="shell">
       <div class="section-head section-head--left" style="flex-direction:row; justify-content:space-between; align-items:flex-end;">
         <div style="display:flex; flex-direction:column; gap:8px;">
-          <div class="eyebrow">LATEST FROM SAKYADHITA</div>
-          <h2 class="h-section">News, stories, and publications</h2>
+          <div class="eyebrow">{homePage.latest.eyebrow}</div>
+          <h2 class="h-section">{homePage.latest.heading}</h2>
         </div>
-        <a href="/publications" class="btn btn--ghost btn--sm">See all <span class="arr">→</span></a>
+        <a href={homePage.latest.seeAll.href} class="btn btn--ghost btn--sm">{homePage.latest.seeAll.label} <span class="arr">→</span></a>
       </div>
 
       <div class="latest-row">
         <article class="latest-feature">
-          <div class="media" style="background-image:url('/assets/newsletter-v33.png'); background-position: center top;"></div>
+          <div class="media" style={`background-image:url('${homePage.latest.feature.img}'); background-position: ${homePage.latest.feature.focus};`}></div>
           <div class="body">
-            <div class="eyebrow">NEWSLETTER · 2025</div>
-            <h3>Volume 33, Number 1</h3>
-            <p>Reflections from the 18th Conference in Seoul, and a preview of Sarawak 2025.</p>
-            <a class="latest-link" href="/newsletters">Read latest issue →</a>
+            <div class="eyebrow">{homePage.latest.feature.eyebrow}</div>
+            <h3>{homePage.latest.feature.title}</h3>
+            <p>{homePage.latest.feature.text}</p>
+            <a class="latest-link" href={homePage.latest.feature.href}>{homePage.latest.feature.linkLabel}</a>
           </div>
         </article>
 
         <div class="latest-stack">
-          <article class="latest-mini">
-            <div class="media" style="background-image:url('/assets/seoul.png')"></div>
-            <div class="body">
-              <div class="eyebrow">STORY · MEMBER VOICES</div>
-              <h3>Building a chapter in Mongolia</h3>
-              <a class="latest-link" href="/branches">Read story →</a>
-            </div>
-          </article>
-
-          <article class="latest-mini">
-            <div class="media" style="background-image:url('/assets/highlights.png')"></div>
-            <div class="body">
-              <div class="eyebrow">CONFERENCE · SARAWAK 2025</div>
-              <h3>Highlights from the 19th Conference</h3>
-              <a class="latest-link" href="/conferences?n=19">See highlights →</a>
-            </div>
-          </article>
-
-          <article class="latest-mini">
-            <div class="media" style="background-image:url('/assets/bhutan-2025-ordination.png')"></div>
-            <div class="body">
-              <div class="eyebrow">ORDINATION · MILESTONE</div>
-              <h3>265 nuns receive full ordination in Bhutan</h3>
-              <a class="latest-link" href="/ordination-issue">Learn more →</a>
-            </div>
-          </article>
-
-          <article class="latest-mini">
-            <div class="media" style="background-image:url('/assets/publication.png')"></div>
-            <div class="body">
-              <div class="eyebrow">PUBLICATION</div>
-              <h3>Bridging Worlds: Buddhist Women's Voices Across Generations</h3>
-              <a class="latest-link" href="/publications">Browse library →</a>
-            </div>
-          </article>
+          {homePage.latest.items.map((m) => (
+            <article class="latest-mini">
+              <div class="media" style={`background-image:url('${m.img}')`}></div>
+              <div class="body">
+                <div class="eyebrow">{m.eyebrow}</div>
+                <h3>{m.title}</h3>
+                <a class="latest-link" href={m.href}>{m.linkLabel}</a>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </div>
@@ -287,22 +223,15 @@ const branchesMap = {
   <section class="press">
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">AS COVERED BY</div>
-        <h2 class="h-section">Featured in leading Buddhist publications</h2>
+        <div class="eyebrow">{homePage.press.eyebrow}</div>
+        <h2 class="h-section">{homePage.press.heading}</h2>
       </div>
       <div class="press-grid">
-        <a class="press-tile" href="https://tricycle.org/article/buddhist-women-conference/" target="_blank" rel="noopener noreferrer"
-          ><img class="logo" src="/assets/logo-tricycle.png" alt="Tricycle" style="width: 132px; height: 132px" loading="lazy" /></a
-        >
-        <a class="press-tile" href="https://www.lionsroar.com/the-sakyadhita-movement/" target="_blank" rel="noopener noreferrer"
-          ><img class="logo" src="/assets/logo-lionsroar.png" alt="Lion's Roar" style="width: 156px; height: 156px" loading="lazy" /></a
-        >
-        <a class="press-tile" href="https://www.buddhistdoor.net/features/daughters-of-the-buddha-18th-sakyadhita-conference-in-seoul-celebrates-the-sacred-feminine/" target="_blank" rel="noopener noreferrer"
-          ><img class="logo" src="/assets/logo-bdg.png" alt="Buddhistdoor Global" style="width: 132px; height: 132px" loading="lazy" /></a
-        >
-        <a class="press-tile" href="https://buddhistuniversity.net/content/articles/sakyadhita_fenn-koppedrayer" target="_blank" rel="noopener noreferrer"
-          ><img class="logo" src="/assets/logo-obu.png" alt="The Open Buddhist University" style="width: 150px; height: auto" loading="lazy" /></a
-        >
+        {homePage.press.logos.map((p) => (
+          <a class="press-tile" href={p.href} target="_blank" rel="noopener noreferrer"
+            ><img class="logo" src={p.img} alt={p.alt} style={`width: ${p.width}; height: ${p.height}`} loading="lazy" /></a
+          >
+        ))}
       </div>
     </div>
   </section>
@@ -311,11 +240,10 @@ const branchesMap = {
   <section class="branches">
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">LOCAL BRANCHES</div>
-        <h2 class="h-section">Find Sakyadhita near you</h2>
+        <div class="eyebrow">{homePage.branches.eyebrow}</div>
+        <h2 class="h-section">{homePage.branches.heading}</h2>
         <p class="muted" style="max-width:62ch;">
-          National branches and local chapters organize events, run translation projects, and bring
-          Sakyadhita's mission to communities worldwide. Click a pin to find your nearest branch.
+          {homePage.branches.text}
         </p>
       </div>
       <div class="map-wrap" id="home-map">
@@ -328,7 +256,7 @@ const branchesMap = {
         </div>
       </div>
       <div style="text-align:center; margin-top:24px;">
-        <a class="btn btn--white" href="/branches" style="border:1px solid var(--border);">View branch directory <span class="arr">→</span></a>
+        <a class="btn btn--white" href={homePage.branches.cta.href} style="border:1px solid var(--border);">{homePage.branches.cta.label} <span class="arr">→</span></a>
       </div>
     </div>
   </section>
@@ -337,28 +265,18 @@ const branchesMap = {
   <section class="ways">
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">BE INVOLVED</div>
-        <h2 class="h-section">Three ways to support Sakyadhita</h2>
+        <div class="eyebrow">{homePage.ways.eyebrow}</div>
+        <h2 class="h-section">{homePage.ways.heading}</h2>
       </div>
       <div class="ways-grid">
-        <a class="way way--join" href="/join">
-          <div class="glyph" aria-hidden="true"></div>
-          <h3>Join Us</h3>
-          <p>Become a member of our global network. Member tiers start at $15 USD.</p>
-          <span class="btn btn--primary btn--sm" style="margin-top:6px;">Join Now</span>
-        </a>
-        <a class="way way--vol" href="/volunteer">
-          <div class="glyph" aria-hidden="true"></div>
-          <h3>Volunteer</h3>
-          <p>15 committees need help — from translation to conference planning.</p>
-          <span class="btn btn--ghost btn--sm" style="margin-top:6px;">Learn more</span>
-        </a>
-        <a class="way way--don" href="/donate">
-          <div class="glyph" aria-hidden="true"></div>
-          <h3>Donate</h3>
-          <p>Fund conference scholarships, ordination advocacy, and the newsletter.</p>
-          <span class="btn btn--ghost btn--sm" style="margin-top:6px;">Learn more</span>
-        </a>
+        {homePage.ways.cards.map((c, i) => (
+          <a class={`way ${wayMods[i] ?? ''}`} href={c.href}>
+            <div class="glyph" aria-hidden="true" style={`background-image:url('${c.img}')`}></div>
+            <h3>{c.title}</h3>
+            <p>{c.text}</p>
+            <span class={`btn ${i === 0 ? 'btn--primary' : 'btn--ghost'} btn--sm`} style="margin-top:6px;">{c.ctaLabel}</span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -943,9 +861,7 @@ const branchesMap = {
       background-position: center;
       background-repeat: no-repeat;
     }
-    .way--join .glyph { background-image: url('/assets/icon-member.png'); }
-    .way--vol .glyph { background-image: url('/assets/icon-volunteer.png'); }
-    .way--don .glyph { background-image: url('/assets/icon-donate.png'); }
+    /* Glyph images come inline from src/data/pages/home.json (ways.cards[].img) */
     .way h3 { font-family: var(--font-title); font-weight: 700; font-size: 26px; color: var(--ink); }
     .way p { font-size: 14.5px; color: var(--ink-body); line-height: 1.55; padding: 0 16px; }
 

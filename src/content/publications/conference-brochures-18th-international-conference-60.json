@@ -1,12 +1,12 @@
 {
   "kind": "2023 · KOREA",
   "title": "18th International Conference",
-  "href": "https://sakyadhita.org/_astro/2023%20Brochure%2018th%20Sakyadhita%20Seoul%20.ePB1kzYe.pdf",
+  "href": "/uploads/publication-2023-brochure-18th-sakyadhita-seoul-.pdf",
   "source": "Seoul",
   "linkLabel": "PDF →",
   "cover": {
     "style": "photo",
-    "image": "/assets/conf/conf18-seoul.jpg"
+    "image": "/uploads/conf18-seoul.jpg"
   },
   "section": "conference-brochures",
   "sort": 60

@@ -1,0 +1,62 @@
+{
+  "_comment": "Donate page copy, including the PayPal donate link and impact amounts.",
+  "seo": {
+    "title": "Donate · Sakyadhita",
+    "description": "Support Sakyadhita's work for Buddhist women worldwide — conference scholarships, the newsletter, ordination advocacy, and branch development. Tax-deductible 501(c)3 donations.",
+    "ogImage": "/uploads/icon-donate.png"
+  },
+  "hero": {
+    "eyebrow": "GET INVOLVED · DONATE",
+    "title": "Your gift sustains 35+ years of work",
+    "lede": "Sakyadhita is a 501(c)3 nonprofit, volunteer-run. Your contribution goes directly to conference scholarships, the newsletter, ordination advocacy, and branch development."
+  },
+  "impact": {
+    "eyebrow": "WHERE YOUR MONEY GOES",
+    "heading": "Your impact",
+    "lede": "Every gift makes a difference, and even $5 goes a long way. Your contribution helps sustain our mission by funding the newsletter, sponsoring conference scholarships, and advancing ordination advocacy across all traditions.",
+    "cards": [
+      {
+        "value": "$25",
+        "text": "Funds one newsletter print run."
+      },
+      {
+        "value": "$100",
+        "text": "Sponsors one conference scholarship application."
+      },
+      {
+        "value": "$500",
+        "text": "Funds full conference travel for one nun from a developing country."
+      },
+      {
+        "value": "$1,000",
+        "text": "Supports a year of ordination advocacy programming."
+      }
+    ]
+  },
+  "paypalUrl": "https://www.paypal.com/donate?hosted_button_id=78ZSMXL4ZSYJQ",
+  "donateButtonLabel": "Donate with PayPal",
+  "taxNote": {
+    "lead": "Tax-deductible.",
+    "text": "Sakyadhita International is a registered 501(c)3 non-profit in the United States. Donations from U.S. taxpayers are tax-deductible. EIN available on request."
+  },
+  "ways": {
+    "eyebrow": "BE INVOLVED",
+    "heading": "More ways to support Sakyadhita",
+    "cards": [
+      {
+        "img": "/uploads/icon-member.png",
+        "title": "Join Us",
+        "text": "Become a member of our global network. Member tiers start at $15 USD.",
+        "buttonLabel": "Join Now",
+        "href": "/join"
+      },
+      {
+        "img": "/uploads/icon-volunteer.png",
+        "title": "Volunteer",
+        "text": "15 committees need help — from translation to conference planning.",
+        "buttonLabel": "Learn more",
+        "href": "/volunteer"
+      }
+    ]
+  }
+}

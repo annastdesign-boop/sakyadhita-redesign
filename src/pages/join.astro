@@ -9,23 +9,30 @@
  * live PayPal checkout is a separate, deliberate step.
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
+import joinPage from '../data/pages/join.json'
+
+/* Benefit-card icons stay in code — matched to the cards in join.json by order. */
+const benefitIcons = [
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h11v14H5a1 1 0 0 1-1-1V5z"/><path d="M15 8h3a1 1 0 0 1 1 1v8a2 2 0 0 1-2 2"/><line x1="7" y1="8.5" x2="12" y2="8.5"/><line x1="7" y1="11.5" x2="12" y2="11.5"/><line x1="7" y1="14.5" x2="10" y2="14.5"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 0 0 4v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1a2 2 0 0 0 0-4V8z"/><line x1="14" y1="6.5" x2="14" y2="17.5" stroke-dasharray="2 2.4"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8.5 12l2.2 2.2L15.5 9.5"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M4 12h16"/><path d="M12 4c2.6 2.2 2.6 13.8 0 16M12 4c-2.6 2.2-2.6 13.8 0 16"/></svg>',
+]
 ---
 
 <BaseLayout
-  title="Join · Sakyadhita"
-  description="Become a member of Sakyadhita — a global network of 5,000+ Buddhist women across 45 countries. Annual membership from $15, lifetime from $150."
+  title={joinPage.seo.title}
+  description={joinPage.seo.description}
   active="get-involved"
-  ogImage="/assets/icon-member.png"
+  ogImage={joinPage.seo.ogImage}
 >
   <section class="hero-compact">
     <div class="shell">
-      <div class="eyebrow">GET INVOLVED · MEMBERSHIP</div>
-      <h1 class="h-display">Join Sakyadhita</h1>
-      <p class="lede" style="max-width: 500px; margin-left: auto; margin-right: auto;">
-        Become part of a global network of 5,000+ Buddhist women across 45 countries.
-      </p>
+      <div class="eyebrow">{joinPage.hero.eyebrow}</div>
+      <h1 class="h-display">{joinPage.hero.title}</h1>
+      <p class="lede" style="max-width: 500px; margin-left: auto; margin-right: auto;">{joinPage.hero.lede}</p>
       <div style="display: flex; gap: 12px; justify-content: center; margin-top: 24px;">
-        <a class="btn btn--primary btn--lg" href="#join-form">Become a member</a>
+        <a class="btn btn--primary btn--lg" href="#join-form">{joinPage.hero.buttonLabel}</a>
       </div>
     </div>
   </section>
@@ -34,30 +41,19 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   <section>
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">WHAT YOU GET</div>
-        <h2 class="h-section">Why become a member?</h2>
+        <div class="eyebrow">{joinPage.benefits.eyebrow}</div>
+        <h2 class="h-section">{joinPage.benefits.heading}</h2>
       </div>
       <div class="benefits-grid">
-        <div class="benefit">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h11v14H5a1 1 0 0 1-1-1V5z"/><path d="M15 8h3a1 1 0 0 1 1 1v8a2 2 0 0 1-2 2"/><line x1="7" y1="8.5" x2="12" y2="8.5"/><line x1="7" y1="11.5" x2="12" y2="11.5"/><line x1="7" y1="14.5" x2="10" y2="14.5"/></svg></div>
-          <h3>The newsletter</h3>
-          <p>Original scholarship and member essays from Buddhist women across 45 countries — mailed to your door once a year.</p>
-        </div>
-        <div class="benefit">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 0 0 4v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1a2 2 0 0 0 0-4V8z"/><line x1="14" y1="6.5" x2="14" y2="17.5" stroke-dasharray="2 2.4"/></svg></div>
-          <h3>Conference access</h3>
-          <p>Stand among thousands of Buddhist women — member-rate entry to the biennial international conference and regional gatherings.</p>
-        </div>
-        <div class="benefit">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8.5 12l2.2 2.2L15.5 9.5"/></svg></div>
-          <h3>A voice in decisions</h3>
-          <p>Help decide where Sakyadhita stands on ordination, education, and advocacy — your vote shapes the network's direction.</p>
-        </div>
-        <div class="benefit">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M4 12h16"/><path d="M12 4c2.6 2.2 2.6 13.8 0 16M12 4c-2.6 2.2-2.6 13.8 0 16"/></svg></div>
-          <h3>Branch connection</h3>
-          <p>We introduce you directly to your nearest branch or chapter, so community is never more than an introduction away.</p>
-        </div>
+        {
+          joinPage.benefits.cards.map((card, i) => (
+            <div class="benefit">
+              <div class="ico" set:html={benefitIcons[i]} />
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -66,39 +62,26 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   <section class="tiers">
     <div class="shell">
       <div class="section-head">
-        <h2 class="h-section">Membership is open to everyone</h2>
-        <p class="muted" style="max-width: 62ch;">
-          Every member receives the same benefits. Reduced rates keep membership accessible to
-          nuns, students, and those who are unemployed, while lifetime and regular dues help fund
-          scholarships across the network.
-        </p>
+        <h2 class="h-section">{joinPage.tiers.heading}</h2>
+        <p class="muted" style="max-width: 62ch;">{joinPage.tiers.text}</p>
       </div>
       <div class="tier-groups">
-        <div class="tier-group">
-          <div class="gh"><h3>Annual</h3><span class="freq">Renewed yearly</span></div>
-          <div class="tier-line">
-            <div class="amt">$30</div>
-            <div class="who"><div class="w-title">Regular member</div><div class="w-sub">For laypeople and supporters</div></div>
-          </div>
-          <div class="tier-line">
-            <div class="amt">$15</div>
-            <div class="who"><div class="w-title">Reduced rate</div><div class="w-sub">Nuns, students, and unemployed members</div></div>
-          </div>
-        </div>
-        <div class="tier-group">
-          <div class="gh"><h3>Lifetime</h3><span class="freq">One-time</span></div>
-          <div class="tier-line">
-            <div class="amt">$300</div>
-            <div class="who"><div class="w-title">Laypeople</div><div class="w-sub">Lifetime membership, paid once</div></div>
-          </div>
-          <div class="tier-line">
-            <div class="amt">$150</div>
-            <div class="who"><div class="w-title">Monastics</div><div class="w-sub">Lifetime membership, paid once</div></div>
-          </div>
-        </div>
+        {
+          joinPage.tiers.groups.map((group) => (
+            <div class="tier-group">
+              <div class="gh"><h3>{group.heading}</h3><span class="freq">{group.freq}</span></div>
+              {group.lines.map((line) => (
+                <div class="tier-line">
+                  <div class="amt">{line.amt}</div>
+                  <div class="who"><div class="w-title">{line.title}</div><div class="w-sub">{line.sub}</div></div>
+                </div>
+              ))}
+            </div>
+          ))
+        }
       </div>
       <div class="tier-actions">
-        <a class="btn btn--primary btn--lg" href="#join-form">Become a member</a>
+        <a class="btn btn--primary btn--lg" href="#join-form">{joinPage.tiers.buttonLabel}</a>
       </div>
     </div>
   </section>
@@ -107,8 +90,8 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   <section class="form-section" id="join-form">
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">BECOME A MEMBER</div>
-        <h2 class="h-section">Tell us about yourself</h2>
+        <div class="eyebrow">{joinPage.formHead.eyebrow}</div>
+        <h2 class="h-section">{joinPage.formHead.heading}</h2>
       </div>
 
       <form class="form-card" name="paidmembership" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
@@ -160,7 +143,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         </div>
 
         <div class="submit-row">
-          <button type="submit" class="btn btn--primary btn--lg">Continue to payment <span class="arr">→</span></button>
+          <button type="submit" class="btn btn--primary btn--lg">{joinPage.formHead.submitLabel} <span class="arr">→</span></button>
         </div>
       </form>
     </div>
@@ -173,11 +156,11 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       <button class="pay-x" type="button" data-close aria-label="Close">
         <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
-      <div class="eyebrow" style="text-align:center;">SECURE PAYMENT</div>
-      <h2 id="pay-title">Pay with PayPal</h2>
+      <div class="eyebrow" style="text-align:center;">{joinPage.payModal.eyebrow}</div>
+      <h2 id="pay-title">{joinPage.payModal.title}</h2>
       <p class="pay-amount">Total: <b id="pay-amount-value">$30</b> USD</p>
       <div id="paypal-button-container"></div>
-      <p class="pay-note">🔒 Processed securely by PayPal — card payments accepted, no PayPal account needed.</p>
+      <p class="pay-note">{joinPage.payModal.note}</p>
       <p class="pay-error" id="pay-error" role="alert" hidden></p>
     </div>
   </div>
@@ -185,18 +168,22 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   <!-- NEWSLETTER -->
   <section class="renew" id="newsletter" style="margin-bottom: 0;">
     <div class="shell shell--narrow">
-      <div class="eyebrow">NEWSLETTER</div>
-      <h2 class="h-section" style="margin: 12px 0 6px;">Subscribe to our newsletter</h2>
-      <p class="muted" style="margin-bottom: 18px;">Join our email list for newsletters, event news, and stories from the network.</p>
+      <div class="eyebrow">{joinPage.newsletter.eyebrow}</div>
+      <h2 class="h-section" style="margin: 12px 0 6px;">{joinPage.newsletter.heading}</h2>
+      <p class="muted" style="margin-bottom: 18px;">{joinPage.newsletter.text}</p>
       <form class="el-form" id="join-newsletter" style="max-width: 480px; margin: 0 auto;">
         <input type="email" required placeholder="you@email.com" aria-label="Email address" />
-        <button type="submit" class="btn btn--primary">Subscribe</button>
+        <button type="submit" class="btn btn--primary">{joinPage.newsletter.buttonLabel}</button>
       </form>
     </div>
   </section>
 
+  <script type="application/json" id="join-copy" set:html={JSON.stringify(joinPage.success)} />
   <script>
     import { validateForm } from '../scripts/forms'
+
+    /** Editable thank-you copy (from src/data/pages/join.json). */
+    const joinCopy = JSON.parse(document.getElementById('join-copy')?.textContent || '{}')
 
     /**
      * Membership payment flow:
@@ -323,8 +310,8 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         : ''
       panel.innerHTML = `
         <div class="fs-icon" aria-hidden="true">🪷</div>
-        <h3>Welcome to Sakyadhita!</h3>
-        <p>Your payment was received and your membership is confirmed. PayPal has emailed you a receipt.</p>
+        <h3>${joinCopy.title || 'Welcome to Sakyadhita!'}</h3>
+        <p>${joinCopy.text || 'Your payment was received and your membership is confirmed. PayPal has emailed you a receipt.'}</p>
         ${renewLine}
         <p style="margin-top:10px; font-size:13px; color:var(--ink-subtle);">Payment reference: ${referenceId}</p>`
       form.style.display = 'none'

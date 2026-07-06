@@ -8,13 +8,14 @@
  * point to the nearest real page until that content is migrated.
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
+import resourcesPage from '../data/pages/resources.json'
 ---
 
 <BaseLayout
-  title="Resources · Sakyadhita"
-  description="35+ years of newsletters, scholarship, brochures, member stories, and translations from Sakyadhita — free and open to all."
+  title={resourcesPage.seo.title}
+  description={resourcesPage.seo.description}
   active="resources"
-  ogImage="/assets/conf-newsletter.png"
+  ogImage={resourcesPage.seo.ogImage}
 >
   <div class="shell">
     <nav class="crumb" aria-label="Breadcrumb">
@@ -24,11 +25,10 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
   <section class="hero-compact">
     <div class="shell">
-      <div class="eyebrow">RESOURCES</div>
-      <h1 class="h-display">A library built by Buddhist women, for Buddhist women</h1>
+      <div class="eyebrow">{resourcesPage.hero.eyebrow}</div>
+      <h1 class="h-display">{resourcesPage.hero.heading}</h1>
       <p class="lede">
-        35+ years of newsletters, scholarship, brochures, member stories, and translations — free
-        and open to all.
+        {resourcesPage.hero.lede}
       </p>
     </div>
   </section>
@@ -37,46 +37,18 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   <section>
     <div class="shell">
       <div class="lib-grid">
-        <a class="lib" href="/newsletters">
-          <div class="pic" style="background-image:url('/assets/conf-newsletter.png')">
-            <span class="count">LIBRARY · 42 ISSUES</span>
-          </div>
-          <div class="body">
-            <h3>Newsletter Archive</h3>
-            <p>Every issue of the Sakyadhita Newsletter, 1991 to today. Searchable by year, theme, and conference.</p>
-            <span class="cta">Browse newsletters →</span>
-          </div>
-        </a>
-        <a class="lib" href="/publications">
-          <div class="pic" style="background-image:url('/assets/publication.png')">
-            <span class="count">LIBRARY · 60+ RESOURCES</span>
-          </div>
-          <div class="body">
-            <h3>Publications Library</h3>
-            <p>Books, bibliographies, scholarly articles, and multilingual brochures in 9 languages.</p>
-            <span class="cta">Browse publications →</span>
-          </div>
-        </a>
-        <a class="lib" href="/newsletters">
-          <div class="pic" style="background-image:url('/assets/member-voice.png')">
-            <span class="count">STORIES · NEW</span>
-          </div>
-          <div class="body">
-            <h3>Stories &amp; Articles</h3>
-            <p>Member essays, conference reflections, news, dharma teachings — published throughout the year.</p>
-            <span class="cta">Read stories →</span>
-          </div>
-        </a>
-        <a class="lib" href="/publications">
-          <div class="pic" style="background-image:url('/assets/seoul.png')">
-            <span class="count">VISUAL · CULTURAL</span>
-          </div>
-          <div class="body">
-            <h3>Buddhist Culture</h3>
-            <p>Images, art, music, ritual, and architecture documenting Buddhist women across cultures and centuries.</p>
-            <span class="cta">Explore culture →</span>
-          </div>
-        </a>
+        {resourcesPage.libraryCards.map((card) => (
+          <a class="lib" href={card.href}>
+            <div class="pic" style={`background-image:url('${card.img}')`}>
+              <span class="count">{card.count}</span>
+            </div>
+            <div class="body">
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+              <span class="cta">{card.ctaLabel}</span>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -85,37 +57,21 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   <section>
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">FEATURED · THIS MONTH</div>
-        <h2 class="h-section">New &amp; noteworthy</h2>
+        <div class="eyebrow">{resourcesPage.featured.eyebrow}</div>
+        <h2 class="h-section">{resourcesPage.featured.heading}</h2>
       </div>
       <div class="feat-row">
-        <article class="feat-cd">
-          <div class="pic" style="background-image:url('/assets/conf-newsletter.png')"></div>
-          <div class="body">
-            <div class="eyebrow">NEWSLETTER · 2025</div>
-            <h3>Volume 33, Number 1</h3>
-            <p>Sarawak 2025 preview · Reflections from Seoul · Branch updates</p>
-            <a class="cta" href="/newsletters">Read latest →</a>
-          </div>
-        </article>
-        <article class="feat-cd">
-          <div class="pic" style="background-image:url('/assets/publication.png')"></div>
-          <div class="body">
-            <div class="eyebrow">PUBLICATION · 2024</div>
-            <h3>Bridging Worlds</h3>
-            <p>Karma Lekshe Tsomo's new anthology of Buddhist women's voices across generations.</p>
-            <a class="cta" href="/publications">Download PDF →</a>
-          </div>
-        </article>
-        <article class="feat-cd">
-          <div class="pic" style="background-image:url('/assets/member-voice.png')"></div>
-          <div class="body">
-            <div class="eyebrow">STORY · MEMBER VOICE</div>
-            <h3>What ordination meant to me</h3>
-            <p>A bhiksuni's reflection on the path, 30 years on.</p>
-            <a class="cta" href="/ordination-issue">Read story →</a>
-          </div>
-        </article>
+        {resourcesPage.featured.cards.map((card) => (
+          <article class="feat-cd">
+            <div class="pic" style={`background-image:url('${card.img}')`}></div>
+            <div class="body">
+              <div class="eyebrow">{card.eyebrow}</div>
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+              <a class="cta" href={card.href}>{card.ctaLabel}</a>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>

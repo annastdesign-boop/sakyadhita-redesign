@@ -1,0 +1,77 @@
+{
+  "_comment": "Resources page copy — every heading, paragraph, card, and image on the Resources page (src/pages/resources.astro). Edit here or via the CMS; the page layout and styles stay in the .astro file.",
+  "seo": {
+    "title": "Resources · Sakyadhita",
+    "description": "35+ years of newsletters, scholarship, brochures, member stories, and translations from Sakyadhita — free and open to all.",
+    "ogImage": "/uploads/conf-newsletter.png"
+  },
+  "hero": {
+    "eyebrow": "RESOURCES",
+    "heading": "A library built by Buddhist women, for Buddhist women",
+    "lede": "35+ years of newsletters, scholarship, brochures, member stories, and translations — free and open to all."
+  },
+  "libraryCards": [
+    {
+      "img": "/uploads/conf-newsletter.png",
+      "count": "LIBRARY · 42 ISSUES",
+      "title": "Newsletter Archive",
+      "text": "Every issue of the Sakyadhita Newsletter, 1991 to today. Searchable by year, theme, and conference.",
+      "ctaLabel": "Browse newsletters →",
+      "href": "/newsletters"
+    },
+    {
+      "img": "/uploads/publication.png",
+      "count": "LIBRARY · 60+ RESOURCES",
+      "title": "Publications Library",
+      "text": "Books, bibliographies, scholarly articles, and multilingual brochures in 9 languages.",
+      "ctaLabel": "Browse publications →",
+      "href": "/publications"
+    },
+    {
+      "img": "/uploads/member-voice.png",
+      "count": "STORIES · NEW",
+      "title": "Stories & Articles",
+      "text": "Member essays, conference reflections, news, dharma teachings — published throughout the year.",
+      "ctaLabel": "Read stories →",
+      "href": "/newsletters"
+    },
+    {
+      "img": "/uploads/seoul.png",
+      "count": "VISUAL · CULTURAL",
+      "title": "Buddhist Culture",
+      "text": "Images, art, music, ritual, and architecture documenting Buddhist women across cultures and centuries.",
+      "ctaLabel": "Explore culture →",
+      "href": "/publications"
+    }
+  ],
+  "featured": {
+    "eyebrow": "FEATURED · THIS MONTH",
+    "heading": "New & noteworthy",
+    "cards": [
+      {
+        "img": "/uploads/conf-newsletter.png",
+        "eyebrow": "NEWSLETTER · 2025",
+        "title": "Volume 33, Number 1",
+        "text": "Sarawak 2025 preview · Reflections from Seoul · Branch updates",
+        "ctaLabel": "Read latest →",
+        "href": "/newsletters"
+      },
+      {
+        "img": "/uploads/publication.png",
+        "eyebrow": "PUBLICATION · 2024",
+        "title": "Bridging Worlds",
+        "text": "Karma Lekshe Tsomo's new anthology of Buddhist women's voices across generations.",
+        "ctaLabel": "Download PDF →",
+        "href": "/publications"
+      },
+      {
+        "img": "/uploads/member-voice.png",
+        "eyebrow": "STORY · MEMBER VOICE",
+        "title": "What ordination meant to me",
+        "text": "A bhiksuni's reflection on the path, 30 years on.",
+        "ctaLabel": "Read story →",
+        "href": "/ordination-issue"
+      }
+    ]
+  }
+}

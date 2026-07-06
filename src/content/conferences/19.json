@@ -25,15 +25,15 @@
   },
   "photos": [
     {
-      "f": "/assets/conf/conf19-banner.jpg",
+      "f": "/uploads/conf19-banner.jpg",
       "caption": "Sarawak 2025"
     },
     {
-      "f": "/assets/conf/conf19-borneo.jpg",
+      "f": "/uploads/conf19-borneo.jpg",
       "caption": "Borneo gathering"
     },
     {
-      "f": "/assets/conf/conf19-mountains.jpg",
+      "f": "/uploads/conf19-mountains.jpg",
       "caption": "Highlands of Sarawak"
     }
   ]

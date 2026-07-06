@@ -1,0 +1,95 @@
+{
+  "_comment": "Join / Membership page copy. ⚠️ The payment tier buttons, prices, and the PayPal checkout are managed in code — the 'Membership tiers' section here is display text only and does not change what people are charged.",
+  "seo": {
+    "title": "Join · Sakyadhita",
+    "description": "Become a member of Sakyadhita — a global network of 5,000+ Buddhist women across 45 countries. Annual membership from $15, lifetime from $150.",
+    "ogImage": "/uploads/icon-member.png"
+  },
+  "hero": {
+    "eyebrow": "GET INVOLVED · MEMBERSHIP",
+    "title": "Join Sakyadhita",
+    "lede": "Become part of a global network of 5,000+ Buddhist women across 45 countries.",
+    "buttonLabel": "Become a member"
+  },
+  "benefits": {
+    "eyebrow": "WHAT YOU GET",
+    "heading": "Why become a member?",
+    "cards": [
+      {
+        "title": "The newsletter",
+        "text": "Original scholarship and member essays from Buddhist women across 45 countries — mailed to your door once a year."
+      },
+      {
+        "title": "Conference access",
+        "text": "Stand among thousands of Buddhist women — member-rate entry to the biennial international conference and regional gatherings."
+      },
+      {
+        "title": "A voice in decisions",
+        "text": "Help decide where Sakyadhita stands on ordination, education, and advocacy — your vote shapes the network's direction."
+      },
+      {
+        "title": "Branch connection",
+        "text": "We introduce you directly to your nearest branch or chapter, so community is never more than an introduction away."
+      }
+    ]
+  },
+  "tiers": {
+    "heading": "Membership is open to everyone",
+    "text": "Every member receives the same benefits. Reduced rates keep membership accessible to nuns, students, and those who are unemployed, while lifetime and regular dues help fund scholarships across the network.",
+    "buttonLabel": "Become a member",
+    "groups": [
+      {
+        "heading": "Annual",
+        "freq": "Renewed yearly",
+        "lines": [
+          {
+            "amt": "$30",
+            "title": "Regular member",
+            "sub": "For laypeople and supporters"
+          },
+          {
+            "amt": "$15",
+            "title": "Reduced rate",
+            "sub": "Nuns, students, and unemployed members"
+          }
+        ]
+      },
+      {
+        "heading": "Lifetime",
+        "freq": "One-time",
+        "lines": [
+          {
+            "amt": "$300",
+            "title": "Laypeople",
+            "sub": "Lifetime membership, paid once"
+          },
+          {
+            "amt": "$150",
+            "title": "Monastics",
+            "sub": "Lifetime membership, paid once"
+          }
+        ]
+      }
+    ]
+  },
+  "formHead": {
+    "eyebrow": "BECOME A MEMBER",
+    "heading": "Tell us about yourself",
+    "submitLabel": "Continue to payment"
+  },
+  "payModal": {
+    "eyebrow": "SECURE PAYMENT",
+    "title": "Pay with PayPal",
+    "note": "🔒 Processed securely by PayPal — card payments accepted, no PayPal account needed."
+  },
+  "newsletter": {
+    "eyebrow": "NEWSLETTER",
+    "heading": "Subscribe to our newsletter",
+    "text": "Join our email list for newsletters, event news, and stories from the network.",
+    "buttonLabel": "Subscribe"
+  },
+  "success": {
+    "title": "Welcome to Sakyadhita!",
+    "text": "Your payment was received and your membership is confirmed. PayPal has emailed you a receipt."
+  }
+}
