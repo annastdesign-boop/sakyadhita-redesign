@@ -343,6 +343,10 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       padding: 40px;
       box-shadow: var(--shadow-md);
     }
+    @media (max-width: 560px) {
+      /* Wider fields on phones — 8px from the card border */
+      .form-card { padding: 28px 8px; }
+    }
     .donate-box {
       background: var(--bg-section);
       border: 1px solid var(--border);
@@ -350,8 +354,12 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       padding: 18px;
       margin: 6px 0 4px;
     }
-    .donate-box .row-line { align-items: center; gap: 12px; margin-top: 12px; }
-    .donate-box input { max-width: 200px; }
+    .donate-box .row-line { align-items: center; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+    .donate-box input { flex: 1 1 140px; max-width: 200px; min-width: 0; }
+    @media (max-width: 560px) {
+      /* Amount field stays inside the box instead of sticking out */
+      .donate-box input { max-width: 100%; width: 100%; }
+    }
     .form-card .submit-row {
       display: flex; align-items: center; justify-content: space-between;
       gap: 16px; margin-top: 18px;

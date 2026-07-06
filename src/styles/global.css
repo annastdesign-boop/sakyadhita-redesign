@@ -218,13 +218,13 @@ section { padding: 80px 0; }
   /* Slide-in drawer from the right */
   .nav-links {
     position: fixed;
-    top: 0; right: 0; left: auto;
+    top: 76px; right: 0; left: auto;
     width: min(340px, 86vw);
-    height: 100vh;
+    height: calc(100vh - 76px);
     flex-direction: column;
     align-items: stretch;
     gap: 4px;
-    padding: 80px 18px 24px;
+    padding: 16px 18px 24px;
     background: rgba(253, 249, 246, 0.98);
     backdrop-filter: saturate(140%) blur(14px);
     -webkit-backdrop-filter: saturate(140%) blur(14px);
@@ -595,7 +595,8 @@ img { border-radius: 8px; }
 .footer-news p { font-size: 13.5px; color: var(--ink-2); margin-bottom: 12px; }
 .footer-news form { display: flex; background: #fff; border-radius: var(--r-pill); padding: 4px; border: 1px solid rgba(22,3,79,.12); }
 .footer-news input {
-  flex: 1; border: 0; outline: 0; background: transparent;
+  flex: 1; min-width: 0;
+  border: 0; outline: 0; background: transparent;
   padding: 10px 14px; font: inherit; color: var(--ink);
   font-size: 14px;
 }
@@ -744,7 +745,7 @@ main > section { position: relative; z-index: 1; background: transparent; border
 .page-bg {
   position: absolute; inset: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1; /* always behind content */
   overflow: hidden;
 }
 .page-bg > span {
@@ -892,7 +893,7 @@ html, body { overflow-x: clip; }
   /* Nav bar height + padding trim */
   .nav { padding: 0 20px; height: 64px; }
   .site-header::after { top: 64px; }
-  .nav-links { padding-top: 72px; }
+  .nav-links { top: 64px; height: calc(100vh - 64px); padding-top: 16px; }
   /* Sticky sub-nav sits flush under the shorter mobile header */
   .onpage-nav { top: 63px; }
 }

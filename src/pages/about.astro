@@ -380,6 +380,7 @@ const firstTerm = terms[0]
           sec.style.scrollMarginTop = '140px'
         }
       })
+      let lastActive: HTMLElement | null = null
       function update() {
         const trigger = 160
         let active = sections[0]
@@ -388,7 +389,16 @@ const firstTerm = terms[0]
           else break
         }
         navLinks.forEach((a) => a.classList.remove('is-active'))
-        if (active) linkFor.get(active)?.classList.add('is-active')
+        if (active) {
+          const link = linkFor.get(active)
+          link?.classList.add('is-active')
+          // Keep the active chip visible in the horizontally-scrolling
+          // sub-nav on mobile.
+          if (link && active !== lastActive) {
+            lastActive = active
+            link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+          }
+        }
       }
       let raf: number | null = null
       const onScroll = () => {

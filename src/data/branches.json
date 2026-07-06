@@ -68,6 +68,12 @@
       "contact": [["📧", "germany@sakyadhita.org", "mailto:germany@sakyadhita.org"]]
     },
     {
+      "id": "spain", "name": "Sakyadhita Spain", "region": "Europe", "type": "branch",
+      "lat": 40.42, "lng": -3.7,
+      "desc": "Association and participatory communication platform for Spanish-speaking Buddhist women — Dharma in Spanish with a gender perspective.",
+      "contact": [["📧", "sakyadhitaspain@gmail.com", "mailto:sakyadhitaspain@gmail.com"], ["🌐", "sakyadhitaspain.org", "https://sakyadhitaspain.org/"]]
+    },
+    {
       "id": "europe-net", "name": "Network of Buddhist Women in Europe", "region": "Europe", "type": "partner",
       "lat": 50.85, "lng": 4.35,
       "desc": "Pan-European federation of Buddhist women's organizations.",

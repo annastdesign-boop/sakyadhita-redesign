@@ -119,12 +119,18 @@ const links = [
       btn.setAttribute('aria-expanded', open ? 'true' : 'false')
       btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu')
     })
-    // Tapping a link (or outside the drawer) closes the menu.
+    // Tapping a real link (or outside the drawer) closes the menu.
+    // Tapping "Resources"/"Get Involved" only opens their submenu —
+    // the drawer stays open.
     document.addEventListener('click', (e) => {
       if (!header.classList.contains('is-open')) return
       const t = e.target as Element
       if (t.closest('.nav-toggle')) return
-      if (t.closest('.nav-links') && !t.closest('a')) return
+      const link = t.closest('a')
+      if (t.closest('.nav-links')) {
+        // Inside the drawer: only close when a destination link is tapped
+        if (!link || link.classList.contains('has-caret')) return
+      }
       header.classList.remove('is-open')
       btn.classList.remove('is-open')
       btn.setAttribute('aria-expanded', 'false')

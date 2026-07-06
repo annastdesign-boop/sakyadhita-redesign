@@ -150,7 +150,7 @@ import branchesMap from '../data/branches-map.json'
     <div class="shell">
       <div class="eyebrow">19TH INTERNATIONAL CONFERENCE</div>
       <h2>Highlights of the 19th Sakyadhita Conference in Sarawak, East Malaysia.</h2>
-      <div class="stage" aria-label="Conference highlights video">
+      <div class="stage" id="highlights-stage" data-yt="IRr-CQYdQ8o" aria-label="Conference highlights video">
         <span class="caption">SARAWAK · JUNE 2025</span>
         <button class="play-pill" aria-label="Play highlights video"></button>
       </div>
@@ -355,6 +355,14 @@ import branchesMap from '../data/branches-map.json'
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
 
   <script>
+    // ── 19th Conference highlights: play the real video in place ──
+    const stage = document.getElementById('highlights-stage')
+    stage?.addEventListener('click', () => {
+      if (stage.classList.contains('is-playing')) return
+      stage.innerHTML = `<iframe class="hl-frame" src="https://www.youtube-nocookie.com/embed/${stage.dataset.yt}?autoplay=1&rel=0" title="Highlights of the 19th Sakyadhita Conference" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+      stage.classList.add('is-playing')
+    })
+
     // ── Interactive branches world map ──
     document.addEventListener('DOMContentLoaded', () => {
       const wrap = document.getElementById('home-map')
@@ -779,7 +787,11 @@ import branchesMap from '../data/branches-map.json'
       overflow: hidden;
       background: url('/assets/highlights.png') center/cover no-repeat;
       position: relative;
+      cursor: pointer;
     }
+    .highlights-19 .stage.is-playing { cursor: default; }
+    .highlights-19 .stage.is-playing::after { display: none; }
+    .highlights-19 .hl-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
     .highlights-19 .stage::after {
       content: "";
       position: absolute; inset: 0;
@@ -936,6 +948,15 @@ import branchesMap from '../data/branches-map.json'
     @media (max-width: 760px) and (min-width: 561px) {
       .latest-stack { grid-template-columns: 1fr 1fr; }
       .way { padding: 32px 24px 28px; }
+    }
+    @media (max-width: 640px) {
+      /* Bigger, full-width buttons inside the support cards */
+      .way .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 16px;
+        font-size: 15px;
+      }
     }
     @media (max-width: 560px) {
       .way { padding: 32px 24px 28px; }

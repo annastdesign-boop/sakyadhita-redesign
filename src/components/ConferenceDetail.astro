@@ -1005,7 +1005,8 @@ const materials = [
   .h-card-row:hover { border-color: var(--lavender-2); box-shadow: var(--shadow-sm); }
 
   .h-card-row .thumb {
-    aspect-ratio: 16/10;
+    width: 100%;
+    aspect-ratio: 16/10; /* ratio stays locked at every size */
     border-radius: 8px;
     background-size: cover; background-position: center;
     background-color: var(--bg-section);

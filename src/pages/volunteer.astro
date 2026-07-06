@@ -318,6 +318,10 @@ const committees = [
       .com-picks { grid-template-columns: repeat(2, 1fr); }
       .vform { padding: 32px 24px; }
     }
+    @media (max-width: 560px) {
+      /* Wider fields on phones — 8px from the card border */
+      .vform { padding: 28px 8px; }
+    }
     @media (max-width: 520px) {
       .com-picks { grid-template-columns: 1fr; }
     }
