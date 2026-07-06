@@ -173,6 +173,22 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     </div>
   </section>
 
+  <!-- PayPal payment modal -->
+  <div class="pay-modal" id="pay-modal" aria-hidden="true">
+    <div class="pay-backdrop" data-close></div>
+    <div class="pay-card" role="dialog" aria-modal="true" aria-labelledby="pay-title">
+      <button class="pay-x" type="button" data-close aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="eyebrow" style="text-align:center;">SECURE PAYMENT</div>
+      <h2 id="pay-title">Choose your payment method</h2>
+      <p class="pay-amount">Total: <b id="pay-amount-value">$30</b> USD</p>
+      <div id="paypal-button-container"></div>
+      <p class="pay-note">🔒 Processed securely by PayPal — card payments accepted, no PayPal account needed.</p>
+      <p class="pay-error" id="pay-error" role="alert" hidden></p>
+    </div>
+  </div>
+
   <!-- NEWSLETTER -->
   <section class="renew" id="newsletter" style="margin-bottom: 0;">
     <div class="shell shell--narrow">
@@ -187,12 +203,160 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   </section>
 
   <script>
-    import { enhanceForm } from '../scripts/forms'
+    import { validateForm } from '../scripts/forms'
 
-    enhanceForm(document.querySelector('form[name="paidmembership"]'), {
-      successTitle: 'Membership application received',
-      successText:
-        "Thank you for joining Sakyadhita! We've recorded your application and will email you shortly with payment instructions to complete your membership.",
+    /**
+     * Membership payment flow:
+     * 1. Validate the form (inline errors if something's missing)
+     * 2. Open the PayPal modal for the calculated total
+     * 3. PayPal confirms payment → we record the membership in Netlify
+     *    Forms ("paidmembership") including the PayPal transaction id
+     *
+     * The client id below is PayPal's PUBLIC browser identifier for the
+     * Sakyadhita account (the same one the current live site uses) —
+     * it is safe to include here and cannot move money by itself.
+     */
+    const PAYPAL_CLIENT_ID =
+      'AT0I6Qa0JYVBvlExcrLDBJAY3oqylXV_pIIn471l6C289hFh7E19i46YhR5G3Nq9mYyZ8v4u3m_m'
+
+    const form = document.querySelector('form[name="paidmembership"]') as HTMLFormElement
+    const modal = document.getElementById('pay-modal')!
+    const payError = document.getElementById('pay-error')!
+    const amountLabel = document.getElementById('pay-amount-value')!
+    let paypalReady = false
+    let recording = false
+
+    function openModal() {
+      const total = (document.getElementById('total-paid') as HTMLInputElement).value
+      amountLabel.textContent = `$${total}`
+      payError.hidden = true
+      modal.classList.add('is-open')
+      modal.setAttribute('aria-hidden', 'false')
+      document.body.style.overflow = 'hidden'
+    }
+    function closeModal() {
+      modal.classList.remove('is-open')
+      modal.setAttribute('aria-hidden', 'true')
+      document.body.style.overflow = ''
+    }
+    modal.querySelectorAll('[data-close]').forEach((el) => el.addEventListener('click', closeModal))
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal()
+    })
+
+    function showPayError(msg: string) {
+      payError.textContent = msg
+      payError.hidden = false
+    }
+
+    /** Save the confirmed membership into Netlify Forms. */
+    async function recordMembership(transactionId: string, paidValue: string) {
+      const txInput = form.querySelector('input[name="payPalTransactionId"]') as HTMLInputElement
+      const totalInput = document.getElementById('total-paid') as HTMLInputElement
+      txInput.value = transactionId
+      if (paidValue) totalInput.value = paidValue
+
+      const data = new FormData(form)
+      const body = new URLSearchParams()
+      data.forEach((v, k) => body.append(k, String(v)))
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
+      })
+      if (!res.ok) throw new Error(`Recording failed (${res.status})`)
+    }
+
+    function showSuccess(transactionId: string) {
+      closeModal()
+      const panel = document.createElement('div')
+      panel.className = 'form-success'
+      panel.setAttribute('role', 'status')
+      panel.innerHTML = `
+        <div class="fs-icon" aria-hidden="true">🪷</div>
+        <h3>Welcome to Sakyadhita!</h3>
+        <p>Your payment was received and your membership is confirmed. PayPal has emailed you a receipt.</p>
+        <p style="margin-top:10px; font-size:13px; color:var(--ink-subtle);">Payment reference: ${transactionId}</p>`
+      form.style.display = 'none'
+      form.insertAdjacentElement('afterend', panel)
+      panel.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+
+    /** Load PayPal's payment buttons the first time they're needed. */
+    function initPayPal(): Promise<void> {
+      if (paypalReady) return Promise.resolve()
+      return new Promise((resolve, reject) => {
+        const s = document.createElement('script')
+        s.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=USD&intent=capture`
+        s.onload = () => {
+          const paypal = (window as any).paypal
+          if (!paypal) return reject(new Error('PayPal failed to load'))
+          paypal
+            .Buttons({
+              createOrder: (_data: any, actions: any) => {
+                const total = (document.getElementById('total-paid') as HTMLInputElement).value
+                return actions.order.create({
+                  purchase_units: [
+                    {
+                      description: `Sakyadhita membership — ${(document.getElementById('tier-value') as HTMLInputElement).value}`,
+                      amount: { currency_code: 'USD', value: Number(total).toFixed(2) },
+                    },
+                  ],
+                })
+              },
+              onApprove: async (_data: any, actions: any) => {
+                try {
+                  const details = await actions.order.capture()
+                  const capture = details?.purchase_units?.[0]?.payments?.captures?.[0]
+                  const txId = capture?.id || details?.id || ''
+                  const paid = capture?.amount?.value || ''
+                  try {
+                    await recordMembership(txId, paid)
+                  } catch {
+                    // Payment went through but our records didn't save —
+                    // tell the member exactly what to do.
+                    showPayError(
+                      `Your payment succeeded (reference ${txId}) but our system couldn't record it. Please email service.sakyadhita@gmail.com with your PayPal receipt so we can register your membership.`
+                    )
+                    return
+                  }
+                  showSuccess(txId)
+                } catch (err: any) {
+                  if (err?.details?.[0]?.issue === 'INSTRUMENT_DECLINED') return actions.restart()
+                  showPayError('The payment could not be completed. Please try again or use a different payment method.')
+                }
+              },
+              onError: () => {
+                showPayError('Something went wrong starting the payment. Please close this window and try again.')
+              },
+              onCancel: () => {
+                /* member closed PayPal — keep the modal open so they can retry */
+              },
+            })
+            .render('#paypal-button-container')
+            .then(() => {
+              paypalReady = true
+              resolve()
+            })
+            .catch(reject)
+        }
+        s.onerror = () => reject(new Error('PayPal failed to load'))
+        document.head.appendChild(s)
+      })
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      if (recording) return
+      if (!validateForm(form)) return
+      openModal()
+      try {
+        await initPayPal()
+      } catch {
+        showPayError(
+          'The payment window could not load (this can happen with ad blockers or a poor connection). Please try again, or email service.sakyadhita@gmail.com.'
+        )
+      }
     })
 
     // Membership tier picker — also keeps the totalPaid amount up to date
@@ -389,5 +553,65 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
     .renew { padding: 60px 0 80px; text-align: center; }
     .site-footer { margin-top: 0; }
+
+    /* PayPal payment modal */
+    .pay-modal {
+      position: fixed; inset: 0; z-index: 1300;
+      display: none; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .pay-modal.is-open { display: flex; }
+    .pay-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(22,3,79,.6);
+      backdrop-filter: blur(3px);
+    }
+    .pay-card {
+      position: relative;
+      width: min(520px, 100%);
+      max-height: 90vh; overflow-y: auto;
+      background: #fff;
+      border-radius: var(--r-lg);
+      box-shadow: 0 30px 80px rgba(22,3,79,.35);
+      padding: 40px 36px 28px;
+    }
+    .pay-card h2 {
+      font-family: var(--font-title); font-weight: 700;
+      font-size: 26px; color: var(--ink);
+      text-align: center; margin: 10px 0 6px;
+    }
+    .pay-amount {
+      text-align: center; font-size: 15px; color: var(--ink-2);
+      margin-bottom: 22px;
+    }
+    .pay-amount b { color: var(--purple); font-size: 18px; }
+    .pay-x {
+      position: absolute; top: 16px; right: 16px;
+      width: 38px; height: 38px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-section); color: var(--ink); cursor: pointer;
+      border: 1px solid var(--border);
+      transition: background .15s;
+    }
+    .pay-x:hover { background: var(--lavender); }
+    .pay-x svg { width: 18px; height: 18px; }
+    #paypal-button-container { min-height: 150px; }
+    .pay-note {
+      text-align: center; font-size: 12.5px; color: var(--ink-subtle);
+      margin-top: 14px; line-height: 1.5;
+    }
+    .pay-error {
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: #FDEDEF;
+      border: 1px solid #F2C4CB;
+      border-radius: var(--r-md);
+      color: #8E2437;
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    @media (max-width: 520px) {
+      .pay-card { padding: 32px 20px 22px; }
+    }
   </style>
 </BaseLayout>
