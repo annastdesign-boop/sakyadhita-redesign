@@ -111,20 +111,24 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         <h2 class="h-section">Tell us about yourself</h2>
       </div>
 
-      <form class="form-card" name="membership" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-        <input type="hidden" name="form-name" value="membership" />
+      <form class="form-card" name="paidmembership" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="paidmembership" />
         <p hidden aria-hidden="true">
           <label>Don't fill this out if you're human: <input name="bot-field" /></label>
         </p>
 
         <div class="field" style="margin-bottom: 6px;"><label>Membership tier *</label></div>
         <div class="tier-pick">
-          <button type="button" class="tier-opt sel" data-name="Regular member ($30/year)"><span class="o-amt">$30 <small>/year</small></span><span class="o-text"><span class="o-name">Regular member</span><span class="o-sub">Laypeople &amp; supporters</span></span></button>
-          <button type="button" class="tier-opt" data-name="Reduced rate ($15/year)"><span class="o-amt">$15 <small>/year</small></span><span class="o-text"><span class="o-name">Reduced rate</span><span class="o-sub">Nuns, students, unemployed</span></span></button>
-          <button type="button" class="tier-opt" data-name="Lifetime — Laypeople ($300)"><span class="o-amt">$300 <small>once</small></span><span class="o-text"><span class="o-name">Lifetime · Laypeople</span><span class="o-sub">Paid once</span></span></button>
-          <button type="button" class="tier-opt" data-name="Lifetime — Monastics ($150)"><span class="o-amt">$150 <small>once</small></span><span class="o-text"><span class="o-name">Lifetime · Monastics</span><span class="o-sub">Paid once</span></span></button>
+          <button type="button" class="tier-opt sel" data-name="Regular member ($30/year)" data-price="30"><span class="o-amt">$30 <small>/year</small></span><span class="o-text"><span class="o-name">Regular member</span><span class="o-sub">Laypeople &amp; supporters</span></span></button>
+          <button type="button" class="tier-opt" data-name="Reduced rate ($15/year)" data-price="15"><span class="o-amt">$15 <small>/year</small></span><span class="o-text"><span class="o-name">Reduced rate</span><span class="o-sub">Nuns, students, unemployed</span></span></button>
+          <button type="button" class="tier-opt" data-name="Lifetime — Laypeople ($300)" data-price="300"><span class="o-amt">$300 <small>once</small></span><span class="o-text"><span class="o-name">Lifetime · Laypeople</span><span class="o-sub">Paid once</span></span></button>
+          <button type="button" class="tier-opt" data-name="Lifetime — Monastics ($150)" data-price="150"><span class="o-amt">$150 <small>once</small></span><span class="o-text"><span class="o-name">Lifetime · Monastics</span><span class="o-sub">Paid once</span></span></button>
         </div>
         <input type="hidden" id="tier-value" name="membershipType" value="Regular member ($30/year)" />
+        <!-- Filled automatically: tier price + optional donation. The PayPal
+             transaction id is filled once the PayPal checkout is connected. -->
+        <input type="hidden" id="total-paid" name="totalPaid" value="30" />
+        <input type="hidden" name="payPalTransactionId" value="" />
 
         <div class="stack-4">
           <div class="form-row">
@@ -185,27 +189,43 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   <script>
     import { enhanceForm } from '../scripts/forms'
 
-    enhanceForm(document.querySelector('form[name="membership"]'), {
+    enhanceForm(document.querySelector('form[name="paidmembership"]'), {
       successTitle: 'Membership application received',
       successText:
         "Thank you for joining Sakyadhita! We've recorded your application and will email you shortly with payment instructions to complete your membership.",
     })
 
-    // Membership tier picker
+    // Membership tier picker — also keeps the totalPaid amount up to date
     const opts = [...document.querySelectorAll('.tier-opt')]
     const hidden = document.getElementById('tier-value') as HTMLInputElement | null
+    const totalPaid = document.getElementById('total-paid') as HTMLInputElement | null
+    const donationInput = document.querySelector('input[name="donationAmount"]') as HTMLInputElement | null
+
+    function updateTotal() {
+      const sel = document.querySelector('.tier-opt.sel') as HTMLElement | null
+      const tier = Number(sel?.dataset.price || 0)
+      const donation = Number(donationInput?.value || 0)
+      if (totalPaid) totalPaid.value = String(tier + (donation > 0 ? donation : 0))
+    }
+
     opts.forEach((opt) => {
       opt.addEventListener('click', () => {
         opts.forEach((o) => o.classList.remove('sel'))
         opt.classList.add('sel')
         if (hidden) hidden.value = (opt as HTMLElement).dataset.name || ''
+        updateTotal()
       })
     })
+    donationInput?.addEventListener('input', updateTotal)
 
     // Conditional donation amount
     const box = document.getElementById('donate-box')
     const chk = document.getElementById('add-donation') as HTMLInputElement | null
-    chk?.addEventListener('change', () => box?.classList.toggle('on', chk.checked))
+    chk?.addEventListener('change', () => {
+      box?.classList.toggle('on', chk.checked)
+      if (!chk.checked && donationInput) donationInput.value = ''
+      updateTotal()
+    })
 
     // Newsletter placeholder (until a real mailing list is connected)
     const nl = document.getElementById('join-newsletter') as HTMLFormElement | null
