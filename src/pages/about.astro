@@ -264,10 +264,18 @@ const firstTerm = terms[0]
           const link = linkFor.get(active)
           link?.classList.add('is-active')
           // Keep the active chip visible in the horizontally-scrolling
-          // sub-nav on mobile.
+          // sub-nav on mobile — scroll ONLY the chip row sideways,
+          // never the page (scrollIntoView was nudging the page
+          // vertically and made the bar judder while scrolling).
           if (link && active !== lastActive) {
             lastActive = active
-            link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+            const rail = link.closest('ul')
+            if (rail && rail.scrollWidth > rail.clientWidth) {
+              rail.scrollTo({
+                left: link.offsetLeft - (rail.clientWidth - link.offsetWidth) / 2,
+                behavior: 'smooth',
+              })
+            }
           }
         }
       }
