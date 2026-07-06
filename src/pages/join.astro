@@ -212,12 +212,16 @@ import BaseLayout from '../layouts/BaseLayout.astro'
      * 3. PayPal confirms payment → we record the membership in Netlify
      *    Forms ("paidmembership") including the PayPal transaction id
      *
-     * The client id below is PayPal's PUBLIC browser identifier for the
-     * Sakyadhita account (the same one the current live site uses) —
-     * it is safe to include here and cannot move money by itself.
+     * ⚠️ TEMPORARY: 'sb' is PayPal's demo/sandbox id so the embedded
+     * buttons render on the preview — payments are SIMULATED, no real
+     * money moves. To go live, replace 'sb' with the organization's
+     * Live Client ID from developer.paypal.com (Apps & Credentials →
+     * Live). The Client ID is public-safe.
+     * (The old site's id no longer works — PayPal rejects it:
+     * AT0I6Qa0JYVBvlExcrLDBJAY3oqylXV_pIIn471l6C289hFh7E19i46YhR5G3Nq9mYyZ8v4u3m_m)
      */
-    const PAYPAL_CLIENT_ID =
-      'AT0I6Qa0JYVBvlExcrLDBJAY3oqylXV_pIIn471l6C289hFh7E19i46YhR5G3Nq9mYyZ8v4u3m_m'
+    const PAYPAL_CLIENT_ID = 'sb'
+    const IS_DEMO = PAYPAL_CLIENT_ID === 'sb'
 
     const form = document.querySelector('form[name="paidmembership"]') as HTMLFormElement
     const modal = document.getElementById('pay-modal')!
@@ -230,6 +234,14 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       const total = (document.getElementById('total-paid') as HTMLInputElement).value
       amountLabel.textContent = `$${total}`
       payError.hidden = true
+      if (IS_DEMO && !document.getElementById('demo-note')) {
+        const note = document.createElement('p')
+        note.id = 'demo-note'
+        note.className = 'pay-note'
+        note.style.cssText = 'background: var(--bg-warm); border-radius: 10px; padding: 10px 12px; color: var(--ink-2);'
+        note.textContent = 'Preview mode: PayPal is in demo mode — no real money moves until the organization’s PayPal Client ID is added.'
+        document.getElementById('paypal-button-container')!.insertAdjacentElement('beforebegin', note)
+      }
       modal.classList.add('is-open')
       modal.setAttribute('aria-hidden', 'false')
       document.body.style.overflow = 'hidden'
