@@ -55,7 +55,11 @@
 /* ── Reset ────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%; /* stop iPhone font boosting */
+  text-size-adjust: 100%;
+}
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
   font-family: var(--font-ui);
@@ -600,7 +604,7 @@ img { border-radius: 8px; }
   color: var(--ink);
 }
 .footer-news p { font-size: 13.5px; color: var(--ink-2); margin-bottom: 12px; }
-.footer-news form { display: flex; gap: 6px; background: #fff; border-radius: var(--r-pill); padding: 4px; border: 1px solid rgba(22,3,79,.12); }
+.footer-news form { display: flex; gap: 6px; max-width: 100%; background: #fff; border-radius: var(--r-pill); padding: 4px; border: 1px solid rgba(22,3,79,.12); }
 .footer-news input {
   flex: 1; min-width: 0;
   border: 0; outline: 0; background: transparent;
@@ -609,9 +613,11 @@ img { border-radius: 8px; }
   font-size: 14px;
 }
 .footer-news button {
+  flex: none;
   border-radius: var(--r-pill);
   background: var(--ink); color: #fff;
   padding: 8px 16px; font-size: 13.5px; font-weight: 600;
+  white-space: nowrap;
 }
 
 .footer-rule {
