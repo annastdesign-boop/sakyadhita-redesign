@@ -81,30 +81,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
     <Footer />
 
-    <!-- ── Cookie consent + Google Analytics (G-J48L2HGTSJ) ──
-         Analytics loads ONLY on sakyadhita.org (never on the preview)
-         and ONLY after the visitor accepts. -->
-    <div class="consent" id="consent-banner" role="dialog" aria-label="Cookie consent" hidden>
-      <p>
-        We'd like to use anonymous statistics (Google&nbsp;Analytics) to understand how the site
-        is used. No personal data, only if you agree.
-        <a href="/privacy">Learn more</a>
-      </p>
-      <div class="consent-actions">
-        <button class="btn btn--primary btn--sm" id="consent-accept" type="button">Accept</button>
-        <button class="btn btn--ghost btn--sm" id="consent-decline" type="button">Decline</button>
-      </div>
-    </div>
-
+    <!-- ── Google Analytics (G-J48L2HGTSJ), cookieless mode ──
+         No cookies are stored, IPs are anonymized — so no consent
+         popup is required. Loads ONLY on sakyadhita.org (the preview
+         never sends data). -->
     <script>
       const GA_ID = 'G-J48L2HGTSJ'
       const PROD_HOSTS = ['sakyadhita.org', 'www.sakyadhita.org']
-      const CONSENT_KEY = 'sakyadhita-consent'
-
-      function loadAnalytics() {
-        // The preview site never sends data — statistics start the day
-        // the real domain points here.
-        if (!PROD_HOSTS.includes(location.hostname)) return
+      if (PROD_HOSTS.includes(location.hostname)) {
         const s = document.createElement('script')
         s.async = true
         s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`
@@ -114,59 +98,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
           // eslint-disable-next-line prefer-rest-params
           ;(window as any).dataLayer.push(arguments)
         }
+        // Cookieless: nothing is stored on the visitor's device
+        gtag('consent', 'default', {
+          analytics_storage: 'denied',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+        })
         gtag('js', new Date())
         gtag('config', GA_ID, { anonymize_ip: true })
       }
-
-      const banner = document.getElementById('consent-banner')!
-      const choice = localStorage.getItem(CONSENT_KEY)
-      if (choice === 'granted') {
-        loadAnalytics()
-      } else if (!choice) {
-        banner.hidden = false
-      }
-      document.getElementById('consent-accept')!.addEventListener('click', () => {
-        localStorage.setItem(CONSENT_KEY, 'granted')
-        banner.hidden = true
-        loadAnalytics()
-      })
-      document.getElementById('consent-decline')!.addEventListener('click', () => {
-        localStorage.setItem(CONSENT_KEY, 'denied')
-        banner.hidden = true
-      })
     </script>
-
-    <style>
-      /* Cookie consent bar */
-      .consent {
-        position: fixed;
-        left: 16px; right: 16px;
-        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-        z-index: 1500;
-        max-width: 680px;
-        margin: 0 auto;
-        background: #fff;
-        border: 1px solid var(--border);
-        border-radius: var(--r-lg);
-        box-shadow: var(--shadow-lg);
-        padding: 18px 20px;
-        display: flex;
-        align-items: center;
-        gap: 18px;
-      }
-      .consent p {
-        flex: 1;
-        font-size: 13.5px;
-        line-height: 1.5;
-        color: var(--ink-body);
-      }
-      .consent p a { color: var(--purple); font-weight: 600; }
-      .consent-actions { display: flex; gap: 8px; flex: none; }
-      @media (max-width: 560px) {
-        .consent { flex-direction: column; align-items: stretch; text-align: center; gap: 12px; }
-        .consent-actions { justify-content: center; }
-      }
-    </style>
 
     <style>
       /* Accessibility: hidden link that appears when keyboard users press Tab */
