@@ -575,6 +575,7 @@ img { border-radius: 8px; }
   grid-template-columns: 1.4fr 1fr 1fr 1fr 1.4fr;
   gap: 36px;
 }
+.footer-grid > * { min-width: 0; } /* columns may shrink to fit the screen */
 .footer-brand .wordmark { font-size: 22px; }
 .footer-brand p { font-size: 13.5px; color: var(--ink-2); max-width: 28ch; margin-top: 10px; }
 .footer-brand .social { display: flex; gap: 10px; margin-top: 16px; }
@@ -605,12 +606,18 @@ img { border-radius: 8px; }
 }
 .footer-news p { font-size: 13.5px; color: var(--ink-2); margin-bottom: 12px; }
 .footer-news form { display: flex; gap: 6px; max-width: 100%; background: #fff; border-radius: var(--r-pill); padding: 4px; border: 1px solid rgba(22,3,79,.12); }
+.footer-news form { width: 100%; }
 .footer-news input {
-  flex: 1; min-width: 0;
+  flex: 1 1 0px;
+  width: 0;
+  min-width: 0;
+  -webkit-appearance: none;
+  appearance: none;
   border: 0; outline: 0; background: transparent;
   padding: 10px 14px 10px 14px;
   font: inherit; color: var(--ink);
   font-size: 14px;
+  border-radius: var(--r-pill);
 }
 .footer-news button {
   flex: none;
