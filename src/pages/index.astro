@@ -288,13 +288,18 @@ const branchesMap = {
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
 
   <script>
-    // ── 19th Conference highlights: play the real video in place ──
+    // ── 19th Conference highlights video ──
+    // Phones: load the player directly so ONE tap starts the video
+    // (the poster-then-play approach needs two taps on iOS).
     const stage = document.getElementById('highlights-stage')
-    stage?.addEventListener('click', () => {
-      if (stage.classList.contains('is-playing')) return
-      stage.innerHTML = `<iframe class="hl-frame" src="https://www.youtube-nocookie.com/embed/${stage.dataset.yt}?autoplay=1&rel=0" title="Highlights of the 19th Sakyadhita Conference" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+    const directPlayer = window.matchMedia('(max-width: 760px)').matches
+    function mountHighlights(autoplay: boolean) {
+      if (!stage || stage.classList.contains('is-playing')) return
+      stage.innerHTML = `<iframe class="hl-frame" src="https://www.youtube-nocookie.com/embed/${stage.dataset.yt}?rel=0&playsinline=1${autoplay ? '&autoplay=1' : ''}" title="Highlights of the 19th Sakyadhita Conference" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
       stage.classList.add('is-playing')
-    })
+    }
+    if (directPlayer) mountHighlights(false)
+    else stage?.addEventListener('click', () => mountHighlights(true))
 
     // ── Interactive branches world map ──
     document.addEventListener('DOMContentLoaded', () => {

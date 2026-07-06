@@ -439,6 +439,15 @@ const MAT_COLORS = [
     document.body.style.overflow = ''
   }
 
+  // Phones: load the conference video player directly so one tap plays it
+  if (window.matchMedia('(max-width: 760px)').matches) {
+    document.querySelectorAll('.cv-stage[data-yt]').forEach((cv) => {
+      const el = cv as HTMLElement
+      el.innerHTML = `<iframe class="cv-frame" src="https://www.youtube-nocookie.com/embed/${el.dataset.yt}?rel=0&playsinline=1" title="Conference highlights" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+      el.classList.add('is-playing')
+    })
+  }
+
   document.addEventListener('click', (e) => {
     const target = e.target as Element
     const tile = target.closest('#photo-carousel .photo-tile') as HTMLElement | null
