@@ -127,9 +127,14 @@ const pubs = {
           pubs.translationGroups.map((group) => (
             <div class="tr-group">
               <div class="tr-head">{group.heading}</div>
-              <div class="book-grid">
+              <div class="tr-cards">
                 {group.items.map((item) => (
-                  <BookCard item={item} />
+                  <a class="tr-card" href={item.href} target="_blank" rel="noopener noreferrer">
+                    {item.kind && <div class="tr-kind">{item.kind}</div>}
+                    <h3>{item.title}</h3>
+                    <p>{item.author}{item.author && item.source ? ' · ' : ''}{item.source}</p>
+                    <span class="link">{item.linkLabel}</span>
+                  </a>
                 ))}
               </div>
             </div>
@@ -286,6 +291,35 @@ const pubs = {
     @media (max-width: 760px) {
       .mbr { grid-template-columns: 1fr; }
       .mbr .pic { min-height: 260px; }
+    }
+
+    /* Translations — simple text cards (like the Further-reading cards) */
+    .tr-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .tr-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 24px;
+      display: flex; flex-direction: column; gap: 10px;
+      transition: transform .15s, border-color .15s;
+      text-decoration: none; color: inherit;
+    }
+    .tr-card:hover { transform: translateY(-2px); border-color: var(--lavender-2); }
+    .tr-card .tr-kind {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--purple);
+    }
+    .tr-card h3 { font-family: var(--font-title); font-weight: 700; font-size: 20px; line-height: 1.25; color: var(--ink); }
+    .tr-card p { font-size: 14px; color: var(--ink-body); line-height: 1.5; }
+    .tr-card .link { color: var(--purple); font-weight: 600; font-size: 14px; margin-top: auto; }
+    @media (max-width: 1100px) {
+      .tr-cards { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 880px) {
+      .tr-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .tr-cards { grid-template-columns: 1fr; }
     }
 
     /* Translations — grouped columns */

@@ -55,6 +55,8 @@
 /* ── Reset ────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
   font-family: var(--font-ui);
   color: var(--ink-body);
@@ -218,13 +220,16 @@ section { padding: 80px 0; }
   /* Slide-in drawer from the right */
   .nav-links {
     position: fixed;
-    top: 76px; right: 0; left: auto;
+    top: 0; right: 0; left: auto;
     width: min(340px, 86vw);
-    height: calc(100vh - 76px);
+    height: 100vh;
+    height: 100dvh;
     flex-direction: column;
     align-items: stretch;
     gap: 4px;
     padding: 16px 18px 24px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     background: rgba(253, 249, 246, 0.98);
     backdrop-filter: saturate(140%) blur(14px);
     -webkit-backdrop-filter: saturate(140%) blur(14px);
@@ -242,7 +247,7 @@ section { padding: 80px 0; }
   /* Backdrop dimmer — sits below the header so the nav bar stays clear */
   .site-header::after {
     content: "";
-    position: fixed; top: 76px; right: 0; bottom: 0; left: 0;
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0;
     background: rgba(22,3,79,.35);
     opacity: 0; pointer-events: none;
     transition: opacity .25s;
@@ -275,10 +280,8 @@ section { padding: 80px 0; }
     backdrop-filter: none;
     min-width: 0;
   }
-  /* Click-only on mobile — disable the desktop hover-to-open */
-  .nav-item.has-submenu:hover .nav-submenu { display: none; }
+  /* Click-only on mobile */
   .nav-item.is-open .nav-submenu { display: block; }
-  .nav-item.has-submenu:hover .nav-link.has-caret::after { transform: translateY(-2px) rotate(45deg); }
   .nav-item.is-open .nav-link.has-caret::after { transform: translateY(0) rotate(225deg); }
   .nav-submenu a {
     font-size: 14.5px; padding: 10px 12px;
@@ -338,9 +341,11 @@ section { padding: 80px 0; }
   left: 0; right: 0;
   top: -10px; height: 10px;
 }
-.nav-item.is-open .nav-submenu,
-.nav-item.has-submenu:hover .nav-submenu { display: block; }
-.nav-item.has-submenu:hover .nav-link.has-caret::after { transform: translateY(0) rotate(225deg); }
+.nav-item.is-open .nav-submenu { display: block; }
+@media (hover: hover) and (min-width: 1101px) {
+  .nav-item.has-submenu:hover .nav-submenu { display: block; }
+  .nav-item.has-submenu:hover .nav-link.has-caret::after { transform: translateY(0) rotate(225deg); }
+}
 .nav-submenu a {
   display: block;
   padding: 10px 12px;
@@ -413,6 +418,7 @@ section { padding: 80px 0; }
 }
 .hero-compact::before {
   content: "";
+  z-index: -1; /* behind the content */
   position: absolute; inset: -100px -10% auto auto;
   width: 520px; height: 520px;
   background: radial-gradient(circle, rgba(187,143,219,.28), transparent 60%);
@@ -421,6 +427,7 @@ section { padding: 80px 0; }
 }
 .hero-compact::after {
   content: "";
+  z-index: -1; /* behind the content */
   position: absolute; inset: auto auto -180px -20%;
   width: 480px; height: 480px;
   background: radial-gradient(circle, rgba(243,154,108,.18), transparent 60%);
@@ -593,11 +600,12 @@ img { border-radius: 8px; }
   color: var(--ink);
 }
 .footer-news p { font-size: 13.5px; color: var(--ink-2); margin-bottom: 12px; }
-.footer-news form { display: flex; background: #fff; border-radius: var(--r-pill); padding: 4px; border: 1px solid rgba(22,3,79,.12); }
+.footer-news form { display: flex; gap: 6px; background: #fff; border-radius: var(--r-pill); padding: 4px; border: 1px solid rgba(22,3,79,.12); }
 .footer-news input {
   flex: 1; min-width: 0;
   border: 0; outline: 0; background: transparent;
-  padding: 10px 14px; font: inherit; color: var(--ink);
+  padding: 10px 14px 10px 14px;
+  font: inherit; color: var(--ink);
   font-size: 14px;
 }
 .footer-news button {
@@ -784,6 +792,9 @@ main > section { position: relative; z-index: 1; background: transparent; border
 /* Off-canvas drawer + full-bleed sections must never cause page-level
    horizontal scroll. `clip` (not `hidden`) so position:sticky keeps working. */
 html, body { overflow-x: clip; }
+main { overflow-x: clip; }
+input, select, textarea { min-width: 0; max-width: 100%; }
+.form-row > .field { min-width: 0; }
 
 /* ── Tablet ──────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
@@ -855,7 +866,7 @@ html, body { overflow-x: clip; }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   .footer-brand, .footer-news { grid-column: auto; }
   .footer-brand p { max-width: 100%; }
-  .site-footer .wrap { padding: 48px 24px 28px; }
+  .site-footer .wrap { padding: 48px 24px calc(28px + env(safe-area-inset-bottom, 0px) + 16px); }
   .footer-bottom { flex-direction: column; gap: 10px; }
   .footer-bottom a { margin-left: 0; margin-right: 14px; }
 
@@ -892,8 +903,7 @@ html, body { overflow-x: clip; }
 
   /* Nav bar height + padding trim */
   .nav { padding: 0 20px; height: 64px; }
-  .site-header::after { top: 64px; }
-  .nav-links { top: 64px; height: calc(100vh - 64px); padding-top: 16px; }
+  .site-header::after { top: 0; }
   /* Sticky sub-nav sits flush under the shorter mobile header */
   .onpage-nav { top: 63px; }
 }
