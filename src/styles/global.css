@@ -657,6 +657,8 @@ img { border-radius: 8px; }
 .onpage-nav {
   position: sticky; top: 75px;
   z-index: 10;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
   background: rgba(253,249,246,.92);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -792,7 +794,6 @@ main > section { position: relative; z-index: 1; background: transparent; border
 /* Off-canvas drawer + full-bleed sections must never cause page-level
    horizontal scroll. `clip` (not `hidden`) so position:sticky keeps working. */
 html, body { overflow-x: clip; }
-main { overflow-x: clip; }
 input, select, textarea { min-width: 0; max-width: 100%; }
 .form-row > .field { min-width: 0; }
 
