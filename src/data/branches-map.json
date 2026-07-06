@@ -1,6 +1,10 @@
 {
   "_comment": "Pins on the home-page world map. kind: branch (purple) | local (coral) | partner (dark). contact rows: [emoji, text, optional link]. To add a pin: copy a block and fill in latitude/longitude.",
-  "kinds": { "branch": "National Branch", "local": "Local Chapter", "partner": "Partner" },
+  "kinds": {
+    "branch": "National Branch",
+    "local": "Local Chapter",
+    "partner": "Partner"
+  },
   "spots": [
     {
       "name": "Sakyadhita Korea",
@@ -8,7 +12,13 @@
       "lat": 37.55,
       "lng": 126.99,
       "desc": "Hosted the 18th International Conference in 2023.",
-      "contact": [["📧", "korea@sakyadhita.org", "mailto:korea@sakyadhita.org"]]
+      "contact": [
+        {
+          "icon": "📧",
+          "text": "korea@sakyadhita.org",
+          "url": "mailto:korea@sakyadhita.org"
+        }
+      ]
     },
     {
       "name": "Sakyadhita Mongolia",
@@ -16,7 +26,17 @@
       "lat": 47.92,
       "lng": 106.92,
       "desc": "Active in translation and Buddhist education across Central Asia.",
-      "contact": [["📞", "+976 70183588"], ["📧", "mongolia@sakyadhita.org", "mailto:mongolia@sakyadhita.org"]]
+      "contact": [
+        {
+          "icon": "📞",
+          "text": "+976 70183588"
+        },
+        {
+          "icon": "📧",
+          "text": "mongolia@sakyadhita.org",
+          "url": "mailto:mongolia@sakyadhita.org"
+        }
+      ]
     },
     {
       "name": "Sakyadhita Malaysia (KBS)",
@@ -24,7 +44,13 @@
       "lat": 1.55,
       "lng": 110.34,
       "desc": "Hosted the 19th International Conference in Sarawak, 2025.",
-      "contact": [["📧", "malaysia@sakyadhita.org", "mailto:malaysia@sakyadhita.org"]]
+      "contact": [
+        {
+          "icon": "📧",
+          "text": "malaysia@sakyadhita.org",
+          "url": "mailto:malaysia@sakyadhita.org"
+        }
+      ]
     },
     {
       "name": "India · Bodh Gaya",
@@ -32,7 +58,13 @@
       "lat": 24.69,
       "lng": 84.99,
       "desc": "Where Sakyadhita was founded in 1987.",
-      "contact": [["📧", "bodhgaya@sakyadhita.org", "mailto:bodhgaya@sakyadhita.org"]]
+      "contact": [
+        {
+          "icon": "📧",
+          "text": "bodhgaya@sakyadhita.org",
+          "url": "mailto:bodhgaya@sakyadhita.org"
+        }
+      ]
     },
     {
       "name": "Sri Lanka",
@@ -40,7 +72,13 @@
       "lat": 6.93,
       "lng": 79.85,
       "desc": "Active in bhikkhuni ordination support and educational outreach.",
-      "contact": [["📧", "srilanka@sakyadhita.org", "mailto:srilanka@sakyadhita.org"]]
+      "contact": [
+        {
+          "icon": "📧",
+          "text": "srilanka@sakyadhita.org",
+          "url": "mailto:srilanka@sakyadhita.org"
+        }
+      ]
     },
     {
       "name": "Taiwan",
@@ -48,7 +86,13 @@
       "lat": 25.03,
       "lng": 121.56,
       "desc": "Coordinated through Foguang Shan and Dharma Drum Mountain alumni networks.",
-      "contact": [["📧", "taiwan@sakyadhita.org", "mailto:taiwan@sakyadhita.org"]]
+      "contact": [
+        {
+          "icon": "📧",
+          "text": "taiwan@sakyadhita.org",
+          "url": "mailto:taiwan@sakyadhita.org"
+        }
+      ]
     },
     {
       "name": "Sakyadhita USA",
@@ -56,7 +100,17 @@
       "lat": 32.72,
       "lng": -117.16,
       "desc": "Headquartered in San Diego, California.",
-      "contact": [["📞", "+1 858-525-5173 (HST)"], ["📧", "service.sakyadhita@gmail.com", "mailto:service.sakyadhita@gmail.com"]]
+      "contact": [
+        {
+          "icon": "📞",
+          "text": "+1 858-525-5173 (HST)"
+        },
+        {
+          "icon": "📧",
+          "text": "service.sakyadhita@gmail.com",
+          "url": "mailto:service.sakyadhita@gmail.com"
+        }
+      ]
     },
     {
       "name": "Sakyadhita Brazil",
@@ -64,7 +118,17 @@
       "lat": -23.55,
       "lng": -46.63,
       "desc": "Active community based in São Paulo.",
-      "contact": [["📞", "+55 11 9334-833244"], ["📧", "brazil@sakyadhita.org", "mailto:brazil@sakyadhita.org"]]
+      "contact": [
+        {
+          "icon": "📞",
+          "text": "+55 11 9334-833244"
+        },
+        {
+          "icon": "📧",
+          "text": "brazil@sakyadhita.org",
+          "url": "mailto:brazil@sakyadhita.org"
+        }
+      ]
     },
     {
       "name": "Canada",
@@ -72,7 +136,13 @@
       "lat": 43.65,
       "lng": -79.38,
       "desc": "Members in Toronto, Vancouver, and Montréal.",
-      "contact": [["📧", "canada@sakyadhita.org", "mailto:canada@sakyadhita.org"]]
+      "contact": [
+        {
+          "icon": "📧",
+          "text": "canada@sakyadhita.org",
+          "url": "mailto:canada@sakyadhita.org"
+        }
+      ]
     },
     {
       "name": "Sakyadhita France",
@@ -80,7 +150,17 @@
       "lat": 48.58,
       "lng": 7.75,
       "desc": "Strasbourg-based national branch.",
-      "contact": [["📍", "71 Boulevard d'Anvers, Strasbourg"], ["📧", "france@sakyadhita.org", "mailto:france@sakyadhita.org"]]
+      "contact": [
+        {
+          "icon": "📍",
+          "text": "71 Boulevard d'Anvers, Strasbourg"
+        },
+        {
+          "icon": "📧",
+          "text": "france@sakyadhita.org",
+          "url": "mailto:france@sakyadhita.org"
+        }
+      ]
     },
     {
       "name": "Sakyadhita Germany",
@@ -88,7 +168,13 @@
       "lat": 53.55,
       "lng": 9.99,
       "desc": "Coordinates with Hamburg University vinaya scholars.",
-      "contact": [["📧", "germany@sakyadhita.org", "mailto:germany@sakyadhita.org"]]
+      "contact": [
+        {
+          "icon": "📧",
+          "text": "germany@sakyadhita.org",
+          "url": "mailto:germany@sakyadhita.org"
+        }
+      ]
     },
     {
       "name": "Sakyadhita Spain",
@@ -96,7 +182,18 @@
       "lat": 40.42,
       "lng": -3.7,
       "desc": "Spanish-speaking platform for Buddhist women — Dharma in Spanish with a gender perspective.",
-      "contact": [["📧", "sakyadhitaspain@gmail.com", "mailto:sakyadhitaspain@gmail.com"], ["🌐", "sakyadhitaspain.org", "https://sakyadhitaspain.org/"]]
+      "contact": [
+        {
+          "icon": "📧",
+          "text": "sakyadhitaspain@gmail.com",
+          "url": "mailto:sakyadhitaspain@gmail.com"
+        },
+        {
+          "icon": "🌐",
+          "text": "sakyadhitaspain.org",
+          "url": "https://sakyadhitaspain.org/"
+        }
+      ]
     },
     {
       "name": "Network of Buddhist Women in Europe",
@@ -104,7 +201,13 @@
       "lat": 50.85,
       "lng": 4.35,
       "desc": "Pan-European federation of Buddhist women's organizations.",
-      "contact": [["🌐", "buddhistwomen.eu", "https://buddhistwomen.eu"]]
+      "contact": [
+        {
+          "icon": "🌐",
+          "text": "buddhistwomen.eu",
+          "url": "https://buddhistwomen.eu"
+        }
+      ]
     },
     {
       "name": "Egypt · Cairo",
@@ -112,7 +215,12 @@
       "lat": 30.04,
       "lng": 31.24,
       "desc": "Newest addition to the directory (2024).",
-      "contact": [["📞", "+2 443-8982"]]
+      "contact": [
+        {
+          "icon": "📞",
+          "text": "+2 443-8982"
+        }
+      ]
     }
   ]
 }

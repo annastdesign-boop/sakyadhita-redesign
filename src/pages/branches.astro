@@ -79,7 +79,7 @@ import data from '../data/branches.json'
       lat: number
       lng: number
       desc: string
-      contact: [string, string, string?][]
+      contact: { icon: string; text: string; url?: string }[]
       x?: number
       y?: number
     }
@@ -139,7 +139,7 @@ import data from '../data/branches.json'
             <h3>${b.name}</h3>
             <p class="desc">${b.desc}</p>
             <div class="contact">
-              ${b.contact.map((c) => `<div>${c[0]} ${c[2] ? `<a href="${c[2]}">${c[1]}</a>` : `<span>${c[1]}</span>`}</div>`).join('')}
+              ${b.contact.map((c) => `<div>${c.icon} ${c.url ? `<a href="${c.url}">${c.text}</a>` : `<span>${c.text}</span>`}</div>`).join('')}
             </div>
           </article>
         `
@@ -188,7 +188,7 @@ import data from '../data/branches.json'
         <div class="kind ${b.type === 'local' ? 'local' : b.type === 'partner' ? 'partner' : ''}">${KIND_LABEL[b.type]} · ${b.region}</div>
         <h5>${b.name}</h5>
         <p class="meta">${b.desc}</p>
-        ${b.contact?.length ? `<div class="plinks">${b.contact.map((c) => `<div>${c[0]} ${c[2] ? `<a href="${c[2]}">${c[1]}</a>` : `<span>${c[1]}</span>`}</div>`).join('')}</div>` : ''}
+        ${b.contact?.length ? `<div class="plinks">${b.contact.map((c) => `<div>${c.icon} ${c.url ? `<a href="${c.url}">${c.text}</a>` : `<span>${c.text}</span>`}</div>`).join('')}</div>` : ''}
       `
       const box = mapEl.getBoundingClientRect()
       const pw = popupEl.offsetWidth || 240

@@ -1,0 +1,37 @@
+---
+/** One card in the publications library — photo cover or gradient cover. */
+interface Props {
+  item: {
+    kind?: string
+    title: string
+    author?: string
+    href: string
+    source: string
+    linkLabel: string
+    cover: { style: string; image?: string; coverImg?: string }
+  }
+}
+const { item } = Astro.props
+const isPhoto = item.cover.style === 'photo'
+const gradClass = isPhoto ? '' : `bk${(item.cover.style || 'g1').replace('g', '')}`
+---
+
+<a class="book" href={item.href} target="_blank" rel="noopener noreferrer">
+  {
+    isPhoto ? (
+      <div class="cover photo" style={`background-image:url('${item.cover.image}')`}>
+        {item.kind && <span class="b-kind">{item.kind}</span>}
+        <span class="b-title">{item.title}</span>
+        {item.author && <span class="b-auth">{item.author}</span>}
+      </div>
+    ) : (
+      <div class:list={['cover', 'grad', gradClass]}>
+        {item.cover.coverImg && <img class="cv-img" src={item.cover.coverImg} alt={`${item.title} cover`} loading="lazy" onerror="this.remove()" />}
+        {item.kind && <span class="b-kind">{item.kind}</span>}
+        <span class="b-title">{item.title}</span>
+        {item.author && <span class="b-auth">{item.author}</span>}
+      </div>
+    )
+  }
+  <div class="foot"><span class="src">{item.source}</span><span class="lnk">{item.linkLabel}</span></div>
+</a>

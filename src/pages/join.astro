@@ -152,13 +152,6 @@ import BaseLayout from '../layouts/BaseLayout.astro'
             </select>
           </div>
 
-          <div class="donate-box" id="donate-box">
-            <label class="check"><input type="checkbox" id="add-donation" /><span><b>I'd like to add a donation to my membership fee.</b> Donations support conference scholarships for nuns and students from developing countries.</span></label>
-            <div class="row-line">
-              <span style="font-size: 14px; color: var(--ink-2);">Donation amount (USD)</span>
-              <input class="field" name="donationAmount" type="number" min="0" placeholder="$ 0" style="border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; font: inherit; font-size: 14.5px;" />
-            </div>
-          </div>
 
           <label class="check">
             <input type="checkbox" name="consent" required />
@@ -251,22 +244,18 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       const price = Number(sel?.dataset.price || 0)
       const planKey = sel?.dataset.plan || ''
       const isSubscription = sel?.dataset.kind === 'subscription' && !!PLAN_IDS[planKey]
-      const donation = Number((document.querySelector('input[name="donationAmount"]') as HTMLInputElement | null)?.value || 0)
       return {
         price,
         planId: PLAN_IDS[planKey] || '',
         isSubscription,
         wantsYearly: sel?.dataset.kind === 'subscription',
-        donation: donation > 0 ? donation : 0,
         name: sel?.dataset.name || '',
       }
     }
 
     function openModal() {
       const t = currentTier()
-      // Subscriptions renew at the tier price; any donation is a separate
-      // one-time gift. Lifetime tiers charge tier + donation together.
-      amountLabel.textContent = t.isSubscription ? `$${t.price} / year` : `$${t.price + (t.isSubscription ? 0 : t.donation)}`
+      amountLabel.textContent = t.wantsYearly ? `$${t.price} / year` : `$${t.price}`
       payError.hidden = true
       const amountNote = document.getElementById('pay-renew-note')
       if (amountNote) amountNote.remove()
@@ -324,7 +313,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       if (!res.ok) throw new Error(`Recording failed (${res.status})`)
     }
 
-    function showSuccess(referenceId: string, opts: { yearly: boolean; pendingDonation: number }) {
+    function showSuccess(referenceId: string, opts: { yearly: boolean }) {
       closeModal()
       const panel = document.createElement('div')
       panel.className = 'form-success'
@@ -332,14 +321,11 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       const renewLine = opts.yearly
         ? '<p style="margin-top:8px;">Your membership renews automatically each year — you can cancel anytime in your PayPal account.</p>'
         : ''
-      const donationLine = opts.pendingDonation
-        ? `<p style="margin-top:12px;">One more thing: your <b>$${opts.pendingDonation}</b> donation is a separate gift — <a href="https://www.paypal.com/donate?hosted_button_id=78ZSMXL4ZSYJQ&amount=${opts.pendingDonation}&currency_code=USD" target="_blank" rel="noopener noreferrer" style="color:var(--purple); font-weight:600;">complete it here</a>. Thank you!</p>`
-        : ''
       panel.innerHTML = `
         <div class="fs-icon" aria-hidden="true">🪷</div>
         <h3>Welcome to Sakyadhita!</h3>
         <p>Your payment was received and your membership is confirmed. PayPal has emailed you a receipt.</p>
-        ${renewLine}${donationLine}
+        ${renewLine}
         <p style="margin-top:10px; font-size:13px; color:var(--ink-subtle);">Payment reference: ${referenceId}</p>`
       form.style.display = 'none'
       form.insertAdjacentElement('afterend', panel)
@@ -400,7 +386,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
                 recordingFailed(subId)
                 return
               }
-              showSuccess(subId, { yearly: true, pendingDonation: t.donation })
+              showSuccess(subId, { yearly: true })
             },
             onError: () => showPayError('Something went wrong starting the payment. Please close this window and try again.'),
             onCancel: () => {},
@@ -409,7 +395,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       } else {
         // ── Lifetime tiers (and annual until the yearly plans are
         //    created in PayPal): one-time payment ──
-        const total = t.wantsYearly ? t.price + t.donation : t.price + t.donation
+        const total = t.price
         const sdk = await loadSdk('orders')
         await sdk
           .Buttons({
@@ -434,7 +420,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
                   recordingFailed(txId)
                   return
                 }
-                showSuccess(txId, { yearly: false, pendingDonation: 0 })
+                showSuccess(txId, { yearly: false })
               } catch (err: any) {
                 if (err?.details?.[0]?.issue === 'INSTRUMENT_DECLINED') return actions.restart()
                 showPayError('The payment could not be completed. Please try again or use a different payment method.')
@@ -468,32 +454,14 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     const opts = [...document.querySelectorAll('.tier-opt')]
     const hidden = document.getElementById('tier-value') as HTMLInputElement | null
     const totalPaid = document.getElementById('total-paid') as HTMLInputElement | null
-    const donationInput = document.querySelector('input[name="donationAmount"]') as HTMLInputElement | null
-
-    function updateTotal() {
-      const sel = document.querySelector('.tier-opt.sel') as HTMLElement | null
-      const tier = Number(sel?.dataset.price || 0)
-      const donation = Number(donationInput?.value || 0)
-      if (totalPaid) totalPaid.value = String(tier + (donation > 0 ? donation : 0))
-    }
 
     opts.forEach((opt) => {
       opt.addEventListener('click', () => {
         opts.forEach((o) => o.classList.remove('sel'))
         opt.classList.add('sel')
         if (hidden) hidden.value = (opt as HTMLElement).dataset.name || ''
-        updateTotal()
+        if (totalPaid) totalPaid.value = (opt as HTMLElement).dataset.price || '0'
       })
-    })
-    donationInput?.addEventListener('input', updateTotal)
-
-    // Conditional donation amount
-    const box = document.getElementById('donate-box')
-    const chk = document.getElementById('add-donation') as HTMLInputElement | null
-    chk?.addEventListener('change', () => {
-      box?.classList.toggle('on', chk.checked)
-      if (!chk.checked && donationInput) donationInput.value = ''
-      updateTotal()
     })
 
     // Newsletter placeholder (until a real mailing list is connected)
@@ -603,9 +571,6 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     .tier-opt .o-sub { font-size: 12.5px; color: var(--ink-2); }
     @media (max-width: 520px) { .tier-pick { grid-template-columns: 1fr; } }
 
-    /* Conditional donation amount */
-    .donate-box .row-line { display: none; }
-    .donate-box.on .row-line { display: flex; }
 
     .form-section { padding: 72px 0; }
     .el-form { display: flex; gap: 10px; }
@@ -635,19 +600,6 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     @media (max-width: 560px) {
       /* Wider fields on phones — 8px from the card border */
       .form-card { padding: 28px 8px; }
-    }
-    .donate-box {
-      background: var(--bg-section);
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      padding: 18px;
-      margin: 6px 0 4px;
-    }
-    .donate-box .row-line { align-items: center; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
-    .donate-box input { flex: 1 1 140px; max-width: 200px; min-width: 0; }
-    @media (max-width: 560px) {
-      /* Amount field stays inside the box instead of sticking out */
-      .donate-box input { max-width: 100%; width: 100%; }
     }
     .form-card .submit-row {
       display: flex; align-items: center; justify-content: space-between;

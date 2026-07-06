@@ -10,6 +10,7 @@
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
 import leadership from '../data/leadership.json'
+import timelines from '../data/timelines.json'
 
 const terms = leadership.terms
 const firstTerm = terms[0]
@@ -99,72 +100,18 @@ const firstTerm = terms[0]
       </div>
       <div style="max-width: 880px; margin: 0 auto;">
         <div class="timeline">
-          <div class="t-item">
-            <div class="year">1987</div>
-            <div>
-              <h3>Founded in Bodh Gaya, India</h3>
-              <p>
-                The first Sakyadhita International Conference is held at the site of the Buddha's
-                awakening. Founding members: Ayya Khema, Chatsumarn Kabilsingh, Karma Lekshe Tsomo.
-              </p>
-            </div>
-            <div class="t-pic" style="background-image:url('/assets/conf-1987-bodhgaya.jpg');" role="img" aria-label="First conference, Bodh Gaya 1987"></div>
-          </div>
-          <div class="t-item">
-            <div class="year">1991</div>
-            <div>
-              <h3>First Sakyadhita Newsletter</h3>
-              <p>
-                Launch of the biannual newsletter, now in its 33rd volume. Distributed in print and
-                PDF across 45 countries.
-              </p>
-            </div>
-            <div class="t-pic" style="background-image:url('/assets/conf-newsletter.png');" role="img" aria-label="Early Sakyadhita newsletters"></div>
-          </div>
-          <div class="t-item">
-            <div class="year">1996</div>
-            <div>
-              <h3>Sarnath ordinations</h3>
-              <p>
-                Sri Lankan women ordained in Sarnath, India, marking the restoration of the
-                Theravada bhikkhuni order after a centuries-long interruption.
-              </p>
-            </div>
-            <div class="t-pic" style="background-image:url('/assets/publication.png');" role="img" aria-label="Ordination publication"></div>
-          </div>
-          <div class="t-item">
-            <div class="year">2013</div>
-            <div>
-              <h3>Return to Vaishali</h3>
-              <p>
-                13th Conference held in Vaishali, India, where Mahapajapati Gotami became the first
-                Buddhist nun. A symbolic homecoming.
-              </p>
-            </div>
-            <div class="t-pic" style="background-image:url('/assets/hero-2.png');" role="img" aria-label="Conference gathering"></div>
-          </div>
-          <div class="t-item">
-            <div class="year">2021</div>
-            <div>
-              <h3>First virtual conference</h3>
-              <p>
-                17th Conference held online during the pandemic. Over 1,200 participants from 38
-                countries, in 7 working languages.
-              </p>
-            </div>
-            <div class="t-pic" style="background-image:url('/assets/hero-3.png');" role="img" aria-label="Virtual conference"></div>
-          </div>
-          <div class="t-item">
-            <div class="year">2025</div>
-            <div>
-              <h3>19th Conference, Sarawak</h3>
-              <p>
-                "Navigating Change: Buddhist Women in Transition" in Kuching, East Malaysia. Hosted
-                by the Buddhist Society of Sarawak.
-              </p>
-            </div>
-            <div class="t-pic" style="background-image:url('/assets/seoul.png');" role="img" aria-label="Conference audience"></div>
-          </div>
+          {
+            timelines.aboutHistory.map((item) => (
+              <div class="t-item">
+                <div class="year">{item.year}</div>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+                <div class="t-pic" style={`background-image:url('${item.image}');`} role="img" aria-label={item.title} />
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>

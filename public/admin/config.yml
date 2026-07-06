@@ -1,0 +1,499 @@
+# ────────────────────────────────────────────────────────────────
+# Sakyadhita Content Editor (Sveltia CMS) configuration
+# Editors log in with GitHub. Every save becomes a commit and the
+# site redeploys automatically (~2 minutes).
+# ────────────────────────────────────────────────────────────────
+
+backend:
+  name: github
+  repo: annastdesign-boop/sakyadhita-redesign
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+site_url: https://sakyadhita-redesign.netlify.app
+logo_url: https://sakyadhita-redesign.netlify.app/assets/logo-flower.png
+
+media_folder: public/uploads
+public_folder: /uploads
+
+# Focal point choices reused by every image that supports one
+_focus_options: &focus_options
+  - { label: "Center (default)", value: "" }
+  - { label: "Top (faces near the top)", value: "center top" }
+  - { label: "Upper third", value: "50% 30%" }
+  - { label: "Bottom", value: "center bottom" }
+  - { label: "Left", value: "left center" }
+  - { label: "Right", value: "right center" }
+
+collections:
+  # ── CONFERENCES ────────────────────────────────────────────────
+  - name: conferences
+    label: "🪷 Conferences"
+    icon: event
+    files:
+      - name: conferences
+        label: "All conferences"
+        file: src/data/conferences.json
+        description: >
+          One entry per conference — each becomes its own page. To create the
+          next conference, add a new entry at the TOP with the next number.
+          When a conference has happened, turn OFF "Upcoming" and it becomes a
+          past-conference page where you can add photos, video, press coverage,
+          and materials.
+        fields:
+          - name: _comment
+            label: "(internal note)"
+            widget: string
+            required: false
+          - name: conferences
+            label: Conferences
+            label_singular: conference
+            widget: list
+            summary: "#{{fields.n}} · {{fields.year}} · {{fields.title}}"
+            fields:
+              - { name: n, label: "Number (e.g. 21)", widget: number, value_type: int }
+              - { name: year, label: Year, widget: string }
+              - { name: flag, label: "Flag emoji", widget: string, hint: "e.g. 🇮🇩" }
+              - { name: loc, label: Location, widget: string, hint: "e.g. Kuching · Sarawak, East Malaysia" }
+              - { name: title, label: Title, widget: string }
+              - { name: subtitle, label: Subtitle, widget: string, required: false }
+              - { name: dates, label: "Dates (as text)", widget: string }
+              - { name: host, label: "Hosted by", widget: string }
+              - { name: upcoming, label: "Upcoming? (turn OFF once the conference has happened)", widget: boolean, required: false }
+              - { name: about, label: "About the conference", widget: text }
+              - { name: heroImg, label: "Hero image", widget: image, required: false }
+              - name: heroFocus
+                label: "Hero image focal point"
+                widget: select
+                options: *focus_options
+                required: false
+              - { name: thumb, label: "Thumbnail (for lists)", widget: image, required: false }
+              - { name: noPhotoCredit, label: "Hide the Olivier Adam photo credit", widget: boolean, required: false }
+              - name: video
+                label: "Highlight video"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: yt, label: "YouTube video ID", widget: string, required: false, hint: "The part after watch?v= — e.g. IRr-CQYdQ8o" }
+                  - { name: file, label: "…or upload a video file (mp4)", widget: file, required: false, hint: "If both are set, the uploaded file wins" }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: caption, label: "Caption (e.g. SARAWAK · JUNE 2025)", widget: string, required: false }
+                  - { name: thumb, label: "Preview image", widget: image, required: false }
+              - name: photos
+                label: "Photos & videos gallery"
+                label_singular: item
+                widget: list
+                required: false
+                summary: "{{fields.caption}}"
+                fields:
+                  - { name: f, label: "Photo", widget: image, required: false }
+                  - { name: yt, label: "…or YouTube video ID", widget: string, required: false }
+                  - { name: caption, label: Caption, widget: string }
+                  - name: focus
+                    label: "Focal point"
+                    widget: select
+                    options: *focus_options
+                    required: false
+              - name: coverage
+                label: "Media coverage"
+                label_singular: article
+                widget: list
+                required: false
+                summary: "{{fields.outlet}} — {{fields.headline}}"
+                fields:
+                  - { name: outlet, label: "Outlet (e.g. TRICYCLE)", widget: string }
+                  - { name: date, label: Date, widget: string }
+                  - { name: headline, label: Headline, widget: string }
+                  - { name: excerpt, label: Excerpt, widget: text }
+                  - { name: href, label: "Link to the article", widget: string }
+                  - { name: img, label: "Thumbnail image", widget: image, required: false }
+              - name: materialsVisible
+                label: "Show conference materials? (unhide when files are ready)"
+                widget: boolean
+                required: false
+              - name: materials
+                label: "Conference materials (downloads)"
+                label_singular: material
+                widget: list
+                required: false
+                summary: "{{fields.title}}"
+                fields:
+                  - { name: chip, label: "Tag (e.g. PROGRAM / SCHEDULE / PAPERS)", widget: string }
+                  - { name: title, label: Title, widget: string }
+                  - { name: file, label: "File (PDF)", widget: file }
+                  - { name: note, label: "Note (e.g. PDF · 4 MB)", widget: string, required: false }
+
+  # ── NEWSLETTERS ───────────────────────────────────────────────
+  - name: newsletters
+    label: "📰 Newsletters"
+    icon: newspaper
+    files:
+      - name: newsletters
+        label: "Newsletter archive"
+        file: src/data/newsletters.json
+        description: >
+          "Carousel" = the featured issues at the top of the page.
+          "Decades" = the full archive grid. When a new issue arrives, add it
+          to the top of the right decade AND to the carousel.
+        fields:
+          - { name: _comment, label: "(internal note)", widget: string, required: false }
+          - name: carousel
+            label: "Featured issues (top carousel)"
+            label_singular: issue
+            widget: list
+            summary: "{{fields.title}} ({{fields.year}})"
+            fields:
+              - { name: year, label: Year, widget: string }
+              - { name: vol, label: "Volume label (e.g. VOL 33 · NO 1)", widget: string }
+              - { name: title, label: Title, widget: string }
+              - { name: eyebrow, label: "Small label (e.g. LATEST ISSUE · 2025)", widget: string }
+              - { name: desc, label: Description, widget: text }
+              - { name: img, label: "Cover image", widget: image, required: false }
+              - { name: pdf, label: "PDF link or upload", widget: file }
+              - { name: cta, label: "Button text", widget: string }
+          - name: decades
+            label: "Archive by decade"
+            label_singular: decade
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - { name: label, label: "Decade (e.g. 2020s)", widget: string }
+              - name: issues
+                label: Issues
+                label_singular: issue
+                widget: list
+                summary: "{{fields.title}} ({{fields.year}})"
+                fields:
+                  - { name: year, label: Year, widget: string }
+                  - { name: title, label: Title, widget: string }
+                  - { name: vol, label: "Volume label", widget: string, required: false }
+                  - { name: img, label: "Cover image (leave empty for a coloured cover)", widget: image, required: false }
+                  - { name: c1, label: "Cover colour 1 (e.g. #4F3E81)", widget: string, required: false }
+                  - { name: c2, label: "Cover colour 2", widget: string, required: false }
+                  - { name: pdf, label: "PDF link or upload", widget: file }
+
+  # ── PUBLICATIONS ──────────────────────────────────────────────
+  - name: publications
+    label: "📚 Publications"
+    icon: menu_book
+    files:
+      - name: publications
+        label: "Publications library"
+        file: src/data/publications.json
+        description: >
+          Every card on the Publications page. Add a card with the + button —
+          it appears on the site in the same order as here.
+        fields:
+          - { name: _comment, label: "(internal note)", widget: string, required: false }
+          - name: bibliographies
+            label: Bibliographies
+            label_singular: card
+            widget: list
+            summary: "{{fields.title}}"
+            fields: &pub_card
+              - { name: kind, label: "Small label above title (optional)", widget: string, required: false }
+              - { name: title, label: Title, widget: string }
+              - { name: author, label: Author, widget: string, required: false }
+              - { name: href, label: "Link (or upload a PDF)", widget: file }
+              - { name: source, label: "Source (e.g. SUNY Press)", widget: string }
+              - name: linkLabel
+                label: "Link text"
+                widget: select
+                options: ["PDF →", "View →"]
+              - name: cover
+                label: Cover
+                widget: object
+                fields:
+                  - name: style
+                    label: "Cover style"
+                    widget: select
+                    options:
+                      - { label: "Photo (pick an image below)", value: photo }
+                      - { label: "Gradient · purple/indigo", value: g1 }
+                      - { label: "Gradient · rose/indigo", value: g2 }
+                      - { label: "Gradient · orange/berry", value: g3 }
+                      - { label: "Gradient · violet/indigo", value: g4 }
+                      - { label: "Gradient · lavender/purple", value: g5 }
+                  - { name: image, label: "Cover photo (for Photo style)", widget: image, required: false }
+                  - { name: coverImg, label: "Book-cover image URL (optional overlay)", widget: string, required: false }
+          - name: books
+            label: Books
+            label_singular: card
+            widget: list
+            summary: "{{fields.title}}"
+            fields: *pub_card
+          - name: conferenceBrochures
+            label: "Conference brochures"
+            label_singular: card
+            widget: list
+            summary: "{{fields.title}}"
+            fields: *pub_card
+          - name: membershipBrochures
+            label: "Membership brochures"
+            widget: object
+            fields:
+              - { name: image, label: "Panel image", widget: image }
+              - name: languages
+                label: Languages
+                label_singular: language
+                widget: list
+                summary: "{{fields.name}}"
+                fields:
+                  - { name: flag, label: "Flag emoji", widget: string }
+                  - { name: name, label: Language, widget: string }
+                  - { name: pdf, label: "PDF link or upload", widget: file }
+          - name: translationGroups
+            label: "Translations & articles"
+            label_singular: group
+            widget: list
+            summary: "{{fields.heading}}"
+            fields:
+              - { name: heading, label: "Group heading (e.g. German)", widget: string }
+              - name: items
+                label: Cards
+                label_singular: card
+                widget: list
+                summary: "{{fields.title}}"
+                fields: *pub_card
+
+  # ── LEADERSHIP ────────────────────────────────────────────────
+  - name: leadership
+    label: "👥 Leadership"
+    icon: groups
+    files:
+      - name: leadership
+        label: "Executive Committee"
+        file: src/data/leadership.json
+        description: >
+          The Executive Committee shown on the About page, newest term first.
+          To start a new term, add a term at the TOP with its years and members.
+        fields:
+          - { name: _comment, label: "(internal note)", widget: string, required: false }
+          - name: terms
+            label: Terms
+            label_singular: term
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - { name: label, label: "Term years (e.g. 2025–2029)", widget: string }
+              - name: members
+                label: Members
+                label_singular: member
+                widget: list
+                summary: "{{fields.name}} — {{fields.role}}"
+                fields:
+                  - { name: name, label: Name, widget: string }
+                  - { name: role, label: "Role (e.g. President)", widget: string }
+                  - { name: img, label: "Portrait photo (optional — lotus shown if empty)", widget: image, required: false }
+                  - { name: card, label: "One-line summary (shown on the card)", widget: string }
+                  - { name: bio, label: "Full biography (shown in the popup)", widget: text }
+
+  # ── TIMELINES ─────────────────────────────────────────────────
+  - name: timelines
+    label: "🗓 Timelines"
+    icon: timeline
+    files:
+      - name: timelines
+        label: "History timelines"
+        file: src/data/timelines.json
+        description: "The About-page history timeline and the Ordination-page movement milestones."
+        fields:
+          - { name: _comment, label: "(internal note)", widget: string, required: false }
+          - name: aboutHistory
+            label: "About page · History & Milestones"
+            label_singular: milestone
+            widget: list
+            summary: "{{fields.year}} — {{fields.title}}"
+            fields:
+              - { name: year, label: Year, widget: string }
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Text, widget: text }
+              - { name: image, label: Image, widget: image, required: false }
+              - name: imagePosition
+                label: "Image focal point"
+                widget: select
+                options: *focus_options
+                required: false
+          - name: ordinationMovement
+            label: "Ordination page · Movement milestones"
+            label_singular: milestone
+            widget: list
+            summary: "{{fields.year}} — {{fields.title}}"
+            fields:
+              - { name: year, label: Year, widget: string }
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Text, widget: text }
+              - { name: image, label: Image, widget: image, required: false }
+              - name: imagePosition
+                label: "Image focal point"
+                widget: select
+                options: *focus_options
+                required: false
+              - { name: link, label: "Learn-more link (optional)", widget: string, required: false }
+
+  # ── BRANCHES ──────────────────────────────────────────────────
+  - name: branches
+    label: "🌏 Branches"
+    icon: public
+    files:
+      - name: branches
+        label: "Branch directory (Branches page)"
+        file: src/data/branches.json
+        description: "The filterable directory and map on the Branches page."
+        fields:
+          - { name: _comment, label: "(internal note)", widget: string, required: false }
+          - name: branches
+            label: Locations
+            label_singular: location
+            widget: list
+            summary: "{{fields.name}} ({{fields.region}})"
+            fields: &branch_fields
+              - { name: id, label: "Short id (lowercase, no spaces — e.g. spain)", widget: string }
+              - { name: name, label: Name, widget: string }
+              - name: region
+                label: Region
+                widget: select
+                options: [Asia, Americas, Europe, Africa, Oceania]
+              - name: type
+                label: Type
+                widget: select
+                options:
+                  - { label: "National branch", value: branch }
+                  - { label: "Local chapter", value: local }
+                  - { label: "Partner", value: partner }
+              - { name: lat, label: "Latitude (map pin)", widget: number, value_type: float }
+              - { name: lng, label: "Longitude (map pin)", widget: number, value_type: float }
+              - { name: desc, label: Description, widget: text }
+              - name: contact
+                label: "Contact rows"
+                label_singular: row
+                widget: list
+                required: false
+                summary: "{{fields.icon}} {{fields.text}}"
+                fields:
+                  - { name: icon, label: "Emoji (📧 📞 🌐 📍)", widget: string }
+                  - { name: text, label: Text, widget: string }
+                  - { name: url, label: "Link (optional — use mailto: for email)", widget: string, required: false }
+      - name: branches-map
+        label: "Home-page map pins"
+        file: src/data/branches-map.json
+        description: "The pins on the home-page world map (a shorter list than the full directory)."
+        fields:
+          - { name: _comment, label: "(internal note)", widget: string, required: false }
+          - name: kinds
+            label: "(pin type labels)"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: branch, label: Branch, widget: string }
+              - { name: local, label: Local, widget: string }
+              - { name: partner, label: Partner, widget: string }
+          - name: spots
+            label: Pins
+            label_singular: pin
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - name: kind
+                label: Type
+                widget: select
+                options:
+                  - { label: "National branch", value: branch }
+                  - { label: "Local chapter", value: local }
+                  - { label: "Partner", value: partner }
+              - { name: lat, label: Latitude, widget: number, value_type: float }
+              - { name: lng, label: Longitude, widget: number, value_type: float }
+              - { name: desc, label: Description, widget: text }
+              - name: contact
+                label: "Contact rows"
+                label_singular: row
+                widget: list
+                required: false
+                summary: "{{fields.icon}} {{fields.text}}"
+                fields:
+                  - { name: icon, label: "Emoji (📧 📞 🌐 📍)", widget: string }
+                  - { name: text, label: Text, widget: string }
+                  - { name: url, label: "Link (optional)", widget: string, required: false }
+
+  # ── NAVIGATION & FOOTER ───────────────────────────────────────
+  - name: chrome
+    label: "🧭 Menu & Footer"
+    icon: menu
+    files:
+      - name: navigation
+        label: "Top navigation menu"
+        file: src/data/navigation.json
+        description: >
+          The site's main menu. ⚠️ Don't change the "key" values — they control
+          which menu item is highlighted on each page.
+        fields:
+          - { name: _comment, label: "(internal note)", widget: string, required: false }
+          - name: links
+            label: "Menu items"
+            label_singular: item
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - { name: key, label: "Key (don't change)", widget: string }
+              - { name: label, label: Label, widget: string }
+              - { name: href, label: Link, widget: string }
+              - name: submenu
+                label: "Dropdown items (optional)"
+                label_singular: item
+                widget: list
+                required: false
+                summary: "{{fields.label}}"
+                fields:
+                  - { name: label, label: Label, widget: string }
+                  - { name: href, label: Link, widget: string }
+          - name: cta
+            label: "Highlighted button (right side)"
+            widget: object
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: href, label: Link, widget: string }
+      - name: footer
+        label: Footer
+        file: src/data/footer.json
+        description: "Everything in the site footer."
+        fields:
+          - { name: _comment, label: "(internal note)", widget: string, required: false }
+          - { name: blurb, label: "Short description under the logo", widget: text }
+          - name: social
+            label: "Social links"
+            label_singular: link
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - name: icon
+                label: "Icon (don't change — picks the logo)"
+                widget: select
+                options: [facebook, youtube, pinterest, blog, goodreads]
+              - { name: label, label: Name, widget: string }
+              - { name: url, label: Link, widget: string }
+          - name: columns
+            label: "Link columns"
+            label_singular: column
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: "Column title", widget: string }
+              - name: links
+                label: Links
+                label_singular: link
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { name: label, label: Label, widget: string }
+                  - { name: href, label: Link, widget: string }
+          - { name: address, label: "Postal address (use <br/> for a line break)", widget: string }
+          - name: newsletter
+            label: "Newsletter box"
+            widget: object
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Text, widget: string }
+          - { name: bottomText, label: "Bottom line (after the © year)", widget: text }

@@ -1,46 +1,21 @@
 ---
 /**
  * Header — the sticky top navigation bar.
- *
- * Unlike the design prototype (which built this with JavaScript),
- * the menu here is real HTML rendered on the server. That means
- * search engines can read it and it works even if JavaScript fails.
- *
- * To change menu items, edit the `links` list below.
+ * Menu items live in src/data/navigation.json (editable in the CMS).
  */
+import nav from '../data/navigation.json'
+
 interface Props {
   /** Key of the currently-active nav item, e.g. "about" */
   active?: string
 }
 const { active = '' } = Astro.props
-
-const links = [
-  { k: 'home', href: '/', label: 'Home' },
-  { k: 'conferences', href: '/conferences', label: 'Conferences' },
-  {
-    k: 'resources',
-    href: '/publications',
-    label: 'Resources',
-    submenu: [
-      { href: '/newsletters', label: 'Newsletters' },
-      { href: '/publications', label: 'Publications' },
-      { href: '/ordination-issue', label: 'Ordination Issue' },
-    ],
-  },
-  { k: 'about', href: '/about', label: 'About' },
-  { k: 'branches', href: '/branches', label: 'Branches' },
-  {
-    k: 'get-involved',
-    href: '/join',
-    label: 'Get Involved',
-    submenu: [
-      { href: '/join', label: 'Become a member' },
-      { href: '/volunteer', label: 'Volunteer' },
-      { href: '/donate', label: 'Donate' },
-    ],
-  },
-  { k: 'contact', href: '/contact', label: 'Contact' },
-]
+const links = nav.links as {
+  key: string
+  label: string
+  href: string
+  submenu?: { label: string; href: string }[]
+}[]
 ---
 
 <header class="site-header">
@@ -55,16 +30,16 @@ const links = [
     <ul class="nav-links">
       {
         links.map((l) => (
-          <li class:list={['nav-item', { 'has-submenu': !!l.submenu }]}>
+          <li class:list={['nav-item', { 'has-submenu': !!l.submenu?.length }]}>
             <a
-              class:list={['nav-link', { 'has-caret': !!l.submenu, 'is-active': active === l.k }]}
+              class:list={['nav-link', { 'has-caret': !!l.submenu?.length, 'is-active': active === l.key }]}
               href={l.href}
-              aria-haspopup={l.submenu ? 'true' : undefined}
-              aria-expanded={l.submenu ? 'false' : undefined}
+              aria-haspopup={l.submenu?.length ? 'true' : undefined}
+              aria-expanded={l.submenu?.length ? 'false' : undefined}
             >
               {l.label}
             </a>
-            {l.submenu && (
+            {l.submenu?.length && (
               <ul class="nav-submenu" role="menu">
                 {l.submenu.map((s) => (
                   <li role="none">
@@ -78,7 +53,7 @@ const links = [
           </li>
         ))
       }
-      <li><a class="btn btn--primary" href="/donate">Contribute</a></li>
+      <li><a class="btn btn--primary" href={nav.cta.href}>{nav.cta.label}</a></li>
     </ul>
   </nav>
 </header>

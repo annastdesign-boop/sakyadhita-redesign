@@ -18,12 +18,15 @@ const { n } = Astro.props
 type Conf = (typeof data.conferences)[number] & {
   upcoming?: boolean
   heroImg?: string
+  heroFocus?: string
   thumb?: string
   noPhotoCredit?: boolean
   subtitle?: string
-  video?: { yt: string; title?: string; caption?: string; thumb?: string }
+  video?: { yt?: string; file?: string; title?: string; caption?: string; thumb?: string }
   coverage?: any
-  photos: { f?: string; yt?: string; caption: string }[]
+  photos: { f?: string; yt?: string; caption: string; focus?: string }[]
+  materialsVisible?: boolean
+  materials?: { chip: string; title: string; file: string; note?: string }[]
 }
 
 const list = data.conferences as Conf[]
@@ -55,10 +58,18 @@ const prevThumb = (x: Conf) => x.thumb ?? x.photos?.find((p) => p.f)?.f ?? x.her
 const nPhotos = c.photos?.filter((p) => !p.yt).length ?? 0
 const nVideos = c.photos?.filter((p) => p.yt).length ?? 0
 
-const materials = [
+const placeholderMaterials = [
   { c1: '#BB8FDB', c2: '#773BFA', vol: c.year, ttl: 'Conference Brochure', file: `Conference Brochure ${c.year}`, chip: 'PROGRAM' },
   { c1: '#F39A6C', c2: '#DE7386', vol: 'SCHEDULE', ttl: 'Program at a glance', file: 'Full Program Schedule', chip: 'SCHEDULE' },
   { c1: '#16034F', c2: '#4F3E81', vol: 'PAPERS', ttl: 'Abstract Book', file: 'Abstract Book', chip: 'PAPERS' },
+]
+const realMaterials = c.materialsVisible && c.materials?.length ? c.materials : null
+const MAT_COLORS = [
+  ['#BB8FDB', '#773BFA'],
+  ['#F39A6C', '#DE7386'],
+  ['#16034F', '#4F3E81'],
+  ['#DE7386', '#16034F'],
+  ['#FAB2BE', '#BB8FDB'],
 ]
 ---
 
@@ -113,7 +124,7 @@ const materials = [
       <div
         class="pic"
         aria-hidden="true"
-        style={heroUrl ? `background-image:url('${heroUrl}'); background-size:cover; background-position:center;` : undefined}
+        style={heroUrl ? `background-image:url('${heroUrl}'); background-size:cover; background-position:${c.heroFocus || 'center'};` : undefined}
       >
       </div>
     </section>
@@ -135,20 +146,26 @@ const materials = [
     }
 
     {
-      !c.upcoming && c.video?.yt && (
+      !c.upcoming && (c.video?.yt || c.video?.file) && (
         <section class="conf-video">
           <div class="cv-head">
             <div class="eyebrow">{ord(c.n).toUpperCase()} INTERNATIONAL CONFERENCE</div>
             {c.video.title && <h2 class="cv-title">{c.video.title}</h2>}
           </div>
-          <div
-            class="cv-stage"
-            data-yt={c.video.yt}
-            style={`background-image:url('${c.video.thumb ?? `https://img.youtube.com/vi/${c.video.yt}/maxresdefault.jpg`}');`}
-          >
-            {c.video.caption && <span class="cv-caption">{c.video.caption}</span>}
-            <button class="cv-play" type="button" aria-label="Play video" />
-          </div>
+          {c.video.file ? (
+            <video class="cv-stage cv-native" controls preload="metadata" poster={c.video.thumb} src={c.video.file}>
+              Your browser can't play this video. <a href={c.video.file}>Download it instead.</a>
+            </video>
+          ) : (
+            <div
+              class="cv-stage"
+              data-yt={c.video.yt}
+              style={`background-image:url('${c.video.thumb ?? `https://img.youtube.com/vi/${c.video.yt}/maxresdefault.jpg`}');`}
+            >
+              {c.video.caption && <span class="cv-caption">{c.video.caption}</span>}
+              <button class="cv-play" type="button" aria-label="Play video" />
+            </div>
+          )}
         </section>
       )
     }
@@ -190,7 +207,7 @@ const materials = [
                   <span class="play" />
                 </div>
               ) : (
-                <div class="photo-tile" data-type="image" data-src={p.f} data-caption={p.caption} style={`background-image:url('${p.f}');`} />
+                <div class="photo-tile" data-type="image" data-src={p.f} data-caption={p.caption} style={`background-image:url('${p.f}');${p.focus ? ` background-position: ${p.focus};` : ''}`} />
               )
             )}
           </div>
@@ -259,12 +276,43 @@ const materials = [
     }
 
     {
-      !c.upcoming && (
+      realMaterials && (
         <section>
           <div class="panel-head">
             <span class="label">Conference materials</span>
           </div>
-          {materials.map((m) => (
+          {realMaterials.map((m, i) => (
+            <article class="h-card-row">
+              <div class="thumb doc" style={`--c1:${MAT_COLORS[i % MAT_COLORS.length][0]}; --c2:${MAT_COLORS[i % MAT_COLORS.length][1]};`}>
+                <div>
+                  <div class="doc-vol">{m.chip}</div>
+                  <div class="doc-ttl">{m.title}</div>
+                </div>
+              </div>
+              <div class="body">
+                <span class="chip">{m.chip}</span>
+                <div class="file-title">{m.title}</div>
+                <div class="file-meta">{m.note || 'PDF'}</div>
+              </div>
+              <a class="get" href={m.file} target="_blank" rel="noopener noreferrer">
+                <svg class="dl-ico" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2 L8 11 M4 7 L8 11 L12 7 M3 13 L13 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Download
+              </a>
+            </article>
+          ))}
+        </section>
+      )
+    }
+
+    {
+      !realMaterials && !c.upcoming && (
+        <section>
+          <div class="panel-head">
+            <span class="label">Conference materials</span>
+          </div>
+          {placeholderMaterials.map((m) => (
             <article class="h-card-row">
               <div class="thumb doc" style={`--c1:${m.c1}; --c2:${m.c2};`}>
                 <div>
@@ -877,6 +925,7 @@ const materials = [
     font-size: 12px; letter-spacing: 0.1em;
   }
   .cv-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .cv-native { display: block; width: 100%; background: #000; }
 
   /* Photos */
   .photos-head {

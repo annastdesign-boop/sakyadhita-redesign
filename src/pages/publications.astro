@@ -1,12 +1,14 @@
 ---
 /**
  * Publications library — bibliographies, books, conference brochures,
- * membership brochures in 9 languages, and translated scholarship.
+ * membership brochures, and translated scholarship.
  *
- * PDF links currently point at the old site's files; they will move to
- * stable paths on this site during content migration.
+ * ALL content comes from src/data/publications.json (editable in the
+ * CMS — every card is an entry you can add/remove/reorder).
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
+import BookCard from '../components/BookCard.astro'
+import pubs from '../data/publications.json'
 ---
 
 <BaseLayout
@@ -27,7 +29,6 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     </div>
   </section>
 
-  <!-- BIBLIOGRAPHIES -->
   <section id="bibliographies">
     <div class="shell">
       <div class="section-head">
@@ -35,31 +36,11 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         <h2 class="h-section">Five reading lists on Buddhist women</h2>
       </div>
       <div class="book-grid">
-        <a class="book" href="https://sakyadhita.org/_astro/04a%20Bibliographies%20Historical.CsfjfmWO.pdf" target="_blank" rel="noopener noreferrer">
-          <div class="cover photo" style="background-image:url('/assets/bib-historical.jpg')"><span class="b-kind">HISTORICAL</span><span class="b-title">Tracing the Histories of Buddhist Women</span></div>
-          <div class="foot"><span class="src">Sakyadhita</span><span class="lnk">PDF →</span></div>
-        </a>
-        <a class="book" href="https://sakyadhita.org/_astro/04b%20Bibliographies%20Textual.BdG7lsOM.pdf" target="_blank" rel="noopener noreferrer">
-          <div class="cover photo" style="background-image:url('/assets/bib-textual.jpg')"><span class="b-kind">TEXTUAL STUDIES</span><span class="b-title">Texts Documenting Buddhist Women</span></div>
-          <div class="foot"><span class="src">Sakyadhita</span><span class="lnk">PDF →</span></div>
-        </a>
-        <a class="book" href="https://sakyadhita.org/_astro/04c%20Bibliographies%20Profiles%20Interviews.P_Ue7r36.pdf" target="_blank" rel="noopener noreferrer">
-          <div class="cover photo" style="background-image:url('/assets/bib-profiles.jpg')"><span class="b-kind">BIOGRAPHIES &amp; PROFILES</span><span class="b-title">Recounting the Stories of Buddhist Women</span></div>
-          <div class="foot"><span class="src">Sakyadhita</span><span class="lnk">PDF →</span></div>
-        </a>
-        <a class="book" href="https://sakyadhita.org/_astro/04d%20Bibliographies%20Contemporary.CppzMjnx.pdf" target="_blank" rel="noopener noreferrer">
-          <div class="cover photo" style="background-image:url('/assets/bib-contemporary.jpg')"><span class="b-kind">CONTEMPORARY STUDIES</span><span class="b-title">Researching the Lives of Buddhist Women</span></div>
-          <div class="foot"><span class="src">Sakyadhita</span><span class="lnk">PDF →</span></div>
-        </a>
-        <a class="book" href="https://sakyadhita.org/_astro/04e%20General%20and%20Miscellaneous.B5QfkFni.pdf" target="_blank" rel="noopener noreferrer">
-          <div class="cover photo" style="background-image:url('/assets/bib-general.jpg')"><span class="b-kind">GENERAL &amp; MISC.</span><span class="b-title">More about Buddhist Women</span></div>
-          <div class="foot"><span class="src">Sakyadhita</span><span class="lnk">PDF →</span></div>
-        </a>
+        {pubs.bibliographies.map((item) => <BookCard item={item} />)}
       </div>
     </div>
   </section>
 
-  <!-- BOOKS -->
   <section id="books" style="background: var(--bg-section);">
     <div class="shell">
       <div class="section-head">
@@ -67,51 +48,11 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         <h2 class="h-section">Books by and about Buddhist women</h2>
       </div>
       <div class="book-grid">
-        <a class="book" href="https://sakyadhita.org/_astro/Tsomo%20Bridging%20Worlds.Ecisyfxi.pdf" target="_blank" rel="noopener noreferrer">
-          <div class="cover grad bk1"><span class="b-title">Bridging Worlds: Buddhist Women's Voices Across Generations</span><span class="b-auth">Karma Lekshe Tsomo</span></div>
-          <div class="foot"><span class="src">Sakyadhita</span><span class="lnk">PDF →</span></div>
-        </a>
-        <a class="book" href="https://sakyadhita.org/_astro/BuddhistWomenInAMulticulturalCommunity-Sakyadhita2009.D7tB4OeL.pdf" target="_blank" rel="noopener noreferrer">
-          <div class="cover grad bk2"><span class="b-title">Buddhist Women in a Global Multicultural Community</span><span class="b-auth">Karma Lekshe Tsomo</span></div>
-          <div class="foot"><span class="src">Sakyadhita 2009</span><span class="lnk">PDF →</span></div>
-        </a>
-        <a class="book" href="https://www.sunypress.edu/p-5853-eminent-buddhist-women.aspx" target="_blank" rel="noopener noreferrer">
-          <div class="cover grad bk3"><img class="cv-img" src="https://books.google.com/books/content?id=aEpbBAAAQBAJ&printsec=frontcover&img=1&zoom=1" alt="Eminent Buddhist Women cover" loading="lazy" onerror="this.remove()" /><span class="b-title">Eminent Buddhist Women</span><span class="b-auth">Karma Lekshe Tsomo</span></div>
-          <div class="foot"><span class="src">SUNY Press</span><span class="lnk">View →</span></div>
-        </a>
-        <a class="book" href="https://www.amazon.com/Out-Shadows-Socially-Bibliotheca-Indio-Buddhica/dp/8170308496/" target="_blank" rel="noopener noreferrer">
-          <div class="cover grad bk4"><span class="b-title">Out of the Shadows: Socially Engaged Buddhist Women</span><span class="b-auth">Karma Lekshe Tsomo</span></div>
-          <div class="foot"><span class="src">Bibliotheca</span><span class="lnk">View →</span></div>
-        </a>
-        <a class="book" href="https://www.sunypress.edu/p-4016-buddhist-women-and-social-justi.aspx" target="_blank" rel="noopener noreferrer">
-          <div class="cover grad bk5"><img class="cv-img" src="https://books.google.com/books/content?id=c6O5Q9B6DwQC&printsec=frontcover&img=1&zoom=1" alt="Buddhist Women and Social Justice cover" loading="lazy" onerror="this.remove()" /><span class="b-title">Buddhist Women and Social Justice</span><span class="b-auth">Karma Lekshe Tsomo</span></div>
-          <div class="foot"><span class="src">SUNY Press</span><span class="lnk">View →</span></div>
-        </a>
-        <a class="book" href="https://www.amazon.com/Innovative-Buddhist-Women-Swimming-Routledge/dp/0700712534" target="_blank" rel="noopener noreferrer">
-          <div class="cover grad bk2"><img class="cv-img" src="https://books.google.com/books/content?id=PYMnAAAAQBAJ&printsec=frontcover&img=1&zoom=1" alt="Innovative Buddhist Women cover" loading="lazy" onerror="this.remove()" /><span class="b-title">Innovative Women in Buddhism</span><span class="b-auth">Karma Lekshe Tsomo</span></div>
-          <div class="foot"><span class="src">Routledge</span><span class="lnk">View →</span></div>
-        </a>
-        <a class="book" href="https://www.sunypress.edu/p-2949-buddhist-women-across-cultures.aspx" target="_blank" rel="noopener noreferrer">
-          <div class="cover grad bk1"><img class="cv-img" src="https://books.google.com/books/content?id=2c55PQaeGxsC&printsec=frontcover&img=1&zoom=1" alt="Buddhist Women Across Cultures cover" loading="lazy" onerror="this.remove()" /><span class="b-title">Buddhist Women Across Cultures</span><span class="b-auth">Karma Lekshe Tsomo</span></div>
-          <div class="foot"><span class="src">SUNY Press</span><span class="lnk">View →</span></div>
-        </a>
-        <a class="book" href="https://www.sunypress.edu/p-2429-sisters-in-solitude.aspx" target="_blank" rel="noopener noreferrer">
-          <div class="cover grad bk4"><img class="cv-img" src="https://books.google.com/books/content?id=BVkHEqebgzwC&printsec=frontcover&img=1&zoom=1" alt="Sisters in Solitude cover" loading="lazy" onerror="this.remove()" /><span class="b-title">Sisters in Solitude</span><span class="b-auth">Karma Lekshe Tsomo</span></div>
-          <div class="foot"><span class="src">SUNY Press</span><span class="lnk">View →</span></div>
-        </a>
-        <a class="book" href="https://www.shambhala.com/buddhism-through-american-women-s-eyes-2183.html" target="_blank" rel="noopener noreferrer">
-          <div class="cover grad bk3"><img class="cv-img" src="https://books.google.com/books/content?id=yNxOEAAAQBAJ&printsec=frontcover&img=1&zoom=1" alt="Buddhism Through American Women's Eyes cover" loading="lazy" onerror="this.remove()" /><span class="b-title">Buddhism Through American Women's Eyes</span><span class="b-auth">Karma Lekshe Tsomo</span></div>
-          <div class="foot"><span class="src">Shambhala</span><span class="lnk">View →</span></div>
-        </a>
-        <a class="book" href="https://www.amazon.com/Sakyadhita-Daughters-Karma-Lekshe-Tsomo/dp/0937938726/" target="_blank" rel="noopener noreferrer">
-          <div class="cover grad bk5"><span class="b-title">Sakyadhita: Daughters of the Buddha</span><span class="b-auth">Karma Lekshe Tsomo</span></div>
-          <div class="foot"><span class="src">Snow Lion</span><span class="lnk">View →</span></div>
-        </a>
+        {pubs.books.map((item) => <BookCard item={item} />)}
       </div>
     </div>
   </section>
 
-  <!-- CONFERENCE BROCHURES -->
   <section id="conference-brochures">
     <div class="shell">
       <div class="section-head">
@@ -120,30 +61,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       </div>
       <div class="carousel">
         <div class="carousel-track" id="conf-track">
-          <a class="book" href="https://sakyadhita.org/_astro/11-EnglishBrochure.B-NIieWG.pdf" target="_blank" rel="noopener noreferrer">
-            <div class="cover photo" style="background-image:url('/assets/conf/conf11-vietnam.jpg')"><span class="b-kind">2009 · VIETNAM</span><span class="b-title">11th International Conference</span></div>
-            <div class="foot"><span class="src">Ho Chi Minh City</span><span class="lnk">PDF →</span></div>
-          </a>
-          <a class="book" href="https://sakyadhita.org/_astro/12-EnglishBrochure.DfBnztwH.pdf" target="_blank" rel="noopener noreferrer">
-            <div class="cover photo" style="background-image:url('/assets/conf/conf12-bangkok.jpg')"><span class="b-kind">2011 · THAILAND</span><span class="b-title">12th International Conference</span></div>
-            <div class="foot"><span class="src">Bangkok</span><span class="lnk">PDF →</span></div>
-          </a>
-          <a class="book" href="https://sakyadhita.org/_astro/13-English-SakyadhitaBrochure.Di_hKFnZ.pdf" target="_blank" rel="noopener noreferrer">
-            <div class="cover photo" style="background-image:url('/assets/conf/conf13-vaishali.jpg')"><span class="b-kind">2013 · INDIA</span><span class="b-title">13th International Conference</span></div>
-            <div class="foot"><span class="src">Vaishali</span><span class="lnk">PDF →</span></div>
-          </a>
-          <a class="book" href="https://sakyadhita.org/_astro/14-EnglishBrochure_02142015.BTZtX3ko.pdf" target="_blank" rel="noopener noreferrer">
-            <div class="cover photo" style="background-image:url('/assets/conf/conf14-yogyakarta.jpg')"><span class="b-kind">2015 · INDONESIA</span><span class="b-title">14th International Conference</span></div>
-            <div class="foot"><span class="src">Yogyakarta</span><span class="lnk">PDF →</span></div>
-          </a>
-          <a class="book" href="https://sakyadhita.org/_astro/2017%20Sakyadhita%20Brochure%20Hong%20Kong.BwdrHUdd.pdf" target="_blank" rel="noopener noreferrer">
-            <div class="cover photo" style="background-image:url('https://tricycle.org/wp-content/uploads/2017/07/Sakyadhita-1.jpg')"><span class="b-kind">2017 · HONG KONG</span><span class="b-title">15th International Conference</span></div>
-            <div class="foot"><span class="src">Hong Kong</span><span class="lnk">PDF →</span></div>
-          </a>
-          <a class="book" href="https://sakyadhita.org/_astro/2023%20Brochure%2018th%20Sakyadhita%20Seoul%20.ePB1kzYe.pdf" target="_blank" rel="noopener noreferrer">
-            <div class="cover photo" style="background-image:url('/assets/conf/conf18-seoul.jpg')"><span class="b-kind">2023 · KOREA</span><span class="b-title">18th International Conference</span></div>
-            <div class="foot"><span class="src">Seoul</span><span class="lnk">PDF →</span></div>
-          </a>
+          {pubs.conferenceBrochures.map((item) => <BookCard item={item} />)}
         </div>
         <div class="carousel-arrows">
           <button class="carousel-btn" id="conf-prev" aria-label="Previous">←</button>
@@ -153,49 +71,31 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     </div>
   </section>
 
-  <!-- MEMBERSHIP BROCHURES -->
   <section id="brochures" style="background: var(--bg-section);">
     <div class="shell">
       <div class="section-head">
         <div class="eyebrow">MEMBERSHIP BROCHURES</div>
-        <h2 class="h-section">Translated into 9 languages</h2>
+        <h2 class="h-section">Translated into {pubs.membershipBrochures.languages.length} languages</h2>
       </div>
       <div class="mbr">
-        <div class="pic" style="background-image:url('/assets/publication.png')"></div>
+        <div class="pic" style={`background-image:url('${pubs.membershipBrochures.image}')`}></div>
         <div class="langs">
-          <a class="lang" href="https://sakyadhita.org/_astro/Indonesia-sak-brochure2010-sm.ARcTdE95.pdf" target="_blank" rel="noopener noreferrer">
-            <span class="l-left"><span class="flag">🇮🇩</span><span class="l-name">Bahasa Indonesia</span></span><span class="l-link">PDF →</span>
-          </a>
-          <a class="lang" href="https://sakyadhita.org/_astro/Bangla-SI-mbrshp-brochure2011.GuTmaxxF.pdf" target="_blank" rel="noopener noreferrer">
-            <span class="l-left"><span class="flag">🇧🇩</span><span class="l-name">Bangla</span></span><span class="l-link">PDF →</span>
-          </a>
-          <a class="lang" href="https://sakyadhita.org/_astro/SimplfiedChns-SakBroch.PHaJpsEU.pdf" target="_blank" rel="noopener noreferrer">
-            <span class="l-left"><span class="flag">🇨🇳</span><span class="l-name">Chinese (Simplified)</span></span><span class="l-link">PDF →</span>
-          </a>
-          <a class="lang" href="https://sakyadhita.org/_astro/TradChns-SakBroch-2010-sm.BoRLy-yo.pdf" target="_blank" rel="noopener noreferrer">
-            <span class="l-left"><span class="flag">🇹🇼</span><span class="l-name">Chinese (Traditional)</span></span><span class="l-link">PDF →</span>
-          </a>
-          <a class="lang" href="https://sakyadhita.org/_astro/English-sakyadhitabrochure2011.N8FrYTkE.pdf" target="_blank" rel="noopener noreferrer">
-            <span class="l-left"><span class="flag">🇬🇧</span><span class="l-name">English</span></span><span class="l-link">PDF →</span>
-          </a>
-          <a class="lang" href="https://sakyadhita.org/_astro/French-SI-mbership-brochure-2011.Dnw2ubBg.pdf" target="_blank" rel="noopener noreferrer">
-            <span class="l-left"><span class="flag">🇫🇷</span><span class="l-name">French</span></span><span class="l-link">PDF →</span>
-          </a>
-          <a class="lang" href="https://sakyadhita.org/_astro/Japanese-brochure2010sm.CggTUzs_.pdf" target="_blank" rel="noopener noreferrer">
-            <span class="l-left"><span class="flag">🇯🇵</span><span class="l-name">Japanese</span></span><span class="l-link">PDF →</span>
-          </a>
-          <a class="lang" href="https://sakyadhita.org/_astro/Korean-sakbrochure2011.CcpMwKKD.pdf" target="_blank" rel="noopener noreferrer">
-            <span class="l-left"><span class="flag">🇰🇷</span><span class="l-name">Korean</span></span><span class="l-link">PDF →</span>
-          </a>
-          <a class="lang" href="https://sakyadhita.org/_astro/Mongolian-Sakyadhita-brochure.CErph9lS.pdf" target="_blank" rel="noopener noreferrer">
-            <span class="l-left"><span class="flag">🇲🇳</span><span class="l-name">Mongolian</span></span><span class="l-link">PDF →</span>
-          </a>
+          {
+            pubs.membershipBrochures.languages.map((l) => (
+              <a class="lang" href={l.pdf} target="_blank" rel="noopener noreferrer">
+                <span class="l-left">
+                  <span class="flag">{l.flag}</span>
+                  <span class="l-name">{l.name}</span>
+                </span>
+                <span class="l-link">PDF →</span>
+              </a>
+            ))
+          }
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TRANSLATIONS -->
   <section id="translations">
     <div class="shell">
       <div class="section-head">
@@ -203,48 +103,18 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         <h2 class="h-section">Scholarship in many languages</h2>
       </div>
       <div class="tr-stack">
-        <div class="tr-group">
-          <div class="tr-head">English</div>
-          <div class="book-grid">
-            <a class="book" href="http://agamaresearch.dila.edu.tw/publications" target="_blank" rel="noopener noreferrer"><div class="cover grad bk1"><span class="b-title">Assorted Articles</span><span class="b-auth">Agama Research Group</span></div><div class="foot"><span class="src">Articles</span><span class="lnk">View →</span></div></a>
-            <a class="book" href="https://www.bhikkhuni.net/library/" target="_blank" rel="noopener noreferrer"><div class="cover grad bk2"><span class="b-title">Assorted Articles</span><span class="b-auth">Alliance for Bhikkhunis</span></div><div class="foot"><span class="src">Library</span><span class="lnk">View →</span></div></a>
-            <a class="book" href="https://thubtenchodron.org/monasticism/" target="_blank" rel="noopener noreferrer"><div class="cover grad bk3"><span class="b-title">Assorted Articles</span><span class="b-auth">Bhikkhuni Thubten Chodron</span></div><div class="foot"><span class="src">Articles</span><span class="lnk">View →</span></div></a>
-            <a class="book" href="https://www.dhammadharini.net/teachings" target="_blank" rel="noopener noreferrer"><div class="cover grad bk4"><span class="b-title">Assorted Articles</span><span class="b-auth">Dhammadharini</span></div><div class="foot"><span class="src">Teachings</span><span class="lnk">View →</span></div></a>
-            <a class="book" href="https://buddhistwomen.eu/EN/index.php" target="_blank" rel="noopener noreferrer"><div class="cover grad bk5"><span class="b-title">Assorted Articles</span><span class="b-auth">Network of Buddhist Women in Europe</span></div><div class="foot"><span class="src">Articles</span><span class="lnk">View →</span></div></a>
-            <a class="book" href="https://www.buddhismuskunde.uni-hamburg.de/pdf/5-personen/analayo/attitudes-towards-nuns.pdf" target="_blank" rel="noopener noreferrer"><div class="cover grad bk1"><span class="b-title">Attitudes Towards Nuns: The Nandakovāda &amp; its Parallels</span><span class="b-auth">Bhikkhu Anālayo</span></div><div class="foot"><span class="src">U. Hamburg</span><span class="lnk">PDF →</span></div></a>
-            <a class="book" href="https://www.buddhismuskunde.uni-hamburg.de/pdf/5-personen/analayo/bahudhatuka.pdf" target="_blank" rel="noopener noreferrer"><div class="cover grad bk2"><span class="b-title">The Bahudhātuka-sutta on Women's Inabilities</span><span class="b-auth">Bhikkhu Anālayo</span></div><div class="foot"><span class="src">U. Hamburg</span><span class="lnk">PDF →</span></div></a>
-            <a class="book" href="https://www.buddhismuskunde.uni-hamburg.de/pdf/5-personen/analayo/legality.pdf" target="_blank" rel="noopener noreferrer"><div class="cover grad bk3"><span class="b-title">The Legality of Bhikkhunī Ordination</span><span class="b-auth">Bhikkhu Anālayo</span></div><div class="foot"><span class="src">U. Hamburg</span><span class="lnk">PDF →</span></div></a>
-            <a class="book" href="https://www.buddhismuskunde.uni-hamburg.de/pdf/5-personen/analayo/theories-foundation.pdf" target="_blank" rel="noopener noreferrer"><div class="cover grad bk4"><span class="b-title">Theories on the Foundation of the Nuns' Order</span><span class="b-auth">Bhikkhu Anālayo</span></div><div class="foot"><span class="src">U. Hamburg</span><span class="lnk">PDF →</span></div></a>
-            <a class="book" href="http://www.academia.edu/6046712/Amazing_Transformations_of_Arahant_Theri_Uppalavanna" target="_blank" rel="noopener noreferrer"><div class="cover grad bk5"><span class="b-title">Amazing Transformations of Arahant Therī Uppalavaṇṇā</span><span class="b-auth">Bhikkhunī Tathāālokā</span></div><div class="foot"><span class="src">Academia</span><span class="lnk">View →</span></div></a>
-            <a class="book" href="http://www.academia.edu/5827376/" target="_blank" rel="noopener noreferrer"><div class="cover grad bk1"><span class="b-title">Lasting Inspiration: The Therī Apadāna</span><span class="b-auth">Bhikkhunī Tathāālokā</span></div><div class="foot"><span class="src">Academia</span><span class="lnk">View →</span></div></a>
-            <a class="book" href="https://www.academia.edu/6108350/" target="_blank" rel="noopener noreferrer"><div class="cover grad bk2"><span class="b-title">Saffron and Green in the Clear Forest Pool</span><span class="b-auth">Bhikkhunī Tathāālokā</span></div><div class="foot"><span class="src">Academia</span><span class="lnk">View →</span></div></a>
-            <a class="book" href="http://www.academia.edu/5589567/" target="_blank" rel="noopener noreferrer"><div class="cover grad bk3"><span class="b-title">Buddhist Nuns in South India</span><span class="b-auth">Petra Kieffer-Pülz</span></div><div class="foot"><span class="src">Academia</span><span class="lnk">View →</span></div></a>
-            <a class="book" href="http://www.academia.edu/5605493/" target="_blank" rel="noopener noreferrer"><div class="cover grad bk4"><span class="b-title">Presuppositions for a Valid Ordination (Mūlasarvāstivāda)</span><span class="b-auth">Petra Kieffer-Pülz</span></div><div class="foot"><span class="src">Academia</span><span class="lnk">View →</span></div></a>
-            <a class="book" href="http://www.academia.edu/5676402/" target="_blank" rel="noopener noreferrer"><div class="cover grad bk5"><span class="b-title">Women's Monasteries</span><span class="b-auth">Petra Kieffer-Pülz</span></div><div class="foot"><span class="src">Academia</span><span class="lnk">View →</span></div></a>
-          </div>
-        </div>
-
-        <div class="tr-group">
-          <div class="tr-head">German</div>
-          <div class="book-grid">
-            <a class="book" href="http://www.buddhistwomen.eu/DE/index.php/Dokumente/Texte" target="_blank" rel="noopener noreferrer"><div class="cover grad bk1"><span class="b-title">Assorted Articles</span><span class="b-auth">Network of Buddhist Women in Europe</span></div><div class="foot"><span class="src">Texte</span><span class="lnk">View →</span></div></a>
-            <a class="book" href="http://www.buddhismuskunde.uni-hamburg.de/fileadmin/pdf/analayo/LegalityGerman.pdf" target="_blank" rel="noopener noreferrer"><div class="cover grad bk2"><span class="b-title">Die Rechtmäßigkeit der Bhikkhunī Ordination</span><span class="b-auth">Bhikkhu Anālayo</span></div><div class="foot"><span class="src">U. Hamburg</span><span class="lnk">PDF →</span></div></a>
-            <a class="book" href="http://www.info-buddhismus.de/PDF/Tsedroen_2013_Eis_gebrochen_TiBu105.pdf" target="_blank" rel="noopener noreferrer"><div class="cover grad bk3"><span class="b-title">Nonnenordination — das Eis Scheint Gebrochen!</span><span class="b-auth">Bhikkhunī Jampa Tsedroen</span></div><div class="foot"><span class="src">PDF</span><span class="lnk">PDF →</span></div></a>
-            <a class="book" href="http://www.buddhistwomen.eu/DE/uploads/Dokumente/TiBu-2012-2_Tsedroen_Lobby.pdf" target="_blank" rel="noopener noreferrer"><div class="cover grad bk4"><span class="b-title">Die Nonnen Brauchen eine Lobby</span><span class="b-auth">Bhikkhunī Jampa Tsedroen</span></div><div class="foot"><span class="src">PDF</span><span class="lnk">PDF →</span></div></a>
-            <a class="book" href="http://www.buddhismuskunde.uni-hamburg.de/fileadmin/pdf/digitale_texte/Bd11-K03KiefferPuelz.pdf" target="_blank" rel="noopener noreferrer"><div class="cover grad bk5"><span class="b-title">Die Wiedereinrichtung des Nonnenordens (Theravāda)</span><span class="b-auth">Petra Kieffer-Pülz</span></div><div class="foot"><span class="src">U. Hamburg</span><span class="lnk">PDF →</span></div></a>
-            <a class="book" href="http://www.academia.edu/5605538/" target="_blank" rel="noopener noreferrer"><div class="cover grad bk1"><span class="b-title">Voraussetzungen für eine gültige Ordination</span><span class="b-auth">Petra Kieffer-Pülz</span></div><div class="foot"><span class="src">Academia</span><span class="lnk">View →</span></div></a>
-            <a class="book" href="https://drive.google.com/file/d/0B7Xpe-gp2em7SDNhTGZDeDFMa0U/edit" target="_blank" rel="noopener noreferrer"><div class="cover grad bk2"><span class="b-title">Das Patriarchat ist zu Ende</span><span class="b-auth">Sylvia Wetzel</span></div><div class="foot"><span class="src">Drive</span><span class="lnk">View →</span></div></a>
-          </div>
-        </div>
-
-        <div class="tr-group">
-          <div class="tr-head">Chinese · French · Spanish</div>
-          <div class="book-grid">
-            <a class="book" href="https://www.buddhismuskunde.uni-hamburg.de/fileadmin/pdf/analayo/publications.htm" target="_blank" rel="noopener noreferrer"><div class="cover grad bk3"><span class="b-kind">CHINESE</span><span class="b-title">Assorted Articles</span><span class="b-auth">Bhikkhu Anālayo</span></div><div class="foot"><span class="src">Articles</span><span class="lnk">View →</span></div></a>
-            <a class="book" href="http://www.buddhistwomen.eu/FR/index.php/Documentation/Textes" target="_blank" rel="noopener noreferrer"><div class="cover grad bk4"><span class="b-kind">FRENCH</span><span class="b-title">Assorted Articles</span><span class="b-auth">Network of Buddhist Women in Europe</span></div><div class="foot"><span class="src">Textes</span><span class="lnk">View →</span></div></a>
-            <a class="book" href="http://www.dhammadharini.net/resources-for-bhikkhuni-sangha-and-women-in-buddhism/espanol/articulos-de-interes" target="_blank" rel="noopener noreferrer"><div class="cover grad bk5"><span class="b-kind">SPANISH</span><span class="b-title">Artículos de Interés</span><span class="b-auth">Dhammadharini</span></div><div class="foot"><span class="src">Artículos</span><span class="lnk">View →</span></div></a>
-          </div>
-        </div>
+        {
+          pubs.translationGroups.map((group) => (
+            <div class="tr-group">
+              <div class="tr-head">{group.heading}</div>
+              <div class="book-grid">
+                {group.items.map((item) => (
+                  <BookCard item={item} />
+                ))}
+              </div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>

@@ -1,0 +1,46 @@
+{
+  "_comment": "Footer content. Social icons are matched by 'icon' name (facebook, youtube, pinterest, blog, goodreads) — keep those; edit the urls freely.",
+  "blurb": "International Association of Buddhist Women. Connecting laywomen, monastics, and scholars across traditions since 1987.",
+  "social": [
+    { "icon": "facebook", "label": "Facebook", "url": "https://www.facebook.com/sakyadhita.international" },
+    { "icon": "youtube", "label": "YouTube", "url": "https://www.youtube.com/@sakyadhitainternational" },
+    { "icon": "pinterest", "label": "Pinterest", "url": "https://www.pinterest.com/sakyadhita/" },
+    { "icon": "blog", "label": "Blog", "url": "https://awakeningbuddhistwomen.blogspot.com/" },
+    { "icon": "goodreads", "label": "Goodreads", "url": "https://www.goodreads.com/group/show/94269-women-in-buddhism" }
+  ],
+  "columns": [
+    {
+      "title": "Explore",
+      "links": [
+        { "label": "Conferences", "href": "/conferences" },
+        { "label": "Resources", "href": "/publications" },
+        { "label": "About", "href": "/about" },
+        { "label": "Ordination", "href": "/ordination-issue" },
+        { "label": "Branches", "href": "/branches" }
+      ]
+    },
+    {
+      "title": "Get Involved",
+      "links": [
+        { "label": "Join", "href": "/join" },
+        { "label": "Volunteer", "href": "/volunteer" },
+        { "label": "Donate", "href": "/donate" },
+        { "label": "Host a Conference", "href": "/conferences#host" }
+      ]
+    },
+    {
+      "title": "Contact",
+      "links": [
+        { "label": "General inquiries", "href": "/contact" },
+        { "label": "Branch contacts", "href": "/branches" },
+        { "label": "Press & partnerships", "href": "/contact#press" }
+      ]
+    }
+  ],
+  "address": "7331 Princess View Dr<br/>San Diego, CA 92120",
+  "newsletter": {
+    "title": "Newsletter",
+    "text": "One email a year — when the new issue drops."
+  },
+  "bottomText": "Sakyadhita International. This website is licensed under a <a href=\"https://creativecommons.org/licenses/by-nc-nd/4.0/\" target=\"_blank\" rel=\"noopener noreferrer\">Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License</a>."
+}

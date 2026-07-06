@@ -1,0 +1,27 @@
+{
+  "_comment": "Top navigation menu. Edit labels/links here or in the CMS. 'key' controls which item is highlighted per page — don't change keys.",
+  "links": [
+    { "key": "home", "label": "Home", "href": "/" },
+    { "key": "conferences", "label": "Conferences", "href": "/conferences" },
+    {
+      "key": "resources", "label": "Resources", "href": "/publications",
+      "submenu": [
+        { "label": "Newsletters", "href": "/newsletters" },
+        { "label": "Publications", "href": "/publications" },
+        { "label": "Ordination Issue", "href": "/ordination-issue" }
+      ]
+    },
+    { "key": "about", "label": "About", "href": "/about" },
+    { "key": "branches", "label": "Branches", "href": "/branches" },
+    {
+      "key": "get-involved", "label": "Get Involved", "href": "/join",
+      "submenu": [
+        { "label": "Become a member", "href": "/join" },
+        { "label": "Volunteer", "href": "/volunteer" },
+        { "label": "Donate", "href": "/donate" }
+      ]
+    },
+    { "key": "contact", "label": "Contact", "href": "/contact" }
+  ],
+  "cta": { "label": "Contribute", "href": "/donate" }
+}

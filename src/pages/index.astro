@@ -379,7 +379,7 @@ import branchesMap from '../data/branches-map.json'
         lat: number
         lng: number
         desc: string
-        contact?: [string, string, string?][]
+        contact?: { icon: string; text: string; url?: string }[]
       }[] = data.spots
 
       const W = 1000
@@ -423,8 +423,8 @@ import branchesMap from '../data/branches-map.json'
           popup.querySelector('p')!.textContent = d.desc
           popup.querySelector('.plinks')!.innerHTML = (d.contact || [])
             .map(
-              (c: [string, string, string?]) =>
-                `<div>${c[0]} ${c[2] ? `<a href="${c[2]}">${c[1]}</a>` : `<span>${c[1]}</span>`}</div>`
+              (c: { icon: string; text: string; url?: string }) =>
+                `<div>${c.icon} ${c.url ? `<a href="${c.url}">${c.text}</a>` : `<span>${c.text}</span>`}</div>`
             )
             .join('')
           popup.classList.add('is-open')

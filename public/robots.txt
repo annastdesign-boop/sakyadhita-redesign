@@ -3,3 +3,7 @@ User-agent: *
 Allow: /
 
 Sitemap: https://sakyadhita-redesign.netlify.app/sitemap-index.xml
+
+# The content editor is private
+User-agent: *
+Disallow: /admin/

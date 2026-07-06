@@ -8,6 +8,7 @@
  * in the mockup and are left out until the content is ready.
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
+import timelines from '../data/timelines.json'
 ---
 
 <BaseLayout
@@ -121,68 +122,23 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         <h2 class="h-section">Milestones in the restoration of full ordination</h2>
       </div>
       <div class="move-tl">
-        <div class="step">
-          <div class="year">1987</div>
-          <div>
-            <h3>The founding conversation</h3>
-            <p>The first Sakyadhita conference in Bodh Gaya identifies women's ordination as the movement's signature issue.</p>
-          </div>
-          <div class="t-pic" style="background-image:url('/assets/founding-1987-bodhgaya.jpg');"></div>
-        </div>
-        <div class="step">
-          <div class="year">1996</div>
-          <div>
-            <h3>The revival of bhikkhunī ordination in the Theravada tradition</h3>
-            <p>Sri Lankan women ordained in Sarnath, India, marking the restoration of the Theravada bhikkhuni order.</p>
-            <a class="link" href="https://present.bhikkhuni.net/bhikkhuni-kusuma/" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:10px; color:var(--purple); font-weight:600; font-size:14px;">Learn more →</a>
-          </div>
-          <div class="t-pic" style="background-image:url('/assets/sarnath-1996-news.jpg'); background-position: center top;"></div>
-        </div>
-        <div class="step">
-          <div class="year">1998</div>
-          <div>
-            <h3>International Full Ordination Ceremony in Bodhgaya, India</h3>
-            <p>Bhiksunis Thubten Chodron and Karma Lekshe Tsomo were part of the bhikshuni sangha that gave dual ordination to new bhiksunis and bhikkhunis at Bodhgaya, India.</p>
-            <a class="link" href="https://thubtenchodron.org/1998/02/restoring-bhikshuni-ordination/" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:10px; color:var(--purple); font-weight:600; font-size:14px;">Learn more →</a>
-          </div>
-          <div class="t-pic" style="background-image:url('/assets/bodhgaya-1998-ordination.png');"></div>
-        </div>
-        <div class="step">
-          <div class="year">2007</div>
-          <div>
-            <h3>Hamburg Congress</h3>
-            <p>International congress on Buddhist women's role in the sangha, hosted by H.H. the Dalai Lama.</p>
-            <a class="link" href="https://www.studienstiftung-fuer-buddhismus.de/en/abgeschlossene-projekte/1st-international-congress-on-buddhist-womens-role-in-the-sangha-2017/" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:10px; color:var(--purple); font-weight:600; font-size:14px;">Learn more →</a>
-          </div>
-          <div class="t-pic" style="background-image:url('https://www.studienstiftung-fuer-buddhismus.de/wp-content/uploads/2020/05/MG_5010-copy-1024x683.jpg');"></div>
-        </div>
-        <div class="step">
-          <div class="year">2022</div>
-          <div>
-            <h3>First bhikshuni ordination in Bhutan</h3>
-            <p>At the King's request, Bhutan's Je Khenpo fully ordains 144 women — establishing a bhikshuni sangha within Tibetan Buddhism for the first time in modern history.</p>
-            <a class="link" href="https://www.lionsroar.com/women-receive-full-ordination-in-bhutan-for-first-time-in-modern-history/" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:10px; color:var(--purple); font-weight:600; font-size:14px;">Learn more →</a>
-          </div>
-          <div class="t-pic" style="background-image:url('https://www.lionsroar.com/wp-content/uploads/2023/11/feat-jun27.png');"></div>
-        </div>
-        <div class="step">
-          <div class="year">2023</div>
-          <div>
-            <h3>Seoul Declaration</h3>
-            <p>18th Sakyadhita conference participants reaffirm commitment to ordination work across all traditions.</p>
-            <a class="link" href="https://www.buddhistdoor.net/features/daughters-of-the-buddha-18th-sakyadhita-conference-in-seoul-celebrates-the-sacred-feminine/" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:10px; color:var(--purple); font-weight:600; font-size:14px;">Learn more →</a>
-          </div>
-          <div class="t-pic" style="background-image:url('/assets/seoul.png');"></div>
-        </div>
-        <div class="step">
-          <div class="year">2025</div>
-          <div>
-            <h3>Second Bhutan ordination</h3>
-            <p>At the culmination of Bhutan's Global Peace Prayer Festival, 265 nuns from ten countries receive full ordination — a profound step toward gender equality in spiritual leadership.</p>
-            <a class="link" href="https://www.lionsroar.com/bhutan-festival-marks-landmark-for-buddhist-nuns/" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:10px; color:var(--purple); font-weight:600; font-size:14px;">Learn more →</a>
-          </div>
-          <div class="t-pic" style="background-image:url('/assets/bhutan-2025-ordination.png');"></div>
-        </div>
+        {
+          timelines.ordinationMovement.map((item: any) => (
+            <div class="step">
+              <div class="year">{item.year}</div>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+                {item.link && (
+                  <a class="link" href={item.link} target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:10px; color:var(--purple); font-weight:600; font-size:14px;">
+                    Learn more →
+                  </a>
+                )}
+              </div>
+              <div class="t-pic" style={`background-image:url('${item.image}');${item.imagePosition ? ` background-position: ${item.imagePosition};` : ''}`} />
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
