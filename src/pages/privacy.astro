@@ -1,0 +1,65 @@
+---
+/**
+ * Privacy page — plain-language summary of what the site collects.
+ * Linked from the cookie-consent banner and the footer.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title="Privacy · Sakyadhita"
+  description="How the Sakyadhita website handles your information: forms, payments, and anonymous statistics."
+>
+  <section class="hero-compact">
+    <div class="shell">
+      <div class="eyebrow">YOUR PRIVACY</div>
+      <h1 class="h-display">Privacy on this website</h1>
+      <p class="lede">Plain language, no legalese — here is everything this site does with information.</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="shell shell--narrow privacy-body">
+      <h2>Forms you fill in</h2>
+      <p>
+        When you contact us, volunteer, subscribe to the newsletter, or become a member, the
+        details you type are stored securely with our website host (Netlify) and used only by
+        Sakyadhita volunteers to respond to you and administer membership. We never sell or share
+        them.
+      </p>
+
+      <h2>Payments</h2>
+      <p>
+        Membership fees and donations are processed entirely by PayPal. Your card or bank details
+        never touch this website — we only receive PayPal's confirmation that a payment was made.
+      </p>
+
+      <h2>Anonymous statistics (only if you agree)</h2>
+      <p>
+        If you accept statistics cookies, we use Google Analytics to see anonymous, aggregated
+        numbers — which pages are read, from which countries, on which devices — so we can improve
+        the site. IP addresses are anonymized. If you decline, nothing is collected, and the site
+        works exactly the same.
+      </p>
+
+      <h2>Questions?</h2>
+      <p>
+        Write to <a href="mailto:service.sakyadhita@gmail.com">service.sakyadhita@gmail.com</a> —
+        we're happy to explain, correct, or delete anything that concerns you.
+      </p>
+    </div>
+  </section>
+
+  <style is:global>
+    .privacy-body h2 {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 26px;
+      color: var(--ink);
+      margin: 36px 0 12px;
+    }
+    .privacy-body p { font-size: 16px; line-height: 1.65; color: var(--ink-body); }
+    .privacy-body a { color: var(--purple); font-weight: 600; }
+    .privacy-body { padding-bottom: 80px; }
+  </style>
+</BaseLayout>
