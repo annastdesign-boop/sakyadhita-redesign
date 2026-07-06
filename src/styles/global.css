@@ -836,6 +836,12 @@ input, select, textarea { min-width: 0; max-width: 100%; }
 /* ── Mobile ──────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   body { font-size: 16px; }
+
+  /* iOS zooms the page when focusing an input whose text is smaller
+     than 16px — which shoves the layout off-screen to the right and
+     lets the page pan horizontally. 16px inputs stop the zoom.
+     (!important: must beat the component-level 14px rules.) */
+  input, select, textarea { font-size: 16px !important; }
   .shell { padding: 0 20px; }
   section { padding: 48px 0; }
   .section--tight { padding: 36px 0; }
