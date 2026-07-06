@@ -171,8 +171,10 @@ const benefitIcons = [
       <div class="eyebrow">{joinPage.newsletter.eyebrow}</div>
       <h2 class="h-section" style="margin: 12px 0 6px;">{joinPage.newsletter.heading}</h2>
       <p class="muted" style="margin-bottom: 18px;">{joinPage.newsletter.text}</p>
-      <form class="el-form" id="join-newsletter" style="max-width: 480px; margin: 0 auto;">
-        <input type="email" required placeholder="you@email.com" aria-label="Email address" />
+      <form class="el-form" id="join-newsletter" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="max-width: 480px; margin: 0 auto;">
+        <input type="hidden" name="form-name" value="newsletter" />
+        <p hidden aria-hidden="true"><label>Don't fill this out: <input name="bot-field" /></label></p>
+        <input type="email" name="email" required placeholder="you@email.com" aria-label="Email address" />
         <button type="submit" class="btn btn--primary">{joinPage.newsletter.buttonLabel}</button>
       </form>
     </div>
@@ -305,6 +307,9 @@ const benefitIcons = [
       const panel = document.createElement('div')
       panel.className = 'form-success'
       panel.setAttribute('role', 'status')
+      const demoLine = IS_DEMO
+        ? '<p style="margin-top:10px; font-size:13px; color:var(--ink-subtle);">Demo mode — no payment was made and nothing was recorded.</p>'
+        : ''
       const renewLine = opts.yearly
         ? '<p style="margin-top:8px;">Your membership renews automatically each year — you can cancel anytime in your PayPal account.</p>'
         : ''
@@ -312,7 +317,7 @@ const benefitIcons = [
         <div class="fs-icon" aria-hidden="true">🪷</div>
         <h3>${joinCopy.title || 'Welcome to Sakyadhita!'}</h3>
         <p>${joinCopy.text || 'Your payment was received and your membership is confirmed. PayPal has emailed you a receipt.'}</p>
-        ${renewLine}
+        ${renewLine}${demoLine}
         <p style="margin-top:10px; font-size:13px; color:var(--ink-subtle);">Payment reference: ${referenceId}</p>`
       form.style.display = 'none'
       form.insertAdjacentElement('afterend', panel)
@@ -367,11 +372,13 @@ const benefitIcons = [
             createSubscription: (_data: any, actions: any) => actions.subscription.create({ plan_id: t.planId }),
             onApprove: async (data: any) => {
               const subId = data?.subscriptionID || ''
-              try {
-                await recordMembership(subId, String(t.price))
-              } catch {
-                recordingFailed(subId)
-                return
+              if (!IS_DEMO) {
+                try {
+                  await recordMembership(subId, String(t.price))
+                } catch {
+                  recordingFailed(subId)
+                  return
+                }
               }
               showSuccess(subId, { yearly: true })
             },
@@ -401,11 +408,13 @@ const benefitIcons = [
                 const capture = details?.purchase_units?.[0]?.payments?.captures?.[0]
                 const txId = capture?.id || details?.id || ''
                 const paid = capture?.amount?.value || String(total)
-                try {
-                  await recordMembership(txId, paid)
-                } catch {
-                  recordingFailed(txId)
-                  return
+                if (!IS_DEMO) {
+                  try {
+                    await recordMembership(txId, paid)
+                  } catch {
+                    recordingFailed(txId)
+                    return
+                  }
                 }
                 showSuccess(txId, { yearly: false })
               } catch (err: any) {
@@ -453,10 +462,27 @@ const benefitIcons = [
 
     // Newsletter placeholder (until a real mailing list is connected)
     const nl = document.getElementById('join-newsletter') as HTMLFormElement | null
-    nl?.addEventListener('submit', (e) => {
+    nl?.addEventListener('submit', async (e) => {
       e.preventDefault()
-      nl.querySelector('input')!.value = ''
-      nl.querySelector('button')!.textContent = 'Thanks ✓'
+      const btn = nl.querySelector('button')!
+      const input = nl.querySelector('input[name="email"]') as HTMLInputElement
+      btn.textContent = '…'
+      try {
+        const data = new FormData(nl)
+        const body = new URLSearchParams()
+        data.forEach((v, k) => body.append(k, String(v)))
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: body.toString(),
+        })
+        if (!res.ok) throw new Error()
+        input.value = ''
+        btn.textContent = 'Thanks ✓'
+      } catch {
+        btn.textContent = 'Try again'
+        setTimeout(() => (btn.textContent = 'Subscribe'), 2500)
+      }
     })
   </script>
 

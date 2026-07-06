@@ -149,9 +149,11 @@ const hiddenDecades = decades.slice(2)
       <button class="sub-modal__close" type="button" aria-label="Close" data-close>&times;</button>
       <div class="eyebrow">STAY IN TOUCH</div>
       <h2 id="sub-modal-title">Subscribe to our newsletter</h2>
-      <form id="sub-form">
+      <form id="sub-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="newsletter" />
+        <p hidden aria-hidden="true"><label>Don't fill this out: <input name="bot-field" /></label></p>
         <label for="sub-email">Email address</label>
-        <input id="sub-email" type="email" required placeholder="you@email.com" />
+        <input id="sub-email" name="email" type="email" required placeholder="you@email.com" />
         <button type="submit" class="btn btn--primary btn--lg">Subscribe</button>
       </form>
       <div class="sub-modal__done" id="sub-done" hidden>
@@ -293,10 +295,25 @@ const hiddenDecades = decades.slice(2)
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal()
     })
-    form?.addEventListener('submit', (e) => {
+    form?.addEventListener('submit', async (e) => {
       e.preventDefault()
-      form.hidden = true
-      done.hidden = false
+      const btn = form.querySelector('button')!
+      btn.textContent = 'Sending…'
+      try {
+        const data = new FormData(form)
+        const body = new URLSearchParams()
+        data.forEach((v, k) => body.append(k, String(v)))
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: body.toString(),
+        })
+        if (!res.ok) throw new Error()
+        form.hidden = true
+        done.hidden = false
+      } catch {
+        btn.textContent = 'Try again'
+      }
     })
   </script>
 

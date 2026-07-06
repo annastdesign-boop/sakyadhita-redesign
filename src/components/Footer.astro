@@ -55,7 +55,9 @@ const ICONS: Record<string, string> = {
       <div class="footer-news">
         <h4>{footer.newsletter.title}</h4>
         <p>{footer.newsletter.text}</p>
-        <form id="footer-newsletter">
+        <form id="footer-newsletter" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="newsletter" />
+          <p hidden aria-hidden="true"><label>Don't fill this out: <input name="bot-field" /></label></p>
           <input type="email" name="email" placeholder="you@email.com" aria-label="Email address" required />
           <button type="submit">Subscribe</button>
         </form>
@@ -69,11 +71,30 @@ const ICONS: Record<string, string> = {
 </footer>
 
 <script>
-  // Placeholder behaviour until the newsletter is connected to a real list.
+  // Newsletter signups are saved to Netlify → Forms → "newsletter".
   const form = document.getElementById('footer-newsletter') as HTMLFormElement | null
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault()
-    form.querySelector('input')!.value = ''
-    form.querySelector('button')!.textContent = 'Thanks ✓'
+    const btn = form.querySelector('button')!
+    const input = form.querySelector('input[name="email"]') as HTMLInputElement
+    if (!input.value) return
+    const original = btn.textContent
+    btn.textContent = '…'
+    try {
+      const data = new FormData(form)
+      const body = new URLSearchParams()
+      data.forEach((v, k) => body.append(k, String(v)))
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
+      })
+      if (!res.ok) throw new Error()
+      input.value = ''
+      btn.textContent = 'Thanks ✓'
+    } catch {
+      btn.textContent = 'Try again'
+      setTimeout(() => (btn.textContent = original), 2500)
+    }
   })
 </script>
