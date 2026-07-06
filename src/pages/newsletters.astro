@@ -8,12 +8,26 @@
  * stable paths under this site during content migration.
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
-import data from '../data/newsletters.json'
+const modules = import.meta.glob('../content/newsletters/*.json', { eager: true })
+const issues = Object.values(modules)
+  .map((m: any) => m.default)
+  .sort((a: any, b: any) => (b.sort ?? 0) - (a.sort ?? 0))
 
-const totalIssues = data.decades.reduce((sum, d) => sum + d.issues.length, 0)
+const totalIssues = issues.length
+const carousel = issues.filter((i: any) => i.featured)
+
+/** Group issues into decades, newest decade first. */
+const decadeOf = (year: string) => `${Math.floor(Number(year) / 10) * 10}s`
+const decades: { label: string; issues: any[] }[] = []
+for (const issue of issues) {
+  const label = decadeOf(issue.year)
+  let d = decades.find((x) => x.label === label)
+  if (!d) decades.push((d = { label, issues: [] }))
+  d.issues.push(issue)
+}
 /** First two decades show immediately; the rest sit behind "Show all". */
-const visibleDecades = data.decades.slice(0, 2)
-const hiddenDecades = data.decades.slice(2)
+const visibleDecades = decades.slice(0, 2)
+const hiddenDecades = decades.slice(2)
 ---
 
 <BaseLayout
@@ -31,7 +45,7 @@ const hiddenDecades = data.decades.slice(2)
         <h1 id="nl-title"></h1>
         <p id="nl-desc"></p>
         <div class="ctas">
-          <a class="btn btn--primary" id="nl-read" href={data.carousel[0].pdf} target="_blank" rel="noopener noreferrer">Read latest issue (PDF)</a>
+          <a class="btn btn--primary" id="nl-read" href={carousel[0]?.pdf} target="_blank" rel="noopener noreferrer">Read latest issue (PDF)</a>
           <a class="btn btn--ghost" href="#" id="nl-subscribe-btn">Subscribe to future issues</a>
         </div>
       </div>
@@ -147,7 +161,7 @@ const hiddenDecades = data.decades.slice(2)
   </div>
 
   <!-- Carousel data -->
-  <script type="application/json" id="nl-data" set:html={JSON.stringify(data.carousel)} />
+  <script type="application/json" id="nl-data" set:html={JSON.stringify(carousel)} />
 
   <script>
     // ── Cover-flow carousel (ported from the design prototype) ──

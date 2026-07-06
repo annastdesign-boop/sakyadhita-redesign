@@ -1,0 +1,18 @@
+{
+  "id": "india",
+  "name": "India · Bodh Gaya",
+  "region": "Asia",
+  "type": "local",
+  "lat": 24.69,
+  "lng": 84.99,
+  "desc": "Where Sakyadhita was founded in 1987. Coordinated by the Mahabodhi community.",
+  "contact": [
+    {
+      "icon": "📧",
+      "text": "bodhgaya@sakyadhita.org",
+      "url": "mailto:bodhgaya@sakyadhita.org"
+    }
+  ],
+  "homeMap": true,
+  "homeDesc": "Where Sakyadhita was founded in 1987."
+}

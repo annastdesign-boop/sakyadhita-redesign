@@ -1,0 +1,22 @@
+{
+  "id": "france",
+  "name": "Sakyadhita France",
+  "region": "Europe",
+  "type": "branch",
+  "lat": 48.58,
+  "lng": 7.75,
+  "desc": "Strasbourg-based national branch. Active in European outreach and translation.",
+  "contact": [
+    {
+      "icon": "📍",
+      "text": "71 Boulevard d'Anvers, Strasbourg"
+    },
+    {
+      "icon": "📧",
+      "text": "france@sakyadhita.org",
+      "url": "mailto:france@sakyadhita.org"
+    }
+  ],
+  "homeMap": true,
+  "homeDesc": "Strasbourg-based national branch."
+}

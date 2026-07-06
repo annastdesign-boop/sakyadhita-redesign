@@ -9,10 +9,12 @@
  * not here.
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
-import leadership from '../data/leadership.json'
 import timelines from '../data/timelines.json'
 
-const terms = leadership.terms
+const leadershipModules = import.meta.glob('../content/leadership/*.json', { eager: true })
+const terms = Object.values(leadershipModules)
+  .map((m: any) => m.default)
+  .sort((a: any, b: any) => (b.sort ?? 0) - (a.sort ?? 0))
 const firstTerm = terms[0]
 ---
 

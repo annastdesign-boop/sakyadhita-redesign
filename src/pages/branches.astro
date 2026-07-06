@@ -4,7 +4,10 @@
  * world map. Directory data lives in src/data/branches.json.
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
-import data from '../data/branches.json'
+const modules = import.meta.glob('../content/branches/*.json', { eager: true })
+const branches = Object.values(modules)
+  .map((m: any) => m.default)
+  .sort((a: any, b: any) => a.name.localeCompare(b.name))
 ---
 
 <BaseLayout
@@ -31,7 +34,7 @@ import data from '../data/branches.json'
         <div class="list-sticky">
           <div class="list-head">
             <h2 id="list-title">All locations</h2>
-            <span class="count" id="list-count">{data.branches.length} LISTINGS</span>
+            <span class="count" id="list-count">{branches.length} LISTINGS</span>
           </div>
           <div class="seg" id="seg-region" role="tablist" aria-label="Region">
             <button class="opt is-active" data-v="">All regions</button>
@@ -65,7 +68,7 @@ import data from '../data/branches.json'
     </div>
   </section>
 
-  <script type="application/json" id="branches-data" set:html={JSON.stringify(data.branches)} />
+  <script type="application/json" id="branches-data" set:html={JSON.stringify(branches)} />
 
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>

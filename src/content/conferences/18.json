@@ -1,0 +1,57 @@
+{
+  "n": 18,
+  "year": "2023",
+  "flag": "🇰🇷",
+  "loc": "Coex Convention Center · Seoul, Korea",
+  "title": "Living in a Precarious World",
+  "subtitle": "Impermanence, Resilience, Awakening",
+  "dates": "June 23–27, 2023",
+  "host": "Korean Bhiksuni Association & Sakyadhita Korea",
+  "heroImg": "/assets/conf/conf18-seoul.jpg",
+  "thumb": "/assets/conf/conf18-seoul.jpg",
+  "about": "The largest gathering in Sakyadhita's history. More than 3,000 Buddhist monastics, laypeople, and dignitaries from over 30 countries convened in Seoul to explore impermanence, resilience, and awakening in a world reshaped by pandemic, conflict, and climate crisis. Held at the Coex Convention Center in Gangnam, the five-day program featured plenary lectures, workshops, cultural performances, and a temple stay program at historic Korean monasteries.",
+  "coverage": [
+    {
+      "outlet": "BUDDHISTDOOR GLOBAL",
+      "date": "Jul 2023",
+      "headline": "Daughters of the Buddha: 18th Sakyadhita Conference in Seoul Celebrates the Sacred Feminine",
+      "excerpt": "Buddhist monastics and laywomen from around the world gathered in Seoul for the largest conference in Sakyadhita's history — a shining example of the alignment between Buddhist scholarship, activism, and practice. Photos by Olivier Adam.",
+      "href": "https://www.buddhistdoor.net/features/daughters-of-the-buddha-18th-sakyadhita-conference-in-seoul-celebrates-the-sacred-feminine/",
+      "img": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/001-3.jpg"
+    }
+  ],
+  "photos": [
+    {
+      "yt": "YGxVoV13hg8",
+      "caption": "18th Sakyadhita Conference — Seoul 2023"
+    },
+    {
+      "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/001-3.jpg",
+      "caption": "Monastics gather for the opening of the 18th Conference"
+    },
+    {
+      "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/002.jpg",
+      "caption": "Participants from over 30 countries in Seoul"
+    },
+    {
+      "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/004.jpg",
+      "caption": "Bhikshunis in the robes of many traditions"
+    },
+    {
+      "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/005-1.jpg",
+      "caption": "Plenary session at the Coex Convention Center"
+    },
+    {
+      "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/007-1.jpg",
+      "caption": "Cultural performance during the program"
+    },
+    {
+      "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/011.jpg",
+      "caption": "Sisters in the Dharma share experiences"
+    },
+    {
+      "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/031.jpg",
+      "caption": "A global sangha of Buddhist women"
+    }
+  ]
+}

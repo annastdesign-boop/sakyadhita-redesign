@@ -1,0 +1,51 @@
+{
+  "_comment": "The membership-brochures panel on the Publications page.",
+  "image": "/assets/publication.png",
+  "languages": [
+    {
+      "flag": "🇮🇩",
+      "name": "Bahasa Indonesia",
+      "pdf": "https://sakyadhita.org/_astro/Indonesia-sak-brochure2010-sm.ARcTdE95.pdf"
+    },
+    {
+      "flag": "🇧🇩",
+      "name": "Bangla",
+      "pdf": "https://sakyadhita.org/_astro/Bangla-SI-mbrshp-brochure2011.GuTmaxxF.pdf"
+    },
+    {
+      "flag": "🇨🇳",
+      "name": "Chinese (Simplified)",
+      "pdf": "https://sakyadhita.org/_astro/SimplfiedChns-SakBroch.PHaJpsEU.pdf"
+    },
+    {
+      "flag": "🇹🇼",
+      "name": "Chinese (Traditional)",
+      "pdf": "https://sakyadhita.org/_astro/TradChns-SakBroch-2010-sm.BoRLy-yo.pdf"
+    },
+    {
+      "flag": "🇬🇧",
+      "name": "English",
+      "pdf": "https://sakyadhita.org/_astro/English-sakyadhitabrochure2011.N8FrYTkE.pdf"
+    },
+    {
+      "flag": "🇫🇷",
+      "name": "French",
+      "pdf": "https://sakyadhita.org/_astro/French-SI-mbership-brochure-2011.Dnw2ubBg.pdf"
+    },
+    {
+      "flag": "🇯🇵",
+      "name": "Japanese",
+      "pdf": "https://sakyadhita.org/_astro/Japanese-brochure2010sm.CggTUzs_.pdf"
+    },
+    {
+      "flag": "🇰🇷",
+      "name": "Korean",
+      "pdf": "https://sakyadhita.org/_astro/Korean-sakbrochure2011.CcpMwKKD.pdf"
+    },
+    {
+      "flag": "🇲🇳",
+      "name": "Mongolian",
+      "pdf": "https://sakyadhita.org/_astro/Mongolian-Sakyadhita-brochure.CErph9lS.pdf"
+    }
+  ]
+}

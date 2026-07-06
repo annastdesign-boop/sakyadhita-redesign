@@ -1,0 +1,31 @@
+{
+  "n": 16,
+  "year": "2019",
+  "flag": "🇦🇺",
+  "loc": "Blue Mountains, Australia",
+  "title": "New Horizons in Buddhism",
+  "subtitle": "",
+  "dates": "2019",
+  "host": "Sakyadhita Australia",
+  "about": "The 16th conference convened in the Blue Mountains of Australia — Sakyadhita's first gathering in Oceania. Participants explored new horizons for Buddhist practice, scholarship, and community in the West.",
+  "coverage": [
+    {
+      "outlet": "BLUE MOUNTAINS INSIGHT MEDITATION CENTRE",
+      "date": "2019",
+      "headline": "Sakyadhita comes to the Blue Mountains",
+      "excerpt": "Ahead of the 16th Sakyadhita International Conference, Buddhist women from around the world gathered in the Blue Mountains for retreat and reflection — the association's first conference in Australia.",
+      "href": "https://bmimc.org.au/sakydhita-comes-to-the-blue-mountains/",
+      "img": "https://bmimc.org.au/wp/wp-content/uploads/2019/08/sunims_bowing.jpg"
+    }
+  ],
+  "photos": [
+    {
+      "f": "https://bmimc.org.au/wp/wp-content/uploads/2019/08/sunims_bowing.jpg",
+      "caption": "Bhikkhunis bowing, Blue Mountains 2019"
+    },
+    {
+      "f": "https://bmimc.org.au/wp/wp-content/uploads/2019/08/joan_halifax_sakydhita2019.jpg",
+      "caption": "Roshi Joan Halifax at the gathering"
+    }
+  ]
+}

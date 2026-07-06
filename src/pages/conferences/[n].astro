@@ -6,14 +6,16 @@
  */
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import ConferenceDetail from '../../components/ConferenceDetail.astro'
-import data from '../../data/conferences.json'
+const modules = import.meta.glob('../../content/conferences/*.json', { eager: true })
+const conferences = Object.values(modules).map((m: any) => m.default)
 
 export function getStaticPaths() {
-  return data.conferences.map((c) => ({ params: { n: String(c.n) } }))
+  const mods = import.meta.glob('../../content/conferences/*.json', { eager: true })
+  return Object.values(mods).map((m: any) => ({ params: { n: String(m.default.n) } }))
 }
 
 const n = Number(Astro.params.n)
-const c = data.conferences.find((x) => x.n === n)!
+const c = conferences.find((x: any) => x.n === n)!
 const ord = (num: number) => {
   const s = ['th', 'st', 'nd', 'rd']
   const v = num % 100

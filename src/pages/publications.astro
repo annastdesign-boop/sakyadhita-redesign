@@ -8,7 +8,27 @@
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
 import BookCard from '../components/BookCard.astro'
-import pubs from '../data/publications.json'
+import brochurePanel from '../data/membership-brochures.json'
+import groupOrder from '../data/publication-groups.json'
+
+const modules = import.meta.glob('../content/publications/*.json', { eager: true })
+const cards = Object.values(modules)
+  .map((m: any) => m.default)
+  .sort((a: any, b: any) => (a.sort ?? 0) - (b.sort ?? 0))
+
+const bySection = (section: string) => cards.filter((c: any) => c.section === section)
+const pubs = {
+  bibliographies: bySection('bibliographies'),
+  books: bySection('books'),
+  conferenceBrochures: bySection('conference-brochures'),
+  membershipBrochures: brochurePanel,
+  translationGroups: groupOrder.order
+    .map((heading: string) => ({
+      heading,
+      items: cards.filter((c: any) => c.section === 'translations' && c.group === heading),
+    }))
+    .filter((g: any) => g.items.length),
+}
 ---
 
 <BaseLayout

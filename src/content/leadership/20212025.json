@@ -1,0 +1,34 @@
+{
+  "label": "2021–2025",
+  "members": [
+    {
+      "name": "Sharon A. Suh",
+      "role": "President",
+      "img": "/assets/lead-sharon-suh.jpeg",
+      "card": "Professor of Buddhism, Seattle University. Ph.D., Harvard.",
+      "bio": "Sharon A. Suh is a professor of Buddhism in the Department of Theology and Religious Studies at Seattle University. She received her Ph.D. in Buddhist Studies from Harvard University and has published three books: Being Buddhist in a Christian World: Gender and Community; Silver Screen Buddha: Buddhism in Asian and Western Film; and Occupy This Body: A Buddhist Memoir."
+    },
+    {
+      "name": "Buphyun Sunim",
+      "role": "Recording Secretary",
+      "img": "/assets/lead-buphyun-sunim.jpg",
+      "card": "Bhiksuni, Dongguk University Graduate School.",
+      "bio": "Buphyun Sunim was born in Korea and has completed 12 traditional Korean meditation retreats. She graduated from college in 1994, ordained as a novice nun in 2005, and received full ordination as a bhiksuni in 2012. Since 2019, she has been studying at the Graduate School for International Buddhist English at Dongguk University at Gyeongju."
+    },
+    {
+      "name": "Thich Nu Tien Lien",
+      "role": "Corresponding Secretary",
+      "img": "/assets/lead-tien-lien.jpg",
+      "card": "Bhiksuni, San Jose. Founder of multiple temples.",
+      "bio": "Thich Nu Tien Lien was born in Saigon, Vietnam, in 1966. She enjoyed learning about Buddhism from a young age, received novice ordination in 1983, and became fully ordained as a bhiksuni in 1985. She earned a Master's degree in Social Work at San Diego State University and has founded several temples in San Jose, California."
+    },
+    {
+      "name": "Kaytee Sumida",
+      "role": "Treasurer",
+      "img": "/assets/lead-kaytee-sumida-2.jpg",
+      "card": "Buddhist Temple San Diego liaison. 12 years on the EC.",
+      "bio": "Kaytee Sumida was born and raised in Los Angeles, California. She became interested in Asian religions by reading folk tales in Chinese literature and culture classes. She received a B.S. in Medical Technology from California State University and an M.S. from San Francisco State University. She has been a member of the Buddhist Temple San Diego since 1990 and serves as liaison with the Interreligious Council of San Diego."
+    }
+  ],
+  "sort": 40
+}

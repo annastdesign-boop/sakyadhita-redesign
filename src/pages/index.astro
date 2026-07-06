@@ -7,7 +7,22 @@
  * The map pins live in src/data/branches-map.json — edit there.
  */
 import BaseLayout from '../layouts/BaseLayout.astro'
-import branchesMap from '../data/branches-map.json'
+const branchModules = import.meta.glob('../content/branches/*.json', { eager: true })
+const homeSpots = Object.values(branchModules)
+  .map((m: any) => m.default)
+  .filter((b: any) => b.homeMap)
+  .map((b: any) => ({
+    name: b.name,
+    kind: b.type,
+    lat: b.lat,
+    lng: b.lng,
+    desc: b.homeDesc || b.desc,
+    contact: b.contact,
+  }))
+const branchesMap = {
+  kinds: { branch: 'National Branch', local: 'Local Chapter', partner: 'Partner' },
+  spots: homeSpots,
+}
 ---
 
 <BaseLayout

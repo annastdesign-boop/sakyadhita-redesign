@@ -1,0 +1,22 @@
+{
+  "id": "brazil",
+  "name": "Sakyadhita Brazil",
+  "region": "Americas",
+  "type": "branch",
+  "lat": -23.55,
+  "lng": -46.63,
+  "desc": "Active community based in São Paulo with regional outreach.",
+  "contact": [
+    {
+      "icon": "📞",
+      "text": "+55 11 9334-833244"
+    },
+    {
+      "icon": "📧",
+      "text": "brazil@sakyadhita.org",
+      "url": "mailto:brazil@sakyadhita.org"
+    }
+  ],
+  "homeMap": true,
+  "homeDesc": "Active community based in São Paulo."
+}

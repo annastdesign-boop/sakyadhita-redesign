@@ -1,0 +1,40 @@
+{
+  "n": 19,
+  "year": "2025",
+  "flag": "🇲🇾",
+  "loc": "Kuching · Sarawak, East Malaysia",
+  "title": "Navigating Change: Buddhist Women in Transition",
+  "subtitle": "Adapting Across Personal, Social, and Spiritual Worlds",
+  "dates": "June 15–23, 2025",
+  "host": "Buddhist Society of Sarawak",
+  "about": "The 19th Sakyadhita International Conference gathered Buddhist women from across the world in Kuching, the capital of Sarawak in East Malaysia. Over nine days, participants explored how Buddhist women navigate change — personal, social, and spiritual — in a rapidly transforming world. Hosted by the Buddhist Society of Sarawak, the program featured plenary lectures, paper presentations, meditation sessions, and cultural performances celebrating the rich Buddhist heritage of Borneo.",
+  "coverage": [
+    {
+      "outlet": "TRICYCLE",
+      "date": "Jul 2025",
+      "headline": "Buddhist Women Gather to Discuss Ordination, Social Justice, and Solidarity",
+      "excerpt": "The 19th Sakyadhita Conference brought together 400 participants from twenty-five countries in Kuching, Malaysia, to address issues facing Buddhist women. Photos by Olivier Adam.",
+      "href": "https://tricycle.org/article/buddhist-women-conference/",
+      "img": "https://tricycle.org/wp-content/uploads/2025/07/Adam_181_KUC0531.jpg"
+    }
+  ],
+  "video": {
+    "yt": "IRr-CQYdQ8o",
+    "title": "Highlights of the 19th Sakyadhita Conference in Sarawak, East Malaysia.",
+    "caption": "SARAWAK · JUNE 2025"
+  },
+  "photos": [
+    {
+      "f": "/assets/conf/conf19-banner.jpg",
+      "caption": "Sarawak 2025"
+    },
+    {
+      "f": "/assets/conf/conf19-borneo.jpg",
+      "caption": "Borneo gathering"
+    },
+    {
+      "f": "/assets/conf/conf19-mountains.jpg",
+      "caption": "Highlands of Sarawak"
+    }
+  ]
+}

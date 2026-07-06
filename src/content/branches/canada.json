@@ -1,0 +1,18 @@
+{
+  "id": "canada",
+  "name": "Canada",
+  "region": "Americas",
+  "type": "local",
+  "lat": 43.65,
+  "lng": -79.38,
+  "desc": "Local chapter with members in Toronto, Vancouver, and Montréal.",
+  "contact": [
+    {
+      "icon": "📧",
+      "text": "canada@sakyadhita.org",
+      "url": "mailto:canada@sakyadhita.org"
+    }
+  ],
+  "homeMap": true,
+  "homeDesc": "Members in Toronto, Vancouver, and Montréal."
+}

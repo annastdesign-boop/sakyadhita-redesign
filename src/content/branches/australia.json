@@ -1,0 +1,17 @@
+{
+  "id": "australia",
+  "name": "Sakyadhita Australia",
+  "region": "Oceania",
+  "type": "branch",
+  "lat": -33.72,
+  "lng": 150.31,
+  "desc": "Hosted the 16th International Conference in the Blue Mountains, 2019.",
+  "contact": [
+    {
+      "icon": "🌐",
+      "text": "facebook.com/Sakyadhitaoz",
+      "url": "https://www.facebook.com/Sakyadhitaoz"
+    }
+  ],
+  "homeMap": false
+}

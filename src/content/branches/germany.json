@@ -1,0 +1,18 @@
+{
+  "id": "germany",
+  "name": "Sakyadhita Germany",
+  "region": "Europe",
+  "type": "branch",
+  "lat": 53.55,
+  "lng": 9.99,
+  "desc": "German-speaking community. Coordinates with Hamburg University vinaya scholars.",
+  "contact": [
+    {
+      "icon": "📧",
+      "text": "germany@sakyadhita.org",
+      "url": "mailto:germany@sakyadhita.org"
+    }
+  ],
+  "homeMap": true,
+  "homeDesc": "Coordinates with Hamburg University vinaya scholars."
+}

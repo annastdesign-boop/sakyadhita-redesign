@@ -1,0 +1,26 @@
+{
+  "id": "usa",
+  "name": "Sakyadhita USA",
+  "region": "Americas",
+  "type": "branch",
+  "lat": 32.72,
+  "lng": -117.16,
+  "desc": "Headquartered in San Diego, California. Administrative hub for the organization.",
+  "contact": [
+    {
+      "icon": "📞",
+      "text": "+1 858-525-5173 (HST)"
+    },
+    {
+      "icon": "📧",
+      "text": "service.sakyadhita@gmail.com",
+      "url": "mailto:service.sakyadhita@gmail.com"
+    },
+    {
+      "icon": "📍",
+      "text": "San Diego, CA 92120"
+    }
+  ],
+  "homeMap": true,
+  "homeDesc": "Headquartered in San Diego, California."
+}

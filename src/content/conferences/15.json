@@ -1,0 +1,51 @@
+{
+  "n": 15,
+  "year": "2017",
+  "flag": "🇭🇰",
+  "loc": "University of Hong Kong",
+  "title": "Contemporary Buddhist Women",
+  "subtitle": "Contemplation, Cultural Exchange & Social Action",
+  "dates": "2017",
+  "host": "Centre of Buddhist Studies, University of Hong Kong",
+  "about": "Hosted at the University of Hong Kong, the 15th conference brought together contemporary Buddhist women for contemplation, cultural exchange, and social action — bridging academic scholarship and lived practice.",
+  "coverage": [
+    {
+      "outlet": "TRICYCLE",
+      "date": "Jul 2017",
+      "headline": "Photos from the 15th Sakyadhita International Conference on Buddhist Women",
+      "excerpt": "Buddhist nuns and laywomen from around the world traveled to Hong Kong for the 15th conference — marking 30 years since the first gathering in Bodhgaya in 1987. Photos by Olivier Adam.",
+      "href": "https://tricycle.org/article/photos-15th-sakyadhita-international-conference-buddhist-women/",
+      "img": "https://tricycle.org/wp-content/uploads/2017/07/Sakyadhita-1.jpg"
+    },
+    {
+      "outlet": "SRAVASTI ABBEY",
+      "date": "Jul 2017",
+      "headline": "Sakyadhita in Hong Kong 2017",
+      "excerpt": "Ven. Thubten Jampa reflects on the 15th Sakyadhita Conference, which drew around 900 participants from around the world to celebrate Sakyadhita's 30-year anniversary at the University of Hong Kong.",
+      "href": "https://sravastiabbey.org/37049-2/",
+      "img": "https://sravastiabbey.org/wp-content/uploads/2017/07/jul17-news-sakyadhita.jpg"
+    }
+  ],
+  "photos": [
+    {
+      "f": "https://tricycle.org/wp-content/uploads/2017/07/Sakyadhita-1.jpg",
+      "caption": "Three Korean nuns take a selfie outside the University of Hong Kong"
+    },
+    {
+      "f": "https://tricycle.org/wp-content/uploads/2017/07/Sakyadhita-2.jpg",
+      "caption": "Tibetan nuns welcome Jetsunma Tenzin Palmo"
+    },
+    {
+      "f": "https://tricycle.org/wp-content/uploads/2017/07/Sakyadhita-4.jpg",
+      "caption": "Korean nuns at the Lotus Pond Temple, Lantau Island"
+    },
+    {
+      "f": "https://tricycle.org/wp-content/uploads/2017/07/Sakyadhita-6.jpg",
+      "caption": "Chinese nuns chant during the opening ceremony"
+    },
+    {
+      "f": "https://tricycle.org/wp-content/uploads/2017/07/Sakyadhita-8.jpg",
+      "caption": "Nuns from Vietnam visit the Tian Tan Buddha"
+    }
+  ]
+}

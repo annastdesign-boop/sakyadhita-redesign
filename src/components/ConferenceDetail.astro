@@ -7,7 +7,10 @@
  * Unlike the prototype (which rendered everything with JavaScript),
  * every conference is a real page with a real address.
  */
-import data from '../data/conferences.json'
+const modules = import.meta.glob('../content/conferences/*.json', { eager: true })
+const allConferences = Object.values(modules)
+  .map((m: any) => m.default)
+  .sort((a: any, b: any) => b.n - a.n)
 
 interface Props {
   /** Conference number to display, e.g. 19 */
@@ -15,7 +18,15 @@ interface Props {
 }
 const { n } = Astro.props
 
-type Conf = (typeof data.conferences)[number] & {
+type Conf = {
+  n: number
+  year: string
+  flag: string
+  loc: string
+  title: string
+  dates: string
+  host: string
+  about: string
   upcoming?: boolean
   heroImg?: string
   heroFocus?: string
@@ -29,7 +40,7 @@ type Conf = (typeof data.conferences)[number] & {
   materials?: { chip: string; title: string; file: string; note?: string }[]
 }
 
-const list = data.conferences as Conf[]
+const list = allConferences as Conf[]
 const c = (list.find((x) => x.n === n) ?? list[0]) as Conf
 
 /** 1 → "1st", 2 → "2nd", 19 → "19th" */

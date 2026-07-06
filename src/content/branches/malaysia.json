@@ -1,0 +1,17 @@
+{
+  "id": "malaysia",
+  "name": "Sakyadhita Malaysia (KBS)",
+  "region": "Asia",
+  "type": "branch",
+  "lat": 1.55,
+  "lng": 110.34,
+  "desc": "Hosted the 19th International Conference in Sarawak, 2025.",
+  "contact": [
+    {
+      "icon": "📧",
+      "text": "malaysia@sakyadhita.org",
+      "url": "mailto:malaysia@sakyadhita.org"
+    }
+  ],
+  "homeMap": true
+}

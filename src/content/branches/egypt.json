@@ -1,0 +1,17 @@
+{
+  "id": "egypt",
+  "name": "Egypt · Cairo",
+  "region": "Africa",
+  "type": "local",
+  "lat": 30.04,
+  "lng": 31.24,
+  "desc": "Small but committed chapter. Newest addition to the directory (2024).",
+  "contact": [
+    {
+      "icon": "📞",
+      "text": "+2 443-8982"
+    }
+  ],
+  "homeMap": true,
+  "homeDesc": "Newest addition to the directory (2024)."
+}

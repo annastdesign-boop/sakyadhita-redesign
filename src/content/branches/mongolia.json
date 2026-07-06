@@ -1,0 +1,21 @@
+{
+  "id": "mongolia",
+  "name": "Sakyadhita Mongolia",
+  "region": "Asia",
+  "type": "branch",
+  "lat": 47.92,
+  "lng": 106.92,
+  "desc": "Active in translation and Buddhist education across Central Asia.",
+  "contact": [
+    {
+      "icon": "📞",
+      "text": "+976 70183588"
+    },
+    {
+      "icon": "📧",
+      "text": "mongolia@sakyadhita.org",
+      "url": "mailto:mongolia@sakyadhita.org"
+    }
+  ],
+  "homeMap": true
+}

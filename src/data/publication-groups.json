@@ -1,0 +1,8 @@
+{
+  "_comment": "Order of the translation groups on the Publications page.",
+  "order": [
+    "English",
+    "German",
+    "Chinese · French · Spanish"
+  ]
+}

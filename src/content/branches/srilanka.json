@@ -1,0 +1,17 @@
+{
+  "id": "srilanka",
+  "name": "Sri Lanka",
+  "region": "Asia",
+  "type": "local",
+  "lat": 6.93,
+  "lng": 79.85,
+  "desc": "Active in bhikkhuni ordination support and educational outreach.",
+  "contact": [
+    {
+      "icon": "📧",
+      "text": "srilanka@sakyadhita.org",
+      "url": "mailto:srilanka@sakyadhita.org"
+    }
+  ],
+  "homeMap": true
+}

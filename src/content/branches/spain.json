@@ -1,0 +1,23 @@
+{
+  "id": "spain",
+  "name": "Sakyadhita Spain",
+  "region": "Europe",
+  "type": "branch",
+  "lat": 40.42,
+  "lng": -3.7,
+  "desc": "Association and participatory communication platform for Spanish-speaking Buddhist women — Dharma in Spanish with a gender perspective.",
+  "contact": [
+    {
+      "icon": "📧",
+      "text": "sakyadhitaspain@gmail.com",
+      "url": "mailto:sakyadhitaspain@gmail.com"
+    },
+    {
+      "icon": "🌐",
+      "text": "sakyadhitaspain.org",
+      "url": "https://sakyadhitaspain.org/"
+    }
+  ],
+  "homeMap": true,
+  "homeDesc": "Spanish-speaking platform for Buddhist women — Dharma in Spanish with a gender perspective."
+}
