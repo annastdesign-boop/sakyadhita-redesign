@@ -252,6 +252,7 @@ collections:
                   - { name: img, label: Image, widget: image, required: false }
                   - { name: eyebrow, label: "Small label on the card", widget: string, required: false }
                   - { name: title, label: Title, widget: string, required: false }
+                  - { name: text, label: "Short subtitle (optional)", widget: string, required: false }
                   - { name: linkLabel, label: "Link text (e.g. Read story →)", widget: string, required: false }
                   - { name: href, label: Link, widget: string, required: false }
           - name: press

@@ -121,11 +121,12 @@
     },
     "items": [
       {
-        "img": "/uploads/seoul.png",
-        "eyebrow": "STORY · MEMBER VOICES",
-        "title": "Building a chapter in Mongolia",
-        "linkLabel": "Read story →",
-        "href": "/branches"
+        "img": "/uploads/bodhgaya-1998-ordination.png",
+        "eyebrow": "EDUCATION",
+        "title": "The ordination issue",
+        "text": "Where full ordination for women stands across Buddhist traditions.",
+        "linkLabel": "Learn more →",
+        "href": "/ordination-issue"
       },
       {
         "img": "/uploads/highlights.png",
@@ -171,7 +172,7 @@
       },
       "cta2": {
         "label": "Submit paper proposals",
-        "href": "https://docs.google.com/forms/d/e/1FAIpQLSeFVz3OTE_aWqNUa0ZK6PiIgL1JWPcOvQXXUn7yrN1ivD6dqQ/viewform"
+        "href": "/conferences#proposals"
       }
     },
     "sub": "Celebrating our 20th biennial international conference in 2027"
