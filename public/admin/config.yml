@@ -904,6 +904,23 @@ collections:
       - { name: host, label: "Hosted by", widget: string }
       - { name: upcoming, label: "Upcoming? (turn OFF once the conference has happened)", widget: boolean, required: false }
       - { name: about, label: "About the conference", widget: text }
+      - { name: notice, label: "Announcement (e.g. call for papers — shown under 'Hosted by')", widget: text, required: false }
+      - name: ctaPrimary
+        label: "Main button (optional)"
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { name: label, label: "Button text", widget: string, required: false }
+          - { name: href, label: "Link", widget: string, required: false }
+      - name: ctaSecondary
+        label: "Second button (optional)"
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { name: label, label: "Button text", widget: string, required: false }
+          - { name: href, label: "Link", widget: string, required: false }
       - { name: heroImg, label: "Hero image", widget: image, required: false }
       - name: heroFocus
         label: "Hero image focal point"

@@ -38,6 +38,9 @@ type Conf = {
   photos: { f?: string; yt?: string; caption: string; focus?: string }[]
   materialsVisible?: boolean
   materials?: { chip: string; title: string; file: string; note?: string }[]
+  notice?: string
+  ctaPrimary?: { label: string; href: string }
+  ctaSecondary?: { label: string; href: string }
 }
 
 const list = allConferences as Conf[]
@@ -131,6 +134,33 @@ const MAT_COLORS = [
           <div class="meta-item"><span class="emoji">🗓️</span> {c.dates}</div>
           <div class="meta-item"><span class="emoji">🤝</span> Hosted by {c.host}</div>
         </div>
+        {c.notice && <p class="cd-notice">{c.notice}</p>}
+        {
+          (c.ctaPrimary?.label || c.ctaSecondary?.label) && (
+            <div class="cd-ctas">
+              {c.ctaPrimary?.label && (
+                <a
+                  class="btn btn--primary btn--lg"
+                  href={c.ctaPrimary.href}
+                  target={c.ctaPrimary.href.startsWith('http') ? '_blank' : undefined}
+                  rel={c.ctaPrimary.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                >
+                  {c.ctaPrimary.label} <span class="arr">→</span>
+                </a>
+              )}
+              {c.ctaSecondary?.label && (
+                <a
+                  class="btn btn--ghost btn--lg"
+                  href={c.ctaSecondary.href}
+                  target={c.ctaSecondary.href.startsWith('http') ? '_blank' : undefined}
+                  rel={c.ctaSecondary.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                >
+                  {c.ctaSecondary.label}
+                </a>
+              )}
+            </div>
+          )
+        }
       </div>
       <div
         class="pic"
@@ -645,6 +675,21 @@ const MAT_COLORS = [
       linear-gradient(0deg, rgba(212,181,154,.2), rgba(212,181,154,.2)),
       url('/assets/feat-conf.png') center/cover no-repeat;
   }
+  .cd-notice {
+    margin-top: 6px;
+    padding: 14px 16px;
+    background: var(--bg-warm);
+    border-radius: var(--r-md);
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-body);
+  }
+  .cd-ctas { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+  @media (max-width: 700px) {
+    .cd-ctas { flex-direction: column; align-items: stretch; }
+    .cd-ctas .btn { justify-content: center; }
+  }
+
   .cd-hero .upcoming-tag {
     font-family: var(--font-ui);
     font-weight: 700;
