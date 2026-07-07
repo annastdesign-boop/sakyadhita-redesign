@@ -18,7 +18,7 @@
       // every visit and crashed previews. Purge them before the CMS boots.
       ;(function () {
         try {
-          var FLAG = 'sakyadhita-cms-reset-v1'
+          var FLAG = 'sakyadhita-cms-reset-v2'
           if (localStorage.getItem(FLAG)) return
           Object.keys(localStorage).forEach(function (k) {
             if (k === FLAG) return

@@ -44,6 +44,7 @@ collections:
           - name: seo
             label: "Browser tab & link previews (SEO)"
             widget: object
+            required: false
             collapsed: true
             fields:
               - { name: title, label: "Page title (browser tab)", widget: string }
@@ -52,6 +53,7 @@ collections:
           - name: hero
             label: "Hero (top of page)"
             widget: object
+            required: false
             fields:
               - { name: logo, label: "Logo image", widget: image }
               - { name: logoAlt, label: "Logo alt text (for screen readers)", widget: string }
@@ -92,6 +94,7 @@ collections:
           - name: stats
             label: "Impact numbers"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -106,6 +109,7 @@ collections:
           - name: mission
             label: "Mission — three pillars"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -121,6 +125,7 @@ collections:
           - name: featuredConference
             label: "Upcoming conference"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: heading, label: "Section heading", widget: string }
@@ -152,6 +157,7 @@ collections:
           - name: highlights
             label: "Conference highlights video"
             widget: object
+            required: false
             fields:
               - name: cta2
                 label: "Secondary button (leave label empty to hide)"
@@ -174,6 +180,7 @@ collections:
           - name: pastConferences
             label: "Past conferences strip"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -198,6 +205,7 @@ collections:
           - name: latest
             label: "Latest from Sakyadhita"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -235,6 +243,7 @@ collections:
           - name: press
             label: "Press logos (As covered by)"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -252,6 +261,7 @@ collections:
           - name: branches
             label: "Branches map section"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -265,6 +275,7 @@ collections:
           - name: ways
             label: "Ways to support"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -291,6 +302,7 @@ collections:
           - name: seo
             label: "Browser tab & link previews (SEO)"
             widget: object
+            required: false
             collapsed: true
             fields:
               - { name: title, label: "Page title (browser tab)", widget: string }
@@ -299,6 +311,7 @@ collections:
           - name: hero
             label: "Hero (top of page)"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -307,6 +320,7 @@ collections:
             label: "Library cards (the 4 big cards)"
             label_singular: card
             widget: list
+            required: false
             summary: "{{fields.title}}"
             fields:
               - { name: img, label: Image, widget: image }
@@ -318,6 +332,7 @@ collections:
           - name: featured
             label: "Featured this month"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -345,6 +360,7 @@ collections:
           - name: seo
             label: "Browser tab & link previews"
             widget: object
+            required: false
             collapsed: true
             fields:
               - { name: title, label: "Browser tab title", widget: string }
@@ -353,6 +369,7 @@ collections:
           - name: hero
             label: "Top of the page"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the title (e.g. ABOUT SAKYADHITA)", widget: string }
               - { name: title, label: "Big title", widget: string }
@@ -360,6 +377,7 @@ collections:
           - name: story
             label: "Our Story"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label (e.g. OUR STORY)", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -379,11 +397,13 @@ collections:
           - name: history
             label: "History & Milestones"
             widget: object
+            required: false
             fields:
               - { name: heading, label: Heading, widget: string, hint: "The timeline entries themselves live under ⚙️ Site settings → Timelines" }
           - name: mission
             label: "Mission — the seven objectives"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label (e.g. MISSION)", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -400,11 +420,13 @@ collections:
           - name: leadership
             label: Leadership
             widget: object
+            required: false
             fields:
               - { name: heading, label: Heading, widget: string, hint: "Committee members & terms are edited under 👥 Leadership" }
           - name: projects
             label: "International Projects"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label (e.g. INTERNATIONAL PROJECTS)", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -424,6 +446,7 @@ collections:
           - name: branches
             label: "Branches & Chapters teaser"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label (e.g. BRANCHES & CHAPTERS)", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -445,6 +468,7 @@ collections:
           - name: seo
             label: "Browser tab & link previews"
             widget: object
+            required: false
             collapsed: true
             fields:
               - { name: title, label: "Browser tab title", widget: string }
@@ -453,6 +477,7 @@ collections:
           - name: hero
             label: "Top of the page"
             widget: object
+            required: false
             fields:
               - { name: title, label: "Big title", widget: string }
               - { name: text, label: "Intro paragraph", widget: text }
@@ -478,6 +503,7 @@ collections:
           - name: overview
             label: Overview
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label (e.g. OVERVIEW)", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -497,6 +523,7 @@ collections:
           - name: origins
             label: Origins
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label (e.g. ORIGINS)", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -511,11 +538,13 @@ collections:
           - name: movement
             label: "The Movement"
             widget: object
+            required: false
             fields:
               - { name: heading, label: Heading, widget: string, hint: "The milestones themselves live under ⚙️ Site settings → Timelines" }
           - name: watch
             label: "Watch & Learn (videos)"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label (e.g. WATCH & LEARN)", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -532,6 +561,7 @@ collections:
           - name: seeAlso
             label: "See Also / Further reading"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label (e.g. SEE ALSO)", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -556,6 +586,7 @@ collections:
           - name: seo
             label: "Search & sharing (SEO)"
             widget: object
+            required: false
             collapsed: true
             fields:
               - { name: title, label: "Browser-tab / search title", widget: string }
@@ -563,6 +594,7 @@ collections:
           - name: hero
             label: "Top of the page"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: title, label: Heading, widget: string }
@@ -570,6 +602,7 @@ collections:
           - name: routing
             label: "\"Route your message\" section"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -590,6 +623,7 @@ collections:
           - name: form
             label: "Inquiry form headings"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -597,6 +631,7 @@ collections:
           - name: direct
             label: "Direct contact section"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -616,12 +651,14 @@ collections:
           - name: social
             label: "Social section heading"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label", widget: string }
               - { name: heading, label: Heading, widget: string }
           - name: success
             label: "Thank-you message (after the form is sent)"
             widget: object
+            required: false
             fields:
               - { name: title, label: Title, widget: string }
               - { name: text, label: Text, widget: text }
@@ -637,6 +674,7 @@ collections:
           - name: seo
             label: "Search & sharing (SEO)"
             widget: object
+            required: false
             collapsed: true
             fields:
               - { name: title, label: "Browser-tab / search title", widget: string }
@@ -645,6 +683,7 @@ collections:
           - name: hero
             label: "Top of the page"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: title, label: Heading, widget: string }
@@ -653,6 +692,7 @@ collections:
           - name: committees
             label: "Committees section"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label (e.g. 15 COMMITTEES)", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -677,6 +717,7 @@ collections:
           - name: formHead
             label: "Application form headings"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -685,11 +726,13 @@ collections:
           - name: interests
             label: "Committee-interest checkboxes (in the form)"
             widget: list
+            required: false
             field: { name: committee, label: Committee, widget: string }
             hint: "The checkbox choices in the application form. The chosen names are what arrives with each application."
           - name: faq
             label: "Q&A section"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -704,6 +747,7 @@ collections:
           - name: success
             label: "Thank-you message (after the form is sent)"
             widget: object
+            required: false
             fields:
               - { name: title, label: Title, widget: string }
               - { name: text, label: Text, widget: text }
@@ -718,6 +762,7 @@ collections:
           - name: seo
             label: "Search & sharing (SEO)"
             widget: object
+            required: false
             collapsed: true
             fields:
               - { name: title, label: "Browser-tab / search title", widget: string }
@@ -726,6 +771,7 @@ collections:
           - name: hero
             label: "Top of the page"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: title, label: Heading, widget: string }
@@ -733,6 +779,7 @@ collections:
           - name: impact
             label: "\"Your impact\" section"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -745,17 +792,19 @@ collections:
                 fields:
                   - { name: value, label: "Amount (e.g. $25)", widget: string }
                   - { name: text, label: "What it funds", widget: text }
-          - { name: paypalUrl, label: "PayPal donate link", widget: string, hint: "The full PayPal donate URL — where the Donate button sends people." }
-          - { name: donateButtonLabel, label: "Donate button text", widget: string }
+          - { name: paypalUrl, label: "PayPal donate link", widget: string, hint: "The full PayPal donate URL — where the Donate button sends people.", required: false }
+          - { name: donateButtonLabel, label: "Donate button text", widget: string, required: false }
           - name: taxNote
             label: "Tax note (under the donate button)"
             widget: object
+            required: false
             fields:
               - { name: lead, label: "Bold opening (e.g. Tax-deductible.)", widget: string }
               - { name: text, label: Text, widget: text }
           - name: ways
             label: "\"More ways to support\" section"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -783,6 +832,7 @@ collections:
           - name: seo
             label: "Search & sharing (SEO)"
             widget: object
+            required: false
             collapsed: true
             fields:
               - { name: title, label: "Browser-tab / search title", widget: string }
@@ -791,6 +841,7 @@ collections:
           - name: hero
             label: "Top of the page"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: title, label: Heading, widget: string }
@@ -799,6 +850,7 @@ collections:
           - name: benefits
             label: "Benefits section"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -813,6 +865,7 @@ collections:
           - name: tiers
             label: "Membership tiers (display text only — prices charged are set in code)"
             widget: object
+            required: false
             fields:
               - { name: heading, label: Heading, widget: string }
               - { name: text, label: "Text under the heading", widget: text }
@@ -837,6 +890,7 @@ collections:
           - name: formHead
             label: "Membership form headings"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -844,6 +898,7 @@ collections:
           - name: payModal
             label: "Payment popup texts"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label (e.g. SECURE PAYMENT)", widget: string }
               - { name: title, label: "Popup title", widget: string }
@@ -851,6 +906,7 @@ collections:
           - name: newsletter
             label: "Newsletter section"
             widget: object
+            required: false
             fields:
               - { name: eyebrow, label: "Small label", widget: string }
               - { name: heading, label: Heading, widget: string }
@@ -859,6 +915,7 @@ collections:
           - name: success
             label: "Thank-you message (after payment succeeds)"
             widget: object
+            required: false
             fields:
               - { name: title, label: Title, widget: string }
               - { name: text, label: Text, widget: text }
@@ -881,16 +938,16 @@ collections:
       happened, turn OFF "Upcoming" and it becomes a past-conference page
       where you add photos, video, press coverage, and materials.
     fields:
-      - { name: n, label: "Number (e.g. 21)", widget: number, value_type: int }
-      - { name: year, label: Year, widget: string }
-      - { name: flag, label: "Flag emoji", widget: string, hint: "e.g. 🇮🇩" }
-      - { name: loc, label: Location, widget: string, hint: "e.g. Kuching · Sarawak, East Malaysia" }
-      - { name: title, label: Title, widget: string }
+      - { name: n, label: "Number (e.g. 21)", widget: number, value_type: int, required: false }
+      - { name: year, label: Year, widget: string, required: false }
+      - { name: flag, label: "Flag emoji", widget: string, hint: "e.g. 🇮🇩", required: false }
+      - { name: loc, label: Location, widget: string, hint: "e.g. Kuching · Sarawak, East Malaysia", required: false }
+      - { name: title, label: Title, widget: string, required: false }
       - { name: subtitle, label: Subtitle, widget: string, required: false }
-      - { name: dates, label: "Dates (as text)", widget: string }
-      - { name: host, label: "Hosted by", widget: string }
+      - { name: dates, label: "Dates (as text)", widget: string, required: false }
+      - { name: host, label: "Hosted by", widget: string, required: false }
       - { name: upcoming, label: "Upcoming? (turn OFF once the conference has happened)", widget: boolean, required: false }
-      - { name: about, label: "About the conference", widget: text }
+      - { name: about, label: "About the conference", widget: text, required: false }
       - { name: notice, label: "Announcement (e.g. call for papers — shown under 'Hosted by')", widget: text, required: false }
       - name: ctaPrimary
         label: "Main button (optional)"
@@ -935,7 +992,7 @@ collections:
         fields:
           - { name: f, label: "Photo", widget: image, required: false }
           - { name: yt, label: "…or YouTube video ID", widget: string, required: false }
-          - { name: caption, label: Caption, widget: string }
+          - { name: caption, label: Caption, widget: string, required: false }
           - name: focus
             label: "Focal point"
             widget: focal
@@ -947,11 +1004,11 @@ collections:
         required: false
         summary: "{{fields.outlet}} — {{fields.headline}}"
         fields:
-          - { name: outlet, label: "Outlet (e.g. TRICYCLE)", widget: string }
-          - { name: date, label: Date, widget: string }
-          - { name: headline, label: Headline, widget: string }
-          - { name: excerpt, label: Excerpt, widget: text }
-          - { name: href, label: "Link to the article", widget: string }
+          - { name: outlet, label: "Outlet (e.g. TRICYCLE)", widget: string, required: false }
+          - { name: date, label: Date, widget: string, required: false }
+          - { name: headline, label: Headline, widget: string, required: false }
+          - { name: excerpt, label: Excerpt, widget: text, required: false }
+          - { name: href, label: "Link to the article", widget: string, required: false }
           - { name: img, label: "Thumbnail image", widget: image, required: false }
       - name: callForPapers
         label: "Call for Papers section (optional)"
@@ -977,9 +1034,9 @@ collections:
             required: false
             summary: "{{fields.date}} — {{fields.label}}"
             fields:
-              - { name: date, label: "Date (e.g. July 30, 2026)", widget: string }
-              - { name: label, label: "Label (e.g. Proposals due)", widget: string }
-              - { name: detail, label: "Detail", widget: text }
+              - { name: date, label: "Date (e.g. July 30, 2026)", widget: string, required: false }
+              - { name: label, label: "Label (e.g. Proposals due)", widget: string, required: false }
+              - { name: detail, label: "Detail", widget: text, required: false }
           - { name: originality, label: "Originality statement", widget: text, required: false }
           - { name: allowedHeading, label: "'Allowed' column heading", widget: string, required: false }
           - name: allowed
@@ -1008,9 +1065,9 @@ collections:
         required: false
         summary: "{{fields.title}}"
         fields:
-          - { name: chip, label: "Tag (e.g. PROGRAM / SCHEDULE / PAPERS)", widget: string }
-          - { name: title, label: Title, widget: string }
-          - { name: file, label: "File (PDF)", widget: file }
+          - { name: chip, label: "Tag (e.g. PROGRAM / SCHEDULE / PAPERS)", widget: string, required: false }
+          - { name: title, label: Title, widget: string, required: false }
+          - { name: file, label: "File (PDF)", widget: file, required: false }
           - { name: note, label: "Note (e.g. PDF · 4 MB)", widget: string, required: false }
 
   # ── NEWSLETTERS — one entry per issue ─────────────────────────
@@ -1031,14 +1088,14 @@ collections:
       it appears in the right decade automatically. Turn on "Featured"
       to also show it in the big carousel at the top of the page.
     fields:
-      - { name: year, label: Year, widget: string }
-      - { name: title, label: "Title (e.g. Volume 34)", widget: string }
+      - { name: year, label: Year, widget: string, required: false }
+      - { name: title, label: "Title (e.g. Volume 34)", widget: string, required: false }
       - { name: vol, label: "Volume label (e.g. VOL 34 · NO 1)", widget: string, required: false }
-      - { name: sort, label: "Sort weight (higher = shown first — e.g. newest issue 440, next 430…)", widget: number, value_type: int }
+      - { name: sort, label: "Sort weight (higher = shown first — e.g. newest issue 440, next 430…)", widget: number, value_type: int, required: false }
       - { name: img, label: "Cover image (leave empty for a coloured cover)", widget: image, required: false }
       - { name: c1, label: "Cover colour 1 (e.g. #4F3E81)", widget: string, required: false }
       - { name: c2, label: "Cover colour 2", widget: string, required: false }
-      - { name: pdf, label: "PDF (upload or link)", widget: file }
+      - { name: pdf, label: "PDF (upload or link)", widget: file, required: false }
       - { name: featured, label: "Featured in the top carousel?", widget: boolean, required: false }
       - { name: eyebrow, label: "Carousel small label (e.g. LATEST ISSUE · 2026)", widget: string, required: false }
       - { name: desc, label: "Carousel description", widget: text, required: false }
@@ -1065,25 +1122,28 @@ collections:
       - name: section
         label: "Which section of the page?"
         widget: select
+        required: false
         options:
           - { label: "Bibliographies", value: bibliographies }
           - { label: "Books", value: books }
           - { label: "Conference brochures", value: conference-brochures }
           - { label: "Translations & articles", value: translations }
       - { name: group, label: "Language group (Translations only — e.g. English, German)", widget: string, required: false }
-      - { name: sort, label: "Sort weight (lower = earlier in its section)", widget: number, value_type: int }
+      - { name: sort, label: "Sort weight (lower = earlier in its section)", widget: number, value_type: int, required: false }
       - { name: kind, label: "Small label above title (optional)", widget: string, required: false }
-      - { name: title, label: Title, widget: string }
+      - { name: title, label: Title, widget: string, required: false }
       - { name: author, label: Author, widget: string, required: false }
-      - { name: href, label: "Link or PDF upload", widget: file }
-      - { name: source, label: "Source (e.g. SUNY Press)", widget: string }
+      - { name: href, label: "Link or PDF upload", widget: file, required: false }
+      - { name: source, label: "Source (e.g. SUNY Press)", widget: string, required: false }
       - name: linkLabel
         label: "Link text"
         widget: select
+        required: false
         options: ["PDF →", "View →"]
       - name: cover
         label: Cover
         widget: object
+        required: false
         fields:
           - name: style
             label: "Cover style"
@@ -1115,12 +1175,13 @@ collections:
       click "New term", give it years (e.g. 2025–2029), a higher Sort
       weight than the previous term, and add the members.
     fields:
-      - { name: label, label: "Term years (e.g. 2025–2029)", widget: string }
-      - { name: sort, label: "Sort weight (higher = newer, shown first)", widget: number, value_type: int }
+      - { name: label, label: "Term years (e.g. 2025–2029)", widget: string, required: false }
+      - { name: sort, label: "Sort weight (higher = newer, shown first)", widget: number, value_type: int, required: false }
       - name: members
         label: Members
         label_singular: member
         widget: list
+        required: false
         summary: "{{fields.name}} — {{fields.role}}"
         fields:
           - { name: name, label: Name, widget: string }
@@ -1146,22 +1207,24 @@ collections:
       Branches, chapters, and partners — shown in the Branches directory
       and (when "Show on home-page map" is on) as a pin on the home page.
     fields:
-      - { name: id, label: "Short id (lowercase, no spaces — e.g. spain)", widget: string }
-      - { name: name, label: Name, widget: string }
+      - { name: id, label: "Short id (lowercase, no spaces — e.g. spain)", widget: string, required: false }
+      - { name: name, label: Name, widget: string, required: false }
       - name: region
         label: Region
         widget: select
+        required: false
         options: [Asia, Americas, Europe, Africa, Oceania]
       - name: type
         label: Type
         widget: select
+        required: false
         options:
           - { label: "National branch", value: branch }
           - { label: "Local chapter", value: local }
           - { label: "Partner", value: partner }
-      - { name: lat, label: "Latitude (map pin)", widget: number, value_type: float }
-      - { name: lng, label: "Longitude (map pin)", widget: number, value_type: float }
-      - { name: desc, label: Description, widget: text }
+      - { name: lat, label: "Latitude (map pin)", widget: number, value_type: float, required: false }
+      - { name: lng, label: "Longitude (map pin)", widget: number, value_type: float, required: false }
+      - { name: desc, label: Description, widget: text, required: false }
       - { name: homeMap, label: "Show on the home-page map?", widget: boolean, required: false }
       - { name: homeDesc, label: "Shorter description for the home-page map (optional)", widget: text, required: false }
       - name: contact
@@ -1171,8 +1234,8 @@ collections:
         required: false
         summary: "{{fields.icon}} {{fields.text}}"
         fields:
-          - { name: icon, label: "Emoji (📧 📞 🌐 📍)", widget: string }
-          - { name: text, label: Text, widget: string }
+          - { name: icon, label: "Emoji (📧 📞 🌐 📍)", widget: string, required: false }
+          - { name: text, label: Text, widget: string, required: false }
           - { name: url, label: "Link (optional — use mailto: for email)", widget: string, required: false }
 
   # ── SITE PAGES & SETTINGS (single documents) ──────────────────
@@ -1192,6 +1255,7 @@ collections:
             label: "Menu items"
             label_singular: item
             widget: list
+            required: false
             summary: "{{fields.label}}"
             fields:
               - { name: key, label: "Key (don't change)", widget: string }
@@ -1209,6 +1273,7 @@ collections:
           - name: cta
             label: "Highlighted button (right side)"
             widget: object
+            required: false
             fields:
               - { name: label, label: Label, widget: string }
               - { name: href, label: Link, widget: string }
@@ -1218,11 +1283,12 @@ collections:
         description: "Everything in the site footer."
         fields:
           - { name: _comment, label: "(internal note)", widget: string, required: false }
-          - { name: blurb, label: "Short description under the logo", widget: text }
+          - { name: blurb, label: "Short description under the logo", widget: text, required: false }
           - name: social
             label: "Social links"
             label_singular: link
             widget: list
+            required: false
             summary: "{{fields.label}}"
             fields:
               - name: icon
@@ -1235,6 +1301,7 @@ collections:
             label: "Link columns"
             label_singular: column
             widget: list
+            required: false
             summary: "{{fields.title}}"
             fields:
               - { name: title, label: "Column title", widget: string }
@@ -1246,14 +1313,15 @@ collections:
                 fields:
                   - { name: label, label: Label, widget: string }
                   - { name: href, label: Link, widget: string }
-          - { name: address, label: "Postal address (use <br/> for a line break)", widget: string }
+          - { name: address, label: "Postal address (use <br/> for a line break)", widget: string, required: false }
           - name: newsletter
             label: "Newsletter box"
             widget: object
+            required: false
             fields:
               - { name: title, label: Title, widget: string }
               - { name: text, label: Text, widget: string }
-          - { name: bottomText, label: "Bottom line (after the © year)", widget: text }
+          - { name: bottomText, label: "Bottom line (after the © year)", widget: text, required: false }
       - name: timelines
         label: "🗓 Timelines (About + Ordination)"
         file: src/data/timelines.json
@@ -1263,6 +1331,7 @@ collections:
             label: "About page · History & Milestones"
             label_singular: milestone
             widget: list
+            required: false
             summary: "{{fields.year}} — {{fields.title}}"
             fields:
               - { name: year, label: Year, widget: string }
@@ -1277,6 +1346,7 @@ collections:
             label: "Ordination page · Movement milestones"
             label_singular: milestone
             widget: list
+            required: false
             summary: "{{fields.year}} — {{fields.title}}"
             fields:
               - { name: year, label: Year, widget: string }
@@ -1293,11 +1363,12 @@ collections:
         file: src/data/membership-brochures.json
         fields:
           - { name: _comment, label: "(internal note)", widget: string, required: false }
-          - { name: image, label: "Panel image", widget: image }
+          - { name: image, label: "Panel image", widget: image, required: false }
           - name: languages
             label: Languages
             label_singular: language
             widget: list
+            required: false
             summary: "{{fields.name}}"
             fields:
               - { name: flag, label: "Flag emoji", widget: string }
@@ -1311,6 +1382,7 @@ collections:
           - name: order
             label: "Group headings, in display order"
             widget: list
+            required: false
             field: { name: heading, label: Heading, widget: string }
       - name: announcement
         label: "\U0001F4E3 Announcement banner"
@@ -1320,7 +1392,7 @@ collections:
           Untick "Show banner" to hide it site-wide.
         fields:
           - { name: _comment, label: "(internal note)", widget: string, required: false }
-          - { name: enabled, label: "Show banner", widget: boolean, default: true }
-          - { name: text, label: "Banner text (keep it to one line)", widget: string }
+          - { name: enabled, label: "Show banner", widget: boolean, default: true, required: false }
+          - { name: text, label: "Banner text (keep it to one line)", widget: string, required: false }
           - { name: ctaLabel, label: "Button label", widget: string, required: false }
           - { name: ctaUrl, label: "Button link", widget: string, required: false }
