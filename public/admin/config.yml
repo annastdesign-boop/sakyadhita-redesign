@@ -147,7 +147,8 @@ collections:
                   - { name: img, label: Photo, widget: image }
                   - { name: eyebrow, label: "Small label on the card", widget: string }
                   - { name: title, label: Title, widget: string }
-                  - { name: meta, label: "Date line (e.g. Coming in 2027)", widget: string }
+                  - { name: meta, label: "Date line (e.g. June 19–26, 2027)", widget: string }
+                  - { name: location, label: "Location (City, Country)", widget: string, required: false }
                   - { name: text, label: Text, widget: text }
                   - name: cta
                     label: Button
