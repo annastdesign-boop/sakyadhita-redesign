@@ -21,8 +21,8 @@ logo_url: https://sakyadhita-redesign.netlify.app/assets/logo-flower.png
 media_folder: public/uploads
 public_folder: /uploads
 
-# Focal point fields are preset dropdowns here; the classic editor at
-# /admin-classic has the visual click-on-photo picker for fine control.
+# Focal points use the custom "focal" widget (see admin/index.html):
+# a click grid that stores an "X% Y%" position — no cropping needed.
 
 collections:
 
@@ -85,16 +85,8 @@ collections:
                   - { name: img, label: Photo, widget: image, required: false }
                   - name: focus
                     label: "Focal point"
-                    widget: select
+                    widget: focal
                     required: false
-                    options:
-                      - { label: "Center (default)", value: "" }
-                      - { label: "Top (faces near the top)", value: "50% 0%" }
-                      - { label: "Upper third", value: "50% 30%" }
-                      - { label: "Bottom", value: "50% 100%" }
-                      - { label: "Left", value: "0% 50%" }
-                      - { label: "Slightly right of center", value: "60% 50%" }
-                      - { label: "Right", value: "100% 50%" }
               - name: credit
                 label: "Photo credit line"
                 widget: object
@@ -243,16 +235,8 @@ collections:
                   - { name: img, label: Image, widget: image, required: false }
                   - name: focus
                     label: "Image focal point"
-                    widget: select
+                    widget: focal
                     required: false
-                    options:
-                      - { label: "Center (default)", value: "" }
-                      - { label: "Top (faces near the top)", value: "50% 0%" }
-                      - { label: "Upper third", value: "50% 30%" }
-                      - { label: "Bottom", value: "50% 100%" }
-                      - { label: "Left", value: "0% 50%" }
-                      - { label: "Slightly right of center", value: "60% 50%" }
-                      - { label: "Right", value: "100% 50%" }
                   - { name: eyebrow, label: "Small label on the card", widget: string, required: false }
                   - { name: title, label: Title, widget: string, required: false }
                   - { name: text, label: Text, widget: text, required: false }
@@ -532,16 +516,8 @@ collections:
                   - { name: alt, label: "Photo description (for screen readers)", widget: string, required: false }
                   - name: objectPosition
                     label: "Focal point"
-                    widget: select
+                    widget: focal
                     required: false
-                    options:
-                      - { label: "Center (default)", value: "" }
-                      - { label: "Top (faces near the top)", value: "50% 0%" }
-                      - { label: "Upper third", value: "50% 30%" }
-                      - { label: "Bottom", value: "50% 100%" }
-                      - { label: "Left", value: "0% 50%" }
-                      - { label: "Slightly right of center", value: "60% 50%" }
-                      - { label: "Right", value: "100% 50%" }
               - name: credit
                 label: "Photo credit line"
                 widget: object
@@ -1033,16 +1009,8 @@ collections:
       - { name: heroImg, label: "Hero image", widget: image, required: false }
       - name: heroFocus
         label: "Hero image focal point"
-        widget: select
+        widget: focal
         required: false
-        options:
-          - { label: "Center (default)", value: "" }
-          - { label: "Top (faces near the top)", value: "50% 0%" }
-          - { label: "Upper third", value: "50% 30%" }
-          - { label: "Bottom", value: "50% 100%" }
-          - { label: "Left", value: "0% 50%" }
-          - { label: "Slightly right of center", value: "60% 50%" }
-          - { label: "Right", value: "100% 50%" }
       - { name: thumb, label: "Thumbnail (for lists)", widget: image, required: false }
       - { name: noPhotoCredit, label: "Hide the Olivier Adam photo credit", widget: boolean, required: false }
       - name: video
@@ -1068,16 +1036,8 @@ collections:
           - { name: caption, label: Caption, widget: string, required: false }
           - name: focus
             label: "Focal point"
-            widget: select
+            widget: focal
             required: false
-            options:
-              - { label: "Center (default)", value: "" }
-              - { label: "Top (faces near the top)", value: "50% 0%" }
-              - { label: "Upper third", value: "50% 30%" }
-              - { label: "Bottom", value: "50% 100%" }
-              - { label: "Left", value: "0% 50%" }
-              - { label: "Slightly right of center", value: "60% 50%" }
-              - { label: "Right", value: "100% 50%" }
       - name: coverage
         label: "Media coverage"
         label_singular: article
@@ -1424,16 +1384,8 @@ collections:
               - { name: image, label: Image, widget: image, required: false }
               - name: imagePosition
                 label: "Image focal point"
-                widget: select
+                widget: focal
                 required: false
-                options:
-                  - { label: "Center (default)", value: "" }
-                  - { label: "Top (faces near the top)", value: "50% 0%" }
-                  - { label: "Upper third", value: "50% 30%" }
-                  - { label: "Bottom", value: "50% 100%" }
-                  - { label: "Left", value: "0% 50%" }
-                  - { label: "Slightly right of center", value: "60% 50%" }
-                  - { label: "Right", value: "100% 50%" }
           - name: ordinationMovement
             label: "Ordination page · Movement milestones"
             label_singular: milestone
@@ -1447,16 +1399,8 @@ collections:
               - { name: image, label: Image, widget: image, required: false }
               - name: imagePosition
                 label: "Image focal point"
-                widget: select
+                widget: focal
                 required: false
-                options:
-                  - { label: "Center (default)", value: "" }
-                  - { label: "Top (faces near the top)", value: "50% 0%" }
-                  - { label: "Upper third", value: "50% 30%" }
-                  - { label: "Bottom", value: "50% 100%" }
-                  - { label: "Left", value: "0% 50%" }
-                  - { label: "Slightly right of center", value: "60% 50%" }
-                  - { label: "Right", value: "100% 50%" }
               - { name: link, label: "Learn-more link (optional)", widget: string, required: false }
       - name: membership-brochures
         label: "📄 Membership brochures panel"
