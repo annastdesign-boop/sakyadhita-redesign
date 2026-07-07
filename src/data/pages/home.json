@@ -3,7 +3,7 @@
   "seo": {
     "title": "Sakyadhita · International Association of Buddhist Women",
     "description": "Since 1987, Sakyadhita has brought together laywomen, monastics, and scholars from across all Buddhist traditions to advance equality, education, and spiritual practice.",
-    "ogImage": "/uploads/hero-1.png"
+    "ogImage": "/uploads/hero-1.jpg"
   },
   "hero": {
     "logo": "/uploads/logo-flower.png",
@@ -22,7 +22,7 @@
     },
     "marquee": [
       {
-        "img": "/uploads/member-voice.png",
+        "img": "/uploads/member-voice.jpg",
         "focus": "60% 50%"
       },
       {
@@ -30,19 +30,19 @@
         "focus": ""
       },
       {
-        "img": "/uploads/feat-conf.png",
+        "img": "/uploads/feat-conf.jpg",
         "focus": ""
       },
       {
-        "img": "/uploads/highlights.png",
+        "img": "/uploads/highlights.jpg",
         "focus": ""
       },
       {
-        "img": "/uploads/hero-1.png",
+        "img": "/uploads/hero-1.jpg",
         "focus": ""
       },
       {
-        "img": "/uploads/seoul.png",
+        "img": "/uploads/seoul.jpg",
         "focus": ""
       },
       {
@@ -50,7 +50,7 @@
         "focus": ""
       },
       {
-        "img": "/uploads/hero-3.png",
+        "img": "/uploads/hero-3.jpg",
         "focus": ""
       }
     ],
@@ -106,7 +106,7 @@
     "heading": "20th International Conference",
     "sub": "Celebrating our 20th biennial international conference in 2027",
     "card": {
-      "img": "/uploads/feat-conf.png",
+      "img": "/uploads/feat-conf.jpg",
       "eyebrow": "",
       "title": "20th Sakyadhita International Conference on Buddhist Women",
       "meta": "June 19–26, 2027",
@@ -131,7 +131,7 @@
     "eyebrow": "",
     "heading": "Highlights of the 19th Sakyadhita Conference in Sarawak, East Malaysia.",
     "youtubeId": "IRr-CQYdQ8o",
-    "img": "/uploads/highlights.png",
+    "img": "/uploads/highlights.jpg",
     "caption": "SARAWAK · JUNE 2025",
     "cta": {
       "label": "Previous Conference",
@@ -148,7 +148,7 @@
     "cards": [
       {
         "num": "#19",
-        "img": "/uploads/feat-conf.png",
+        "img": "/uploads/feat-conf.jpg",
         "meta": "2025 · SARAWAK, MALAYSIA",
         "title": "Navigating Change: Buddhist Women in Transition",
         "linkLabel": "View conference →",
@@ -156,7 +156,7 @@
       },
       {
         "num": "#18",
-        "img": "/uploads/seoul.png",
+        "img": "/uploads/seoul.jpg",
         "meta": "2023 · SEOUL, KOREA",
         "title": "Living in a Precarious World",
         "linkLabel": "View conference →",
@@ -172,7 +172,7 @@
       },
       {
         "num": "#16",
-        "img": "/uploads/highlights.png",
+        "img": "/uploads/highlights.jpg",
         "meta": "2019 · BLUE MOUNTAINS",
         "title": "New Horizons in Buddhism",
         "linkLabel": "View conference →",
@@ -188,7 +188,7 @@
       "href": "/publications"
     },
     "feature": {
-      "img": "/uploads/newsletter-v33.png",
+      "img": "/uploads/newsletter-v33.jpg",
       "focus": "center top",
       "eyebrow": "NEWSLETTER · 2025",
       "title": "Volume 33, Number 1",
@@ -198,7 +198,7 @@
     },
     "items": [
       {
-        "img": "/uploads/feat-jun27.png",
+        "img": "/uploads/feat-jun27.jpg",
         "eyebrow": "EDUCATION",
         "title": "The ordination issue",
         "text": "Where full ordination for women stands across Buddhist traditions.",
@@ -206,21 +206,21 @@
         "href": "/ordination-issue"
       },
       {
-        "img": "/uploads/highlights.png",
+        "img": "/uploads/highlights.jpg",
         "eyebrow": "CONFERENCE · SARAWAK 2025",
         "title": "Highlights from the 19th Conference",
         "linkLabel": "See highlights →",
         "href": "https://tricycle.org/article/buddhist-women-conference/"
       },
       {
-        "img": "/uploads/bhutan-2025-ordination.png",
+        "img": "/uploads/bhutan-2025-ordination.jpg",
         "eyebrow": "ORDINATION · MILESTONE",
         "title": "265 nuns receive full ordination in Bhutan",
         "linkLabel": "Learn more →",
         "href": "https://www.lionsroar.com/bhutan-festival-marks-landmark-for-buddhist-nuns/"
       },
       {
-        "img": "/uploads/publication.png",
+        "img": "/uploads/publication.jpg",
         "eyebrow": "PUBLICATION",
         "title": "Bridging Worlds: Buddhist Women's Voices Across Generations",
         "linkLabel": "Browse library →",

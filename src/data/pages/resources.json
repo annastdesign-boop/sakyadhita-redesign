@@ -3,7 +3,7 @@
   "seo": {
     "title": "Resources · Sakyadhita",
     "description": "35+ years of newsletters, scholarship, brochures, member stories, and translations from Sakyadhita — free and open to all.",
-    "ogImage": "/uploads/conf-newsletter.png"
+    "ogImage": "/uploads/conf-newsletter.jpg"
   },
   "hero": {
     "eyebrow": "RESOURCES",
@@ -12,7 +12,7 @@
   },
   "libraryCards": [
     {
-      "img": "/uploads/conf-newsletter.png",
+      "img": "/uploads/conf-newsletter.jpg",
       "count": "LIBRARY · 42 ISSUES",
       "title": "Newsletter Archive",
       "text": "Every issue of the Sakyadhita Newsletter, 1991 to today. Searchable by year, theme, and conference.",
@@ -20,7 +20,7 @@
       "href": "/newsletters"
     },
     {
-      "img": "/uploads/publication.png",
+      "img": "/uploads/publication.jpg",
       "count": "LIBRARY · 60+ RESOURCES",
       "title": "Publications Library",
       "text": "Books, bibliographies, scholarly articles, and multilingual brochures in 9 languages.",
@@ -28,7 +28,7 @@
       "href": "/publications"
     },
     {
-      "img": "/uploads/member-voice.png",
+      "img": "/uploads/member-voice.jpg",
       "count": "STORIES · NEW",
       "title": "Stories & Articles",
       "text": "Member essays, conference reflections, news, dharma teachings — published throughout the year.",
@@ -36,7 +36,7 @@
       "href": "/newsletters"
     },
     {
-      "img": "/uploads/seoul.png",
+      "img": "/uploads/seoul.jpg",
       "count": "VISUAL · CULTURAL",
       "title": "Buddhist Culture",
       "text": "Images, art, music, ritual, and architecture documenting Buddhist women across cultures and centuries.",
@@ -49,7 +49,7 @@
     "heading": "New & noteworthy",
     "cards": [
       {
-        "img": "/uploads/conf-newsletter.png",
+        "img": "/uploads/conf-newsletter.jpg",
         "eyebrow": "NEWSLETTER · 2025",
         "title": "Volume 33, Number 1",
         "text": "Sarawak 2025 preview · Reflections from Seoul · Branch updates",
@@ -57,7 +57,7 @@
         "href": "/newsletters"
       },
       {
-        "img": "/uploads/publication.png",
+        "img": "/uploads/publication.jpg",
         "eyebrow": "PUBLICATION · 2024",
         "title": "Bridging Worlds",
         "text": "Karma Lekshe Tsomo's new anthology of Buddhist women's voices across generations.",
@@ -65,7 +65,7 @@
         "href": "/publications"
       },
       {
-        "img": "/uploads/member-voice.png",
+        "img": "/uploads/member-voice.jpg",
         "eyebrow": "STORY · MEMBER VOICE",
         "title": "What ordination meant to me",
         "text": "A bhiksuni's reflection on the path, 30 years on.",
