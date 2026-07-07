@@ -12,6 +12,33 @@
          workflow. Configuration: config.yml
          Version is PINNED (not ^3) so the editor can't silently change
          under the team's feet when Decap ships a new release. -->
+    <script>
+      // One-time cleanup (2026-07): the old draft workflow left broken
+      // "Draft" images in the browser's local storage that resurrected on
+      // every visit and crashed previews. Purge them before the CMS boots.
+      ;(function () {
+        try {
+          var FLAG = 'sakyadhita-cms-reset-v1'
+          if (localStorage.getItem(FLAG)) return
+          Object.keys(localStorage).forEach(function (k) {
+            if (k === FLAG) return
+            if (/^(netlify-cms|decap-cms|cms)[.\-]/i.test(k) || k.indexOf('backup') !== -1) {
+              localStorage.removeItem(k)
+            }
+          })
+          if (window.indexedDB && indexedDB.databases) {
+            indexedDB.databases().then(function (dbs) {
+              dbs.forEach(function (db) {
+                if (db.name && /localforage|decap|netlify/i.test(db.name)) {
+                  indexedDB.deleteDatabase(db.name)
+                }
+              })
+            })
+          }
+          localStorage.setItem(FLAG, '1')
+        } catch (e) { /* storage unavailable — nothing to clean */ }
+      })()
+    </script>
     <script src="https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js"></script>
 
     <script>
@@ -45,9 +72,15 @@
         }
 
 
+        function precedes(a, b) {
+          // true when a comes before b in the document
+          return !!(b.compareDocumentPosition(a) & Node.DOCUMENT_POSITION_PRECEDING)
+        }
+
         function findSiblingImage(fromEl) {
           if (!fromEl) return null
           var imgs = Array.prototype.slice.call(document.querySelectorAll('img'))
+          var frames = Array.prototype.slice.call(document.querySelectorAll('.sakya-focal-frame'))
           var best = null
           for (var i = 0; i < imgs.length; i++) {
             var im = imgs[i]
@@ -55,8 +88,13 @@
             var ok = src.indexOf('blob:') === 0 || src.indexOf('/uploads/') !== -1 || src.indexOf('data:image') === 0
             if (!ok) continue
             if (!im.complete || im.naturalWidth < 40 || im.naturalHeight < 40) continue
-            var pos = fromEl.compareDocumentPosition(im)
-            if (pos & Node.DOCUMENT_POSITION_PRECEDING) best = im.src
+            if (!precedes(im, fromEl)) continue
+            // if another focal frame sits between this image and ours,
+            // the image belongs to that widget (a different list item)
+            var claimed = frames.some(function (f) {
+              return f !== fromEl && precedes(im, f) && precedes(f, fromEl)
+            })
+            if (!claimed) best = im.src
           }
           return best
         }
@@ -106,6 +144,7 @@
               h(
                 'div',
                 {
+                  className: 'sakya-focal-frame',
                   ref: function (el) { self.boxEl = el },
                   onMouseDown: this.onDown,
                   onMouseMove: this.onMove,
