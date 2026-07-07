@@ -199,19 +199,16 @@ const MAT_COLORS = [
           </div>
           <p class="cfp-intro">{c.callForPapers.intro}</p>
 
-          {c.callForPapers.topics?.length > 0 && (
-            <>
-              <h3 class="cfp-block-title">{c.callForPapers.topicsHeading || 'Suggested topics'}</h3>
-              <ol class="cfp-topics">
-                {c.callForPapers.topics.map((t, i) => (
-                  <li class="cfp-topic">
-                    <span class="num">{i + 1}</span>
-                    <span>{t}</span>
-                  </li>
-                ))}
-              </ol>
-            </>
-          )}
+          <div class="cfp-cta cfp-cta--top">
+            <a class="btn btn--primary btn--lg" href={c.callForPapers.formUrl} target="_blank" rel="noopener noreferrer">
+              {c.callForPapers.formLabel || 'Submit your proposal'} <span class="arr">→</span>
+            </a>
+            {c.callForPapers.contactEmail && (
+              <p class="cfp-contact">
+                Questions? Write to <a href={`mailto:${c.callForPapers.contactEmail}`}>{c.callForPapers.contactEmail}</a>
+              </p>
+            )}
+          </div>
 
           {c.callForPapers.deadlines?.length > 0 && (
             <>
@@ -225,6 +222,20 @@ const MAT_COLORS = [
                   </div>
                 ))}
               </div>
+            </>
+          )}
+
+          {c.callForPapers.topics?.length > 0 && (
+            <>
+              <h3 class="cfp-block-title">{c.callForPapers.topicsHeading || 'Suggested topics'}</h3>
+              <ol class="cfp-topics">
+                {c.callForPapers.topics.map((t, i) => (
+                  <li class="cfp-topic">
+                    <span class="num">{i + 1}</span>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ol>
             </>
           )}
 
