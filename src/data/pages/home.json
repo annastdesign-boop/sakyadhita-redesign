@@ -1,7 +1,7 @@
 {
   "_comment": "Home page copy — every heading, paragraph, button, card, and image on the home page (src/pages/index.astro). Edit here or via the CMS; the page layout and styles stay in the .astro file. The map pins come from the Branches collection, not this file.",
   "press": {
-    "eyebrow": "AS COVERED BY",
+    "eyebrow": "",
     "heading": "Featured in leading Buddhist publications",
     "logos": [
       {
@@ -35,7 +35,7 @@
     ]
   },
   "ways": {
-    "eyebrow": "BE INVOLVED",
+    "eyebrow": "",
     "heading": "Three ways to support Sakyadhita",
     "cards": [
       {
@@ -155,10 +155,10 @@
     "heading": "20th International Conference",
     "card": {
       "img": "/uploads/feat-conf.png",
-      "eyebrow": "20TH INTERNATIONAL CONFERENCE",
-      "title": "Sakyadhita International Conference on Buddhist Women",
-      "meta": "June 19–26, 2027 · Magelang",
-      "text": "The 20th Sakyadhita International Conference travels to Magelang, Indonesia, bringing together Buddhist women from across the world's traditions for teachings, scholarship, and friendship. June 19–26, 2027 · Magelang.",
+      "eyebrow": "",
+      "title": "20th Sakyadhita International Conference on Buddhist Women",
+      "meta": "June 19–26, 2027",
+      "text": "In 2027, the 20th Sakyadhita International Conference travels to Jakarta, bringing together Buddhist women from across the world's traditions for teachings, scholarship, and friendship.",
       "cta": {
         "label": "Conference Details",
         "href": "/conferences"
@@ -175,7 +175,7 @@
         "text": "A communications network linking some 300 million Buddhist women worldwide through branches, chapters, and online community."
       },
       {
-        "title": "Advance Equality",
+        "title": "Advance Equity",
         "text": "Working for gender equity in Buddhist education, training, institutional structures, and full ordination across traditions."
       },
       {
@@ -185,9 +185,9 @@
     ]
   },
   "branches": {
-    "eyebrow": "LOCAL BRANCHES",
+    "eyebrow": "Sakyadhita around the world",
     "heading": "Find Sakyadhita near you",
-    "text": "National branches and local chapters organize events, run translation projects, and bring Sakyadhita's mission to communities worldwide. Click a pin to find your nearest branch.",
+    "text": "National branches and local chapters organize events, run translation projects, and bring Sakyadhita's mission to communities worldwide.<br/>Click a pin to find your nearest branch.",
     "cta": {
       "label": "View branch directory",
       "href": "/branches"
@@ -275,7 +275,7 @@
     ]
   },
   "highlights": {
-    "eyebrow": "19TH INTERNATIONAL CONFERENCE",
+    "eyebrow": "",
     "heading": "Highlights of the 19th Sakyadhita Conference in Sarawak, East Malaysia.",
     "youtubeId": "IRr-CQYdQ8o",
     "img": "/uploads/highlights.png",

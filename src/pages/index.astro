@@ -129,7 +129,7 @@ const branchesMap = {
       <div class="feat-card">
         <div class="pic" aria-hidden="true" style={`background-image:url('${homePage.featuredConference.card.img}')`}></div>
         <div class="body">
-          <div class="eyebrow">{homePage.featuredConference.card.eyebrow}</div>
+          {homePage.featuredConference.card.eyebrow && <div class="eyebrow">{homePage.featuredConference.card.eyebrow}</div>}
           <h3>{homePage.featuredConference.card.title}</h3>
           <div class="meta-row">{homePage.featuredConference.card.meta}</div>
           <p>
@@ -146,7 +146,7 @@ const branchesMap = {
   <!-- 19TH CONFERENCE HIGHLIGHTS -->
   <section class="highlights-19">
     <div class="shell">
-      <div class="eyebrow">{homePage.highlights.eyebrow}</div>
+      {homePage.highlights.eyebrow && <div class="eyebrow">{homePage.highlights.eyebrow}</div>}
       <h2>{homePage.highlights.heading}</h2>
       <div class="stage" id="highlights-stage" data-yt={homePage.highlights.youtubeId} style={`background-image:url('${homePage.highlights.img}')`} aria-label="Conference highlights video">
         <span class="caption">{homePage.highlights.caption}</span>
@@ -223,7 +223,7 @@ const branchesMap = {
   <section class="press">
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">{homePage.press.eyebrow}</div>
+        {homePage.press.eyebrow && <div class="eyebrow">{homePage.press.eyebrow}</div>}
         <h2 class="h-section">{homePage.press.heading}</h2>
       </div>
       <div class="press-grid">
@@ -240,10 +240,10 @@ const branchesMap = {
   <section class="branches">
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">{homePage.branches.eyebrow}</div>
+        {homePage.branches.eyebrow && <div class="eyebrow">{homePage.branches.eyebrow}</div>}
         <h2 class="h-section">{homePage.branches.heading}</h2>
         <p class="muted" style="max-width:62ch;">
-          {homePage.branches.text}
+          <Fragment set:html={homePage.branches.text} />
         </p>
       </div>
       <div class="map-wrap" id="home-map">
@@ -265,7 +265,7 @@ const branchesMap = {
   <section class="ways">
     <div class="shell">
       <div class="section-head">
-        <div class="eyebrow">{homePage.ways.eyebrow}</div>
+        {homePage.ways.eyebrow && <div class="eyebrow">{homePage.ways.eyebrow}</div>}
         <h2 class="h-section">{homePage.ways.heading}</h2>
       </div>
       <div class="ways-grid">
