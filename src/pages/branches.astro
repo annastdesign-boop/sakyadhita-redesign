@@ -335,7 +335,7 @@ const branches = Object.values(modules)
 
     .list-sticky {
       position: sticky;
-      top: 76px;
+      top: calc(76px + var(--announce-h, 0px));
       z-index: 12;
       transform: translate3d(0, 0, 0);
       will-change: transform;
@@ -440,8 +440,8 @@ const branches = Object.values(modules)
     /* Sticky map */
     .map-col {
       position: sticky;
-      top: 76px;
-      height: calc(100vh - 76px);
+      top: calc(76px + var(--announce-h, 0px));
+      height: calc(100vh - 76px - var(--announce-h, 0px));
       padding: 16px 40px 16px 0;
     }
     .map-wrap {

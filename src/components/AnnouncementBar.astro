@@ -28,6 +28,17 @@ const external = ann.ctaUrl?.startsWith('http')
   )
 }
 
+<script>
+  // Publish the banner's height as --announce-h so every sticky element
+  // (header stack, sub-navs, sidebars) offsets itself below it.
+  const bar = document.querySelector('.announce-bar') as HTMLElement | null
+  const setH = () => {
+    document.documentElement.style.setProperty('--announce-h', `${bar ? bar.offsetHeight : 0}px`)
+  }
+  setH()
+  window.addEventListener('resize', setH)
+</script>
+
 <style>
   .announce-bar {
     background: var(--lavender);

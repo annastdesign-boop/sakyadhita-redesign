@@ -192,7 +192,7 @@ const committees = volunteerPage.interests
       gap: 64px;
       align-items: start;
     }
-    .com-left { position: sticky; top: 120px; padding: 24px 0; }
+    .com-left { position: sticky; top: calc(120px + var(--announce-h, 0px)); padding: 24px 0; }
     .com-group + .com-group { margin-top: 40px; }
     .com-group-head {
       font-size: 12px; font-weight: 700; letter-spacing: 0.16em;
@@ -281,7 +281,7 @@ const committees = volunteerPage.interests
       align-items: start;
     }
     .faq-pic {
-      position: sticky; top: 120px;
+      position: sticky; top: calc(120px + var(--announce-h, 0px));
       border-radius: var(--r-lg);
       overflow: hidden;
       aspect-ratio: 9/10;

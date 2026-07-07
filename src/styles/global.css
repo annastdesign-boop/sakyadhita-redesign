@@ -159,6 +159,9 @@ section { padding: 80px 0; }
 .section--bg-warm { background: transparent; }
 
 /* ── Header / nav ────────────────────────────────────────────── */
+/* Banner + header stick together; --announce-h (set by the banner's
+   script) shifts every other sticky offset down by the banner height. */
+.top-stack { position: sticky; top: 0; z-index: 60; }
 .site-header {
   position: sticky; top: 0; z-index: 50;
   background: rgba(253, 249, 246, 0.88);
@@ -668,7 +671,7 @@ img { border-radius: 8px; }
 
 /* ── On-page nav ─────────────────────────────────────────────── */
 .onpage-nav {
-  position: sticky; top: 75px;
+  position: sticky; top: calc(75px + var(--announce-h, 0px));
   z-index: 10;
   transform: translate3d(0, 0, 0);
   will-change: transform;

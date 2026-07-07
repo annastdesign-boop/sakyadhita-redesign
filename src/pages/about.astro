@@ -438,7 +438,7 @@ const firstTerm = terms[0]
     }
     .obj-sticky {
       position: sticky;
-      top: 150px;
+      top: calc(150px + var(--announce-h, 0px));
       align-self: start;
     }
     .obj-sticky .section-head { margin: 0; align-items: flex-start; text-align: left; }

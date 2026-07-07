@@ -64,8 +64,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <AnnouncementBar />
-    <Header active={active} />
+    <div class="top-stack">
+      <AnnouncementBar />
+      <Header active={active} />
+    </div>
 
     <main id="main">
       <!-- Decorative blurred colour orbs that drift down the page -->
