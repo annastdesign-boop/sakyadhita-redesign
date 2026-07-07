@@ -44,9 +44,35 @@
           return { x: num(a, 'x'), y: num(b, 'y') }
         }
 
+
+        function findSiblingImage(fromEl) {
+          if (!fromEl) return null
+          var imgs = Array.prototype.slice.call(document.querySelectorAll('img'))
+          var best = null
+          for (var i = 0; i < imgs.length; i++) {
+            var im = imgs[i]
+            var src = im.getAttribute('src') || ''
+            var ok = src.indexOf('blob:') === 0 || src.indexOf('/uploads/') !== -1 || src.indexOf('data:image') === 0
+            if (!ok) continue
+            var pos = fromEl.compareDocumentPosition(im)
+            if (pos & Node.DOCUMENT_POSITION_PRECEDING) best = im.src
+          }
+          return best
+        }
+
         var FocalControl = createClass({
           getInitialState: function () {
-            return { dragging: false }
+            return { dragging: false, imgSrc: null }
+          },
+          componentDidMount: function () {
+            var self = this
+            this._imgTimer = setInterval(function () {
+              var src = findSiblingImage(self.boxEl)
+              if (src !== self.state.imgSrc) self.setState({ imgSrc: src })
+            }, 800)
+          },
+          componentWillUnmount: function () {
+            clearInterval(this._imgTimer)
           },
           setFromEvent: function (e) {
             var box = this.boxEl
@@ -86,11 +112,12 @@
                   onMouseLeave: this.onUp,
                   style: {
                     position: 'relative',
-                    height: '150px',
+                    height: this.state.imgSrc ? 'auto' : '150px',
                     maxWidth: '340px',
                     borderRadius: '6px',
                     border: '2px solid #dfdfe3',
                     cursor: 'crosshair',
+                    overflow: 'hidden',
                     background:
                       'repeating-linear-gradient(0deg, transparent, transparent 29px, rgba(0,0,0,.06) 30px),' +
                       'repeating-linear-gradient(90deg, transparent, transparent 29px, rgba(0,0,0,.06) 30px),' +
@@ -98,6 +125,25 @@
                     userSelect: 'none',
                   },
                 },
+                this.state.imgSrc
+                  ? h('img', {
+                      src: this.state.imgSrc,
+                      draggable: false,
+                      style: { display: 'block', width: '100%', height: 'auto', pointerEvents: 'none' },
+                    })
+                  : null,
+                this.state.imgSrc
+                  ? h('div', {
+                      style: {
+                        position: 'absolute',
+                        top: 0, left: 0, right: 0, bottom: 0,
+                        pointerEvents: 'none',
+                        background:
+                          'repeating-linear-gradient(0deg, transparent, transparent calc(25% - 1px), rgba(255,255,255,.45) 25%),' +
+                          'repeating-linear-gradient(90deg, transparent, transparent calc(25% - 1px), rgba(255,255,255,.45) 25%)',
+                      },
+                    })
+                  : null,
                 h('div', {
                   style: {
                     position: 'absolute',
