@@ -41,6 +41,25 @@ type Conf = {
   notice?: string
   ctaPrimary?: { label: string; href: string }
   ctaSecondary?: { label: string; href: string }
+  callForPapers?: {
+    title: string
+    subtitle?: string
+    intro: string
+    formUrl: string
+    formLabel?: string
+    topicsHeading?: string
+    topics: string[]
+    deadlines: { date: string; label: string; detail: string }[]
+    originality?: string
+    allowedHeading?: string
+    allowed: string[]
+    notAllowedHeading?: string
+    notAllowed: string[]
+    disclosure?: string
+    welcome?: string
+    note?: string
+    contactEmail?: string
+  }
 }
 
 const list = allConferences as Conf[]
@@ -169,6 +188,98 @@ const MAT_COLORS = [
       >
       </div>
     </section>
+
+    {
+      c.callForPapers && (
+        <section class="cfp" id="proposals">
+          <div class="cfp-head">
+            <div class="eyebrow">CALL FOR PAPERS</div>
+            <h2>{c.callForPapers.title}</h2>
+            {c.callForPapers.subtitle && <p class="cfp-sub">{c.callForPapers.subtitle}</p>}
+          </div>
+          <p class="cfp-intro">{c.callForPapers.intro}</p>
+
+          {c.callForPapers.topics?.length > 0 && (
+            <>
+              <h3 class="cfp-block-title">{c.callForPapers.topicsHeading || 'Suggested topics'}</h3>
+              <ol class="cfp-topics">
+                {c.callForPapers.topics.map((t, i) => (
+                  <li class="cfp-topic">
+                    <span class="num">{i + 1}</span>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ol>
+            </>
+          )}
+
+          {c.callForPapers.deadlines?.length > 0 && (
+            <>
+              <h3 class="cfp-block-title">Key dates</h3>
+              <div class="cfp-dates">
+                {c.callForPapers.deadlines.map((dl) => (
+                  <div class="cfp-date">
+                    <div class="d">{dl.date}</div>
+                    <div class="l">{dl.label}</div>
+                    <p>{dl.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {(c.callForPapers.allowed?.length > 0 || c.callForPapers.notAllowed?.length > 0) && (
+            <div class="cfp-rules">
+              {c.callForPapers.originality && <p class="cfp-orig">{c.callForPapers.originality}</p>}
+              <div class="cfp-ai">
+                <div class="cfp-ai-col">
+                  <h4>{c.callForPapers.allowedHeading || 'Allowed'}</h4>
+                  <ul>
+                    {c.callForPapers.allowed.map((a) => (
+                      <li class="ok">
+                        <span class="mark">✓</span>
+                        <span>{a}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div class="cfp-ai-col">
+                  <h4>{c.callForPapers.notAllowedHeading || 'Not allowed'}</h4>
+                  <ul>
+                    {c.callForPapers.notAllowed.map((a) => (
+                      <li class="no">
+                        <span class="mark">✕</span>
+                        <span>{a}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              {c.callForPapers.disclosure && (
+                <p class="cfp-disclosure">
+                  <span class="mark ok-mark">✓</span> {c.callForPapers.disclosure}
+                </p>
+              )}
+            </div>
+          )}
+
+          {c.callForPapers.welcome && <p class="cfp-welcome">{c.callForPapers.welcome}</p>}
+
+          <div class="cfp-cta">
+            <a class="btn btn--primary btn--lg" href={c.callForPapers.formUrl} target="_blank" rel="noopener noreferrer">
+              {c.callForPapers.formLabel || 'Submit your proposal'} <span class="arr">→</span>
+            </a>
+            {c.callForPapers.contactEmail && (
+              <p class="cfp-contact">
+                Questions? Write to <a href={`mailto:${c.callForPapers.contactEmail}`}>{c.callForPapers.contactEmail}</a>
+              </p>
+            )}
+          </div>
+
+          {c.callForPapers.note && <p class="cfp-note">{c.callForPapers.note}</p>}
+        </section>
+      )
+    }
 
     {
       c.upcoming ? (
@@ -698,6 +809,127 @@ const MAT_COLORS = [
     text-transform: uppercase;
     color: var(--purple);
     margin-bottom: 4px;
+  }
+
+  /* ── Call for Papers ── */
+  .cfp {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 44px 44px 40px;
+    scroll-margin-top: 96px;
+    display: flex; flex-direction: column; gap: 26px;
+  }
+  .cfp-head { text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+  .cfp-head .eyebrow { color: var(--purple); }
+  .cfp-head h2 {
+    font-family: var(--font-title); font-weight: 700;
+    font-size: 30px; line-height: 1.15; color: var(--ink);
+    max-width: 26ch;
+  }
+  .cfp-sub {
+    font-family: var(--font-num); font-weight: 600;
+    font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--coral-2);
+  }
+  .cfp-intro {
+    font-size: 16px; line-height: 1.65; color: var(--ink-body);
+    max-width: 72ch; margin: 0 auto; text-align: center;
+  }
+  .cfp-block-title {
+    font-family: var(--font-title); font-weight: 700;
+    font-size: 22px; color: var(--ink);
+    padding-bottom: 10px; margin-bottom: -8px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .cfp-topics {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    list-style: none;
+  }
+  .cfp-topic {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--bg-subtle);
+    border-radius: var(--r-md);
+    padding: 14px 16px;
+    font-size: 14.5px; line-height: 1.5; color: var(--ink-body);
+  }
+  .cfp-topic .num {
+    font-family: var(--font-num); font-weight: 700; font-size: 18px;
+    color: var(--purple); line-height: 1.2; flex: none; min-width: 22px;
+  }
+  .cfp-dates { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .cfp-date {
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: 20px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .cfp-date .d {
+    font-family: var(--font-num); font-weight: 700; font-size: 20px;
+    color: var(--purple); line-height: 1.1;
+  }
+  .cfp-date .l {
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-2);
+  }
+  .cfp-date p { font-size: 13.5px; line-height: 1.5; color: var(--ink-body); }
+  .cfp-rules {
+    background: var(--bg-warm);
+    border-radius: var(--r-md);
+    padding: 24px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .cfp-orig {
+    font-family: var(--font-title); font-weight: 700;
+    font-size: 18px; color: var(--ink); text-align: center;
+  }
+  .cfp-ai { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .cfp-ai-col h4 {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-2);
+    margin-bottom: 10px;
+  }
+  .cfp-ai-col ul { display: flex; flex-direction: column; gap: 8px; }
+  .cfp-ai-col li {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 14px; line-height: 1.5; color: var(--ink-body);
+  }
+  .cfp-ai .mark {
+    flex: none;
+    width: 20px; height: 20px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 12px; font-weight: 700; margin-top: 1px;
+  }
+  .cfp-ai .ok .mark { background: rgba(119,59,250,.12); color: var(--purple); }
+  .cfp-ai .no .mark { background: rgba(222,115,134,.15); color: var(--coral); }
+  .cfp-disclosure {
+    font-size: 13.5px; color: var(--ink-2); line-height: 1.5;
+    display: flex; gap: 10px; align-items: flex-start;
+    border-top: 1px dashed var(--border);
+    padding-top: 14px;
+  }
+  .cfp-disclosure .ok-mark {
+    flex: none; width: 20px; height: 20px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 12px; font-weight: 700;
+    background: rgba(119,59,250,.12); color: var(--purple);
+  }
+  .cfp-welcome {
+    font-size: 15.5px; line-height: 1.6; color: var(--ink-body);
+    text-align: center; max-width: 64ch; margin: 0 auto;
+  }
+  .cfp-cta { text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .cfp-contact { font-size: 13.5px; color: var(--ink-2); }
+  .cfp-contact a { color: var(--purple); font-weight: 600; }
+  .cfp-note {
+    font-size: 13px; font-style: italic; color: var(--ink-subtle);
+    line-height: 1.55; text-align: center; max-width: 70ch; margin: 0 auto;
+  }
+  @media (max-width: 860px) {
+    .cfp { padding: 28px 20px; }
+    .cfp-topics { grid-template-columns: 1fr; }
+    .cfp-dates { grid-template-columns: 1fr; }
+    .cfp-ai { grid-template-columns: 1fr; }
+    .cfp-head h2 { font-size: 25px; }
   }
 
   /* ABOUT card */

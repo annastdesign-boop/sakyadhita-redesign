@@ -20,5 +20,57 @@
   "ctaSecondary": {
     "label": "Learn more",
     "href": "#proposals"
+  },
+  "callForPapers": {
+    "title": "Sakyadhita invites you to our 20th International Conference on Buddhist Women",
+    "subtitle": "Celebrating the 40th anniversary of Sakyadhita",
+    "intro": "The Academic Program Committee is now receiving paper proposals for the 20th Sakyadhita International Conference on Buddhist Women in Magelang, Indonesia, June 19–26, 2027. The 2027 conference theme: Shaping Futures: Healing Bodies, Minds, and Communities.",
+    "formUrl": "https://docs.google.com/forms/d/e/1FAIpQLSeFVz3OTE_aWqNUa0ZK6PiIgL1JWPcOvQXXUn7yrN1ivD6dqQ/viewform",
+    "formLabel": "Submit your proposal",
+    "topicsHeading": "Suggested topics",
+    "topics": [
+      "Compassion and Buddhist Approaches to Mental and Emotional Well-being",
+      "Women's Leadership and Community Care in Buddhist Traditions",
+      "Mindfulness in Healthcare: Bridging Spirituality and Medicine",
+      "Environmental Stewardship and Social Responsibility in Buddhist Practice",
+      "Spirituality and Trauma Recovery: Addressing Personal and Collective Suffering",
+      "Buddhism and Gender Justice: Building Inclusive Communities",
+      "Digital Technology and Spiritual Practice in Buddhist Communities",
+      "Buddhist Perspectives on Resilience and Social Challenges",
+      "Social Inclusion and Gender Justice: Sakyadhita's Role in Shaping a More Equitable Future",
+      "Youth, Buddhist Education, and Social Responsibility"
+    ],
+    "deadlines": [
+      {
+        "date": "July 30, 2026",
+        "label": "Proposals due",
+        "detail": "Paper proposals of approximately 250 words, submitted through the proposal form."
+      },
+      {
+        "date": "September 15, 2026",
+        "label": "Acceptance notice",
+        "detail": "Notification of acceptance is sent to all applicants."
+      },
+      {
+        "date": "December 15, 2026",
+        "label": "Final papers due",
+        "detail": "2,000 words maximum for 10-minute papers, to be edited and translated into various languages."
+      }
+    ],
+    "originality": "All proposals and papers must be the original, unpublished work of the presenters.",
+    "allowedHeading": "Using AI as an assistive tool",
+    "allowed": [
+      "You may use AI tools to assist in the editing of text",
+      "You may use AI tools to edit or enhance images, as long as the images are your own original work"
+    ],
+    "notAllowedHeading": "Using AI as a generative tool",
+    "notAllowed": [
+      "You may not submit any AI-generated content, including text, translations, or images",
+      "You may not use AI tools to generate or create images or other illustrative materials"
+    ],
+    "disclosure": "At the time of proposal submission, authors must fully indicate their use of all AI tools.",
+    "welcome": "Sakyadhita encourages diversity and creativity. We welcome proposals from presenters of any gender, nationality, or status. We look forward to receiving your proposal!",
+    "note": "Please note that this will be an in-person conference, and participants must register and plan accordingly. Paper presenters are responsible for their own conference-related travel and participation fees.",
+    "contactEmail": "sakyadhita.academic.committee@gmail.com"
   }
 }

@@ -970,6 +970,49 @@ collections:
           - { name: excerpt, label: Excerpt, widget: text }
           - { name: href, label: "Link to the article", widget: string }
           - { name: img, label: "Thumbnail image", widget: image, required: false }
+      - name: callForPapers
+        label: "Call for Papers section (optional)"
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { name: title, label: "Title", widget: string, required: false }
+          - { name: subtitle, label: "Subtitle (e.g. anniversary line)", widget: string, required: false }
+          - { name: intro, label: "Intro paragraph", widget: text, required: false }
+          - { name: formUrl, label: "Proposal form link", widget: string, required: false }
+          - { name: formLabel, label: "Button text", widget: string, required: false }
+          - { name: topicsHeading, label: "Topics heading", widget: string, required: false }
+          - name: topics
+            label: "Suggested topics"
+            widget: list
+            required: false
+            field: { name: topic, label: Topic, widget: string }
+          - name: deadlines
+            label: "Key dates"
+            widget: list
+            required: false
+            summary: "{{fields.date}} — {{fields.label}}"
+            fields:
+              - { name: date, label: "Date (e.g. July 30, 2026)", widget: string }
+              - { name: label, label: "Label (e.g. Proposals due)", widget: string }
+              - { name: detail, label: "Detail", widget: text }
+          - { name: originality, label: "Originality statement", widget: text, required: false }
+          - { name: allowedHeading, label: "'Allowed' column heading", widget: string, required: false }
+          - name: allowed
+            label: "Allowed (✓ list)"
+            widget: list
+            required: false
+            field: { name: rule, label: Rule, widget: string }
+          - { name: notAllowedHeading, label: "'Not allowed' column heading", widget: string, required: false }
+          - name: notAllowed
+            label: "Not allowed (✕ list)"
+            widget: list
+            required: false
+            field: { name: rule, label: Rule, widget: string }
+          - { name: disclosure, label: "Disclosure line", widget: text, required: false }
+          - { name: welcome, label: "Welcome paragraph", widget: text, required: false }
+          - { name: note, label: "Italic note (e.g. in-person, travel fees)", widget: text, required: false }
+          - { name: contactEmail, label: "Contact email", widget: string, required: false }
       - name: materialsVisible
         label: "Show conference materials? (unhide when files are ready)"
         widget: boolean
