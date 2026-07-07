@@ -140,6 +140,14 @@ const branchesMap = {
           <p>
             {homePage.featuredConference.card.text}
           </p>
+          {homePage.featuredConference.card.cfpNote && (
+            <p class="cfp-note-card">
+              {homePage.featuredConference.card.cfpNote}{' '}
+              {homePage.featuredConference.card.cfpLink?.href && (
+                <a class="cfp-note-link" href={homePage.featuredConference.card.cfpLink.href}>{homePage.featuredConference.card.cfpLink.label || 'Learn more'}</a>
+              )}
+            </p>
+          )}
           <div class="ctas">
             <a class="btn btn--primary" href={homePage.featuredConference.card.cta.href}>{homePage.featuredConference.card.cta.label}</a>
           </div>
@@ -431,6 +439,9 @@ const branchesMap = {
     .home-hero h1 .name { display: block; font-size: 40px; margin-bottom: 2px; }
     .home-hero h1 .full { display: block; font-size: 40px; letter-spacing: -0.01em; white-space: nowrap; }
     .home-hero .eyebrow.hero-announce { color: var(--coral-2); margin-top: 18px; line-height: 1.5; }
+    .cfp-note-card { font-size: 14.5px; line-height: 1.6; color: var(--ink-body); margin-top: 2px; }
+    .cfp-note-link { color: var(--purple); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    .cfp-note-link:hover { color: var(--ink); }
     .home-hero p {
       color: var(--ink-body);
       font-size: 18px;

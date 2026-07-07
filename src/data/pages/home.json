@@ -163,7 +163,12 @@
         "label": "Conference Details",
         "href": "/conferences"
       },
-      "location": "Magelang, Indonesia"
+      "location": "Magelang, Indonesia",
+      "cfpNote": "The Academic Program Committee is now receiving paper proposals for the 20th Sakyadhita International Conference 2027. Paper proposals should be submitted by July 30, 2026.",
+      "cfpLink": {
+        "label": "Learn more",
+        "href": "/conferences#proposals"
+      }
     },
     "sub": "Celebrating our 20th biennial international conference in 2027"
   },

@@ -152,6 +152,14 @@ collections:
                   - { name: meta, label: "Date line (e.g. June 19–26, 2027)", widget: string }
                   - { name: location, label: "Location (City, Country)", widget: string, required: false }
                   - { name: text, label: Text, widget: text }
+                  - { name: cfpNote, label: "Call-for-papers note (under the text — leave empty to hide)", widget: text, required: false }
+                  - name: cfpLink
+                    label: "Call-for-papers link"
+                    widget: object
+                    required: false
+                    fields:
+                      - { name: label, label: "Link text", widget: string, required: false }
+                      - { name: href, label: "Link target", widget: string, required: false }
                   - name: cta
                     label: Button
                     widget: object
