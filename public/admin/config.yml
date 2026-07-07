@@ -47,39 +47,42 @@ collections:
             required: false
             collapsed: true
             fields:
-              - { name: title, label: "Page title (browser tab)", widget: string }
-              - { name: description, label: "Description (search engines & link previews)", widget: text }
-              - { name: ogImage, label: "Link-preview image", widget: image }
+              - { name: title, label: "Page title (browser tab)", widget: string, required: false }
+              - { name: description, label: "Description (search engines & link previews)", widget: text, required: false }
+              - { name: ogImage, label: "Link-preview image", widget: image, required: false }
           - name: hero
             label: "Hero (top of page)"
             widget: object
             required: false
             fields:
-              - { name: logo, label: "Logo image", widget: image }
-              - { name: logoAlt, label: "Logo alt text (for screen readers)", widget: string }
-              - { name: titleName, label: "Title — first line (e.g. Sakyadhita)", widget: string }
-              - { name: titleFull, label: "Title — second line", widget: string }
+              - { name: logo, label: "Logo image", widget: image, required: false }
+              - { name: logoAlt, label: "Logo alt text (for screen readers)", widget: string, required: false }
+              - { name: titleName, label: "Title — first line (e.g. Sakyadhita)", widget: string, required: false }
+              - { name: titleFull, label: "Title — second line", widget: string, required: false }
               - { name: announcement, label: "Announcement line (orange, under the title — leave empty to hide)", widget: string, required: false }
-              - { name: text, label: "Intro paragraph", widget: text }
+              - { name: text, label: "Intro paragraph", widget: text, required: false }
               - name: primaryCta
                 label: "Main button"
                 widget: object
+                required: false
                 fields:
-                  - { name: label, label: Label, widget: string }
-                  - { name: href, label: Link, widget: string }
+                  - { name: label, label: Label, widget: string, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
               - name: secondaryCta
                 label: "Second button"
                 widget: object
+                required: false
                 fields:
-                  - { name: label, label: Label, widget: string }
-                  - { name: href, label: Link, widget: string }
+                  - { name: label, label: Label, widget: string, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
               - name: marquee
                 label: "Scrolling photo strip"
                 label_singular: photo
                 widget: list
+                required: false
                 summary: "{{fields.img}}"
                 fields:
-                  - { name: img, label: Photo, widget: image }
+                  - { name: img, label: Photo, widget: image, required: false }
                   - name: focus
                     label: "Focal point"
                     widget: focal
@@ -87,59 +90,63 @@ collections:
               - name: credit
                 label: "Photo credit line"
                 widget: object
+                required: false
                 fields:
-                  - { name: text, label: "Text before the link", widget: string }
-                  - { name: linkLabel, label: "Link text (photographer's name)", widget: string }
-                  - { name: linkUrl, label: "Link URL", widget: string }
+                  - { name: text, label: "Text before the link", widget: string, required: false }
+                  - { name: linkLabel, label: "Link text (photographer's name)", widget: string, required: false }
+                  - { name: linkUrl, label: "Link URL", widget: string, required: false }
           - name: stats
             label: "Impact numbers"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: items
                 label: Numbers
                 label_singular: number
                 widget: list
+                required: false
                 summary: "{{fields.value}} — {{fields.label}}"
                 fields:
-                  - { name: value, label: "Value (e.g. 5,000+)", widget: string }
-                  - { name: label, label: Label, widget: string }
+                  - { name: value, label: "Value (e.g. 5,000+)", widget: string, required: false }
+                  - { name: label, label: Label, widget: string, required: false }
           - name: mission
             label: "Mission — three pillars"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: heading, label: Heading, widget: string }
-              - { name: intro, label: "Intro paragraph", widget: text }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: intro, label: "Intro paragraph", widget: text, required: false }
               - name: pillars
                 label: "Pillars (keep exactly 3 — shown left, right, bottom around the mandala)"
                 label_singular: pillar
                 widget: list
+                required: false
                 summary: "{{fields.title}}"
                 fields:
-                  - { name: title, label: Title, widget: string }
-                  - { name: text, label: Text, widget: text }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: text, label: Text, widget: text, required: false }
           - name: featuredConference
             label: "Upcoming conference"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: heading, label: "Section heading", widget: string }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: heading, label: "Section heading", widget: string, required: false }
               - { name: sub, label: "Line under the heading", widget: string, required: false }
               - name: card
                 label: "Conference card"
                 widget: object
+                required: false
                 fields:
-                  - { name: img, label: Photo, widget: image }
-                  - { name: eyebrow, label: "Small label on the card", widget: string }
-                  - { name: title, label: Title, widget: string }
-                  - { name: meta, label: "Date line (e.g. June 19–26, 2027)", widget: string }
+                  - { name: img, label: Photo, widget: image, required: false }
+                  - { name: eyebrow, label: "Small label on the card", widget: string, required: false }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: meta, label: "Date line (e.g. June 19–26, 2027)", widget: string, required: false }
                   - { name: location, label: "Location (City, Country)", widget: string, required: false }
-                  - { name: text, label: Text, widget: text }
+                  - { name: text, label: Text, widget: text, required: false }
                   - { name: cfpNote, label: "Call-for-papers note (under the text — leave empty to hide)", widget: text, required: false }
                   - name: cfpLink
                     label: "Call-for-papers link"
@@ -151,9 +158,10 @@ collections:
                   - name: cta
                     label: Button
                     widget: object
+                    required: false
                     fields:
-                      - { name: label, label: Label, widget: string }
-                      - { name: href, label: Link, widget: string }
+                      - { name: label, label: Label, widget: string, required: false }
+                      - { name: href, label: Link, widget: string, required: false }
           - name: highlights
             label: "Conference highlights video"
             widget: object
@@ -166,130 +174,139 @@ collections:
                 fields:
                   - { name: label, label: "Button label", widget: string, required: false }
                   - { name: href, label: "Button link", widget: string, required: false }
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: heading, label: Heading, widget: string }
-              - { name: youtubeId, label: "YouTube video ID", widget: string, hint: "The part after watch?v= — e.g. IRr-CQYdQ8o" }
-              - { name: img, label: "Preview image (shown before play)", widget: image }
-              - { name: caption, label: "Caption on the video (e.g. SARAWAK · JUNE 2025)", widget: string }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: youtubeId, label: "YouTube video ID", widget: string, hint: "The part after watch?v= — e.g. IRr-CQYdQ8o", required: false }
+              - { name: img, label: "Preview image (shown before play)", widget: image, required: false }
+              - { name: caption, label: "Caption on the video (e.g. SARAWAK · JUNE 2025)", widget: string, required: false }
               - name: cta
                 label: "Button under the video"
                 widget: object
+                required: false
                 fields:
-                  - { name: label, label: Label, widget: string }
-                  - { name: href, label: Link, widget: string }
+                  - { name: label, label: Label, widget: string, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
           - name: pastConferences
             label: "Past conferences strip"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: seeAll
                 label: "See-all button"
                 widget: object
+                required: false
                 fields:
-                  - { name: label, label: Label, widget: string }
-                  - { name: href, label: Link, widget: string }
+                  - { name: label, label: Label, widget: string, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
               - name: cards
                 label: "Conference cards"
                 label_singular: card
                 widget: list
+                required: false
                 summary: "{{fields.num}} · {{fields.title}}"
                 fields:
-                  - { name: num, label: "Badge (e.g. #19)", widget: string }
-                  - { name: img, label: Photo, widget: image }
-                  - { name: meta, label: "Meta line (e.g. 2025 · SARAWAK, MALAYSIA)", widget: string }
-                  - { name: title, label: Title, widget: string }
-                  - { name: linkLabel, label: "Link text (e.g. View conference →)", widget: string }
-                  - { name: href, label: Link, widget: string }
+                  - { name: num, label: "Badge (e.g. #19)", widget: string, required: false }
+                  - { name: img, label: Photo, widget: image, required: false }
+                  - { name: meta, label: "Meta line (e.g. 2025 · SARAWAK, MALAYSIA)", widget: string, required: false }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: linkLabel, label: "Link text (e.g. View conference →)", widget: string, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
           - name: latest
             label: "Latest from Sakyadhita"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: seeAll
                 label: "See-all button"
                 widget: object
+                required: false
                 fields:
-                  - { name: label, label: Label, widget: string }
-                  - { name: href, label: Link, widget: string }
+                  - { name: label, label: Label, widget: string, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
               - name: feature
                 label: "Big featured card"
                 widget: object
+                required: false
                 fields:
-                  - { name: img, label: Image, widget: image }
+                  - { name: img, label: Image, widget: image, required: false }
                   - name: focus
                     label: "Image focal point"
                     widget: focal
                     required: false
-                  - { name: eyebrow, label: "Small label on the card", widget: string }
-                  - { name: title, label: Title, widget: string }
-                  - { name: text, label: Text, widget: text }
-                  - { name: linkLabel, label: "Link text (e.g. Read latest issue →)", widget: string }
-                  - { name: href, label: Link, widget: string }
+                  - { name: eyebrow, label: "Small label on the card", widget: string, required: false }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: text, label: Text, widget: text, required: false }
+                  - { name: linkLabel, label: "Link text (e.g. Read latest issue →)", widget: string, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
               - name: items
                 label: "Small cards"
                 label_singular: card
                 widget: list
+                required: false
                 summary: "{{fields.title}}"
                 fields:
-                  - { name: img, label: Image, widget: image }
-                  - { name: eyebrow, label: "Small label on the card", widget: string }
-                  - { name: title, label: Title, widget: string }
-                  - { name: linkLabel, label: "Link text (e.g. Read story →)", widget: string }
-                  - { name: href, label: Link, widget: string }
+                  - { name: img, label: Image, widget: image, required: false }
+                  - { name: eyebrow, label: "Small label on the card", widget: string, required: false }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: linkLabel, label: "Link text (e.g. Read story →)", widget: string, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
           - name: press
             label: "Press logos (As covered by)"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: logos
                 label: Logos
                 label_singular: logo
                 widget: list
+                required: false
                 summary: "{{fields.alt}}"
                 fields:
-                  - { name: img, label: "Logo image", widget: image }
-                  - { name: alt, label: "Publication name (alt text)", widget: string }
-                  - { name: href, label: "Link to the article", widget: string }
-                  - { name: width, label: "Logo width (e.g. 132px)", widget: string, hint: "CSS size — keep the px" }
-                  - { name: height, label: "Logo height (e.g. 132px or auto)", widget: string }
+                  - { name: img, label: "Logo image", widget: image, required: false }
+                  - { name: alt, label: "Publication name (alt text)", widget: string, required: false }
+                  - { name: href, label: "Link to the article", widget: string, required: false }
+                  - { name: width, label: "Logo width (e.g. 132px)", widget: string, hint: "CSS size — keep the px", required: false }
+                  - { name: height, label: "Logo height (e.g. 132px or auto)", widget: string, required: false }
           - name: branches
             label: "Branches map section"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: heading, label: Heading, widget: string }
-              - { name: text, label: "Intro paragraph", widget: text }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: text, label: "Intro paragraph", widget: text, required: false }
               - name: cta
                 label: "Button under the map"
                 widget: object
+                required: false
                 fields:
-                  - { name: label, label: Label, widget: string }
-                  - { name: href, label: Link, widget: string }
+                  - { name: label, label: Label, widget: string, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
           - name: ways
             label: "Ways to support"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: cards
                 label: "Support cards (keep exactly 3 — the first card's button is highlighted)"
                 label_singular: card
                 widget: list
+                required: false
                 summary: "{{fields.title}}"
                 fields:
-                  - { name: img, label: "Illustration", widget: image }
-                  - { name: title, label: Title, widget: string }
-                  - { name: text, label: Text, widget: text }
-                  - { name: ctaLabel, label: "Button label", widget: string }
-                  - { name: href, label: Link, widget: string }
+                  - { name: img, label: "Illustration", widget: image, required: false }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: text, label: Text, widget: text, required: false }
+                  - { name: ctaLabel, label: "Button label", widget: string, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
       - name: resources
         label: "📖 Resources page"
         file: src/data/pages/resources.json
@@ -305,17 +322,17 @@ collections:
             required: false
             collapsed: true
             fields:
-              - { name: title, label: "Page title (browser tab)", widget: string }
-              - { name: description, label: "Description (search engines & link previews)", widget: text }
-              - { name: ogImage, label: "Link-preview image", widget: image }
+              - { name: title, label: "Page title (browser tab)", widget: string, required: false }
+              - { name: description, label: "Description (search engines & link previews)", widget: text, required: false }
+              - { name: ogImage, label: "Link-preview image", widget: image, required: false }
           - name: hero
             label: "Hero (top of page)"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: heading, label: Heading, widget: string }
-              - { name: lede, label: "Intro paragraph", widget: text }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: lede, label: "Intro paragraph", widget: text, required: false }
           - name: libraryCards
             label: "Library cards (the 4 big cards)"
             label_singular: card
@@ -323,31 +340,32 @@ collections:
             required: false
             summary: "{{fields.title}}"
             fields:
-              - { name: img, label: Image, widget: image }
-              - { name: count, label: "Badge on the image (e.g. LIBRARY · 42 ISSUES)", widget: string }
-              - { name: title, label: Title, widget: string }
-              - { name: text, label: Text, widget: text }
-              - { name: ctaLabel, label: "Link text (e.g. Browse newsletters →)", widget: string }
-              - { name: href, label: Link, widget: string }
+              - { name: img, label: Image, widget: image, required: false }
+              - { name: count, label: "Badge on the image (e.g. LIBRARY · 42 ISSUES)", widget: string, required: false }
+              - { name: title, label: Title, widget: string, required: false }
+              - { name: text, label: Text, widget: text, required: false }
+              - { name: ctaLabel, label: "Link text (e.g. Browse newsletters →)", widget: string, required: false }
+              - { name: href, label: Link, widget: string, required: false }
           - name: featured
             label: "Featured this month"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: cards
                 label: "Featured cards"
                 label_singular: card
                 widget: list
+                required: false
                 summary: "{{fields.title}}"
                 fields:
-                  - { name: img, label: Image, widget: image }
-                  - { name: eyebrow, label: "Small label on the card (e.g. NEWSLETTER · 2025)", widget: string }
-                  - { name: title, label: Title, widget: string }
-                  - { name: text, label: Text, widget: text }
-                  - { name: ctaLabel, label: "Link text (e.g. Read latest →)", widget: string }
-                  - { name: href, label: Link, widget: string }
+                  - { name: img, label: Image, widget: image, required: false }
+                  - { name: eyebrow, label: "Small label on the card (e.g. NEWSLETTER · 2025)", widget: string, required: false }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: text, label: Text, widget: text, required: false }
+                  - { name: ctaLabel, label: "Link text (e.g. Read latest →)", widget: string, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
       # ── ABOUT PAGE — all editable text ──────────────────────────
       - name: about
         label: "ℹ️ About page"
@@ -363,100 +381,105 @@ collections:
             required: false
             collapsed: true
             fields:
-              - { name: title, label: "Browser tab title", widget: string }
-              - { name: description, label: "Description (for search engines & shared links)", widget: text }
+              - { name: title, label: "Browser tab title", widget: string, required: false }
+              - { name: description, label: "Description (for search engines & shared links)", widget: text, required: false }
               - { name: ogImage, label: "Link-preview image", widget: image, required: false }
           - name: hero
             label: "Top of the page"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the title (e.g. ABOUT SAKYADHITA)", widget: string }
-              - { name: title, label: "Big title", widget: string }
-              - { name: lede, label: "Intro paragraph", widget: text }
+              - { name: eyebrow, label: "Small label above the title (e.g. ABOUT SAKYADHITA)", widget: string, required: false }
+              - { name: title, label: "Big title", widget: string, required: false }
+              - { name: lede, label: "Intro paragraph", widget: text, required: false }
           - name: story
             label: "Our Story"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label (e.g. OUR STORY)", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label (e.g. OUR STORY)", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: paragraphs
                 label: Paragraphs
                 label_singular: paragraph
                 widget: list
-                field: { name: text, label: Paragraph, widget: text, hint: "Wrap a word in <em>…</em> for italics" }
+                required: false
+                field: { name: text, label: Paragraph, widget: text, hint: "Wrap a word in <em>…</em> for italics", required: false }
               - name: photos
                 label: Photos
                 label_singular: photo
                 widget: list
+                required: false
                 summary: "{{fields.alt}}"
                 fields:
-                  - { name: src, label: Photo, widget: image }
-                  - { name: alt, label: "Photo description (for screen readers)", widget: string }
+                  - { name: src, label: Photo, widget: image, required: false }
+                  - { name: alt, label: "Photo description (for screen readers)", widget: string, required: false }
           - name: history
             label: "History & Milestones"
             widget: object
             required: false
             fields:
-              - { name: heading, label: Heading, widget: string, hint: "The timeline entries themselves live under ⚙️ Site settings → Timelines" }
+              - { name: heading, label: Heading, widget: string, hint: "The timeline entries themselves live under ⚙️ Site settings → Timelines", required: false }
           - name: mission
             label: "Mission — the seven objectives"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label (e.g. MISSION)", widget: string }
-              - { name: heading, label: Heading, widget: string }
-              - { name: sub, label: "Text under the heading", widget: text }
+              - { name: eyebrow, label: "Small label (e.g. MISSION)", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: sub, label: "Text under the heading", widget: text, required: false }
               - name: objectives
                 label: "Objective cards"
                 label_singular: objective
                 widget: list
+                required: false
                 summary: "{{fields.title}}"
                 fields:
-                  - { name: icon, label: Icon, widget: image }
-                  - { name: title, label: Title, widget: string }
-                  - { name: text, label: Text, widget: text }
+                  - { name: icon, label: Icon, widget: image, required: false }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: text, label: Text, widget: text, required: false }
           - name: leadership
             label: Leadership
             widget: object
             required: false
             fields:
-              - { name: heading, label: Heading, widget: string, hint: "Committee members & terms are edited under 👥 Leadership" }
+              - { name: heading, label: Heading, widget: string, hint: "Committee members & terms are edited under 👥 Leadership", required: false }
           - name: projects
             label: "International Projects"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label (e.g. INTERNATIONAL PROJECTS)", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label (e.g. INTERNATIONAL PROJECTS)", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: cards
                 label: "Project cards"
                 label_singular: project
                 widget: list
+                required: false
                 summary: "{{fields.title}}"
                 fields:
-                  - { name: image, label: Photo, widget: image }
-                  - { name: imageAlt, label: "Photo description (for screen readers)", widget: string }
-                  - { name: title, label: Title, widget: string }
-                  - { name: location, label: "Location (e.g. Bodhgaya, India)", widget: string }
-                  - { name: text, label: Text, widget: text }
-                  - { name: href, label: "Website link", widget: string }
-                  - { name: linkLabel, label: "Link text (e.g. Visit website →)", widget: string }
+                  - { name: image, label: Photo, widget: image, required: false }
+                  - { name: imageAlt, label: "Photo description (for screen readers)", widget: string, required: false }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: location, label: "Location (e.g. Bodhgaya, India)", widget: string, required: false }
+                  - { name: text, label: Text, widget: text, required: false }
+                  - { name: href, label: "Website link", widget: string, required: false }
+                  - { name: linkLabel, label: "Link text (e.g. Visit website →)", widget: string, required: false }
           - name: branches
             label: "Branches & Chapters teaser"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label (e.g. BRANCHES & CHAPTERS)", widget: string }
-              - { name: heading, label: Heading, widget: string }
-              - { name: text, label: Text, widget: text }
+              - { name: eyebrow, label: "Small label (e.g. BRANCHES & CHAPTERS)", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: text, label: Text, widget: text, required: false }
               - name: button
                 label: Button
                 widget: object
+                required: false
                 fields:
-                  - { name: label, label: "Button text (the → arrow is added automatically)", widget: string }
-                  - { name: href, label: Link, widget: string }
+                  - { name: label, label: "Button text (the → arrow is added automatically)", widget: string, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
       # ── ORDINATION ISSUE PAGE — all editable text ───────────────
       - name: ordination
         label: "🪷 Ordination Issue page"
@@ -471,24 +494,25 @@ collections:
             required: false
             collapsed: true
             fields:
-              - { name: title, label: "Browser tab title", widget: string }
-              - { name: description, label: "Description (for search engines & shared links)", widget: text }
+              - { name: title, label: "Browser tab title", widget: string, required: false }
+              - { name: description, label: "Description (for search engines & shared links)", widget: text, required: false }
               - { name: ogImage, label: "Link-preview image", widget: image, required: false }
           - name: hero
             label: "Top of the page"
             widget: object
             required: false
             fields:
-              - { name: title, label: "Big title", widget: string }
-              - { name: text, label: "Intro paragraph", widget: text }
+              - { name: title, label: "Big title", widget: string, required: false }
+              - { name: text, label: "Intro paragraph", widget: text, required: false }
               - name: images
                 label: "Hero photos (4 across)"
                 label_singular: photo
                 widget: list
+                required: false
                 summary: "{{fields.alt}}"
                 fields:
-                  - { name: src, label: Photo, widget: image }
-                  - { name: alt, label: "Photo description (for screen readers)", widget: string }
+                  - { name: src, label: Photo, widget: image, required: false }
+                  - { name: alt, label: "Photo description (for screen readers)", widget: string, required: false }
                   - name: objectPosition
                     label: "Focal point"
                     widget: focal
@@ -496,85 +520,91 @@ collections:
               - name: credit
                 label: "Photo credit line"
                 widget: object
+                required: false
                 fields:
-                  - { name: text, label: "Text before the link", widget: string }
-                  - { name: linkLabel, label: "Photographer name (the link)", widget: string }
-                  - { name: linkHref, label: "Photographer website", widget: string }
+                  - { name: text, label: "Text before the link", widget: string, required: false }
+                  - { name: linkLabel, label: "Photographer name (the link)", widget: string, required: false }
+                  - { name: linkHref, label: "Photographer website", widget: string, required: false }
           - name: overview
             label: Overview
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label (e.g. OVERVIEW)", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label (e.g. OVERVIEW)", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: paragraphs
                 label: Paragraphs
                 label_singular: paragraph
                 widget: list
-                field: { name: text, label: Paragraph, widget: text, hint: "Wrap a word in <em>…</em> for italics" }
+                required: false
+                field: { name: text, label: Paragraph, widget: text, hint: "Wrap a word in <em>…</em> for italics", required: false }
               - name: stats
                 label: "The 3 numbers"
                 label_singular: number
                 widget: list
+                required: false
                 summary: "{{fields.num}} — {{fields.label}}"
                 fields:
-                  - { name: num, label: "Number (e.g. 2,000+)", widget: string }
-                  - { name: label, label: "Label under the number", widget: string }
+                  - { name: num, label: "Number (e.g. 2,000+)", widget: string, required: false }
+                  - { name: label, label: "Label under the number", widget: string, required: false }
           - name: origins
             label: Origins
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label (e.g. ORIGINS)", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label (e.g. ORIGINS)", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: paragraphs
                 label: Paragraphs
                 label_singular: paragraph
                 widget: list
-                field: { name: text, label: Paragraph, widget: text }
-              - { name: image, label: "Image (upload or paste a link)", widget: string, hint: "Currently a Wikimedia Commons link" }
-              - { name: imageAlt, label: "Image description (for screen readers)", widget: string }
-              - { name: caption, label: "Caption under the image", widget: string }
+                required: false
+                field: { name: text, label: Paragraph, widget: text, required: false }
+              - { name: image, label: "Image (upload or paste a link)", widget: string, hint: "Currently a Wikimedia Commons link", required: false }
+              - { name: imageAlt, label: "Image description (for screen readers)", widget: string, required: false }
+              - { name: caption, label: "Caption under the image", widget: string, required: false }
           - name: movement
             label: "The Movement"
             widget: object
             required: false
             fields:
-              - { name: heading, label: Heading, widget: string, hint: "The milestones themselves live under ⚙️ Site settings → Timelines" }
+              - { name: heading, label: Heading, widget: string, hint: "The milestones themselves live under ⚙️ Site settings → Timelines", required: false }
           - name: watch
             label: "Watch & Learn (videos)"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label (e.g. WATCH & LEARN)", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label (e.g. WATCH & LEARN)", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: videos
                 label: "Videos (the first one plays in the big player)"
                 label_singular: video
                 widget: list
+                required: false
                 summary: "{{fields.title}}"
                 fields:
-                  - { name: id, label: "YouTube video ID", widget: string, hint: "The part after watch?v= — e.g. _j90nTgMs_Q" }
-                  - { name: title, label: Title, widget: string }
-                  - { name: shortDesc, label: "Short description (on the small card)", widget: string }
-                  - { name: longDesc, label: "Long description (under the player)", widget: text }
+                  - { name: id, label: "YouTube video ID", widget: string, hint: "The part after watch?v= — e.g. _j90nTgMs_Q", required: false }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: shortDesc, label: "Short description (on the small card)", widget: string, required: false }
+                  - { name: longDesc, label: "Long description (under the player)", widget: text, required: false }
           - name: seeAlso
             label: "See Also / Further reading"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label (e.g. SEE ALSO)", widget: string }
-              - { name: heading, label: Heading, widget: string }
-              - { name: intro, label: "Intro text", widget: text }
+              - { name: eyebrow, label: "Small label (e.g. SEE ALSO)", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: intro, label: "Intro text", widget: text, required: false }
               - name: cards
                 label: "Reading cards"
                 label_singular: card
                 widget: list
+                required: false
                 summary: "{{fields.title}}"
                 fields:
-                  - { name: title, label: Title, widget: string }
-                  - { name: text, label: Text, widget: text }
-                  - { name: href, label: Link, widget: string }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: text, label: Text, widget: text, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
       - name: contact
         label: "✉️ Contact page"
         file: src/data/pages/contact.json
@@ -589,62 +619,64 @@ collections:
             required: false
             collapsed: true
             fields:
-              - { name: title, label: "Browser-tab / search title", widget: string }
-              - { name: description, label: "Search-result description", widget: text }
+              - { name: title, label: "Browser-tab / search title", widget: string, required: false }
+              - { name: description, label: "Search-result description", widget: text, required: false }
           - name: hero
             label: "Top of the page"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: title, label: Heading, widget: string }
-              - { name: lede, label: "Intro text", widget: text }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: title, label: Heading, widget: string, required: false }
+              - { name: lede, label: "Intro text", widget: text, required: false }
           - name: routing
             label: "\"Route your message\" section"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label", widget: string }
-              - { name: heading, label: Heading, widget: string }
-              - { name: sub, label: "Line under the heading", widget: string }
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: sub, label: "Line under the heading", widget: string, required: false }
               - name: cards
                 label: "Route cards"
                 label_singular: card
                 widget: list
+                required: false
                 summary: "{{fields.title}}"
                 fields:
-                  - { name: icon, label: "Emoji icon", widget: string }
+                  - { name: icon, label: "Emoji icon", widget: string, required: false }
                   - { name: iconBg, label: "Icon background (CSS colour — leave empty for the default lavender)", widget: string, required: false }
-                  - { name: title, label: Title, widget: string }
-                  - { name: text, label: Text, widget: text }
-                  - { name: cta, label: "Link text (e.g. Use this form ↓)", widget: string }
-                  - { name: href, label: "Link (e.g. #form or /branches)", widget: string }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: text, label: Text, widget: text, required: false }
+                  - { name: cta, label: "Link text (e.g. Use this form ↓)", widget: string, required: false }
+                  - { name: href, label: "Link (e.g. #form or /branches)", widget: string, required: false }
                   - { name: id, label: "Anchor id (technical — leave as is)", widget: string, required: false }
           - name: form
             label: "Inquiry form headings"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label", widget: string }
-              - { name: heading, label: Heading, widget: string }
-              - { name: submitLabel, label: "Submit button text", widget: string }
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: submitLabel, label: "Submit button text", widget: string, required: false }
           - name: direct
             label: "Direct contact section"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: blocks
                 label: "Contact blocks"
                 label_singular: block
                 widget: list
+                required: false
                 summary: "{{fields.label}}"
                 fields:
-                  - { name: icon, label: "Emoji icon", widget: string }
+                  - { name: icon, label: "Emoji icon", widget: string, required: false }
                   - { name: iconBg, label: "Icon background (CSS colour — leave empty for the default lavender)", widget: string, required: false }
-                  - { name: label, label: "Small title (e.g. General Email)", widget: string }
-                  - { name: value, label: "Main text", widget: text }
+                  - { name: label, label: "Small title (e.g. General Email)", widget: string, required: false }
+                  - { name: value, label: "Main text", widget: text, required: false }
                   - { name: note, label: "Note under the text (optional)", widget: string, required: false }
                   - { name: href, label: "Link (optional — use mailto: for email)", widget: string, required: false }
                   - { name: callout, label: "Show as a highlighted note box?", widget: boolean, required: false }
@@ -653,15 +685,15 @@ collections:
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
           - name: success
             label: "Thank-you message (after the form is sent)"
             widget: object
             required: false
             fields:
-              - { name: title, label: Title, widget: string }
-              - { name: text, label: Text, widget: text }
+              - { name: title, label: Title, widget: string, required: false }
+              - { name: text, label: Text, widget: text, required: false }
       - name: volunteer
         label: "🙌 Volunteer page"
         file: src/data/pages/volunteer.json
@@ -677,80 +709,83 @@ collections:
             required: false
             collapsed: true
             fields:
-              - { name: title, label: "Browser-tab / search title", widget: string }
-              - { name: description, label: "Search-result description", widget: text }
+              - { name: title, label: "Browser-tab / search title", widget: string, required: false }
+              - { name: description, label: "Search-result description", widget: text, required: false }
               - { name: ogImage, label: "Sharing image (shown when the page is shared)", widget: image, required: false }
           - name: hero
             label: "Top of the page"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: title, label: Heading, widget: string }
-              - { name: lede, label: "Intro text", widget: text }
-              - { name: buttonLabel, label: "Button text", widget: string }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: title, label: Heading, widget: string, required: false }
+              - { name: lede, label: "Intro text", widget: text, required: false }
+              - { name: buttonLabel, label: "Button text", widget: string, required: false }
           - name: committees
             label: "Committees section"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label (e.g. 15 COMMITTEES)", widget: string }
-              - { name: heading, label: Heading, widget: string }
-              - { name: text, label: "Text under the heading", widget: text }
-              - { name: buttonLabel, label: "Button text", widget: string }
+              - { name: eyebrow, label: "Small label (e.g. 15 COMMITTEES)", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: text, label: "Text under the heading", widget: text, required: false }
+              - { name: buttonLabel, label: "Button text", widget: string, required: false }
               - name: groups
                 label: "Committee groups"
                 label_singular: group
                 widget: list
+                required: false
                 summary: "{{fields.heading}}"
                 fields:
-                  - { name: heading, label: "Group heading (e.g. Words & Languages)", widget: string }
+                  - { name: heading, label: "Group heading (e.g. Words & Languages)", widget: string, required: false }
                   - name: items
                     label: Committees
                     label_singular: committee
                     widget: list
+                    required: false
                     summary: "{{fields.title}}"
                     fields:
-                      - { name: emoji, label: Emoji, widget: string }
-                      - { name: title, label: Name, widget: string }
-                      - { name: text, label: Description, widget: text }
+                      - { name: emoji, label: Emoji, widget: string, required: false }
+                      - { name: title, label: Name, widget: string, required: false }
+                      - { name: text, label: Description, widget: text, required: false }
           - name: formHead
             label: "Application form headings"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label", widget: string }
-              - { name: heading, label: Heading, widget: string }
-              - { name: text, label: "Text under the heading", widget: text }
-              - { name: submitLabel, label: "Submit button text", widget: string }
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: text, label: "Text under the heading", widget: text, required: false }
+              - { name: submitLabel, label: "Submit button text", widget: string, required: false }
           - name: interests
             label: "Committee-interest checkboxes (in the form)"
             widget: list
             required: false
-            field: { name: committee, label: Committee, widget: string }
+            field: { name: committee, label: Committee, widget: string, required: false }
             hint: "The checkbox choices in the application form. The chosen names are what arrives with each application."
           - name: faq
             label: "Q&A section"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: items
                 label: Questions
                 label_singular: question
                 widget: list
+                required: false
                 summary: "{{fields.question}}"
                 fields:
-                  - { name: question, label: Question, widget: string }
-                  - { name: answer, label: Answer, widget: text }
+                  - { name: question, label: Question, widget: string, required: false }
+                  - { name: answer, label: Answer, widget: text, required: false }
           - name: success
             label: "Thank-you message (after the form is sent)"
             widget: object
             required: false
             fields:
-              - { name: title, label: Title, widget: string }
-              - { name: text, label: Text, widget: text }
+              - { name: title, label: Title, widget: string, required: false }
+              - { name: text, label: Text, widget: text, required: false }
       - name: donate
         label: "💜 Donate page"
         file: src/data/pages/donate.json
@@ -765,33 +800,34 @@ collections:
             required: false
             collapsed: true
             fields:
-              - { name: title, label: "Browser-tab / search title", widget: string }
-              - { name: description, label: "Search-result description", widget: text }
+              - { name: title, label: "Browser-tab / search title", widget: string, required: false }
+              - { name: description, label: "Search-result description", widget: text, required: false }
               - { name: ogImage, label: "Sharing image (shown when the page is shared)", widget: image, required: false }
           - name: hero
             label: "Top of the page"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: title, label: Heading, widget: string }
-              - { name: lede, label: "Intro text", widget: text }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: title, label: Heading, widget: string, required: false }
+              - { name: lede, label: "Intro text", widget: text, required: false }
           - name: impact
             label: "\"Your impact\" section"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label", widget: string }
-              - { name: heading, label: Heading, widget: string }
-              - { name: lede, label: "Text under the heading", widget: text }
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: lede, label: "Text under the heading", widget: text, required: false }
               - name: cards
                 label: "Impact amounts"
                 label_singular: amount
                 widget: list
+                required: false
                 summary: "{{fields.value}} — {{fields.text}}"
                 fields:
-                  - { name: value, label: "Amount (e.g. $25)", widget: string }
-                  - { name: text, label: "What it funds", widget: text }
+                  - { name: value, label: "Amount (e.g. $25)", widget: string, required: false }
+                  - { name: text, label: "What it funds", widget: text, required: false }
           - { name: paypalUrl, label: "PayPal donate link", widget: string, hint: "The full PayPal donate URL — where the Donate button sends people.", required: false }
           - { name: donateButtonLabel, label: "Donate button text", widget: string, required: false }
           - name: taxNote
@@ -799,26 +835,27 @@ collections:
             widget: object
             required: false
             fields:
-              - { name: lead, label: "Bold opening (e.g. Tax-deductible.)", widget: string }
-              - { name: text, label: Text, widget: text }
+              - { name: lead, label: "Bold opening (e.g. Tax-deductible.)", widget: string, required: false }
+              - { name: text, label: Text, widget: text, required: false }
           - name: ways
             label: "\"More ways to support\" section"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: cards
                 label: Cards
                 label_singular: card
                 widget: list
+                required: false
                 summary: "{{fields.title}}"
                 fields:
-                  - { name: img, label: "Illustration image", widget: image }
-                  - { name: title, label: Title, widget: string }
-                  - { name: text, label: Text, widget: text }
-                  - { name: buttonLabel, label: "Button text", widget: string }
-                  - { name: href, label: "Link (e.g. /join)", widget: string }
+                  - { name: img, label: "Illustration image", widget: image, required: false }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: text, label: Text, widget: text, required: false }
+                  - { name: buttonLabel, label: "Button text", widget: string, required: false }
+                  - { name: href, label: "Link (e.g. /join)", widget: string, required: false }
       - name: join
         label: "🪷 Join / Membership page"
         file: src/data/pages/join.json
@@ -835,90 +872,93 @@ collections:
             required: false
             collapsed: true
             fields:
-              - { name: title, label: "Browser-tab / search title", widget: string }
-              - { name: description, label: "Search-result description", widget: text }
+              - { name: title, label: "Browser-tab / search title", widget: string, required: false }
+              - { name: description, label: "Search-result description", widget: text, required: false }
               - { name: ogImage, label: "Sharing image (shown when the page is shared)", widget: image, required: false }
           - name: hero
             label: "Top of the page"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label above the heading", widget: string }
-              - { name: title, label: Heading, widget: string }
-              - { name: lede, label: "Intro text", widget: text }
-              - { name: buttonLabel, label: "Button text", widget: string }
+              - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
+              - { name: title, label: Heading, widget: string, required: false }
+              - { name: lede, label: "Intro text", widget: text, required: false }
+              - { name: buttonLabel, label: "Button text", widget: string, required: false }
           - name: benefits
             label: "Benefits section"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label", widget: string }
-              - { name: heading, label: Heading, widget: string }
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
               - name: cards
                 label: "Benefit cards (the icons are set in code, by order)"
                 label_singular: card
                 widget: list
+                required: false
                 summary: "{{fields.title}}"
                 fields:
-                  - { name: title, label: Title, widget: string }
-                  - { name: text, label: Text, widget: text }
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: text, label: Text, widget: text, required: false }
           - name: tiers
             label: "Membership tiers (display text only — prices charged are set in code)"
             widget: object
             required: false
             fields:
-              - { name: heading, label: Heading, widget: string }
-              - { name: text, label: "Text under the heading", widget: text }
-              - { name: buttonLabel, label: "Button text", widget: string }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: text, label: "Text under the heading", widget: text, required: false }
+              - { name: buttonLabel, label: "Button text", widget: string, required: false }
               - name: groups
                 label: "Tier groups"
                 label_singular: group
                 widget: list
+                required: false
                 summary: "{{fields.heading}}"
                 fields:
-                  - { name: heading, label: "Group heading (e.g. Annual)", widget: string }
-                  - { name: freq, label: "Frequency label (e.g. Renewed yearly)", widget: string }
+                  - { name: heading, label: "Group heading (e.g. Annual)", widget: string, required: false }
+                  - { name: freq, label: "Frequency label (e.g. Renewed yearly)", widget: string, required: false }
                   - name: lines
                     label: Tiers
                     label_singular: tier
                     widget: list
+                    required: false
                     summary: "{{fields.amt}} — {{fields.title}}"
                     fields:
-                      - { name: amt, label: "Amount shown (e.g. $30)", widget: string }
-                      - { name: title, label: "Who it's for", widget: string }
-                      - { name: sub, label: "Small line underneath", widget: string }
+                      - { name: amt, label: "Amount shown (e.g. $30)", widget: string, required: false }
+                      - { name: title, label: "Who it's for", widget: string, required: false }
+                      - { name: sub, label: "Small line underneath", widget: string, required: false }
           - name: formHead
             label: "Membership form headings"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label", widget: string }
-              - { name: heading, label: Heading, widget: string }
-              - { name: submitLabel, label: "Submit button text", widget: string }
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: submitLabel, label: "Submit button text", widget: string, required: false }
           - name: payModal
             label: "Payment popup texts"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label (e.g. SECURE PAYMENT)", widget: string }
-              - { name: title, label: "Popup title", widget: string }
-              - { name: note, label: "Secure-payment note line", widget: string }
+              - { name: eyebrow, label: "Small label (e.g. SECURE PAYMENT)", widget: string, required: false }
+              - { name: title, label: "Popup title", widget: string, required: false }
+              - { name: note, label: "Secure-payment note line", widget: string, required: false }
           - name: newsletter
             label: "Newsletter section"
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: "Small label", widget: string }
-              - { name: heading, label: Heading, widget: string }
-              - { name: text, label: Text, widget: text }
-              - { name: buttonLabel, label: "Button text", widget: string }
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: text, label: Text, widget: text, required: false }
+              - { name: buttonLabel, label: "Button text", widget: string, required: false }
           - name: success
             label: "Thank-you message (after payment succeeds)"
             widget: object
             required: false
             fields:
-              - { name: title, label: Title, widget: string }
-              - { name: text, label: Text, widget: text }
+              - { name: title, label: Title, widget: string, required: false }
+              - { name: text, label: Text, widget: text, required: false }
   # ── CONFERENCES — one entry per conference ────────────────────
   - name: conferences
     label: "🪷 Conferences"
@@ -1027,7 +1067,7 @@ collections:
             label: "Suggested topics"
             widget: list
             required: false
-            field: { name: topic, label: Topic, widget: string }
+            field: { name: topic, label: Topic, widget: string, required: false }
           - name: deadlines
             label: "Key dates"
             widget: list
@@ -1043,13 +1083,13 @@ collections:
             label: "Allowed (✓ list)"
             widget: list
             required: false
-            field: { name: rule, label: Rule, widget: string }
+            field: { name: rule, label: Rule, widget: string, required: false }
           - { name: notAllowedHeading, label: "'Not allowed' column heading", widget: string, required: false }
           - name: notAllowed
             label: "Not allowed (✕ list)"
             widget: list
             required: false
-            field: { name: rule, label: Rule, widget: string }
+            field: { name: rule, label: Rule, widget: string, required: false }
           - { name: disclosure, label: "Disclosure line", widget: text, required: false }
           - { name: welcome, label: "Welcome paragraph", widget: text, required: false }
           - { name: note, label: "Italic note (e.g. in-person, travel fees)", widget: text, required: false }
@@ -1148,6 +1188,7 @@ collections:
           - name: style
             label: "Cover style"
             widget: select
+            required: false
             options:
               - { label: "Photo (pick an image below)", value: photo }
               - { label: "Gradient · purple/indigo", value: g1 }
@@ -1184,11 +1225,11 @@ collections:
         required: false
         summary: "{{fields.name}} — {{fields.role}}"
         fields:
-          - { name: name, label: Name, widget: string }
-          - { name: role, label: "Role (e.g. President)", widget: string }
+          - { name: name, label: Name, widget: string, required: false }
+          - { name: role, label: "Role (e.g. President)", widget: string, required: false }
           - { name: img, label: "Portrait photo (optional — lotus shown if empty)", widget: image, required: false }
-          - { name: card, label: "One-line summary (shown on the card)", widget: string }
-          - { name: bio, label: "Full biography (shown in the popup)", widget: text }
+          - { name: card, label: "One-line summary (shown on the card)", widget: string, required: false }
+          - { name: bio, label: "Full biography (shown in the popup)", widget: text, required: false }
 
   # ── BRANCHES — one entry per location ─────────────────────────
   - name: branches
@@ -1258,9 +1299,9 @@ collections:
             required: false
             summary: "{{fields.label}}"
             fields:
-              - { name: key, label: "Key (don't change)", widget: string }
-              - { name: label, label: Label, widget: string }
-              - { name: href, label: Link, widget: string }
+              - { name: key, label: "Key (don't change)", widget: string, required: false }
+              - { name: label, label: Label, widget: string, required: false }
+              - { name: href, label: Link, widget: string, required: false }
               - name: submenu
                 label: "Dropdown items (optional)"
                 label_singular: item
@@ -1268,15 +1309,15 @@ collections:
                 required: false
                 summary: "{{fields.label}}"
                 fields:
-                  - { name: label, label: Label, widget: string }
-                  - { name: href, label: Link, widget: string }
+                  - { name: label, label: Label, widget: string, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
           - name: cta
             label: "Highlighted button (right side)"
             widget: object
             required: false
             fields:
-              - { name: label, label: Label, widget: string }
-              - { name: href, label: Link, widget: string }
+              - { name: label, label: Label, widget: string, required: false }
+              - { name: href, label: Link, widget: string, required: false }
       - name: footer
         label: "🦶 Footer"
         file: src/data/footer.json
@@ -1294,9 +1335,10 @@ collections:
               - name: icon
                 label: "Icon (don't change — picks the logo)"
                 widget: select
+                required: false
                 options: [facebook, youtube, pinterest, blog, goodreads]
-              - { name: label, label: Name, widget: string }
-              - { name: url, label: Link, widget: string }
+              - { name: label, label: Name, widget: string, required: false }
+              - { name: url, label: Link, widget: string, required: false }
           - name: columns
             label: "Link columns"
             label_singular: column
@@ -1304,23 +1346,24 @@ collections:
             required: false
             summary: "{{fields.title}}"
             fields:
-              - { name: title, label: "Column title", widget: string }
+              - { name: title, label: "Column title", widget: string, required: false }
               - name: links
                 label: Links
                 label_singular: link
                 widget: list
+                required: false
                 summary: "{{fields.label}}"
                 fields:
-                  - { name: label, label: Label, widget: string }
-                  - { name: href, label: Link, widget: string }
+                  - { name: label, label: Label, widget: string, required: false }
+                  - { name: href, label: Link, widget: string, required: false }
           - { name: address, label: "Postal address (use <br/> for a line break)", widget: string, required: false }
           - name: newsletter
             label: "Newsletter box"
             widget: object
             required: false
             fields:
-              - { name: title, label: Title, widget: string }
-              - { name: text, label: Text, widget: string }
+              - { name: title, label: Title, widget: string, required: false }
+              - { name: text, label: Text, widget: string, required: false }
           - { name: bottomText, label: "Bottom line (after the © year)", widget: text, required: false }
       - name: timelines
         label: "🗓 Timelines (About + Ordination)"
@@ -1334,9 +1377,9 @@ collections:
             required: false
             summary: "{{fields.year}} — {{fields.title}}"
             fields:
-              - { name: year, label: Year, widget: string }
-              - { name: title, label: Title, widget: string }
-              - { name: text, label: Text, widget: text }
+              - { name: year, label: Year, widget: string, required: false }
+              - { name: title, label: Title, widget: string, required: false }
+              - { name: text, label: Text, widget: text, required: false }
               - { name: image, label: Image, widget: image, required: false }
               - name: imagePosition
                 label: "Image focal point"
@@ -1349,9 +1392,9 @@ collections:
             required: false
             summary: "{{fields.year}} — {{fields.title}}"
             fields:
-              - { name: year, label: Year, widget: string }
-              - { name: title, label: Title, widget: string }
-              - { name: text, label: Text, widget: text }
+              - { name: year, label: Year, widget: string, required: false }
+              - { name: title, label: Title, widget: string, required: false }
+              - { name: text, label: Text, widget: text, required: false }
               - { name: image, label: Image, widget: image, required: false }
               - name: imagePosition
                 label: "Image focal point"
@@ -1371,9 +1414,9 @@ collections:
             required: false
             summary: "{{fields.name}}"
             fields:
-              - { name: flag, label: "Flag emoji", widget: string }
-              - { name: name, label: Language, widget: string }
-              - { name: pdf, label: "PDF link or upload", widget: file }
+              - { name: flag, label: "Flag emoji", widget: string, required: false }
+              - { name: name, label: Language, widget: string, required: false }
+              - { name: pdf, label: "PDF link or upload", widget: file, required: false }
       - name: publication-groups
         label: "📚 Translation group order"
         file: src/data/publication-groups.json
@@ -1383,7 +1426,7 @@ collections:
             label: "Group headings, in display order"
             widget: list
             required: false
-            field: { name: heading, label: Heading, widget: string }
+            field: { name: heading, label: Heading, widget: string, required: false }
       - name: announcement
         label: "\U0001F4E3 Announcement banner"
         file: src/data/announcement.json
