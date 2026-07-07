@@ -9,7 +9,162 @@
   </head>
   <body>
     <!-- Decap CMS — the content editor with draft → review → publish
-         workflow. Configuration: config.yml -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+         workflow. Configuration: config.yml
+         Version is PINNED (not ^3) so the editor can't silently change
+         under the team's feet when Decap ships a new release. -->
+    <script src="https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js"></script>
+
+    <script>
+      // ── "focal" widget ─────────────────────────────────────────
+      // A click-anywhere focal-point picker. Click (or drag) on the
+      // frame to mark where the important part of the photo is — the
+      // site keeps that point visible instead of cropping blindly.
+      // Stores a CSS object-position string like "60% 35%".
+      ;(function () {
+        function parseValue(v) {
+          if (!v) return { x: 50, y: 50 }
+          var t = String(v).trim().toLowerCase().split(/\s+/)
+          if (t.length === 1) t.push('center')
+          // keywords can come in either order ("center top" / "top center")
+          var a = t[0], b = t[1]
+          if (a === 'top' || a === 'bottom' || b === 'left' || b === 'right') {
+            var swap = a; a = b; b = swap
+          }
+          function num(tok, axis) {
+            if (tok.slice(-1) === '%') {
+              var n = parseFloat(tok)
+              return isNaN(n) ? 50 : Math.max(0, Math.min(100, n))
+            }
+            if (tok === 'left') return 0
+            if (tok === 'right') return 100
+            if (tok === 'top') return 0
+            if (tok === 'bottom') return 100
+            return 50
+          }
+          return { x: num(a, 'x'), y: num(b, 'y') }
+        }
+
+        var FocalControl = createClass({
+          getInitialState: function () {
+            return { dragging: false }
+          },
+          setFromEvent: function (e) {
+            var box = this.boxEl
+            if (!box) return
+            var r = box.getBoundingClientRect()
+            var x = Math.round(((e.clientX - r.left) / r.width) * 100 / 5) * 5
+            var y = Math.round(((e.clientY - r.top) / r.height) * 100 / 5) * 5
+            x = Math.max(0, Math.min(100, x))
+            y = Math.max(0, Math.min(100, y))
+            this.props.onChange(x + '% ' + y + '%')
+          },
+          onDown: function (e) {
+            e.preventDefault()
+            this.setState({ dragging: true })
+            this.setFromEvent(e)
+          },
+          onMove: function (e) {
+            if (this.state.dragging) this.setFromEvent(e)
+          },
+          onUp: function () {
+            this.setState({ dragging: false })
+          },
+          render: function () {
+            var self = this
+            var p = parseValue(this.props.value)
+            var isDefault = !this.props.value
+            return h(
+              'div',
+              { style: { padding: '4px 0' } },
+              h(
+                'div',
+                {
+                  ref: function (el) { self.boxEl = el },
+                  onMouseDown: this.onDown,
+                  onMouseMove: this.onMove,
+                  onMouseUp: this.onUp,
+                  onMouseLeave: this.onUp,
+                  style: {
+                    position: 'relative',
+                    height: '150px',
+                    maxWidth: '340px',
+                    borderRadius: '6px',
+                    border: '2px solid #dfdfe3',
+                    cursor: 'crosshair',
+                    background:
+                      'repeating-linear-gradient(0deg, transparent, transparent 29px, rgba(0,0,0,.06) 30px),' +
+                      'repeating-linear-gradient(90deg, transparent, transparent 29px, rgba(0,0,0,.06) 30px),' +
+                      'linear-gradient(135deg, #ede7f6 0%, #fff3ea 100%)',
+                    userSelect: 'none',
+                  },
+                },
+                h('div', {
+                  style: {
+                    position: 'absolute',
+                    left: p.x + '%',
+                    top: p.y + '%',
+                    width: '18px',
+                    height: '18px',
+                    margin: '-9px 0 0 -9px',
+                    borderRadius: '50%',
+                    background: '#773BFA',
+                    border: '3px solid #fff',
+                    boxShadow: '0 1px 6px rgba(0,0,0,.35)',
+                    pointerEvents: 'none',
+                  },
+                }),
+                h(
+                  'div',
+                  {
+                    style: {
+                      position: 'absolute',
+                      right: '6px',
+                      bottom: '4px',
+                      fontSize: '11px',
+                      fontFamily: 'monospace',
+                      color: '#555',
+                      background: 'rgba(255,255,255,.8)',
+                      padding: '1px 6px',
+                      borderRadius: '4px',
+                      pointerEvents: 'none',
+                    },
+                  },
+                  isDefault ? 'center (default)' : p.x + '% ' + p.y + '%'
+                )
+              ),
+              h(
+                'div',
+                { style: { marginTop: '6px', fontSize: '12px', color: '#798291' } },
+                'Click where the important part of the photo is (faces, subject) — the site keeps that spot visible when the image is cropped to fit. ',
+                h(
+                  'button',
+                  {
+                    type: 'button',
+                    onClick: function () { self.props.onChange('') },
+                    style: {
+                      border: '1px solid #dfdfe3',
+                      background: '#fff',
+                      borderRadius: '4px',
+                      padding: '1px 8px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                    },
+                  },
+                  'Reset to center'
+                )
+              )
+            )
+          },
+        })
+
+        var FocalPreview = createClass({
+          render: function () {
+            return h('span', {}, this.props.value || 'center')
+          },
+        })
+
+        CMS.registerWidget('focal', FocalControl, FocalPreview)
+      })()
+    </script>
   </body>
 </html>

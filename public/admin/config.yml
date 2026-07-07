@@ -24,14 +24,8 @@ logo_url: https://sakyadhita-redesign.netlify.app/assets/logo-flower.png
 media_folder: public/uploads
 public_folder: /uploads
 
-# Focal point choices reused by every image that supports one
-_focus_options: &focus_options
-  - { label: "Center (default)", value: "" }
-  - { label: "Top (faces near the top)", value: "center top" }
-  - { label: "Upper third", value: "50% 30%" }
-  - { label: "Bottom", value: "center bottom" }
-  - { label: "Left", value: "left center" }
-  - { label: "Right", value: "right center" }
+# Focal points use the custom "focal" widget (see admin/index.html):
+# a click grid that stores an "X% Y%" position — no cropping needed.
 
 collections:
 
@@ -89,16 +83,8 @@ collections:
                   - { name: img, label: Photo, widget: image }
                   - name: focus
                     label: "Focal point"
-                    widget: select
+                    widget: focal
                     required: false
-                    options:
-                      - { label: "Center (default)", value: "" }
-                      - { label: "Top (faces near the top)", value: "center top" }
-                      - { label: "Upper third", value: "50% 30%" }
-                      - { label: "Slightly right of center", value: "60% 50%" }
-                      - { label: "Bottom", value: "center bottom" }
-                      - { label: "Left", value: "left center" }
-                      - { label: "Right", value: "right center" }
               - name: credit
                 label: "Photo credit line"
                 widget: object
@@ -231,15 +217,8 @@ collections:
                   - { name: img, label: Image, widget: image }
                   - name: focus
                     label: "Image focal point"
-                    widget: select
+                    widget: focal
                     required: false
-                    options:
-                      - { label: "Center (default)", value: "center" }
-                      - { label: "Top (faces near the top)", value: "center top" }
-                      - { label: "Upper third", value: "50% 30%" }
-                      - { label: "Bottom", value: "center bottom" }
-                      - { label: "Left", value: "left center" }
-                      - { label: "Right", value: "right center" }
                   - { name: eyebrow, label: "Small label on the card", widget: string }
                   - { name: title, label: Title, widget: string }
                   - { name: text, label: Text, widget: text }
@@ -490,15 +469,8 @@ collections:
                   - { name: alt, label: "Photo description (for screen readers)", widget: string }
                   - name: objectPosition
                     label: "Focal point"
-                    widget: select
+                    widget: focal
                     required: false
-                    options:
-                      - { label: "Center (default)", value: "" }
-                      - { label: "Top (faces near the top)", value: "center top" }
-                      - { label: "Upper third", value: "50% 30%" }
-                      - { label: "Bottom", value: "center bottom" }
-                      - { label: "Left", value: "left center" }
-                      - { label: "Right", value: "right center" }
               - name: credit
                 label: "Photo credit line"
                 widget: object
@@ -942,8 +914,7 @@ collections:
       - { name: heroImg, label: "Hero image", widget: image, required: false }
       - name: heroFocus
         label: "Hero image focal point"
-        widget: select
-        options: *focus_options
+        widget: focal
         required: false
       - { name: thumb, label: "Thumbnail (for lists)", widget: image, required: false }
       - { name: noPhotoCredit, label: "Hide the Olivier Adam photo credit", widget: boolean, required: false }
@@ -970,8 +941,7 @@ collections:
           - { name: caption, label: Caption, widget: string }
           - name: focus
             label: "Focal point"
-            widget: select
-            options: *focus_options
+            widget: focal
             required: false
       - name: coverage
         label: "Media coverage"
@@ -1306,8 +1276,7 @@ collections:
               - { name: image, label: Image, widget: image, required: false }
               - name: imagePosition
                 label: "Image focal point"
-                widget: select
-                options: *focus_options
+                widget: focal
                 required: false
           - name: ordinationMovement
             label: "Ordination page · Movement milestones"
@@ -1321,8 +1290,7 @@ collections:
               - { name: image, label: Image, widget: image, required: false }
               - name: imagePosition
                 label: "Image focal point"
-                widget: select
-                options: *focus_options
+                widget: focal
                 required: false
               - { name: link, label: "Learn-more link (optional)", widget: string, required: false }
       - name: membership-brochures
