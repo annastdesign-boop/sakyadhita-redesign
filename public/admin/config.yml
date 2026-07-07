@@ -140,6 +140,7 @@ collections:
             fields:
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: heading, label: "Section heading", widget: string }
+              - { name: sub, label: "Line under the heading", widget: string, required: false }
               - name: card
                 label: "Conference card"
                 widget: object

@@ -125,6 +125,7 @@ const branchesMap = {
       <div class="section-head">
         <div class="eyebrow">{homePage.featuredConference.eyebrow}</div>
         <h2 class="h-section">{homePage.featuredConference.heading}</h2>
+        {homePage.featuredConference.sub && <p class="muted">{homePage.featuredConference.sub}</p>}
       </div>
       <div class="feat-card">
         <div class="pic" aria-hidden="true" style={`background-image:url('${homePage.featuredConference.card.img}')`}></div>
