@@ -1,65 +1,142 @@
 {
   "_comment": "Home page copy — every heading, paragraph, button, card, and image on the home page (src/pages/index.astro). Edit here or via the CMS; the page layout and styles stay in the .astro file. The map pins come from the Branches collection, not this file.",
-  "press": {
-    "eyebrow": "",
-    "heading": "Featured in leading Buddhist publications",
-    "logos": [
+  "seo": {
+    "title": "Sakyadhita · International Association of Buddhist Women",
+    "description": "Since 1987, Sakyadhita has brought together laywomen, monastics, and scholars from across all Buddhist traditions to advance equality, education, and spiritual practice.",
+    "ogImage": "/uploads/hero-1.png"
+  },
+  "hero": {
+    "logo": "/uploads/logo-flower.png",
+    "logoAlt": "Sakyadhita lotus emblem",
+    "titleName": "Sakyadhita",
+    "titleFull": "International Association of Buddhist Women",
+    "announcement": "Celebrating our 20th biennial international conference in 2027",
+    "text": "Since 1987, we have been bringing together laywomen, monastics, and scholars from across all Buddhist traditions to advance equality, education, and spiritual practice.",
+    "primaryCta": {
+      "label": "Join the 20th Conference",
+      "href": "/conferences"
+    },
+    "secondaryCta": {
+      "label": "Become a Member",
+      "href": "/join"
+    },
+    "marquee": [
       {
-        "img": "/uploads/logo-tricycle.png",
-        "alt": "Tricycle",
-        "href": "https://tricycle.org/article/buddhist-women-conference/",
-        "width": "132px",
-        "height": "132px"
+        "img": "/uploads/member-voice.png",
+        "focus": "60% 50%"
       },
       {
-        "img": "/uploads/logo-lionsroar.png",
-        "alt": "Lion's Roar",
-        "href": "https://www.lionsroar.com/the-sakyadhita-movement/",
-        "width": "156px",
-        "height": "156px"
+        "img": "/uploads/Sakyadhita_seoul korea_2025_conference_nuns.jpg",
+        "focus": ""
       },
       {
-        "img": "/uploads/logo-bdg.png",
-        "alt": "Buddhistdoor Global",
-        "href": "https://www.buddhistdoor.net/features/daughters-of-the-buddha-18th-sakyadhita-conference-in-seoul-celebrates-the-sacred-feminine/",
-        "width": "132px",
-        "height": "132px"
+        "img": "/uploads/feat-conf.png",
+        "focus": ""
       },
       {
-        "img": "/uploads/logo-obu.png",
-        "alt": "The Open Buddhist University",
-        "href": "https://buddhistuniversity.net/content/articles/sakyadhita_fenn-koppedrayer",
-        "width": "150px",
-        "height": "auto"
+        "img": "/uploads/highlights.png",
+        "focus": ""
+      },
+      {
+        "img": "/uploads/hero-1.png",
+        "focus": ""
+      },
+      {
+        "img": "/uploads/seoul.png",
+        "focus": ""
+      },
+      {
+        "img": "/uploads/hero-2.png",
+        "focus": ""
+      },
+      {
+        "img": "/uploads/hero-3.png",
+        "focus": ""
+      }
+    ],
+    "credit": {
+      "text": "For photos, special thanks to",
+      "linkLabel": "Olivier Adam",
+      "linkUrl": "https://www.olivieradam.net/"
+    }
+  },
+  "stats": {
+    "eyebrow": "SINCE 1987",
+    "heading": "A growing global community",
+    "items": [
+      {
+        "value": "5,000+",
+        "label": "Members"
+      },
+      {
+        "value": "45",
+        "label": "Countries"
+      },
+      {
+        "value": "19",
+        "label": "Conferences"
+      },
+      {
+        "value": "42",
+        "label": "Newsletters Published"
       }
     ]
   },
-  "ways": {
-    "eyebrow": "",
-    "heading": "Three ways to support Sakyadhita",
-    "cards": [
+  "mission": {
+    "eyebrow": "OUR MISSION",
+    "heading": "Three pillars of our work",
+    "intro": "Sakyadhita is a grassroots network connecting Buddhist women worldwide. We promote research on Buddhist women's history and work for equal opportunity across all Buddhist traditions. Through local branches, free online resources, and our biannual conferences, we help empower the world's 300 million Buddhist women to work for peace and social justice.",
+    "pillars": [
       {
-        "img": "/uploads/icon-member.png",
-        "title": "Join Us",
-        "text": "Become a member of our global network. Member tiers start at $15 USD.",
-        "ctaLabel": "Join Now",
-        "href": "/join"
+        "title": "Connect",
+        "text": "A communications network linking some 300 million Buddhist women worldwide through branches, chapters, and online community."
       },
       {
-        "img": "/uploads/icon-volunteer.png",
-        "title": "Volunteer",
-        "text": "15 committees need help — from translation to conference planning.",
-        "ctaLabel": "Learn more",
-        "href": "/volunteer"
+        "title": "Advance Equity",
+        "text": "Working for gender equity in Buddhist education, training, institutional structures, and full ordination across traditions."
       },
       {
-        "img": "/uploads/icon-donate.png",
-        "title": "Donate",
-        "text": "Fund conference scholarships, ordination advocacy, and the newsletter.",
-        "ctaLabel": "Learn more",
-        "href": "/donate"
+        "title": "Convene",
+        "text": "Hosting the world's largest gathering of Buddhist women — our biennial international conference, now in its 19th edition."
       }
     ]
+  },
+  "featuredConference": {
+    "eyebrow": "UPCOMING CONFERENCE",
+    "heading": "20th International Conference",
+    "sub": "Celebrating our 20th biennial international conference in 2027",
+    "card": {
+      "img": "/uploads/feat-conf.png",
+      "eyebrow": "",
+      "title": "20th Sakyadhita International Conference on Buddhist Women",
+      "meta": "June 19–26, 2027",
+      "location": "Magelang, Indonesia",
+      "text": "In 2027, the 20th Sakyadhita International Conference travels to Jakarta, bringing together Buddhist women from across the world's traditions for teachings, scholarship, and friendship.",
+      "cfpNote": "The Academic Program Committee is now receiving paper proposals for the 20th Sakyadhita International Conference 2027. Paper proposals should be submitted by July 30, 2026.",
+      "cfpLink": {
+        "label": "Learn more",
+        "href": "/conferences#proposals"
+      },
+      "cta": {
+        "label": "Conference Details",
+        "href": "/conferences"
+      },
+      "cta2": {
+        "label": "Submit paper proposals",
+        "href": "/conferences#proposals"
+      }
+    }
+  },
+  "highlights": {
+    "eyebrow": "",
+    "heading": "Highlights of the 19th Sakyadhita Conference in Sarawak, East Malaysia.",
+    "youtubeId": "IRr-CQYdQ8o",
+    "img": "/uploads/highlights.png",
+    "caption": "SARAWAK · JUNE 2025",
+    "cta": {
+      "label": "Previous Conference",
+      "href": "/conferences"
+    }
   },
   "pastConferences": {
     "eyebrow": "PAST CONFERENCES",
@@ -151,48 +228,37 @@
       }
     ]
   },
-  "featuredConference": {
-    "eyebrow": "UPCOMING CONFERENCE",
-    "heading": "20th International Conference",
-    "card": {
-      "img": "/uploads/feat-conf.png",
-      "eyebrow": "",
-      "title": "20th Sakyadhita International Conference on Buddhist Women",
-      "meta": "June 19–26, 2027",
-      "text": "In 2027, the 20th Sakyadhita International Conference travels to Jakarta, bringing together Buddhist women from across the world's traditions for teachings, scholarship, and friendship.",
-      "cta": {
-        "label": "Conference Details",
-        "href": "/conferences"
-      },
-      "location": "Magelang, Indonesia",
-      "cfpNote": "The Academic Program Committee is now receiving paper proposals for the 20th Sakyadhita International Conference 2027. Paper proposals should be submitted by July 30, 2026.",
-      "cfpLink": {
-        "label": "Learn more",
-        "href": "/conferences#proposals"
-      },
-      "cta2": {
-        "label": "Submit paper proposals",
-        "href": "/conferences#proposals"
-      }
-    },
-    "sub": "Celebrating our 20th biennial international conference in 2027"
-  },
-  "mission": {
-    "eyebrow": "OUR MISSION",
-    "heading": "Three pillars of our work",
-    "intro": "Sakyadhita is a grassroots network connecting Buddhist women worldwide. We promote research on Buddhist women's history and work for equal opportunity across all Buddhist traditions. Through local branches, free online resources, and our biannual conferences, we help empower the world's 300 million Buddhist women to work for peace and social justice.",
-    "pillars": [
+  "press": {
+    "eyebrow": "",
+    "heading": "Featured in leading Buddhist publications",
+    "logos": [
       {
-        "title": "Connect",
-        "text": "A communications network linking some 300 million Buddhist women worldwide through branches, chapters, and online community."
+        "img": "/uploads/logo-tricycle.png",
+        "alt": "Tricycle",
+        "href": "https://tricycle.org/article/buddhist-women-conference/",
+        "width": "132px",
+        "height": "132px"
       },
       {
-        "title": "Advance Equity",
-        "text": "Working for gender equity in Buddhist education, training, institutional structures, and full ordination across traditions."
+        "img": "/uploads/logo-lionsroar.png",
+        "alt": "Lion's Roar",
+        "href": "https://www.lionsroar.com/the-sakyadhita-movement/",
+        "width": "156px",
+        "height": "156px"
       },
       {
-        "title": "Convene",
-        "text": "Hosting the world's largest gathering of Buddhist women — our biennial international conference, now in its 19th edition."
+        "img": "/uploads/logo-bdg.png",
+        "alt": "Buddhistdoor Global",
+        "href": "https://www.buddhistdoor.net/features/daughters-of-the-buddha-18th-sakyadhita-conference-in-seoul-celebrates-the-sacred-feminine/",
+        "width": "132px",
+        "height": "132px"
+      },
+      {
+        "img": "/uploads/logo-obu.png",
+        "alt": "The Open Buddhist University",
+        "href": "https://buddhistuniversity.net/content/articles/sakyadhita_fenn-koppedrayer",
+        "width": "150px",
+        "height": "auto"
       }
     ]
   },
@@ -205,97 +271,31 @@
       "href": "/branches"
     }
   },
-  "hero": {
-    "marquee": [
+  "ways": {
+    "eyebrow": "",
+    "heading": "Three ways to support Sakyadhita",
+    "cards": [
       {
-        "img": "/uploads/member-voice.png",
-        "focus": "60% 50%"
+        "img": "/uploads/icon-member.png",
+        "title": "Join Us",
+        "text": "Become a member of our global network. Member tiers start at $15 USD.",
+        "ctaLabel": "Join Now",
+        "href": "/join"
       },
       {
-        "img": "/uploads/tenzin-lekshe.jpg",
-        "focus": ""
+        "img": "/uploads/icon-volunteer.png",
+        "title": "Volunteer",
+        "text": "15 committees need help — from translation to conference planning.",
+        "ctaLabel": "Learn more",
+        "href": "/volunteer"
       },
       {
-        "img": "/uploads/feat-conf.png",
-        "focus": ""
-      },
-      {
-        "img": "/uploads/highlights.png",
-        "focus": ""
-      },
-      {
-        "img": "/uploads/hero-1.png",
-        "focus": ""
-      },
-      {
-        "img": "/uploads/seoul.png",
-        "focus": ""
-      },
-      {
-        "img": "/uploads/hero-2.png",
-        "focus": ""
-      },
-      {
-        "img": "/uploads/hero-3.png",
-        "focus": ""
-      }
-    ],
-    "titleName": "Sakyadhita",
-    "titleFull": "International Association of Buddhist Women",
-    "logo": "/uploads/logo-flower.png",
-    "text": "Since 1987, we have been bringing together laywomen, monastics, and scholars from across all Buddhist traditions to advance equality, education, and spiritual practice.",
-    "primaryCta": {
-      "label": "Join the 20th Conference",
-      "href": "/conferences"
-    },
-    "credit": {
-      "text": "For photos, special thanks to",
-      "linkLabel": "Olivier Adam",
-      "linkUrl": "https://www.olivieradam.net/"
-    },
-    "secondaryCta": {
-      "label": "Become a Member",
-      "href": "/join"
-    },
-    "logoAlt": "Sakyadhita lotus emblem",
-    "announcement": "Celebrating our 20th biennial international conference in 2027"
-  },
-  "seo": {
-    "title": "Sakyadhita · International Association of Buddhist Women",
-    "description": "Since 1987, Sakyadhita has brought together laywomen, monastics, and scholars from across all Buddhist traditions to advance equality, education, and spiritual practice.",
-    "ogImage": "/uploads/hero-1.png"
-  },
-  "stats": {
-    "eyebrow": "SINCE 1987",
-    "heading": "A growing global community",
-    "items": [
-      {
-        "value": "5,000+",
-        "label": "Members"
-      },
-      {
-        "value": "45",
-        "label": "Countries"
-      },
-      {
-        "value": "19",
-        "label": "Conferences"
-      },
-      {
-        "value": "42",
-        "label": "Newsletters Published"
+        "img": "/uploads/icon-donate.png",
+        "title": "Donate",
+        "text": "Fund conference scholarships, ordination advocacy, and the newsletter.",
+        "ctaLabel": "Learn more",
+        "href": "/donate"
       }
     ]
-  },
-  "highlights": {
-    "eyebrow": "",
-    "heading": "Highlights of the 19th Sakyadhita Conference in Sarawak, East Malaysia.",
-    "youtubeId": "IRr-CQYdQ8o",
-    "img": "/uploads/highlights.png",
-    "caption": "SARAWAK · JUNE 2025",
-    "cta": {
-      "label": "Previous Conference",
-      "href": "/conferences"
-    }
   }
 }
