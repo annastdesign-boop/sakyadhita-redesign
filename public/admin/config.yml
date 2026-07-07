@@ -1,12 +1,11 @@
 # ────────────────────────────────────────────────────────────────
 # Sakyadhita Content Editor (Decap CMS)
 #
-# HOW PUBLISHING WORKS (draft workflow):
-#   Save = Draft → move to "In review" → "Ready" → Publish.
-#   Nothing appears on the website until someone clicks Publish.
-#   The Workflow tab (top bar) shows everything awaiting review.
-#
-# Every Publish becomes a commit and the site redeploys (~2 min).
+# HOW PUBLISHING WORKS (simple mode):
+#   Save = published. Every save becomes a commit and the site
+#   redeploys (~2 min). Image uploads save immediately too.
+#   (The draft→review workflow was removed 2026-07 — it kept locking
+#   uploaded images in a broken "Draft" state.)
 # ────────────────────────────────────────────────────────────────
 
 backend:
@@ -15,8 +14,6 @@ backend:
   branch: main
   base_url: https://api.netlify.com
   auth_endpoint: auth
-
-publish_mode: editorial_workflow
 
 site_url: https://sakyadhita-redesign.netlify.app
 logo_url: https://sakyadhita-redesign.netlify.app/assets/logo-flower.png
@@ -1179,8 +1176,6 @@ collections:
           - { name: url, label: "Link (optional — use mailto: for email)", widget: string, required: false }
 
   # ── SITE PAGES & SETTINGS (single documents) ──────────────────
-  # Note: these save straight to the site (no draft step) — that's a
-  # technical limitation for single-document settings.
   - name: settings
     label: "⚙️ Site settings & timelines"
     editor: { preview: false }

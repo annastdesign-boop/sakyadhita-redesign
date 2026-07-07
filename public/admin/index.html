@@ -54,6 +54,7 @@
             var src = im.getAttribute('src') || ''
             var ok = src.indexOf('blob:') === 0 || src.indexOf('/uploads/') !== -1 || src.indexOf('data:image') === 0
             if (!ok) continue
+            if (!im.complete || im.naturalWidth < 40 || im.naturalHeight < 40) continue
             var pos = fromEl.compareDocumentPosition(im)
             if (pos & Node.DOCUMENT_POSITION_PRECEDING) best = im.src
           }
@@ -113,6 +114,7 @@
                   style: {
                     position: 'relative',
                     height: this.state.imgSrc ? 'auto' : '150px',
+                    minHeight: '110px',
                     maxWidth: '340px',
                     borderRadius: '6px',
                     border: '2px solid #dfdfe3',
@@ -129,6 +131,7 @@
                   ? h('img', {
                       src: this.state.imgSrc,
                       draggable: false,
+                      onError: function () { self.setState({ imgSrc: null }) },
                       style: { display: 'block', width: '100%', height: 'auto', pointerEvents: 'none' },
                     })
                   : null,
