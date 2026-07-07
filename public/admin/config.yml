@@ -66,6 +66,7 @@ collections:
               - { name: logoAlt, label: "Logo alt text (for screen readers)", widget: string }
               - { name: titleName, label: "Title — first line (e.g. Sakyadhita)", widget: string }
               - { name: titleFull, label: "Title — second line", widget: string }
+              - { name: announcement, label: "Announcement line (orange, under the title — leave empty to hide)", widget: string, required: false }
               - { name: text, label: "Intro paragraph", widget: text }
               - name: primaryCta
                 label: "Main button"

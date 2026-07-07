@@ -43,6 +43,7 @@ const branchesMap = {
         <span class="name">{homePage.hero.titleName}</span>
         <span class="full">{homePage.hero.titleFull}</span>
       </h1>
+      {homePage.hero.announcement && <div class="eyebrow hero-announce">{homePage.hero.announcement}</div>}
       <p>
         {homePage.hero.text}
       </p>
@@ -429,6 +430,7 @@ const branchesMap = {
     }
     .home-hero h1 .name { display: block; font-size: 40px; margin-bottom: 2px; }
     .home-hero h1 .full { display: block; font-size: 40px; letter-spacing: -0.01em; white-space: nowrap; }
+    .home-hero .eyebrow.hero-announce { color: var(--coral-2); margin-top: 18px; line-height: 1.5; }
     .home-hero p {
       color: var(--ink-body);
       font-size: 18px;
