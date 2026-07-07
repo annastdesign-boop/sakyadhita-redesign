@@ -142,7 +142,7 @@ const MAT_COLORS = [
   <div class="cd-main">
     <section class="cd-hero">
       <div class="col-text">
-        {c.upcoming && <div class="upcoming-tag">COMING SOON</div>}
+        {c.upcoming && <div class="upcoming-tag">Celebrating the 40th anniversary of Sakyadhita</div>}
         <div class="badges">
           <span class="badge outlined">{ord(c.n).toUpperCase()} CONFERENCE</span>
           <span class="badge filled">{c.year}</span>
@@ -208,11 +208,6 @@ const MAT_COLORS = [
                 <a class="btn btn--primary btn--lg" href={c.callForPapers.formUrl} target="_blank" rel="noopener noreferrer">
                   {c.callForPapers.formLabel || 'Submit your proposal'} <span class="arr">→</span>
                 </a>
-                {c.callForPapers.contactEmail && (
-                  <p class="cfp-contact">
-                    Questions? Write to <a href={`mailto:${c.callForPapers.contactEmail}`}>{c.callForPapers.contactEmail}</a>
-                  </p>
-                )}
               </div>
             </div>
 
@@ -826,7 +821,7 @@ const MAT_COLORS = [
     font-size: 12px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--purple);
+    color: var(--coral-2);
     margin-bottom: 4px;
   }
 
@@ -845,7 +840,7 @@ const MAT_COLORS = [
     gap: 44px;
     align-items: stretch;
   }
-  .cfp-lead { display: flex; flex-direction: column; gap: 22px; }
+  .cfp-lead { display: flex; flex-direction: column; gap: 22px; justify-content: space-between; }
   .cfp-head { text-align: left; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
   .cfp-head .eyebrow + .eyebrow { margin-top: -4px; }
   .cfp-head .eyebrow { color: var(--purple); }
