@@ -855,8 +855,12 @@ const MAT_COLORS = [
   }
   .cfp-title-line2 {
     display: block;
-    margin-top: 6px;
-    font-size: 24px;
+    margin-top: 16px;
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    color: var(--purple);
   }
   .cfp-sub {
     font-family: var(--font-num); font-weight: 600;
@@ -952,6 +956,7 @@ const MAT_COLORS = [
   .cfp-cta--top { align-items: flex-start; text-align: left; }
   .cfp-cta--top .cfp-note { text-align: left; margin: 0; }
   .cfp-side { display: flex; flex-direction: column; gap: 16px; }
+  .cfp-side .cfp-block-title { border-bottom: 0; padding-bottom: 0; margin-bottom: -4px; }
   .cfp-dates--stack { grid-template-columns: 1fr; }
   .cfp-contact { font-size: 13.5px; color: var(--ink-2); }
   .cfp-contact a { color: var(--purple); font-weight: 600; }
