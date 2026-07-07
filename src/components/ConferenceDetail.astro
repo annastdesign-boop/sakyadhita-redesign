@@ -197,11 +197,11 @@ const MAT_COLORS = [
             <div class="cfp-lead">
               <div class="cfp-head">
                 <div class="eyebrow">CALL FOR PAPERS</div>
+                {c.callForPapers.subtitle && <div class="eyebrow">{c.callForPapers.subtitle}</div>}
                 <h2>
                   {c.callForPapers.title}
                   {c.callForPapers.titleLine2 && <span class="cfp-title-line2">{c.callForPapers.titleLine2}</span>}
                 </h2>
-                {c.callForPapers.subtitle && <p class="cfp-sub">{c.callForPapers.subtitle}</p>}
               </div>
               <p class="cfp-intro"><Fragment set:html={c.callForPapers.intro} /></p>
               <div class="cfp-cta cfp-cta--top">
@@ -846,6 +846,7 @@ const MAT_COLORS = [
   }
   .cfp-lead { display: flex; flex-direction: column; gap: 22px; }
   .cfp-head { text-align: left; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+  .cfp-head .eyebrow + .eyebrow { margin-top: -4px; }
   .cfp-head .eyebrow { color: var(--purple); }
   .cfp-head h2 {
     font-family: var(--font-title); font-weight: 700;
