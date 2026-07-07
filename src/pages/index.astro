@@ -150,6 +150,14 @@ const branchesMap = {
           )}
           <div class="ctas">
             <a class="btn btn--primary" href={homePage.featuredConference.card.cta.href}>{homePage.featuredConference.card.cta.label}</a>
+            {homePage.featuredConference.card.cta2?.label && (
+              <a
+                class="btn btn--ghost"
+                href={homePage.featuredConference.card.cta2.href}
+                target={homePage.featuredConference.card.cta2.href?.startsWith('http') ? '_blank' : undefined}
+                rel={homePage.featuredConference.card.cta2.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >{homePage.featuredConference.card.cta2.label}</a>
+            )}
           </div>
         </div>
       </div>

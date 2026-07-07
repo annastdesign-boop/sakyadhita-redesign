@@ -170,6 +170,13 @@ collections:
             label: "Conference highlights video"
             widget: object
             fields:
+              - name: cta2
+                label: "Secondary button (leave label empty to hide)"
+                widget: object
+                required: false
+                fields:
+                  - { name: label, label: "Button label", widget: string, required: false }
+                  - { name: href, label: "Button link", widget: string, required: false }
               - { name: eyebrow, label: "Small label above the heading", widget: string }
               - { name: heading, label: Heading, widget: string }
               - { name: youtubeId, label: "YouTube video ID", widget: string, hint: "The part after watch?v= — e.g. IRr-CQYdQ8o" }
