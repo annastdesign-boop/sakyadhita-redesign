@@ -13,5 +13,14 @@
       "f": "/uploads/conf07-taipei.jpg",
       "caption": "Taipei, 2002"
     }
+  ],
+  "materialsVisible": true,
+  "materials": [
+    {
+      "chip": "BROCHURE",
+      "title": "English Language 7th Sakyadhita Conference",
+      "file": "/uploads/conference-07-07-taiwan.pdf",
+      "note": "PDF"
+    }
   ]
 }

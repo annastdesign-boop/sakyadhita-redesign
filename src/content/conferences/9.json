@@ -13,5 +13,14 @@
       "f": "/uploads/conf09-kl.jpg",
       "caption": "Kuala Lumpur, 2006"
     }
+  ],
+  "materialsVisible": true,
+  "materials": [
+    {
+      "chip": "BROCHURE",
+      "title": "English Language 9th Sakyadhita Conference",
+      "file": "/uploads/conference-09-2006-sakyadhita-conference-brochure-malaysia.pdf",
+      "note": "PDF"
+    }
   ]
 }

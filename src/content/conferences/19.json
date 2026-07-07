@@ -36,5 +36,20 @@
       "f": "/uploads/conf19-mountains.jpg",
       "caption": "Highlands of Sarawak"
     }
+  ],
+  "materialsVisible": true,
+  "materials": [
+    {
+      "chip": "BROCHURE",
+      "title": "English Language 19th Sakyadhita Conference Brochure 2025",
+      "file": "/uploads/conference-19-2025-5arawak-conference-brochure.pdf",
+      "note": "PDF"
+    },
+    {
+      "chip": "WORKSHOPS",
+      "title": "Call for Workshops",
+      "file": "/uploads/conference-19-call-for-workshops.doc",
+      "note": "Word document"
+    }
   ]
 }

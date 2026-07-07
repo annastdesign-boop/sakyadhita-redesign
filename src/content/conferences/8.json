@@ -13,5 +13,14 @@
       "f": "/uploads/conf08-seoul.jpg",
       "caption": "Seoul, 2004"
     }
+  ],
+  "materialsVisible": true,
+  "materials": [
+    {
+      "chip": "BROCHURE",
+      "title": "English Language 8th Sakyadhita Conference",
+      "file": "/uploads/conference-08-08-korea.pdf",
+      "note": "PDF"
+    }
   ]
 }

@@ -13,5 +13,14 @@
       "f": "/uploads/conf11-vietnam.jpg",
       "caption": "Ho Chi Minh City, 2009"
     }
+  ],
+  "materialsVisible": true,
+  "materials": [
+    {
+      "chip": "BROCHURE",
+      "title": "English Language 11th Sakyadhita Conference",
+      "file": "/uploads/publication-11-englishbrochure.pdf",
+      "note": "PDF"
+    }
   ]
 }

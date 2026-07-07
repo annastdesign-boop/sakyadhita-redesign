@@ -13,5 +13,14 @@
       "f": "/uploads/conf13-vaishali.jpg",
       "caption": "Vaishali, 2013"
     }
+  ],
+  "materialsVisible": true,
+  "materials": [
+    {
+      "chip": "BROCHURE",
+      "title": "English Language",
+      "file": "/uploads/publication-13-english-sakyadhitabrochure.pdf",
+      "note": "PDF"
+    }
   ]
 }

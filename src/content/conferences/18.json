@@ -53,5 +53,14 @@
       "f": "https://www.buddhistdoor.net/wp-content/uploads/2023/07/031.jpg",
       "caption": "A global sangha of Buddhist women"
     }
+  ],
+  "materialsVisible": true,
+  "materials": [
+    {
+      "chip": "BROCHURE",
+      "title": "English Language 18th Sakyadhita Conference",
+      "file": "/uploads/publication-2023-brochure-18th-sakyadhita-seoul-.pdf",
+      "note": "PDF"
+    }
   ]
 }

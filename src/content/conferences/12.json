@@ -13,5 +13,14 @@
       "f": "/uploads/conf12-bangkok.jpg",
       "caption": "Bangkok, 2011"
     }
+  ],
+  "materialsVisible": true,
+  "materials": [
+    {
+      "chip": "BROCHURE",
+      "title": "English Language 12th Sakyadhita Conference",
+      "file": "/uploads/publication-12-englishbrochure.pdf",
+      "note": "PDF"
+    }
   ]
 }

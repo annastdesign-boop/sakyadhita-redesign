@@ -13,5 +13,74 @@
       "f": "/uploads/conf14-yogyakarta.jpg",
       "caption": "Yogyakarta, 2015"
     }
+  ],
+  "materialsVisible": true,
+  "materials": [
+    {
+      "chip": "INDONESIAN",
+      "title": "Bahasa Indonesia Language Brochure",
+      "file": "/uploads/conference-14-14-bahasaindonesia-siconference-brochure-03142015.pdf",
+      "note": "PDF"
+    },
+    {
+      "chip": "SIMP CHINESE",
+      "title": "Simplified Chinese Language Brochure",
+      "file": "/uploads/conference-14-14-chinesesimplifiedbrochure.pdf",
+      "note": "PDF"
+    },
+    {
+      "chip": "TRAD CHINESE",
+      "title": "Traditional Chinese Language Brochure",
+      "file": "/uploads/conference-14-14-chinesetraditionalbrochure.pdf",
+      "note": "PDF"
+    },
+    {
+      "chip": "BROCHURE",
+      "title": "English Language Brochure",
+      "file": "/uploads/publication-14-englishbrochure-02142015.pdf",
+      "note": "PDF"
+    },
+    {
+      "chip": "FRENCH",
+      "title": "French Language Brochure",
+      "file": "/uploads/conference-14-14-french-siconference-brochure-03302015.pdf",
+      "note": "PDF"
+    },
+    {
+      "chip": "GERMAN",
+      "title": "German Language Brochure",
+      "file": "/uploads/conference-14-14-german-siconference-brochure-10072014.pdf",
+      "note": "PDF"
+    },
+    {
+      "chip": "JAPANESE",
+      "title": "Japanese Language Brochure",
+      "file": "/uploads/conference-14-14-japanese-siconference-brochure-03142015.pdf",
+      "note": "PDF"
+    },
+    {
+      "chip": "KOREAN",
+      "title": "Korean Language Brochure",
+      "file": "/uploads/conference-14-14-korean-siconference-brochure-03302015.pdf",
+      "note": "PDF"
+    },
+    {
+      "chip": "RUSSIAN",
+      "title": "Russian Language Brochure",
+      "file": "/uploads/conference-14-14-russian-siconference-brochure-03142015.pdf",
+      "note": "PDF"
+    },
+    {
+      "chip": "SPANISH",
+      "title": "Spanish Language Brochure",
+      "file": "/uploads/conference-14-14-spanish-siconference-brochure-03302015.pdf",
+      "note": "PDF"
+    },
+    {
+      "chip": "TIBETAN",
+      "title": "Tibetan Language Brochure",
+      "file": "/uploads/conference-14-14-tibetan-siconference-brochure-03302015.pdf",
+      "note": "PDF"
+    }
   ]
 }

@@ -92,11 +92,6 @@ const prevThumb = (x: Conf) => x.thumb ?? x.photos?.find((p) => p.f)?.f ?? x.her
 const nPhotos = c.photos?.filter((p) => !p.yt).length ?? 0
 const nVideos = c.photos?.filter((p) => p.yt).length ?? 0
 
-const placeholderMaterials = [
-  { c1: '#BB8FDB', c2: '#773BFA', vol: c.year, ttl: 'Conference Brochure', file: `Conference Brochure ${c.year}`, chip: 'PROGRAM' },
-  { c1: '#F39A6C', c2: '#DE7386', vol: 'SCHEDULE', ttl: 'Program at a glance', file: 'Full Program Schedule', chip: 'SCHEDULE' },
-  { c1: '#16034F', c2: '#4F3E81', vol: 'PAPERS', ttl: 'Abstract Book', file: 'Abstract Book', chip: 'PAPERS' },
-]
 const realMaterials = c.materialsVisible && c.materials?.length ? c.materials : null
 const MAT_COLORS = [
   ['#BB8FDB', '#773BFA'],
@@ -466,37 +461,6 @@ const MAT_COLORS = [
                 </svg>
                 Download
               </a>
-            </article>
-          ))}
-        </section>
-      )
-    }
-
-    {
-      !realMaterials && !c.upcoming && (
-        <section>
-          <div class="panel-head">
-            <span class="label">Conference materials</span>
-          </div>
-          {placeholderMaterials.map((m) => (
-            <article class="h-card-row">
-              <div class="thumb doc" style={`--c1:${m.c1}; --c2:${m.c2};`}>
-                <div>
-                  <div class="doc-vol">{m.vol}</div>
-                  <div class="doc-ttl">{m.ttl}</div>
-                </div>
-              </div>
-              <div class="body">
-                <span class="chip">{m.chip}</span>
-                <div class="file-title">{m.file}</div>
-                <div class="file-meta">Coming soon</div>
-              </div>
-              <button class="get" disabled style="opacity:.5; cursor:not-allowed;">
-                <svg class="dl-ico" viewBox="0 0 16 16" fill="none">
-                  <path d="M8 2 L8 11 M4 7 L8 11 L12 7 M3 13 L13 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                Soon
-              </button>
             </article>
           ))}
         </section>

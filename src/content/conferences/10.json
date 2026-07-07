@@ -13,5 +13,14 @@
       "f": "/uploads/conf10-mongolia.jpg",
       "caption": "Ulaanbaatar, 2008"
     }
+  ],
+  "materialsVisible": true,
+  "materials": [
+    {
+      "chip": "BROCHURE",
+      "title": "English Language 10th Sakyadhita Conference",
+      "file": "/uploads/conference-10-10-mongolia.pdf",
+      "note": "PDF"
+    }
   ]
 }

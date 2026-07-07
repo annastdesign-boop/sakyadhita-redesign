@@ -47,5 +47,32 @@
       "f": "https://tricycle.org/wp-content/uploads/2017/07/Sakyadhita-8.jpg",
       "caption": "Nuns from Vietnam visit the Tian Tan Buddha"
     }
+  ],
+  "materialsVisible": true,
+  "materials": [
+    {
+      "chip": "POSTER",
+      "title": "Poster",
+      "file": "/uploads/conference-15-15-siconferenceposter-2017.jpg",
+      "note": "JPG"
+    },
+    {
+      "chip": "BROCHURE",
+      "title": "English Brochure",
+      "file": "/uploads/publication-2017-sakyadhita-brochure-hong-kong.pdf",
+      "note": "PDF"
+    },
+    {
+      "chip": "SIMP CHINESE",
+      "title": "简化字 Simplified Chinese Brochure",
+      "file": "/uploads/conference-15-15-simpchinese-siconferencebrochure-12222016.pdf",
+      "note": "PDF"
+    },
+    {
+      "chip": "TRAD CHINESE",
+      "title": "正體字Traditional Chinese Brochure",
+      "file": "/uploads/conference-15-15-tradchinese-siconferencebrochure-12222016.pdf",
+      "note": "PDF"
+    }
   ]
 }
