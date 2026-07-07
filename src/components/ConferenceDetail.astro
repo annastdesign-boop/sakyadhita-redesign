@@ -43,6 +43,7 @@ type Conf = {
   ctaSecondary?: { label: string; href: string }
   callForPapers?: {
     title: string
+    titleLine2?: string
     subtitle?: string
     intro: string
     formUrl: string
@@ -194,7 +195,10 @@ const MAT_COLORS = [
         <section class="cfp" id="proposals">
           <div class="cfp-head">
             <div class="eyebrow">CALL FOR PAPERS</div>
-            <h2>{c.callForPapers.title}</h2>
+            <h2>
+              {c.callForPapers.title}
+              {c.callForPapers.titleLine2 && <span class="cfp-title-line2">{c.callForPapers.titleLine2}</span>}
+            </h2>
             {c.callForPapers.subtitle && <p class="cfp-sub">{c.callForPapers.subtitle}</p>}
           </div>
           <p class="cfp-intro">{c.callForPapers.intro}</p>
@@ -838,6 +842,12 @@ const MAT_COLORS = [
     font-size: 30px; line-height: 1.15; color: var(--ink);
     max-width: 32ch;
     text-wrap: balance;
+  }
+  .cfp-title-line2 {
+    display: block;
+    margin-top: 6px;
+    font-size: 24px;
+    color: var(--purple);
   }
   .cfp-sub {
     font-family: var(--font-num); font-weight: 600;
