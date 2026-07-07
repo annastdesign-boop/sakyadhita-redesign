@@ -1,0 +1,80 @@
+---
+/**
+ * AnnouncementBar — thin one-line banner above the header on every page.
+ * Content lives in src/data/announcement.json (editable in the CMS,
+ * ⚙️ Site settings → 📣 Announcement banner). Untick "enabled" to hide.
+ */
+import ann from '../data/announcement.json'
+const external = ann.ctaUrl?.startsWith('http')
+---
+
+{
+  ann.enabled && (
+    <div class="announce-bar">
+      <div class="wrap announce-inner">
+        <p class="announce-text">{ann.text}</p>
+        {ann.ctaLabel && ann.ctaUrl && (
+          <a
+            class="announce-btn"
+            href={ann.ctaUrl}
+            target={external ? '_blank' : undefined}
+            rel={external ? 'noopener noreferrer' : undefined}
+          >
+            {ann.ctaLabel}
+          </a>
+        )}
+      </div>
+    </div>
+  )
+}
+
+<style>
+  .announce-bar {
+    background: var(--lavender);
+    border-bottom: 1px solid rgba(119, 59, 250, 0.15);
+    position: relative;
+    z-index: 60;
+  }
+  .announce-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 0;
+  }
+  .announce-text {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--ink);
+    text-align: center;
+  }
+  .announce-btn {
+    flex: none;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--purple);
+    padding: 6px 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+  }
+  .announce-btn:hover {
+    background: var(--indigo, #16034f);
+  }
+  @media (max-width: 700px) {
+    .announce-inner {
+      flex-direction: column;
+      gap: 8px;
+      padding: 10px 0;
+    }
+    .announce-text {
+      font-size: 13px;
+    }
+  }
+</style>

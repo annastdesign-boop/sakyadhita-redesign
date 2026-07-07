@@ -1333,3 +1333,15 @@ collections:
             label: "Group headings, in display order"
             widget: list
             field: { name: heading, label: Heading, widget: string }
+      - name: announcement
+        label: "\U0001F4E3 Announcement banner"
+        file: src/data/announcement.json
+        description: >
+          The thin one-line banner at the very top of every page.
+          Untick "Show banner" to hide it site-wide.
+        fields:
+          - { name: _comment, label: "(internal note)", widget: string, required: false }
+          - { name: enabled, label: "Show banner", widget: boolean, default: true }
+          - { name: text, label: "Banner text (keep it to one line)", widget: string }
+          - { name: ctaLabel, label: "Button label", widget: string, required: false }
+          - { name: ctaUrl, label: "Button link", widget: string, required: false }
