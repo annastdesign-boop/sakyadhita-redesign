@@ -54,13 +54,15 @@ const branchesMap = {
     </div>
     <div class="hero-marquee" aria-hidden="true">
       <div class="track">
-        {homePage.hero.marquee.map((m, i) => (
-          <img src={m.img} alt="" style={m.focus ? `object-position: ${m.focus};` : undefined} loading={i === 0 ? 'eager' : undefined} />
-        ))}
+        {homePage.hero.marquee.map((m, i) => {
+          const img = <img src={m.img} alt="" style={m.focus ? `object-position: ${m.focus};` : undefined} loading={i === 0 ? 'eager' : undefined} />
+          return m.href ? <a href={m.href} tabindex="-1">{img}</a> : img
+        })}
         <!-- duplicate set for the seamless loop -->
-        {homePage.hero.marquee.map((m) => (
-          <img src={m.img} alt="" style={m.focus ? `object-position: ${m.focus};` : undefined} />
-        ))}
+        {homePage.hero.marquee.map((m) => {
+          const img = <img src={m.img} alt="" style={m.focus ? `object-position: ${m.focus};` : undefined} />
+          return m.href ? <a href={m.href} tabindex="-1">{img}</a> : img
+        })}
       </div>
     </div>
     <p class="marquee-credit">
@@ -482,6 +484,7 @@ const branchesMap = {
       text-decoration: underline;
       text-underline-offset: 2px;
     }
+    .hero-marquee .track a { display: contents; }
     .hero-marquee .track {
       display: flex;
       gap: 24px;
@@ -500,7 +503,8 @@ const branchesMap = {
       to   { transform: translateX(-50%); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero-marquee .track { animation: none; }
+      .hero-marquee .track a { display: contents; }
+    .hero-marquee .track { animation: none; }
     }
     @media (max-width: 1024px) {
       .home-hero h1 .full { font-size: clamp(28px, 4.6vw, 40px); }
@@ -509,7 +513,8 @@ const branchesMap = {
       .home-hero h1 .name { font-size: 30px; }
       .home-hero h1 .full { font-size: 28px; white-space: normal; }
       .home-hero p { font-size: 16px; }
-      .hero-marquee .track { gap: 16px; }
+      .hero-marquee .track a { display: contents; }
+    .hero-marquee .track { gap: 16px; }
       .hero-marquee .track img { width: 240px; height: 300px; }
     }
     @media (max-width: 640px) {

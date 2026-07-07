@@ -82,12 +82,13 @@ collections:
                 summary: "{{fields.img}}"
                 fields:
                   - { name: img, label: Photo, widget: image, required: false }
+                  - { name: href, label: "Link (optional — where clicking the photo goes)", widget: string, required: false }
                   - name: focus
                     label: "Focal point"
                     widget: select
                     required: false
                     options:
-                      - { label: "Center (default)", value: "" }
+                      - { label: "Center (default)", value: "50% 50%" }
                       - { label: "Top (faces near the top)", value: "50% 0%" }
                       - { label: "Upper third", value: "50% 30%" }
                       - { label: "Bottom", value: "50% 100%" }
@@ -245,7 +246,7 @@ collections:
                     widget: select
                     required: false
                     options:
-                      - { label: "Center (default)", value: "" }
+                      - { label: "Center (default)", value: "50% 50%" }
                       - { label: "Top (faces near the top)", value: "50% 0%" }
                       - { label: "Upper third", value: "50% 30%" }
                       - { label: "Bottom", value: "50% 100%" }
@@ -534,7 +535,7 @@ collections:
                     widget: select
                     required: false
                     options:
-                      - { label: "Center (default)", value: "" }
+                      - { label: "Center (default)", value: "50% 50%" }
                       - { label: "Top (faces near the top)", value: "50% 0%" }
                       - { label: "Upper third", value: "50% 30%" }
                       - { label: "Bottom", value: "50% 100%" }
@@ -1034,7 +1035,7 @@ collections:
         widget: select
         required: false
         options:
-          - { label: "Center (default)", value: "" }
+          - { label: "Center (default)", value: "50% 50%" }
           - { label: "Top (faces near the top)", value: "50% 0%" }
           - { label: "Upper third", value: "50% 30%" }
           - { label: "Bottom", value: "50% 100%" }
@@ -1069,7 +1070,7 @@ collections:
             widget: select
             required: false
             options:
-              - { label: "Center (default)", value: "" }
+              - { label: "Center (default)", value: "50% 50%" }
               - { label: "Top (faces near the top)", value: "50% 0%" }
               - { label: "Upper third", value: "50% 30%" }
               - { label: "Bottom", value: "50% 100%" }
@@ -1420,7 +1421,7 @@ collections:
                 widget: select
                 required: false
                 options:
-                  - { label: "Center (default)", value: "" }
+                  - { label: "Center (default)", value: "50% 50%" }
                   - { label: "Top (faces near the top)", value: "50% 0%" }
                   - { label: "Upper third", value: "50% 30%" }
                   - { label: "Bottom", value: "50% 100%" }
@@ -1443,7 +1444,7 @@ collections:
                 widget: select
                 required: false
                 options:
-                  - { label: "Center (default)", value: "" }
+                  - { label: "Center (default)", value: "50% 50%" }
                   - { label: "Top (faces near the top)", value: "50% 0%" }
                   - { label: "Upper third", value: "50% 30%" }
                   - { label: "Bottom", value: "50% 100%" }
