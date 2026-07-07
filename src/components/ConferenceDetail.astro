@@ -201,7 +201,7 @@ const MAT_COLORS = [
             </h2>
             {c.callForPapers.subtitle && <p class="cfp-sub">{c.callForPapers.subtitle}</p>}
           </div>
-          <p class="cfp-intro">{c.callForPapers.intro}</p>
+          <p class="cfp-intro"><Fragment set:html={c.callForPapers.intro} /></p>
 
           <div class="cfp-cta cfp-cta--top">
             <a class="btn btn--primary btn--lg" href={c.callForPapers.formUrl} target="_blank" rel="noopener noreferrer">

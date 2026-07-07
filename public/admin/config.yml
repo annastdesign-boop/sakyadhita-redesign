@@ -979,7 +979,7 @@ collections:
           - { name: title, label: "Title", widget: string, required: false }
           - { name: titleLine2, label: "Title second line (e.g. the dates)", widget: string, required: false }
           - { name: subtitle, label: "Subtitle (e.g. anniversary line)", widget: string, required: false }
-          - { name: intro, label: "Intro paragraph", widget: text, required: false }
+          - { name: intro, label: "Intro paragraph (use <br/> for a line break)", widget: text, required: false }
           - { name: formUrl, label: "Proposal form link", widget: string, required: false }
           - { name: formLabel, label: "Button text", widget: string, required: false }
           - { name: topicsHeading, label: "Topics heading", widget: string, required: false }
