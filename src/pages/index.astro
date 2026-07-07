@@ -131,8 +131,10 @@ const branchesMap = {
         <div class="body">
           {homePage.featuredConference.card.eyebrow && <div class="eyebrow">{homePage.featuredConference.card.eyebrow}</div>}
           <h3>{homePage.featuredConference.card.title}</h3>
-          <div class="meta-row">{homePage.featuredConference.card.meta}</div>
-          {homePage.featuredConference.card.location && <div class="meta-row">{homePage.featuredConference.card.location}</div>}
+          <div class="meta-stack">
+            <div class="meta-row"><span class="emoji">🗓️</span> {homePage.featuredConference.card.meta}</div>
+            {homePage.featuredConference.card.location && <div class="meta-row"><span class="emoji">📍</span> {homePage.featuredConference.card.location}</div>}
+          </div>
           <p>
             {homePage.featuredConference.card.text}
           </p>
@@ -586,7 +588,12 @@ const branchesMap = {
       border-radius: 8px;
     }
     .feat-card .body { padding: 24px 32px; display: flex; flex-direction: column; gap: 18px; justify-content: center; }
-    .feat-card .meta-row { font-weight: 600; color: var(--ink-2); font-size: 14.5px; }
+    .feat-card .meta-stack { display: flex; flex-direction: column; gap: 8px; }
+    .feat-card .meta-row {
+      font-weight: 600; color: var(--ink-2); font-size: 14.5px;
+      display: flex; gap: 10px; align-items: center;
+    }
+    .feat-card .meta-row .emoji { font-size: 18px; line-height: 1; flex-shrink: 0; }
     .feat-card h3 { font-family: var(--font-title); font-weight: 700; font-size: 36px; color: var(--ink); line-height: 1.08; }
     .feat-card p { font-size: 15.5px; line-height: 1.6; color: var(--ink-body); }
     .feat-card .ctas { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
