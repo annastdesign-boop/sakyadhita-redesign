@@ -30,7 +30,6 @@ collections:
   # Note: page edits save straight to the site (single-document files).
   - name: pages
     label: "📄 Pages"
-    editor: { preview: false }
     files:
       - name: home
         label: "🏠 Home page"
@@ -996,7 +995,6 @@ collections:
     slug: "{{fields.n}}"
     summary: "#{{fields.n}} · {{fields.year}} · {{fields.title}}"
     sortable_fields: ["n", "year", "title"]
-    editor: { preview: false }
     description: >
       One entry per conference — each is its own page on the site. Click
       "New conference" to create the next one. When a conference has
@@ -1163,7 +1161,6 @@ collections:
     slug: "{{fields.year}}-{{slug}}"
     summary: "{{fields.year}} · {{fields.title}}"
     sortable_fields: ["sort", "year", "title"]
-    editor: { preview: false }
     description: >
       One entry per newsletter issue. Click "New issue" for a new one —
       it appears in the right decade automatically. Turn on "Featured"
@@ -1194,7 +1191,6 @@ collections:
     slug: "{{fields.section}}-{{slug}}"
     summary: "{{fields.title}} ({{fields.section}})"
     sortable_fields: ["section", "sort", "title"]
-    editor: { preview: false }
     description: >
       Every card in the Publications library. "Section" decides where the
       card appears on the page; "Sort weight" orders cards inside a section
@@ -1251,7 +1247,6 @@ collections:
     identifier_field: label
     summary: "{{fields.label}}"
     sortable_fields: ["sort", "label"]
-    editor: { preview: false }
     description: >
       The Executive Committee on the About page. To start a new term,
       click "New term", give it years (e.g. 2025–2029), a higher Sort
@@ -1284,7 +1279,6 @@ collections:
     slug: "{{fields.id}}"
     summary: "{{fields.name}} ({{fields.region}})"
     sortable_fields: ["region", "name"]
-    editor: { preview: false }
     description: >
       Branches, chapters, and partners — shown in the Branches directory
       and (when "Show on home-page map" is on) as a pin on the home page.
@@ -1323,7 +1317,6 @@ collections:
   # ── SITE PAGES & SETTINGS (single documents) ──────────────────
   - name: settings
     label: "⚙️ Site settings & timelines"
-    editor: { preview: false }
     files:
       - name: navigation
         label: "🧭 Top navigation menu"
