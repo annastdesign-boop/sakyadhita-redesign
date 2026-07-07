@@ -193,42 +193,45 @@ const MAT_COLORS = [
     {
       c.callForPapers && (
         <section class="cfp" id="proposals">
-          <div class="cfp-head">
-            <div class="eyebrow">CALL FOR PAPERS</div>
-            <h2>
-              {c.callForPapers.title}
-              {c.callForPapers.titleLine2 && <span class="cfp-title-line2">{c.callForPapers.titleLine2}</span>}
-            </h2>
-            {c.callForPapers.subtitle && <p class="cfp-sub">{c.callForPapers.subtitle}</p>}
-          </div>
-          <p class="cfp-intro"><Fragment set:html={c.callForPapers.intro} /></p>
-
-          <div class="cfp-cta cfp-cta--top">
-            <a class="btn btn--primary btn--lg" href={c.callForPapers.formUrl} target="_blank" rel="noopener noreferrer">
-              {c.callForPapers.formLabel || 'Submit your proposal'} <span class="arr">→</span>
-            </a>
-            {c.callForPapers.contactEmail && (
-              <p class="cfp-contact">
-                Questions? Write to <a href={`mailto:${c.callForPapers.contactEmail}`}>{c.callForPapers.contactEmail}</a>
-              </p>
-            )}
-            {c.callForPapers.note && <p class="cfp-note">{c.callForPapers.note}</p>}
-          </div>
-
-          {c.callForPapers.deadlines?.length > 0 && (
-            <>
-              <h3 class="cfp-block-title">Key dates</h3>
-              <div class="cfp-dates">
-                {c.callForPapers.deadlines.map((dl) => (
-                  <div class="cfp-date">
-                    <div class="d">{dl.date}</div>
-                    <div class="l">{dl.label}</div>
-                    <p>{dl.detail}</p>
-                  </div>
-                ))}
+          <div class="cfp-top">
+            <div class="cfp-lead">
+              <div class="cfp-head">
+                <div class="eyebrow">CALL FOR PAPERS</div>
+                <h2>
+                  {c.callForPapers.title}
+                  {c.callForPapers.titleLine2 && <span class="cfp-title-line2">{c.callForPapers.titleLine2}</span>}
+                </h2>
+                {c.callForPapers.subtitle && <p class="cfp-sub">{c.callForPapers.subtitle}</p>}
               </div>
-            </>
-          )}
+              <p class="cfp-intro"><Fragment set:html={c.callForPapers.intro} /></p>
+              <div class="cfp-cta cfp-cta--top">
+                <a class="btn btn--primary btn--lg" href={c.callForPapers.formUrl} target="_blank" rel="noopener noreferrer">
+                  {c.callForPapers.formLabel || 'Submit your proposal'} <span class="arr">→</span>
+                </a>
+                {c.callForPapers.contactEmail && (
+                  <p class="cfp-contact">
+                    Questions? Write to <a href={`mailto:${c.callForPapers.contactEmail}`}>{c.callForPapers.contactEmail}</a>
+                  </p>
+                )}
+                {c.callForPapers.note && <p class="cfp-note">{c.callForPapers.note}</p>}
+              </div>
+            </div>
+
+            {c.callForPapers.deadlines?.length > 0 && (
+              <aside class="cfp-side">
+                <h3 class="cfp-block-title">Key dates</h3>
+                <div class="cfp-dates cfp-dates--stack">
+                  {c.callForPapers.deadlines.map((dl) => (
+                    <div class="cfp-date">
+                      <div class="d">{dl.date}</div>
+                      <div class="l">{dl.label}</div>
+                      <p>{dl.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </aside>
+            )}
+          </div>
 
           {c.callForPapers.topics?.length > 0 && (
             <>
@@ -835,12 +838,18 @@ const MAT_COLORS = [
     scroll-margin-top: 96px;
     display: flex; flex-direction: column; gap: 26px;
   }
-  .cfp-head { text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+  .cfp-top {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 44px;
+    align-items: start;
+  }
+  .cfp-lead { display: flex; flex-direction: column; gap: 22px; }
+  .cfp-head { text-align: left; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
   .cfp-head .eyebrow { color: var(--purple); }
   .cfp-head h2 {
     font-family: var(--font-title); font-weight: 700;
     font-size: 30px; line-height: 1.15; color: var(--ink);
-    max-width: 32ch;
     text-wrap: balance;
   }
   .cfp-title-line2 {
@@ -855,7 +864,7 @@ const MAT_COLORS = [
   }
   .cfp-intro {
     font-size: 16px; line-height: 1.65; color: var(--ink-body);
-    max-width: 90ch; margin: 0 auto; text-align: center;
+    text-align: left;
   }
   .cfp-block-title {
     font-family: var(--font-title); font-weight: 700;
@@ -939,6 +948,10 @@ const MAT_COLORS = [
     text-align: center; max-width: 64ch; margin: 0 auto;
   }
   .cfp-cta { text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .cfp-cta--top { align-items: flex-start; text-align: left; }
+  .cfp-cta--top .cfp-note { text-align: left; margin: 0; }
+  .cfp-side { display: flex; flex-direction: column; gap: 16px; }
+  .cfp-dates--stack { grid-template-columns: 1fr; }
   .cfp-contact { font-size: 13.5px; color: var(--ink-2); }
   .cfp-contact a { color: var(--purple); font-weight: 600; }
   .cfp-note {
@@ -947,6 +960,7 @@ const MAT_COLORS = [
   }
   @media (max-width: 860px) {
     .cfp { padding: 28px 20px; }
+    .cfp-top { grid-template-columns: 1fr; gap: 28px; }
     .cfp-topics { grid-template-columns: 1fr; }
     .cfp-dates { grid-template-columns: 1fr; }
     .cfp-ai { grid-template-columns: 1fr; }
