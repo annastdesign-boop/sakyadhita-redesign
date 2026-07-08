@@ -6,13 +6,7 @@
   "lat": 24.69,
   "lng": 84.99,
   "desc": "Where Sakyadhita was founded in 1987. Coordinated by the Mahabodhi community.",
-  "contact": [
-    {
-      "icon": "📧",
-      "text": "bodhgaya@sakyadhita.org",
-      "url": "mailto:bodhgaya@sakyadhita.org"
-    }
-  ],
+  "contact": [],
   "homeMap": true,
   "homeDesc": "Where Sakyadhita was founded in 1987."
 }

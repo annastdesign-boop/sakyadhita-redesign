@@ -156,9 +156,9 @@ const branches = Object.values(modules)
             </div>
             <h3>${b.name}</h3>
             <p class="desc">${b.desc}</p>
-            <div class="contact">
+            ${b.contact?.length ? `<div class="contact">
               ${b.contact.map((c) => `<div>${c.icon} ${c.url ? `<a href="${c.url}">${c.text}</a>` : `<span>${c.text}</span>`}</div>`).join('')}
-            </div>
+            </div>` : ''}
           </article>
         `
           )

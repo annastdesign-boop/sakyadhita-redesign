@@ -6,12 +6,6 @@
   "lat": 37.55,
   "lng": 126.99,
   "desc": "Hosted the 18th International Conference in 2023.",
-  "contact": [
-    {
-      "icon": "📧",
-      "text": "korea@sakyadhita.org",
-      "url": "mailto:korea@sakyadhita.org"
-    }
-  ],
+  "contact": [],
   "homeMap": true
 }

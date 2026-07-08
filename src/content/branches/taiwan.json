@@ -6,12 +6,6 @@
   "lat": 25.03,
   "lng": 121.56,
   "desc": "Coordinated through Foguang Shan and Dharma Drum Mountain alumni networks.",
-  "contact": [
-    {
-      "icon": "📧",
-      "text": "taiwan@sakyadhita.org",
-      "url": "mailto:taiwan@sakyadhita.org"
-    }
-  ],
+  "contact": [],
   "homeMap": true
 }
