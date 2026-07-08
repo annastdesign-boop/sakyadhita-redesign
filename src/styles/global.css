@@ -164,9 +164,9 @@ section { padding: 80px 0; }
 .top-stack { position: sticky; top: 0; z-index: 60; }
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(253, 249, 246, 0.88);
-  backdrop-filter: saturate(140%) blur(12px);
-  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  background: rgba(253, 249, 246, 0.95);
+  backdrop-filter: saturate(150%) blur(18px);
+  -webkit-backdrop-filter: saturate(150%) blur(18px);
   border-bottom: 1px solid var(--border-soft);
 }
 .nav {
@@ -677,9 +677,9 @@ img { border-radius: 8px; }
   z-index: 10;
   transform: translate3d(0, 0, 0);
   will-change: transform;
-  background: rgba(253,249,246,.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(253,249,246,.96);
+  backdrop-filter: saturate(150%) blur(16px);
+  -webkit-backdrop-filter: saturate(150%) blur(16px);
   border-top: 1px solid var(--border-soft);
   border-bottom: 1px solid var(--border-soft);
 }
