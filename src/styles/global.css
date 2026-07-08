@@ -929,8 +929,9 @@ input, select, textarea { min-width: 0; max-width: 100%; }
   /* Nav bar height + padding trim */
   .nav { padding: 0 20px; height: 64px; }
   .site-header::after { top: 0; }
-  /* Sticky sub-nav sits flush under the shorter mobile header */
-  .onpage-nav { top: 63px; }
+  /* Sticky sub-nav sits flush under the mobile header AND the banner
+     (--announce-h keeps it below the banner instead of hidden behind it) */
+  .onpage-nav { top: calc(63px + var(--announce-h, 0px)); }
 }
 
 /* Very narrow phones */
