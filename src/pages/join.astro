@@ -101,7 +101,7 @@ const benefitIcons = [
           <label>Don't fill this out if you're human: <input name="bot-field" /></label>
         </p>
 
-        <div class="field" style="margin-bottom: 6px;"><label>Membership tier *</label></div>
+        <div class="field" style="margin-bottom: 6px;"><label>Choose your membership tier *</label></div>
         <div class="tier-pick">
           <button type="button" class="tier-opt sel" data-name="Regular member ($30/year)" data-price="30" data-kind="subscription" data-plan="regular"><span class="o-amt">$30 <small>/year</small></span><span class="o-text"><span class="o-name">Regular member</span><span class="o-sub">Laypeople &amp; supporters</span></span></button>
           <button type="button" class="tier-opt" data-name="Reduced rate ($15/year)" data-price="15" data-kind="subscription" data-plan="reduced"><span class="o-amt">$15 <small>/year</small></span><span class="o-text"><span class="o-name">Reduced rate</span><span class="o-sub">Nuns, students, unemployed</span></span></button>
@@ -265,7 +265,7 @@ const benefitIcons = [
         n.id = 'pay-renew-note'
         n.className = 'pay-note'
         n.textContent = t.isSubscription
-          ? 'Renews automatically every year. Cancel anytime in your PayPal account — or email service.sakyadhita@gmail.com and we will cancel it for you.'
+          ? 'Renews automatically every year. Cancel anytime in your PayPal account or email service.sakyadhita@gmail.com and we will cancel it for you.'
           : 'Covers your first year of membership. We will remind you when it is time to renew.'
         amountLabel.closest('.pay-amount')!.insertAdjacentElement('afterend', n)
       }
