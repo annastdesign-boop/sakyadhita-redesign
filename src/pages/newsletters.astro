@@ -152,7 +152,9 @@ const hiddenDecades = decades.slice(2)
       <form id="sub-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="newsletter" />
         <p hidden aria-hidden="true"><label>Don't fill this out: <input name="bot-field" /></label></p>
-        <label for="sub-email">Email address</label>
+        <label for="sub-name">Full name</label>
+        <input id="sub-name" name="fullName" type="text" required placeholder="Your name" />
+        <label for="sub-email" style="margin-top: 8px;">Email address</label>
         <input id="sub-email" name="email" type="email" required placeholder="you@email.com" />
         <button type="submit" class="btn btn--primary btn--lg">Subscribe</button>
       </form>

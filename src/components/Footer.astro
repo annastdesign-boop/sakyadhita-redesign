@@ -58,8 +58,11 @@ const ICONS: Record<string, string> = {
         <form id="footer-newsletter" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="newsletter" />
           <p hidden aria-hidden="true"><label>Don't fill this out: <input name="bot-field" /></label></p>
-          <input type="email" name="email" placeholder="you@email.com" aria-label="Email address" required />
-          <button type="submit">Subscribe</button>
+          <input class="nl-name" type="text" name="fullName" placeholder="Your name" aria-label="Full name" required />
+          <div class="nl-pill">
+            <input type="email" name="email" placeholder="you@email.com" aria-label="Email address" required />
+            <button type="submit">Subscribe</button>
+          </div>
         </form>
       </div>
     </div>
@@ -78,7 +81,8 @@ const ICONS: Record<string, string> = {
     e.preventDefault()
     const btn = form.querySelector('button')!
     const input = form.querySelector('input[name="email"]') as HTMLInputElement
-    if (!input.value) return
+    const nameInput = form.querySelector('input[name="fullName"]') as HTMLInputElement
+    if (!input.value || !nameInput?.value) return
     const original = btn.textContent
     btn.textContent = '…'
     try {
@@ -92,6 +96,7 @@ const ICONS: Record<string, string> = {
       })
       if (!res.ok) throw new Error()
       input.value = ''
+      if (nameInput) nameInput.value = ''
       btn.textContent = 'Thanks ✓'
     } catch {
       btn.textContent = 'Try again'
