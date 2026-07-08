@@ -539,6 +539,8 @@ const benefitIcons = [
       padding-bottom: 16px; margin-bottom: 4px;
       border-bottom: 1px solid var(--border);
     }
+    /* when a note follows the title, the divider moves below the note */
+    .tier-group > .gh:has(+ .g-note) { border-bottom: 0; padding-bottom: 6px; }
     .tier-group > .gh h3 {
       font-family: var(--font-title); font-weight: 700;
       font-size: 24px; color: var(--ink);
@@ -599,7 +601,9 @@ const benefitIcons = [
 
     .form-section { padding: 72px 0; }
     .g-note {
-      margin: -4px 0 14px;
+      margin: 0 0 4px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
       font-size: 13.5px;
       line-height: 1.55;
       color: var(--ink-2);
