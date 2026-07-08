@@ -11,6 +11,11 @@
       "icon": "📧",
       "text": "germany@sakyadhita.org",
       "url": "mailto:germany@sakyadhita.org"
+    },
+    {
+      "icon": "🌐",
+      "text": "sakyadhita-germany.org",
+      "url": "https://sakyadhita-germany.org/"
     }
   ],
   "homeMap": true,
