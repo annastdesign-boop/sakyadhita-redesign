@@ -214,10 +214,11 @@ const benefitIcons = [
      * Until the plan ids are filled in, annual tiers are charged as a
      * one-time payment for the first year (clearly worded).
      */
-    const PAYPAL_CLIENT_ID = 'sb'
+    const PAYPAL_CLIENT_ID =
+      'Acq4TEmNP2L7Mc5wvxFh1fkVR8k-aSJTfvseCUoqoCQNMoPgV9_f7NXVQm30zIjKSQpuXjygWnzmqf0u' // Live — Sakyadhita's account (from the business dashboard)
     const PLAN_IDS: Record<string, string> = {
-      regular: '', // P-… for Regular member $30/year
-      reduced: '', // P-… for Reduced rate $15/year
+      regular: 'P-5RK859658U385400MNJGW5OA', // Regular member $30/year (yearly, auto-renews)
+      reduced: '', // P-… for Reduced rate $15/year — pending; until then the $15 tier charges the first year one-time
     }
     const IS_DEMO = PAYPAL_CLIENT_ID === 'sb'
 
