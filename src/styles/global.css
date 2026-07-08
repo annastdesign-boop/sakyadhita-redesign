@@ -733,7 +733,7 @@ img { border-radius: 8px; }
   color: var(--ink-body);
   cursor: pointer;
 }
-.check input { margin-top: 3px; accent-color: var(--purple); }
+.check input { margin-top: 2px; accent-color: var(--purple); width: 20px; height: 20px; flex: none; }
 
 .form-row {
   display: grid; gap: 16px;

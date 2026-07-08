@@ -251,8 +251,12 @@ const committees = volunteerPage.interests
     }
     .com-pick:hover { border-color: var(--lavender-2); background: var(--bg-subtle); }
     .com-pick:has(input:checked) { border-color: var(--purple); background: rgba(119,59,250,.05); }
-    .com-pick input { margin-top: 3px; accent-color: var(--purple); flex: none; }
+    .com-pick input { margin-top: 1px; accent-color: var(--purple); flex: none; width: 20px; height: 20px; }
     .com-pick .cp-name { font-size: 14.5px; font-weight: 600; color: var(--ink); }
+    @media (max-width: 560px) {
+      .com-pick { padding: 14px 16px; gap: 12px; }
+      .com-pick input { width: 22px; height: 22px; }
+    }
     .vform .submit-row {
       margin-top: 30px; padding-top: 26px;
       border-top: 1px solid var(--border-soft);
