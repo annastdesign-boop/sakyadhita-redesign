@@ -23,34 +23,42 @@
     "marquee": [
       {
         "img": "/uploads/member-voice.jpg",
+        "href": "",
         "focus": "60% 50%"
       },
       {
         "img": "/uploads/Sakyadhita_seoul korea_2025_conference_nuns.jpg",
+        "href": "",
         "focus": ""
       },
       {
         "img": "/uploads/feat-conf.jpg",
+        "href": "",
         "focus": ""
       },
       {
         "img": "/uploads/highlights.jpg",
+        "href": "",
         "focus": ""
       },
       {
         "img": "/uploads/hero-1.jpg",
+        "href": "",
         "focus": ""
       },
       {
         "img": "/uploads/seoul.jpg",
+        "href": "",
         "focus": ""
       },
       {
         "img": "/uploads/hero-2.png",
+        "href": "",
         "focus": ""
       },
       {
         "img": "/uploads/hero-3.jpg",
+        "href": "",
         "focus": ""
       }
     ],
@@ -111,7 +119,7 @@
       "title": "20th Sakyadhita International Conference on Buddhist Women",
       "meta": "June 19–26, 2027",
       "location": "Magelang, Indonesia",
-      "text": "In 2027, the 20th Sakyadhita International Conference travels to Jakarta, bringing together Buddhist women from across the world's traditions for teachings, scholarship, and friendship.",
+      "text": "In 2027, the 20th Sakyadhita International Conference travels to Indonesia, bringing together Buddhist women from across the world's traditions for teachings, scholarship, and friendship.",
       "cfpNote": "The Academic Program Committee is now receiving paper proposals for the 20th Sakyadhita International Conference 2027. Paper proposals should be submitted by July 30, 2026.",
       "cfpLink": {
         "label": "Learn more",
