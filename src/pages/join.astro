@@ -70,6 +70,7 @@ const benefitIcons = [
           joinPage.tiers.groups.map((group) => (
             <div class="tier-group">
               <div class="gh"><h3>{group.heading}</h3><span class="freq">{group.freq}</span></div>
+              {group.note && <p class="g-note">{group.note}</p>}
               {group.lines.map((line) => (
                 <div class="tier-line">
                   <div class="amt">{line.amt}</div>
@@ -107,10 +108,6 @@ const benefitIcons = [
           <button type="button" class="tier-opt" data-name="Lifetime — Laypeople ($300)" data-price="300" data-kind="onetime"><span class="o-amt">$300 <small>once</small></span><span class="o-text"><span class="o-name">Lifetime · Laypeople</span><span class="o-sub">Paid once</span></span></button>
           <button type="button" class="tier-opt" data-name="Lifetime — Monastics ($150)" data-price="150" data-kind="onetime"><span class="o-amt">$150 <small>once</small></span><span class="o-text"><span class="o-name">Lifetime · Monastics</span><span class="o-sub">Paid once</span></span></button>
         </div>
-        <p class="tier-note" id="tier-note">
-          Renews automatically every year. Cancel anytime in your PayPal account — or email
-          service.sakyadhita@gmail.com and we will cancel it for you.
-        </p>
         <input type="hidden" id="tier-value" name="membershipType" value="Regular member ($30/year)" />
         <!-- Filled automatically: tier price + optional donation. The PayPal
              transaction id is filled once the PayPal checkout is connected. -->
@@ -472,13 +469,6 @@ const benefitIcons = [
         opt.classList.add('sel')
         if (hidden) hidden.value = (opt as HTMLElement).dataset.name || ''
         if (totalPaid) totalPaid.value = (opt as HTMLElement).dataset.price || '0'
-        const note = document.getElementById('tier-note')
-        if (note) {
-          note.textContent =
-            (opt as HTMLElement).dataset.kind === 'subscription'
-              ? 'Renews automatically every year. Cancel anytime in your PayPal account — or email service.sakyadhita@gmail.com and we will cancel it for you.'
-              : 'A one-time payment — pay once and you are a Sakyadhita member for life.'
-        }
       })
     })
 
@@ -608,8 +598,8 @@ const benefitIcons = [
 
 
     .form-section { padding: 72px 0; }
-    .tier-note {
-      margin: 10px 0 2px;
+    .g-note {
+      margin: -4px 0 14px;
       font-size: 13.5px;
       line-height: 1.55;
       color: var(--ink-2);

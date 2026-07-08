@@ -942,6 +942,7 @@ collections:
                 fields:
                   - { name: heading, label: "Group heading (e.g. Annual)", widget: string, required: false }
                   - { name: freq, label: "Frequency label (e.g. Renewed yearly)", widget: string, required: false }
+                  - { name: note, label: "Note under the title (optional)", widget: text, required: false }
                   - name: lines
                     label: Tiers
                     label_singular: tier
