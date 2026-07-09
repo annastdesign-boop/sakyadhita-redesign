@@ -670,7 +670,8 @@ const branchesMap = {
     }
     .latest-feature:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--lavender-2); }
     .latest-feature .media {
-      border-radius: 8px;
+      border-radius: 12px;
+      border: 1px solid var(--hairline);
       background-size: cover; background-position: center;
       flex: 1; min-height: 200px;
     }
@@ -692,11 +693,12 @@ const branchesMap = {
     }
     .latest-mini:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--lavender-2); }
     .latest-mini .media {
-      border-radius: 8px;
+      border-radius: 12px;
+      border: 1px solid var(--hairline);
       background-size: cover; background-position: center;
       aspect-ratio: 16/9;
     }
-    .latest-mini .body { padding: 8px 6px 4px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+    .latest-mini .body { padding: 10px 8px 6px; display: flex; flex-direction: column; gap: 7px; flex: 1; }
     .latest-mini h3 { font-family: var(--font-title); font-weight: 700; font-size: 17px; line-height: 1.18; color: var(--ink); }
     .latest-mini .latest-link { margin-top: auto; }
     .latest-link { color: var(--purple); font-weight: 600; font-size: 14px; text-decoration: none; }
