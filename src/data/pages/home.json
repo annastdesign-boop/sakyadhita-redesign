@@ -143,7 +143,7 @@
     "caption": "SARAWAK · JUNE 2025",
     "cta": {
       "label": "Previous Conference",
-      "href": "/conferences"
+      "href": "/conferencesconferences/19/"
     }
   },
   "pastConferences": {
@@ -151,7 +151,7 @@
     "heading": "19 conferences of history",
     "seeAll": {
       "label": "See all 19",
-      "href": "/conferences"
+      "href": "/conferences/"
     },
     "cards": [
       {
@@ -160,7 +160,7 @@
         "meta": "2025 · SARAWAK, MALAYSIA",
         "title": "Navigating Change: Buddhist Women in Transition",
         "linkLabel": "View conference →",
-        "href": "/conferences"
+        "href": "/conferences/19/"
       },
       {
         "num": "#18",
@@ -168,7 +168,7 @@
         "meta": "2023 · SEOUL, KOREA",
         "title": "Living in a Precarious World",
         "linkLabel": "View conference →",
-        "href": "/conferences"
+        "href": "/conferences/18/"
       },
       {
         "num": "#17",
@@ -176,7 +176,7 @@
         "meta": "2021 · ONLINE",
         "title": "Buddhist Women Beyond Boundaries",
         "linkLabel": "View conference →",
-        "href": "/conferences"
+        "href": "/conferences/17/"
       },
       {
         "num": "#16",
@@ -184,7 +184,7 @@
         "meta": "2019 · BLUE MOUNTAINS",
         "title": "New Horizons in Buddhism",
         "linkLabel": "View conference →",
-        "href": "/conferences"
+        "href": "/conferences/16/"
       }
     ]
   },
