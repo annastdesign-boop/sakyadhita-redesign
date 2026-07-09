@@ -114,7 +114,7 @@
     "heading": "20th International Conference",
     "sub": "Celebrating our 20th biennial international conference in 2027",
     "card": {
-      "img": "/uploads/feat-conf.jpg",
+      "img": "/uploads/highlights.jpg",
       "eyebrow": "",
       "title": "20th Sakyadhita International Conference on Buddhist Women",
       "meta": "June 19–26, 2027",
@@ -156,7 +156,7 @@
     "cards": [
       {
         "num": "#19",
-        "img": "/uploads/feat-conf.jpg",
+        "img": "/uploads/Adam_181_KUC0531-2048x1366.webp",
         "meta": "2025 · SARAWAK, MALAYSIA",
         "title": "Navigating Change: Buddhist Women in Transition",
         "linkLabel": "View conference →",
@@ -209,13 +209,15 @@
         "img": "/uploads/feat-jun27.jpg",
         "eyebrow": "EDUCATION",
         "title": "The ordination issue",
+        "text": "",
         "linkLabel": "Learn more →",
         "href": "/ordination-issue"
       },
       {
-        "img": "/uploads/highlights.jpg",
+        "img": "/uploads/cultural-performance.jpg",
         "eyebrow": "CONFERENCE · SARAWAK 2025",
         "title": "Highlights from the 19th Conference",
+        "text": "",
         "linkLabel": "See highlights →",
         "href": "https://tricycle.org/article/buddhist-women-conference/"
       },
@@ -223,6 +225,7 @@
         "img": "/uploads/bhutan-2025-ordination.jpg",
         "eyebrow": "ORDINATION · MILESTONE",
         "title": "265 nuns receive full ordination in Bhutan",
+        "text": "",
         "linkLabel": "Learn more →",
         "href": "https://www.lionsroar.com/bhutan-festival-marks-landmark-for-buddhist-nuns/"
       },
@@ -230,6 +233,7 @@
         "img": "/uploads/publication.jpg",
         "eyebrow": "PUBLICATION",
         "title": "Bridging Worlds: Buddhist Women's Voices Across Generations",
+        "text": "",
         "linkLabel": "Browse library →",
         "href": "/publications"
       }
