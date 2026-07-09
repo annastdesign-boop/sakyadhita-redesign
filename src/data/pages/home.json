@@ -197,7 +197,7 @@
     },
     "feature": {
       "img": "/uploads/newsletter-v33.jpg",
-      "focus": "center top",
+      "focus": "50% 50%",
       "eyebrow": "NEWSLETTER · 2025",
       "title": "Volume 33, Number 1",
       "text": "Reflections from the 18th Conference in Seoul, and a preview of Sarawak 2025.",
