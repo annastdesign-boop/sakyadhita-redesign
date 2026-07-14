@@ -1,7 +1,7 @@
 ---
 /**
  * Newsletters — cover-flow carousel of recent issues + the full
- * 43-issue archive grouped by decade.
+ * 43-issue archive listed by volume number.
  *
  * All issue data lives in src/data/newsletters.json — edit there.
  * PDF links currently point at the old site's files; they will move to
@@ -16,18 +16,10 @@ const issues = Object.values(modules)
 const totalIssues = issues.length
 const carousel = issues.filter((i: any) => i.featured)
 
-/** Group issues into decades, newest decade first. */
-const decadeOf = (year: string) => `${Math.floor(Number(year) / 10) * 10}s`
-const decades: { label: string; issues: any[] }[] = []
-for (const issue of issues) {
-  const label = decadeOf(issue.year)
-  let d = decades.find((x) => x.label === label)
-  if (!d) decades.push((d = { label, issues: [] }))
-  d.issues.push(issue)
-}
-/** First two decades show immediately; the rest sit behind "Show all". */
-const visibleDecades = decades.slice(0, 2)
-const hiddenDecades = decades.slice(2)
+/** Listed straight through by volume number (newest first).
+    The first 15 show immediately; the rest sit behind "Show all". */
+const visibleIssues = issues.slice(0, 15)
+const hiddenIssues = issues.slice(15)
 ---
 
 <BaseLayout
@@ -66,72 +58,58 @@ const hiddenDecades = decades.slice(2)
         <span class="count">Showing {totalIssues} issues</span>
       </div>
 
-      {
-        visibleDecades.map((d) => (
-          <>
-            <div class="decade-label">
-              {d.label} <span class="num">· {d.issues.length} issues</span>
-            </div>
-            <div class="issue-grid">
-              {d.issues.map((issue: any) => (
-                <div class="issue">
-                  {issue.img ? (
-                    <div class="cv" style={`background-image:url('${issue.img}');`}>
-                      <span class="yr-stamp">{issue.year}</span>
-                    </div>
-                  ) : (
-                    <div class="cv cv--gen" style={`--c1:${issue.c1}; --c2:${issue.c2};`}>
-                      <span class="yr-stamp">{issue.year}</span>
-                      <span class="vol">{issue.vol}</span>
-                      <span class="ttl">{issue.title}</span>
-                    </div>
-                  )}
-                  <div class="body">
-                    <div class="ttl-line">{issue.title}</div>
-                    <a class="dl" href={issue.pdf} target="_blank" rel="noopener noreferrer">
-                      See PDF →
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
-        ))
-      }
-
-      <div id="more-issues" hidden>
+      <div class="issue-grid">
         {
-          hiddenDecades.map((d) => (
-            <>
-              <div class="decade-label">
-                {d.label} <span class="num">· {d.issues.length} issues</span>
-              </div>
-              <div class="issue-grid">
-                {d.issues.map((issue: any) => (
-                  <div class="issue">
-                    {issue.img ? (
-                      <div class="cv" style={`background-image:url('${issue.img}');`}>
-                        <span class="yr-stamp">{issue.year}</span>
-                      </div>
-                    ) : (
-                      <div class="cv cv--gen" style={`--c1:${issue.c1}; --c2:${issue.c2};`}>
-                        <span class="yr-stamp">{issue.year}</span>
-                        <span class="vol">{issue.vol}</span>
-                        <span class="ttl">{issue.title}</span>
-                      </div>
-                    )}
-                    <div class="body">
-                      <div class="ttl-line">{issue.title}</div>
-                      <a class="dl" href={issue.pdf} target="_blank" rel="noopener noreferrer">
-                        See PDF →
-                      </a>
-                    </div>
+          visibleIssues.map((issue: any) => (
+            <div class="issue">
+                {issue.img ? (
+                  <div class="cv" style={`background-image:url('${issue.img}');`}>
+                    <span class="yr-stamp">{issue.year}</span>
                   </div>
-                ))}
-              </div>
-            </>
+                ) : (
+                  <div class="cv cv--gen" style={`--c1:${issue.c1}; --c2:${issue.c2};`}>
+                    <span class="yr-stamp">{issue.year}</span>
+                    <span class="vol">{issue.vol}</span>
+                    <span class="ttl">{issue.title}</span>
+                  </div>
+                )}
+                <div class="body">
+                  <div class="ttl-line">{issue.title}</div>
+                  <a class="dl" href={issue.pdf} target="_blank" rel="noopener noreferrer">
+                    See PDF →
+                  </a>
+                </div>
+            </div>
           ))
         }
+      </div>
+
+      <div id="more-issues" hidden>
+        <div class="issue-grid">
+          {
+            hiddenIssues.map((issue: any) => (
+              <div class="issue">
+                {issue.img ? (
+                  <div class="cv" style={`background-image:url('${issue.img}');`}>
+                    <span class="yr-stamp">{issue.year}</span>
+                  </div>
+                ) : (
+                  <div class="cv cv--gen" style={`--c1:${issue.c1}; --c2:${issue.c2};`}>
+                    <span class="yr-stamp">{issue.year}</span>
+                    <span class="vol">{issue.vol}</span>
+                    <span class="ttl">{issue.title}</span>
+                  </div>
+                )}
+                <div class="body">
+                  <div class="ttl-line">{issue.title}</div>
+                  <a class="dl" href={issue.pdf} target="_blank" rel="noopener noreferrer">
+                    See PDF →
+                  </a>
+                </div>
+              </div>
+            ))
+          }
+        </div>
       </div>
 
       <div style="text-align: center; margin-top: 40px;" id="show-all-wrap">
@@ -330,21 +308,6 @@ const hiddenDecades = decades.slice(2)
     .all-head h2 { font-family: var(--font-title); font-weight: 700; font-size: 32px; color: var(--ink); }
     .all-head .count { font-size: 13px; color: var(--ink-subtle); }
 
-    .decade-label {
-      font-family: var(--font-num);
-      font-weight: 700; font-size: 14px;
-      letter-spacing: 0.2em;
-      color: var(--ink); text-transform: uppercase;
-      margin: 32px 0 16px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .decade-label::after {
-      content: ""; flex: 1; height: 1px; background: var(--border);
-    }
-    .decade-label .num {
-      font-size: 12px; color: var(--ink-subtle); letter-spacing: 0.06em;
-      font-weight: 600;
-    }
     .issue-grid {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
     }
