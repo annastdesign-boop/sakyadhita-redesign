@@ -16,10 +16,10 @@ const issues = Object.values(modules)
 const totalIssues = issues.length
 const carousel = issues.filter((i: any) => i.featured)
 
-/** Listed straight through by volume number (newest first).
-    The first 15 show immediately; the rest sit behind "Show all". */
-const visibleIssues = issues.slice(0, 15)
-const hiddenIssues = issues.slice(15)
+/** Listed straight through by volume number (newest first) in ONE grid,
+    so rows always stay full. The first 16 (4 full rows of 4) show
+    immediately; the rest are hidden in place until "Show all". */
+const INITIAL_SHOWN = 16
 ---
 
 <BaseLayout
@@ -60,56 +60,28 @@ const hiddenIssues = issues.slice(15)
 
       <div class="issue-grid">
         {
-          visibleIssues.map((issue: any) => (
-            <div class="issue">
-                {issue.img ? (
-                  <div class="cv" style={`background-image:url('${issue.img}');`}>
-                    <span class="yr-stamp">{issue.year}</span>
-                  </div>
-                ) : (
-                  <div class="cv cv--gen" style={`--c1:${issue.c1}; --c2:${issue.c2};`}>
-                    <span class="yr-stamp">{issue.year}</span>
-                    <span class="vol">{issue.vol}</span>
-                    <span class="ttl">{issue.title}</span>
-                  </div>
-                )}
-                <div class="body">
-                  <div class="ttl-line">{issue.title}</div>
-                  <a class="dl" href={issue.pdf} target="_blank" rel="noopener noreferrer">
-                    See PDF →
-                  </a>
+          issues.map((issue: any, i: number) => (
+            <div class:list={['issue', i >= INITIAL_SHOWN && 'issue--more']}>
+              {issue.img ? (
+                <div class="cv" style={`background-image:url('${issue.img}');`}>
+                  <span class="yr-stamp">{issue.year}</span>
                 </div>
+              ) : (
+                <div class="cv cv--gen" style={`--c1:${issue.c1}; --c2:${issue.c2};`}>
+                  <span class="yr-stamp">{issue.year}</span>
+                  <span class="vol">{issue.vol}</span>
+                  <span class="ttl">{issue.title}</span>
+                </div>
+              )}
+              <div class="body">
+                <div class="ttl-line">{issue.title}</div>
+                <a class="dl" href={issue.pdf} target="_blank" rel="noopener noreferrer">
+                  See PDF →
+                </a>
+              </div>
             </div>
           ))
         }
-      </div>
-
-      <div id="more-issues" hidden>
-        <div class="issue-grid">
-          {
-            hiddenIssues.map((issue: any) => (
-              <div class="issue">
-                {issue.img ? (
-                  <div class="cv" style={`background-image:url('${issue.img}');`}>
-                    <span class="yr-stamp">{issue.year}</span>
-                  </div>
-                ) : (
-                  <div class="cv cv--gen" style={`--c1:${issue.c1}; --c2:${issue.c2};`}>
-                    <span class="yr-stamp">{issue.year}</span>
-                    <span class="vol">{issue.vol}</span>
-                    <span class="ttl">{issue.title}</span>
-                  </div>
-                )}
-                <div class="body">
-                  <div class="ttl-line">{issue.title}</div>
-                  <a class="dl" href={issue.pdf} target="_blank" rel="noopener noreferrer">
-                    See PDF →
-                  </a>
-                </div>
-              </div>
-            ))
-          }
-        </div>
       </div>
 
       <div style="text-align: center; margin-top: 40px;" id="show-all-wrap">
@@ -250,7 +222,7 @@ const hiddenIssues = issues.slice(15)
 
     // ── Show-all archive toggle ──
     document.getElementById('show-all-btn')?.addEventListener('click', () => {
-      document.getElementById('more-issues')!.hidden = false
+      document.querySelectorAll('.issue--more').forEach((el) => el.classList.remove('issue--more'))
       document.getElementById('show-all-wrap')!.style.display = 'none'
     })
 
@@ -320,6 +292,10 @@ const hiddenIssues = issues.slice(15)
       display: flex; flex-direction: column;
     }
     .issue:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    /* Extra volumes stay in the same grid so rows never break — hidden in
+       place until "Show all" removes this class. Must come after `.issue`
+       (same specificity) to override its display:flex. */
+    .issue--more { display: none; }
     .issue .cv {
       aspect-ratio: 4/3;
       background-size: 110% auto;
