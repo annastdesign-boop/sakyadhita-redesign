@@ -8,10 +8,7 @@
   "dates": "June 19–26, 2027",
   "host": "Indonesian Buddhist Association",
   "upcoming": true,
-  "materialsVisible": false,
-  "materials": [],
   "about": "The 20th Sakyadhita International Conference travels to Indonesia — bringing together Buddhist women from across the world's traditions for five days of teachings, scholarship, and friendship. Hosted by the Indonesian Buddhist Association, the program will feature plenary lectures, panel discussions, meditation sessions, cultural performances, and opportunities to connect with practitioners and scholars from over 30 countries. We look forward to welcoming you to Indonesia in June 2027.",
-  "photos": [],
   "notice": "The Academic Program Committee is now receiving paper proposals for the 20th Sakyadhita International Conference 2027. Paper proposals should be submitted by July 30, 2026.",
   "ctaPrimary": {
     "label": "Submit your proposal",
@@ -21,8 +18,11 @@
     "label": "Learn more",
     "href": "#proposals"
   },
+  "heroImg": "/uploads/11011107_10153433349353094_6634089746534136032_o.jpg",
+  "photos": [],
   "callForPapers": {
     "title": "Present your paper at our 20th International Conference on Buddhist Women",
+    "titleLine2": "June 19–26, 2027 · Magelang, Indonesia",
     "subtitle": "",
     "intro": "<strong>Conference theme: Shaping Futures: Healing Bodies, Minds, and Communities.</strong><br/>The Academic Program Committee is now receiving paper proposals for the 20th Sakyadhita International Conference on Buddhist Women. This year we are also celebrating the 40th anniversary of Sakyadhita.",
     "formUrl": "https://docs.google.com/forms/d/e/1FAIpQLSeFVz3OTE_aWqNUa0ZK6PiIgL1JWPcOvQXXUn7yrN1ivD6dqQ/viewform",
@@ -71,7 +71,8 @@
     "disclosure": "At the time of proposal submission, authors must fully indicate their use of all AI tools.",
     "welcome": "Sakyadhita encourages diversity and creativity. We welcome proposals from presenters of any gender, nationality, or status. We look forward to receiving your proposal!",
     "note": "Please note that this will be an in-person conference, and participants must register and plan accordingly. Paper presenters are responsible for their own conference-related travel and participation fees.",
-    "contactEmail": "sakyadhita.academic.committee@gmail.com",
-    "titleLine2": "June 19–26, 2027 · Magelang, Indonesia"
-  }
+    "contactEmail": "sakyadhita.academic.committee@gmail.com"
+  },
+  "materialsVisible": false,
+  "materials": []
 }
