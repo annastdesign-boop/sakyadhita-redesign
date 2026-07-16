@@ -11,6 +11,8 @@
 [[headers]]
   for = "/*"
   [headers.values]
+    # PREVIEW MODE: tell all bots not to index. Remove at launch.
+    X-Robots-Tag = "noindex, nofollow"
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
