@@ -21,7 +21,7 @@ const ord = (num: number) => {
   const v = num % 100
   return num + (s[(v - 20) % 10] || s[v] || s[0])
 }
-const heroImg = (c as any).heroImg ?? c.photos?.find((p: any) => p.f)?.f ?? '/assets/feat-conf.png'
+const heroImg = (c as any).heroImg ?? c.photos?.find((p: any) => p.f)?.f ?? '/assets/feat-conf.jpg'
 ---
 
 <BaseLayout
