@@ -1,13 +1,10 @@
-# ─────────────────────────────────────────────────────────────
-# PREVIEW MODE — crawling is BLOCKED.
-# This site lives at sakyadhita-redesign.netlify.app and is not the
-# public site yet. Blocking crawlers stops search-engine bots from
-# repeatedly downloading every page + PDF (which was burning Netlify
-# bandwidth credits) and keeps the preview out of Google results.
-#
-# ⚠️ AT LAUNCH (when sakyadhita.org points here): replace this whole
-# file with the "Allow all" version and point the sitemap at
-# https://sakyadhita.org/sitemap-index.xml
-# ─────────────────────────────────────────────────────────────
+# sakyadhita.org — live site. Search engines welcome.
 User-agent: *
-Disallow: /
+Allow: /
+
+Sitemap: https://sakyadhita.org/sitemap-index.xml
+
+# The content editors are private
+User-agent: *
+Disallow: /admin/
+Disallow: /admin-classic/
