@@ -89,7 +89,7 @@ const firstTerm = terms[0]
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>
                 </div>
-                <div class="t-pic" style={`background-image:url('${item.image}');`} role="img" aria-label={item.title} />
+                <div class="t-pic" style={`background-image:url('${item.image}');${(item as any).imagePosition ? ` background-position: ${(item as any).imagePosition};` : ''}`} role="img" aria-label={item.title} />
               </div>
             ))
           }

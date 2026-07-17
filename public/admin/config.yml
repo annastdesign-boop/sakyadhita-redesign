@@ -1423,6 +1423,15 @@ collections:
                 required: false
                 options:
                   - { label: "Center (default)", value: "50% 50%" }
+                  - { label: "Top (masthead/faces at the top)", value: "50% 0%" }
+                  - { label: "Upper third", value: "50% 30%" }
+                  - { label: "Bottom", value: "50% 100%" }
+              - name: imagePosition
+                label: "Image focal point"
+                widget: select
+                required: false
+                options:
+                  - { label: "Center (default)", value: "50% 50%" }
                   - { label: "Top (faces near the top)", value: "50% 0%" }
                   - { label: "Upper third", value: "50% 30%" }
                   - { label: "Bottom", value: "50% 100%" }
