@@ -20,3 +20,16 @@
   for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Media caching: browsers and crawlers keep files instead of re-downloading
+# on every visit. 1 day for CMS uploads (safe if an editor replaces a file
+# under the same name), 1 week for built-in assets.
+[[headers]]
+  for = "/uploads/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
