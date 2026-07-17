@@ -8,6 +8,9 @@ Sitemap: https://sakyadhita.org/sitemap-index.xml
 User-agent: *
 Disallow: /admin/
 Disallow: /admin-classic/
+# PDFs are for people, not crawlers — they are 93 MB of bandwidth per
+# full crawl and their content is already represented on the pages.
+Disallow: /uploads/*.pdf$
 
 # AI-training scrapers: blocked to save bandwidth. Normal search engines
 # (Google, Bing, DuckDuckGo...) remain welcome above.

@@ -26,7 +26,7 @@ import ordinationPage from '../data/pages/ordination.json'
     <div class="ord-hero-imgs">
       {
         ordinationPage.hero.images.map((img: any) => (
-          <figure><img src={img.src} alt={img.alt} style={img.objectPosition ? `object-position: ${img.objectPosition};` : undefined} /></figure>
+          <figure><img loading="lazy" src={img.src} alt={img.alt} style={img.objectPosition ? `object-position: ${img.objectPosition};` : undefined} /></figure>
         ))
       }
     </div>

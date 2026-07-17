@@ -535,7 +535,7 @@ const MAT_COLORS = [
     if (it.yt) {
       slot.innerHTML = `<iframe class="media-video" src="https://www.youtube.com/embed/${it.yt}?autoplay=1&rel=0" title="${it.caption}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
     } else {
-      slot.innerHTML = `<img class="media" src="${it.src}" alt="${it.caption}" />`
+      slot.innerHTML = `<img loading="lazy" class="media" src="${it.src}" alt="${it.caption}" />`
     }
     if (cap) cap.textContent = it.caption
     thumbs()

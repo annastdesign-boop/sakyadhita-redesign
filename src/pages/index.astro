@@ -60,7 +60,7 @@ const branchesMap = {
         })}
         <!-- duplicate set for the seamless loop -->
         {homePage.hero.marquee.map((m) => {
-          const img = <img src={m.img} alt="" style={m.focus ? `object-position: ${m.focus};` : undefined} />
+          const img = <img loading="lazy" src={m.img} alt="" style={m.focus ? `object-position: ${m.focus};` : undefined} />
           return m.href ? <a href={m.href} tabindex="-1">{img}</a> : img
         })}
       </div>

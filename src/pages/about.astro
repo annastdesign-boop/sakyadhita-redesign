@@ -147,7 +147,7 @@ const firstTerm = terms[0]
                 <div class="portrait" style={`background-image:url('${p.img}');`} />
               ) : (
                 <div class="portrait no-photo">
-                  <img src="/assets/lead-logo-fallback.svg" alt="Sakyadhita" />
+                  <img loading="lazy" src="/assets/lead-logo-fallback.svg" alt="Sakyadhita" />
                 </div>
               )}
               <h3>{p.name}</h3>
@@ -320,7 +320,7 @@ const firstTerm = terms[0]
         .map((p, i) => {
           const portrait = p.img
             ? `<div class="portrait" style="background-image:url('${p.img}');"></div>`
-            : `<div class="portrait no-photo"><img src="/assets/lead-logo-fallback.svg" alt="Sakyadhita" /></div>`
+            : `<div class="portrait no-photo"><img loading="lazy" src="/assets/lead-logo-fallback.svg" alt="Sakyadhita" /></div>`
           return `<button class="person" type="button" data-idx="${i}">${portrait}<h3>${p.name}</h3><div class="role">${p.role}</div><p>${p.card}</p></button>`
         })
         .join('')
@@ -337,7 +337,7 @@ const firstTerm = terms[0]
       } else {
         elPortrait.className = 'bio-portrait no-photo'
         ;(elPortrait as HTMLElement).style.backgroundImage = 'none'
-        elPortrait.innerHTML = '<img src="/assets/lead-logo-fallback.svg" alt="Sakyadhita" />'
+        elPortrait.innerHTML = '<img loading="lazy" src="/assets/lead-logo-fallback.svg" alt="Sakyadhita" />'
       }
       elName.textContent = p.name
       elRole.textContent = p.role
