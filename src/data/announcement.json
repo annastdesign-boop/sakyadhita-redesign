@@ -1,6 +1,6 @@
 {
   "_comment": "Thin announcement banner at the very top of every page. Untick 'enabled' in the CMS to hide it site-wide.",
-  "enabled": true,
+  "enabled": false,
   "text": "📣 Call for Papers is open — 20th Sakyadhita International Conference. Proposals due July 30, 2026.",
   "ctaLabel": "Learn & submit",
   "ctaUrl": "/conferences#proposals"
