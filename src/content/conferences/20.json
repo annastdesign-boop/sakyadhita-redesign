@@ -9,17 +9,18 @@
   "host": "Indonesian Buddhist Association",
   "upcoming": true,
   "about": "The 20th Sakyadhita International Conference travels to Indonesia — bringing together Buddhist women from across the world's traditions for five days of teachings, scholarship, and friendship. Hosted by the Indonesian Buddhist Association, the program will feature plenary lectures, panel discussions, meditation sessions, cultural performances, and opportunities to connect with practitioners and scholars from over 30 countries. We look forward to welcoming you to Indonesia in June 2027.",
-  "notice": "The Academic Program Committee is now receiving paper proposals for the 20th Sakyadhita International Conference 2027. Paper proposals should be submitted by July 30, 2026.",
+  "notice": "",
   "ctaPrimary": {
-    "label": "Submit your proposal",
+    "label": "",
     "href": "https://docs.google.com/forms/d/e/1FAIpQLSeFVz3OTE_aWqNUa0ZK6PiIgL1JWPcOvQXXUn7yrN1ivD6dqQ/viewform"
   },
   "ctaSecondary": {
-    "label": "Learn more",
+    "label": "",
     "href": "#proposals"
   },
   "heroImg": "/uploads/11011107_10153433349353094_6634089746534136032_o.jpg",
   "photos": [],
+  "callForPapersVisible": false,
   "callForPapers": {
     "title": "Present your paper at our 20th International Conference on Buddhist Women",
     "titleLine2": "June 19–26, 2027 · Magelang, Indonesia",

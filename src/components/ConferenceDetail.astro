@@ -41,6 +41,7 @@ type Conf = {
   notice?: string
   ctaPrimary?: { label: string; href: string }
   ctaSecondary?: { label: string; href: string }
+  callForPapersVisible?: boolean
   callForPapers?: {
     title: string
     titleLine2?: string
@@ -186,7 +187,7 @@ const MAT_COLORS = [
     </section>
 
     {
-      c.callForPapers && (
+      c.callForPapers && c.callForPapersVisible && (
         <section class="cfp" id="proposals">
           <div class="cfp-top">
             <div class="cfp-lead">

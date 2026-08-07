@@ -1091,6 +1091,10 @@ collections:
           - { name: excerpt, label: Excerpt, widget: text, required: false }
           - { name: href, label: "Link to the article", widget: string, required: false }
           - { name: img, label: "Thumbnail image", widget: image, required: false }
+      - name: callForPapersVisible
+        label: "Show Call for Papers section? (untick to hide it site-wide)"
+        widget: boolean
+        required: false
       - name: callForPapers
         label: "Call for Papers section (optional)"
         widget: object
