@@ -339,9 +339,9 @@ const branches = Object.values(modules)
       z-index: 12;
       transform: translate3d(0, 0, 0);
       will-change: transform;
-      background: rgba(253, 249, 246, 0.78);
-      backdrop-filter: saturate(140%) blur(14px);
-      -webkit-backdrop-filter: saturate(140%) blur(14px);
+      /* Opaque so branch cards are fully hidden as they scroll up behind
+         the filter bar — no show-through under the sticky header. */
+      background: var(--bg);
       padding: 22px 40px 14px;
       margin: 0 -40px 16px;
       border-bottom: 1px solid var(--border-soft);
