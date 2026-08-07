@@ -7,41 +7,15 @@
   "hero": {
     "eyebrow": "CONTACT",
     "title": "Get in touch",
-    "lede": "We're a volunteer-run organization. We'll get back to you as soon as we can — usually within a week."
-  },
-  "routing": {
-    "eyebrow": "FIRST, WHAT'S YOUR INQUIRY ABOUT?",
-    "heading": "Route your message to the right team",
-    "sub": "Picking a category helps us reply faster.",
-    "cards": [
-      {
-        "icon": "📨",
-        "iconBg": "",
-        "title": "General inquiry",
-        "text": "Questions, comments, dharma offerings, general correspondence.",
-        "cta": "Use this form ↓",
-        "href": "#form",
-        "id": ""
-      },
-      {
-        "icon": "🌏",
-        "iconBg": "var(--bg-warm)",
-        "title": "Branch contact",
-        "text": "Looking for your local branch or chapter? See the directory.",
-        "cta": "Branch directory →",
-        "href": "/branches",
-        "id": ""
-      },
-      {
-        "icon": "📰",
-        "iconBg": "rgba(243,154,108,.25)",
-        "title": "Press & partnerships",
-        "text": "Media inquiries, interview requests, partnership proposals.",
-        "cta": "Press contact →",
-        "href": "#form",
-        "id": "press"
-      }
-    ]
+    "lede": "We're a volunteer-run organization. We'll get back to you as soon as we can — usually within a week.",
+    "primaryCta": {
+      "label": "Contact",
+      "href": "#form"
+    },
+    "secondaryCta": {
+      "label": "Branch directory",
+      "href": "/branches"
+    }
   },
   "form": {
     "eyebrow": "GENERAL INQUIRY",

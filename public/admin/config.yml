@@ -654,28 +654,20 @@ collections:
               - { name: eyebrow, label: "Small label above the heading", widget: string, required: false }
               - { name: title, label: Heading, widget: string, required: false }
               - { name: lede, label: "Intro text", widget: text, required: false }
-          - name: routing
-            label: "\"Route your message\" section"
-            widget: object
-            required: false
-            fields:
-              - { name: eyebrow, label: "Small label", widget: string, required: false }
-              - { name: heading, label: Heading, widget: string, required: false }
-              - { name: sub, label: "Line under the heading", widget: string, required: false }
-              - name: cards
-                label: "Route cards"
-                label_singular: card
-                widget: list
+              - name: primaryCta
+                label: "Primary button (leave label empty to hide)"
+                widget: object
                 required: false
-                summary: "{{fields.title}}"
                 fields:
-                  - { name: icon, label: "Emoji icon", widget: string, required: false }
-                  - { name: iconBg, label: "Icon background (CSS colour — leave empty for the default lavender)", widget: string, required: false }
-                  - { name: title, label: Title, widget: string, required: false }
-                  - { name: text, label: Text, widget: text, required: false }
-                  - { name: cta, label: "Link text (e.g. Use this form ↓)", widget: string, required: false }
+                  - { name: label, label: "Button text", widget: string, required: false }
                   - { name: href, label: "Link (e.g. #form or /branches)", widget: string, required: false }
-                  - { name: id, label: "Anchor id (technical — leave as is)", widget: string, required: false }
+              - name: secondaryCta
+                label: "Secondary button (leave label empty to hide)"
+                widget: object
+                required: false
+                fields:
+                  - { name: label, label: "Button text", widget: string, required: false }
+                  - { name: href, label: "Link (e.g. #form or /branches)", widget: string, required: false }
           - name: form
             label: "Inquiry form headings"
             widget: object

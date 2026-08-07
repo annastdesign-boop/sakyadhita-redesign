@@ -25,28 +25,22 @@ import contactPage from '../data/pages/contact.json'
       <div class="eyebrow">{contactPage.hero.eyebrow}</div>
       <h1 class="h-display">{contactPage.hero.title}</h1>
       <p class="lede">{contactPage.hero.lede}</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="shell">
-      <div class="section-head section-head--left">
-        <div class="eyebrow">{contactPage.routing.eyebrow}</div>
-        <h2 class="h-section" style="margin-top: 8px;">{contactPage.routing.heading}</h2>
-        <p class="muted" style="margin-top: 6px;">{contactPage.routing.sub}</p>
-      </div>
-      <div class="routes">
-        {
-          contactPage.routing.cards.map((card) => (
-            <a class="route" href={card.href} id={card.id || undefined}>
-              <div class="ico" style={card.iconBg ? `background: ${card.iconBg};` : undefined}>{card.icon}</div>
-              <h3>{card.title}</h3>
-              <p>{card.text}</p>
-              <span class="cta">{card.cta}</span>
-            </a>
-          ))
-        }
-      </div>
+      {
+        (contactPage.hero.primaryCta?.label || contactPage.hero.secondaryCta?.label) && (
+          <div class="cta-row">
+            {contactPage.hero.primaryCta?.label && (
+              <a class="btn btn--primary btn--lg" href={contactPage.hero.primaryCta.href}>
+                {contactPage.hero.primaryCta.label} <span class="arr">→</span>
+              </a>
+            )}
+            {contactPage.hero.secondaryCta?.label && (
+              <a class="btn btn--ghost btn--lg" href={contactPage.hero.secondaryCta.href}>
+                {contactPage.hero.secondaryCta.label}
+              </a>
+            )}
+          </div>
+        )
+      }
     </div>
   </section>
 
@@ -154,27 +148,10 @@ import contactPage from '../data/pages/contact.json'
   </script>
 
   <style is:global>
-    .routes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .route {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      padding: 32px 28px;
-      display: flex; flex-direction: column; gap: 12px;
-      transition: transform .15s, border-color .15s, box-shadow .15s;
-      text-decoration: none; color: inherit;
+    .hero-compact .cta-row {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      justify-content: center; margin-top: 26px;
     }
-    .route:hover { transform: translateY(-2px); border-color: var(--lavender-2); box-shadow: var(--shadow-md); }
-    .route .ico {
-      width: 52px; height: 52px;
-      border-radius: 50%;
-      background: var(--lavender);
-      display: grid; place-items: center;
-      font-size: 24px;
-    }
-    .route h3 { font-family: var(--font-title); font-weight: 700; font-size: 24px; color: var(--ink); }
-    .route p { font-size: 14.5px; color: var(--ink-body); line-height: 1.55; }
-    .route .cta { color: var(--purple); font-weight: 600; font-size: 14px; margin-top: auto; }
 
     .form-grid {
       display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px;
