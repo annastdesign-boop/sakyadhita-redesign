@@ -700,6 +700,7 @@ img { border-radius: 8px; }
 .field { display: flex; flex-direction: column; gap: 6px; }
 .field label { font-size: 12.5px; font-weight: 600; color: var(--ink-2); letter-spacing: 0.02em; }
 .field input[type=text], .field input[type=email], .field input[type=number],
+.field input[type=tel],
 .field select, .field textarea {
   border: 1px solid var(--border);
   background: #fff;
