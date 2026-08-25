@@ -13,5 +13,6 @@
       "f": "/uploads/conf02-bangkok.jpg",
       "caption": "Bangkok, 1991"
     }
-  ]
+  ],
+  "noPhotoCredit": true
 }
