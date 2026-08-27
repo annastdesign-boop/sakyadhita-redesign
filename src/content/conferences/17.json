@@ -15,5 +15,14 @@
     }
   ],
   "noPhotoCredit": true,
-  "hideCoverage": true
+  "coverage": [
+    {
+      "outlet": "TRICYCLE",
+      "date": "Jan 2022",
+      "headline": "Sakyadhita International Association of Buddhist Women Holds First Virtual Conference",
+      "excerpt": "Over 1,000 monastics, laypeople, and practitioners from around the world gathered online for the 17th biennial conference to discuss gender equality issues in Buddhism.",
+      "href": "https://tricycle.org/article/sakyadhita-virtual-conference/",
+      "img": "/uploads/conference-17-tricycle-2022.jpg"
+    }
+  ]
 }
