@@ -1070,6 +1070,7 @@ collections:
               - { label: "Left", value: "0% 50%" }
               - { label: "Slightly right of center", value: "60% 50%" }
               - { label: "Right", value: "100% 50%" }
+      - { name: hideCoverage, label: "Hide the Media coverage section on this conference", widget: boolean, required: false }
       - name: coverage
         label: "Media coverage"
         label_singular: article

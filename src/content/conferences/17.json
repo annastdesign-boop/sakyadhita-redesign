@@ -14,5 +14,6 @@
       "caption": "Online gathering, 2021"
     }
   ],
-  "noPhotoCredit": true
+  "noPhotoCredit": true,
+  "hideCoverage": true
 }

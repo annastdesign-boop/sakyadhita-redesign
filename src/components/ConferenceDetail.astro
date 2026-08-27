@@ -32,6 +32,7 @@ type Conf = {
   heroFocus?: string
   thumb?: string
   noPhotoCredit?: boolean
+  hideCoverage?: boolean
   subtitle?: string
   video?: { yt?: string; file?: string; title?: string; caption?: string; thumb?: string }
   coverage?: any
@@ -381,7 +382,7 @@ const MAT_COLORS = [
     }
 
     {
-      !c.upcoming && (
+      !c.upcoming && !c.hideCoverage && (
         <section>
           <div class="panel-head">
             <span class="label">Media coverage</span>
