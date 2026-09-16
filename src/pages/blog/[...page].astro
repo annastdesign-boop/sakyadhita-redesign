@@ -23,6 +23,14 @@ const rows = isFirst ? page.data.slice(1) : page.data
 const fmtDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 
+// numbered pagination: sliding 7-page window, then … and the last page
+const cur = page.currentPage
+const last = page.lastPage
+const winStart = Math.max(1, Math.min(cur - 3, last - 6))
+const winEnd = Math.min(last, winStart + 6)
+const nums = Array.from({ length: winEnd - winStart + 1 }, (_, i) => winStart + i)
+const urlFor = (n: number) => (n === 1 ? '/blog/' : `/blog/${n}/`)
+
 const title = isFirst
   ? 'Blog · Awakening Buddhist Women · Sakyadhita'
   : `Blog · Page ${page.currentPage} · Sakyadhita`
@@ -99,13 +107,33 @@ const title = isFirst
 
       <nav class="blog-pagination" aria-label="Blog pages">
         {page.url.prev ? (
-          <a class="btn btn--ghost" href={page.url.prev}>← Newer posts</a>
+          <a class="btn btn--ghost" href={page.url.prev}>← Newer</a>
         ) : (
           <span class="pg-spacer" />
         )}
-        <span class="pg-status">Page {page.currentPage} of {page.lastPage}</span>
+        <div class="pg-nums">
+          {winStart > 1 && (
+            <>
+              <a class="pg-n" href={urlFor(1)}>1</a>
+              {winStart > 2 && <span class="pg-dots">…</span>}
+            </>
+          )}
+          {nums.map((n) =>
+            n === cur ? (
+              <span class="pg-n is-cur" aria-current="page">{n}</span>
+            ) : (
+              <a class="pg-n" href={urlFor(n)}>{n}</a>
+            )
+          )}
+          {winEnd < last && (
+            <>
+              {winEnd < last - 1 && <span class="pg-dots">…</span>}
+              <a class="pg-n" href={urlFor(last)}>{last}</a>
+            </>
+          )}
+        </div>
         {page.url.next ? (
-          <a class="btn btn--ghost" href={page.url.next}>Older posts →</a>
+          <a class="btn btn--ghost" href={page.url.next}>Older →</a>
         ) : (
           <span class="pg-spacer" />
         )}
@@ -182,10 +210,21 @@ const title = isFirst
       display: flex; align-items: center; justify-content: space-between;
       gap: 16px; margin-top: 36px;
     }
-    .pg-status {
-      font-family: var(--font-num); font-weight: 600; font-size: 12px;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-subtle);
+    .pg-nums { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center; }
+    .pg-n {
+      min-width: 36px; height: 36px;
+      display: grid; place-items: center;
+      padding: 0 6px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      font-family: var(--font-num); font-weight: 600; font-size: 13.5px;
+      color: var(--ink); text-decoration: none;
+      transition: border-color .12s, color .12s;
     }
+    a.pg-n:hover { border-color: var(--purple); color: var(--purple); }
+    .pg-n.is-cur { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .pg-dots { color: var(--ink-subtle); padding: 0 2px; }
     .pg-spacer { width: 1px; }
 
     /* Desktop: 300px side margins for the whole blog page */
