@@ -165,8 +165,12 @@ const ld = JSON.stringify({
       text-align: left;
     }
     .pimg.full { clear: both; margin: 26px 0; }
-    .pimg.fl { float: left;  margin: 10px 32px 18px 0; }
-    .pimg.fr { float: right; margin: 10px 0 18px 32px; }
+    .pimg.fl { float: left;  margin: 12px 34px 20px 0; }
+    .pimg.fr { float: right; margin: 12px 0 20px 34px; }
+    /* Lists, tables, quotes create their own box next to a float —
+       they keep the gap instead of sliding underneath the image. */
+    .post-body ul, .post-body ol,
+    .post-body table, .post-body blockquote { overflow: hidden; }
     .pimg.w-port  { width: min(44%, 270px); }
     .pimg.w-land  { width: min(48%, 420px); }
     .pimg.w-small { width: min(44%, 300px); }
@@ -178,7 +182,6 @@ const ld = JSON.stringify({
       align-items: start;
     }
     .pimg-row .pimg { margin: 0; }
-    .post-body h1, .post-body h2, .post-body h3, .post-body h4 { clear: both; }
     .post-body::after { content: ""; display: block; clear: both; }
     @media (max-width: 700px) {
       .pimg.fl, .pimg.fr {
