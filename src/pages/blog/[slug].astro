@@ -50,6 +50,9 @@ const ld = JSON.stringify({
   </div>
 
   <article class="post">
+    <div class="shell shell--narrow post-topback">
+      <a class="btn btn--ghost" href="/blog/">← Back to Blog</a>
+    </div>
     <header class="post-head">
       <div class="shell shell--narrow">
         {post.labels?.length > 0 && (
@@ -174,6 +177,16 @@ const ld = JSON.stringify({
     }
     .pn:hover .pn-t { color: var(--purple); }
     .post-back { margin-top: 30px; }
+
+    .post-topback { padding-top: 14px; }
+
+    /* Desktop: 300px side margins for the whole post page */
+    @media (min-width: 1200px) {
+      .post .shell--narrow {
+        max-width: none;
+        padding: 0 300px;
+      }
+    }
 
     @media (max-width: 640px) {
       .post-nav { grid-template-columns: 1fr; }

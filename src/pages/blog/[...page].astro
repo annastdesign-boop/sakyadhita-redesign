@@ -188,6 +188,16 @@ const title = isFirst
     }
     .pg-spacer { width: 1px; }
 
+    /* Desktop: 300px side margins for the whole blog page */
+    @media (min-width: 1200px) {
+      .hero-compact .shell,
+      .blog-feature-wrap .shell,
+      .blog-list-wrap .shell {
+        max-width: none;
+        padding: 0 300px;
+      }
+    }
+
     @media (max-width: 860px) {
       .blog-feature { grid-template-columns: 1fr; gap: 22px; }
       .blog-feature .bf-text { order: 2; }
