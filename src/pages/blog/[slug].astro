@@ -51,7 +51,7 @@ const ld = JSON.stringify({
 
   <article class="post">
     <div class="shell shell--narrow post-topback">
-      <a class="btn btn--ghost" href="/blog/">← Back to Blog</a>
+      <a class="back-plain" href="/blog/">← Back to all</a>
     </div>
     <header class="post-head">
       <div class="shell shell--narrow">
@@ -141,7 +141,51 @@ const ld = JSON.stringify({
     .post-body img {
       max-width: 100%; height: auto;
       border-radius: var(--r-md);
-      margin: 10px auto; display: block;
+      display: block;
+    }
+    .back-plain {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-weight: 600; font-size: 14px;
+      color: var(--purple); text-decoration: none;
+    }
+    .back-plain:hover { text-decoration: underline; }
+
+    /* ── Book-style image system ────────────────────────────────
+       .full   — first landscape image, full column width
+       .fl/.fr — floated left/right, text wraps around
+       .pimg-row — two landscape photos side by side
+       Captions live inside the figure, so they wrap with it. */
+    .post-body figure.pimg { margin: 6px 0 18px; }
+    .post-body figure.pimg img { width: 100%; margin: 0; }
+    .post-body figure.pimg figcaption {
+      font-size: 12.5px; line-height: 1.5;
+      color: var(--ink-2);
+      padding-top: 8px;
+      text-align: left;
+    }
+    .pimg.full { clear: both; margin: 24px 0; }
+    .pimg.fl { float: left;  margin: 6px 28px 14px 0; }
+    .pimg.fr { float: right; margin: 6px 0 14px 28px; }
+    .pimg.w-port  { width: min(44%, 270px); }
+    .pimg.w-land  { width: min(48%, 420px); }
+    .pimg.w-small { width: min(44%, 300px); }
+    .pimg.w-sq    { width: min(44%, 310px); }
+    .pimg-row {
+      clear: both;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin: 24px 0;
+      align-items: start;
+    }
+    .pimg-row .pimg { margin: 0; }
+    .post-body h1, .post-body h2, .post-body h3, .post-body h4 { clear: both; }
+    .post-body::after { content: ""; display: block; clear: both; }
+    @media (max-width: 700px) {
+      .pimg.fl, .pimg.fr {
+        float: none;
+        width: 100%; max-width: 420px;
+        margin: 16px auto;
+      }
+      .pimg-row { grid-template-columns: 1fr; }
     }
     .post-body iframe {
       max-width: 100%;
