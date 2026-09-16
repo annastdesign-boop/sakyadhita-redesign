@@ -165,8 +165,13 @@ const ld = JSON.stringify({
       text-align: left;
     }
     .pimg.full { clear: both; margin: 26px 0; }
-    .pimg.fl { float: left;  margin: 12px 34px 20px 0; }
-    .pimg.fr { float: right; margin: 12px 0 20px 34px; }
+    /* clear:both — a new floated image always starts below the previous
+       one, so two floats can never squeeze the text between them */
+    .pimg.fl { float: left;  clear: both; margin: 12px 34px 20px 0; }
+    .pimg.fr { float: right; clear: both; margin: 12px 0 20px 34px; }
+    .pimg.center { clear: both; margin: 24px auto; }
+    .pimg.center.w-port  { width: min(70%, 320px); }
+    .pimg.center.w-small { width: min(70%, 340px); }
     /* Lists, tables, quotes create their own box next to a float —
        they keep the gap instead of sliding underneath the image. */
     .post-body ul, .post-body ol,
