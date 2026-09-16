@@ -1,0 +1,199 @@
+---
+/**
+ * /blog — paginated index of the Awakening Buddhist Women blog
+ * (162 posts imported from awakeningbuddhistwomen.blogspot.com).
+ * Newest post is featured on page 1; 15 posts per page.
+ * Images stay on Blogger's CDN so they cost no Netlify bandwidth.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro'
+
+export async function getStaticPaths({ paginate }: { paginate: any }) {
+  const modules = import.meta.glob('../../content/blog/*.json', { eager: true })
+  const posts = Object.values(modules)
+    .map((m: any) => m.default)
+    .sort((a: any, b: any) => b.published.localeCompare(a.published))
+  return paginate(posts, { pageSize: 15 })
+}
+
+const { page } = Astro.props
+const isFirst = page.currentPage === 1
+const feature = isFirst ? page.data[0] : null
+const rows = isFirst ? page.data.slice(1) : page.data
+
+const fmtDate = (iso: string) =>
+  new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+
+const title = isFirst
+  ? 'Blog · Awakening Buddhist Women · Sakyadhita'
+  : `Blog · Page ${page.currentPage} · Sakyadhita`
+---
+
+<BaseLayout
+  title={title}
+  description="Awakening Buddhist Women — stories, interviews, practice, and news from Sakyadhita's global community of Buddhist women."
+  active=""
+  ogImage={feature?.image ?? undefined}
+>
+  <div class="shell">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">›</span><span>Blog</span>
+    </nav>
+  </div>
+
+  <section class="hero-compact">
+    <div class="shell">
+      <div class="eyebrow">SAKYADHITA BLOG</div>
+      <h1 class="h-display">Awakening Buddhist Women</h1>
+      <p class="lede">
+        Stories, interviews, practice notes, and news from Buddhist women around the world.
+      </p>
+    </div>
+  </section>
+
+  {
+    feature && (
+      <section class="blog-feature-wrap">
+        <div class="shell">
+          <article class="blog-feature">
+            <div class="bf-text">
+              <h2><a href={`/blog/${feature.slug}/`}>{feature.title}</a></h2>
+              <p class="bf-excerpt">{feature.excerpt}</p>
+              <div class="post-meta">
+                <span>{fmtDate(feature.published)}</span>
+                <span class="dot">·</span>
+                <span>{feature.minutes} min read</span>
+              </div>
+            </div>
+            <a class="bf-pic" href={`/blog/${feature.slug}/`} aria-hidden="true" tabindex="-1">
+              {feature.image && <img src={feature.image} alt="" loading="eager" />}
+            </a>
+          </article>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="blog-list-wrap">
+    <div class="shell">
+      <div class="blog-list">
+        {
+          rows.map((p: any) => (
+            <article class="blog-row">
+              <div class="br-text">
+                {p.labels?.length > 0 && <div class="br-label">{p.labels[0]}</div>}
+                <h3><a href={`/blog/${p.slug}/`}>{p.title}</a></h3>
+                <p class="br-excerpt">{p.excerpt}</p>
+                <div class="post-meta">
+                  <span>{fmtDate(p.published)}</span>
+                  <span class="dot">·</span>
+                  <span>{p.minutes} min read</span>
+                </div>
+              </div>
+              <a class="br-pic" href={`/blog/${p.slug}/`} aria-hidden="true" tabindex="-1">
+                {p.thumb ? <img src={p.thumb} alt="" loading="lazy" /> : <span class="ph" />}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+
+      <nav class="blog-pagination" aria-label="Blog pages">
+        {page.url.prev ? (
+          <a class="btn btn--ghost" href={page.url.prev}>← Newer posts</a>
+        ) : (
+          <span class="pg-spacer" />
+        )}
+        <span class="pg-status">Page {page.currentPage} of {page.lastPage}</span>
+        {page.url.next ? (
+          <a class="btn btn--ghost" href={page.url.next}>Older posts →</a>
+        ) : (
+          <span class="pg-spacer" />
+        )}
+      </nav>
+    </div>
+  </section>
+
+  <style is:global>
+    /* Feature — headline left, large image right (kept on Blogger CDN) */
+    .blog-feature-wrap { padding: 8px 0 26px; }
+    .blog-feature {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: 48px;
+      align-items: center;
+      padding-bottom: 34px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .blog-feature .bf-text h2 {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: clamp(28px, 3.2vw, 40px);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+    }
+    .blog-feature .bf-text h2 a { color: var(--ink); text-decoration: none; }
+    .blog-feature .bf-text h2 a:hover { color: var(--purple); }
+    .bf-excerpt { margin-top: 14px; font-size: 16px; line-height: 1.6; color: var(--ink-body); }
+    .bf-pic { display: block; border-radius: var(--r-lg); overflow: hidden; background: var(--bg-subtle); }
+    .bf-pic img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+
+    .post-meta {
+      margin-top: 14px;
+      font-family: var(--font-num);
+      font-weight: 600; font-size: 11.5px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink-subtle);
+      display: flex; gap: 8px; align-items: baseline;
+    }
+    .post-meta .dot { color: var(--border); }
+
+    /* Rows — text left, thumbnail right, hairline dividers */
+    .blog-list-wrap { padding: 6px 0 70px; }
+    .blog-list { display: flex; flex-direction: column; }
+    .blog-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 240px;
+      gap: 36px;
+      align-items: start;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .br-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--purple);
+      margin-bottom: 8px;
+    }
+    .blog-row h3 {
+      font-family: var(--font-title);
+      font-weight: 700; font-size: 23px; line-height: 1.15;
+      letter-spacing: -0.005em;
+    }
+    .blog-row h3 a { color: var(--ink); text-decoration: none; }
+    .blog-row h3 a:hover { color: var(--purple); }
+    .br-excerpt { margin-top: 10px; font-size: 14.5px; line-height: 1.6; color: var(--ink-body); max-width: 62ch; }
+    .br-pic {
+      display: block; border-radius: var(--r-md); overflow: hidden;
+      background: var(--bg-subtle);
+    }
+    .br-pic img, .br-pic .ph { display: block; width: 100%; aspect-ratio: 3/2; object-fit: cover; }
+    .br-pic .ph { background: linear-gradient(135deg, var(--lavender), var(--coral-2)); }
+
+    .blog-pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; margin-top: 36px;
+    }
+    .pg-status {
+      font-family: var(--font-num); font-weight: 600; font-size: 12px;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-subtle);
+    }
+    .pg-spacer { width: 1px; }
+
+    @media (max-width: 860px) {
+      .blog-feature { grid-template-columns: 1fr; gap: 22px; }
+      .blog-feature .bf-text { order: 2; }
+      .bf-pic { order: 1; }
+      .blog-row { grid-template-columns: 1fr; gap: 14px; }
+      .br-pic { order: -1; max-width: 480px; }
+    }
+  </style>
+</BaseLayout>

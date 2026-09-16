@@ -1,0 +1,183 @@
+---
+/**
+ * /blog/[slug] — one full blog post, imported from
+ * awakeningbuddhistwomen.blogspot.com. The original HTML is kept;
+ * images stay on Blogger's CDN (no Netlify bandwidth).
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro'
+
+export async function getStaticPaths() {
+  const modules = import.meta.glob('../../content/blog/*.json', { eager: true })
+  const posts = Object.values(modules)
+    .map((m: any) => m.default)
+    .sort((a: any, b: any) => b.published.localeCompare(a.published))
+  return posts.map((post: any, i: number) => ({
+    params: { slug: post.slug },
+    props: { post, newer: posts[i - 1] ?? null, older: posts[i + 1] ?? null },
+  }))
+}
+
+const { post, newer, older } = Astro.props
+
+const fmtDate = (iso: string) =>
+  new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+
+const ld = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  datePublished: post.published,
+  dateModified: post.updated || post.published,
+  image: post.image ? [post.image] : undefined,
+  author: { '@type': 'Organization', name: 'Sakyadhita International Association of Buddhist Women' },
+  publisher: { '@type': 'Organization', name: 'Sakyadhita International Association of Buddhist Women', url: 'https://sakyadhita.org' },
+  mainEntityOfPage: `https://sakyadhita.org/blog/${post.slug}/`,
+})
+---
+
+<BaseLayout
+  title={`${post.title} · Sakyadhita Blog`}
+  description={post.excerpt}
+  active=""
+  ogImage={post.image ?? undefined}
+>
+  <script type="application/ld+json" set:html={ld} />
+
+  <div class="shell">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">›</span><a href="/blog/">Blog</a><span class="sep">›</span><span>{post.title}</span>
+    </nav>
+  </div>
+
+  <article class="post">
+    <header class="post-head">
+      <div class="shell shell--narrow">
+        {post.labels?.length > 0 && (
+          <div class="post-labels">
+            {post.labels.slice(0, 4).map((l: string) => <span class="chip">{l}</span>)}
+          </div>
+        )}
+        <h1>{post.title}</h1>
+        <div class="post-meta">
+          <span>{fmtDate(post.published)}</span>
+          <span class="dot">·</span>
+          <span>{post.minutes} min read</span>
+          <span class="dot">·</span>
+          <span>Sakyadhita Blog</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="shell shell--narrow">
+      <div class="post-body" set:html={post.html} />
+    </div>
+
+    <footer class="post-foot">
+      <div class="shell shell--narrow">
+        <nav class="post-nav" aria-label="More posts">
+          {newer ? (
+            <a class="pn pn--prev" href={`/blog/${newer.slug}/`}>
+              <span class="pn-k">← Newer</span>
+              <span class="pn-t">{newer.title}</span>
+            </a>
+          ) : (
+            <span />
+          )}
+          {older ? (
+            <a class="pn pn--next" href={`/blog/${older.slug}/`}>
+              <span class="pn-k">Older →</span>
+              <span class="pn-t">{older.title}</span>
+            </a>
+          ) : (
+            <span />
+          )}
+        </nav>
+        <div class="post-back">
+          <a class="btn btn--ghost" href="/blog/">← All blog posts</a>
+        </div>
+      </div>
+    </footer>
+  </article>
+
+  <style is:global>
+    .post-head { padding: 18px 0 8px; text-align: left; }
+    .post-labels { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .post-labels .chip {
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--purple);
+      padding: 4px 10px; background: var(--lavender);
+      border-radius: var(--r-pill, 999px);
+    }
+    .post-head h1 {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.08; letter-spacing: -0.01em;
+      color: var(--ink);
+      max-width: 26ch;
+    }
+    .post-head .post-meta {
+      margin-top: 16px;
+      font-family: var(--font-num);
+      font-weight: 600; font-size: 11.5px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink-subtle);
+      display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap;
+    }
+    .post-head .post-meta .dot { color: var(--border); }
+
+    /* Imported Blogger HTML — normalize inside our design system */
+    .post-body {
+      padding: 26px 0 8px;
+      font-size: 16.5px; line-height: 1.7; color: var(--ink-body);
+      overflow-wrap: break-word;
+    }
+    .post-body p { margin: 0 0 1em; }
+    .post-body a { color: var(--purple); }
+    .post-body a:hover { text-decoration: underline; }
+    .post-body img {
+      max-width: 100%; height: auto;
+      border-radius: var(--r-md);
+      margin: 10px auto; display: block;
+    }
+    .post-body iframe {
+      max-width: 100%;
+      border-radius: var(--r-md);
+      margin: 14px auto; display: block;
+    }
+    .post-body table { max-width: 100%; }
+    .post-body h1, .post-body h2, .post-body h3, .post-body h4 {
+      font-family: var(--font-title); color: var(--ink);
+      line-height: 1.2; margin: 1.4em 0 0.5em;
+    }
+    .post-body blockquote {
+      margin: 1.2em 0; padding: 4px 0 4px 18px;
+      border-left: 3px solid var(--lavender-2, var(--purple));
+      color: var(--ink-2);
+    }
+
+    .post-foot { padding: 26px 0 70px; }
+    .post-nav {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+      border-top: 1px solid var(--border-soft);
+      padding-top: 24px;
+    }
+    .pn { text-decoration: none; display: flex; flex-direction: column; gap: 6px; }
+    .pn--next { text-align: right; }
+    .pn-k {
+      font-family: var(--font-num); font-weight: 600; font-size: 11px;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-subtle);
+    }
+    .pn-t {
+      font-family: var(--font-title); font-weight: 700; font-size: 16px;
+      color: var(--ink); line-height: 1.25;
+    }
+    .pn:hover .pn-t { color: var(--purple); }
+    .post-back { margin-top: 30px; }
+
+    @media (max-width: 640px) {
+      .post-nav { grid-template-columns: 1fr; }
+      .pn--next { text-align: left; }
+    }
+  </style>
+</BaseLayout>
