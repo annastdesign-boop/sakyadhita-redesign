@@ -69,18 +69,11 @@ function layoutPost(html: string): string {
     while (run.length && (isBr(run[0]) || isEmptyText(run[0]))) run.shift()
 
     if (textLen >= 220) {
-      const side = /\bfr\b/.test(cls) ? 'mc-right' : 'mc-left'
-      const bodyHtml = run.map((x) => x.toString()).join('')
-      const block =
-        `<div class="media-cols ${side}">` +
-        `<figure class="pimg mc-img">${fig.innerHTML}</figure>` +
-        `<div class="mc-body">${bodyHtml}</div></div>`
-      fig.insertAdjacentHTML('beforebegin', block)
-      for (const x of run) {
-        if (x.nodeType === 3) x.rawText = ''
-        else x.remove()
-      }
-      fig.remove()
+      // magazine runaround: fixed-width 4:5 portrait floats beside the
+      // text, which wraps and then returns to full measure below it
+      const side = /\bfr\b/.test(cls) ? 'fr' : 'fl'
+      const width = cls.includes('w-port') ? 'w-port' : cls.includes('w-sq') ? 'w-sq' : 'w-small'
+      fig.setAttribute('class', `pimg mag ${side} ${width}`)
     } else {
       // not enough text to sit beside — stack it, centered
       const width = cls.includes('w-port') ? 'w-port' : 'w-small'
@@ -91,7 +84,7 @@ function layoutPost(html: string): string {
   // text column) stacks centered instead of floating
   for (const fig of root.querySelectorAll('figure')) {
     const cls = fig.getAttribute('class') || ''
-    if (/\bfl\b|\bfr\b/.test(cls) && /w-port|w-small|w-sq/.test(cls)) {
+    if (!cls.includes('mag') && (/\bfl\b|\bfr\b/.test(cls)) && /w-port|w-small|w-sq/.test(cls)) {
       fig.setAttribute('class', `pimg center ${cls.includes('w-port') ? 'w-port' : 'w-small'}`)
     }
   }
@@ -258,29 +251,17 @@ const ld = JSON.stringify({
     .pimg.fr { float: right; clear: both; margin: 12px 0 20px 34px; }
     .pimg.center { clear: both; margin: 24px auto; }
     /* Speaker portraits: consistent 4:5 crop regardless of source size */
-    .pimg.w-port img, .pimg.w-small img, .media-cols .mc-img img {
+    .pimg.w-port img, .pimg.w-small img {
       aspect-ratio: 4 / 5;
       object-fit: cover;
       object-position: top center;
     }
 
-    /* ── Two-column media block: text beside a fixed-width portrait ── */
-    .media-cols {
-      clear: both;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 240px;
-      gap: 20px 34px;
-      align-items: start;
-      margin: 18px 0 24px;
-    }
-    .media-cols.mc-left { grid-template-columns: 240px minmax(0, 1fr); }
-    .media-cols > .mc-img { margin: 0; grid-row: 1; }
-    .media-cols > .mc-body { grid-row: 1; min-width: 0; }
-    .mc-right > .mc-body { grid-column: 1; }
-    .mc-right > .mc-img  { grid-column: 2; }
-    .mc-left  > .mc-img  { grid-column: 1; }
-    .mc-left  > .mc-body { grid-column: 2; }
-    .mc-img figcaption { padding-top: 8px; }
+    /* ── Magazine runaround: fixed-width portrait floats in the text ── */
+    .pimg.mag { width: 240px; }
+    .pimg.mag.fl { float: left;  clear: both; margin: 6px 34px 16px 0; }
+    .pimg.mag.fr { float: right; clear: both; margin: 6px 0 16px 34px; }
+    .pimg.mag figcaption { padding-top: 8px; }
     .pimg.center.w-port  { width: min(70%, 320px); }
     .pimg.center.w-small { width: min(70%, 340px); }
     /* Lists, tables, quotes create their own box next to a float —
@@ -306,15 +287,11 @@ const ld = JSON.stringify({
         margin: 16px auto;
       }
       .pimg-row { grid-template-columns: 1fr; }
-      /* media blocks stack: photo on top (centered), text below, full width */
-      .media-cols, .media-cols.mc-left { grid-template-columns: 1fr; }
-      .media-cols > .mc-img,
-      .mc-left > .mc-img, .mc-right > .mc-img {
-        grid-column: 1; grid-row: 1;
+      .pimg.mag.fl, .pimg.mag.fr {
+        float: none;
         width: 100%; max-width: 320px;
-        justify-self: center;
+        margin: 16px auto;
       }
-      .mc-left > .mc-body, .mc-right > .mc-body { grid-column: 1; grid-row: 2; }
     }
     .post-body iframe {
       max-width: 100%;
