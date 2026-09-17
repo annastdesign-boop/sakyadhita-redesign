@@ -19,6 +19,87 @@ export async function getStaticPaths() {
 
 const { post, newer, older } = Astro.props
 
+import { parse } from 'node-html-parser'
+
+/**
+ * Render-time layout pass over imported post HTML (runs at build).
+ * Portrait/small images that float next to text become proper
+ * two-column blocks (.media-cols): flexible text column + fixed-width
+ * image column, instead of CSS floats. Landscape floats, full-width
+ * images, and 2-up rows are left untouched. Inline width/height/align
+ * attributes from Blogger are stripped here (and neutralized in CSS).
+ */
+function layoutPost(html: string): string {
+  const root = parse(html)
+
+  // strip legacy inline presentation attributes
+  for (const el of root.querySelectorAll('[width],[height],[align],[border]')) {
+    el.removeAttribute('width')
+    el.removeAttribute('height')
+    el.removeAttribute('align')
+    el.removeAttribute('border')
+  }
+
+  const isBr = (n: any) => n.nodeType === 1 && n.rawTagName?.toLowerCase() === 'br'
+  const isEmptyText = (n: any) => n.nodeType === 3 && !n.text.trim()
+
+  for (const fig of root.querySelectorAll('figure')) {
+    const cls = fig.getAttribute('class') || ''
+    const floated = /\bfl\b|\bfr\b/.test(cls)
+    const upright = /w-port|w-small|w-sq/.test(cls)
+    if (!floated || !upright) continue
+
+    // collect the text run that follows, up to the next figure/heading/row
+    // (walk the parent's childNodes by index — text nodes have no nextSibling)
+    const siblings: any[] = fig.parentNode ? fig.parentNode.childNodes : []
+    const start = siblings.indexOf(fig) + 1
+    const run: any[] = []
+    let textLen = 0
+    for (let i = start; i > 0 && i < siblings.length; i++) {
+      const n: any = siblings[i]
+      if (n.nodeType === 1) {
+        const t = n.rawTagName?.toLowerCase() || ''
+        const ncls = n.getAttribute?.('class') || ''
+        if (t === 'figure' || /^h[1-6]$/.test(t) || ncls.includes('pimg-row') || ncls.includes('media-cols')) break
+        if (n.querySelector && n.querySelector('figure')) break // never swallow another image's container
+      }
+      run.push(n)
+      textLen += (n.text || '').trim().length
+    }
+    while (run.length && (isBr(run[0]) || isEmptyText(run[0]))) run.shift()
+
+    if (textLen >= 220) {
+      const side = /\bfr\b/.test(cls) ? 'mc-right' : 'mc-left'
+      const bodyHtml = run.map((x) => x.toString()).join('')
+      const block =
+        `<div class="media-cols ${side}">` +
+        `<figure class="pimg mc-img">${fig.innerHTML}</figure>` +
+        `<div class="mc-body">${bodyHtml}</div></div>`
+      fig.insertAdjacentHTML('beforebegin', block)
+      for (const x of run) {
+        if (x.nodeType === 3) x.rawText = ''
+        else x.remove()
+      }
+      fig.remove()
+    } else {
+      // not enough text to sit beside — stack it, centered
+      const width = cls.includes('w-port') ? 'w-port' : 'w-small'
+      fig.setAttribute('class', `pimg center ${width}`)
+    }
+  }
+  // final sweep: any upright float that survived (e.g. cloned inside a
+  // text column) stacks centered instead of floating
+  for (const fig of root.querySelectorAll('figure')) {
+    const cls = fig.getAttribute('class') || ''
+    if (/\bfl\b|\bfr\b/.test(cls) && /w-port|w-small|w-sq/.test(cls)) {
+      fig.setAttribute('class', `pimg center ${cls.includes('w-port') ? 'w-port' : 'w-small'}`)
+    }
+  }
+  return root.toString()
+}
+
+const bodyHtml = layoutPost(post.html)
+
 const fmtDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
 
@@ -72,7 +153,7 @@ const ld = JSON.stringify({
     </header>
 
     <div class="shell shell--narrow">
-      <div class="post-body" set:html={post.html} />
+      <div class="post-body" set:html={bodyHtml} />
     </div>
 
     <footer class="post-foot">
@@ -134,7 +215,13 @@ const ld = JSON.stringify({
       padding: 26px 0 8px;
       font-size: 16.5px; line-height: 1.7; color: var(--ink-body);
       overflow-wrap: break-word;
+      /* readable measure in the wide layout (~72 characters) */
+      max-width: 72ch;
     }
+    /* Neutralize inline presentation left in imported Blogger markup */
+    .post-body img { max-width: 100% !important; height: auto !important; float: none; }
+    .post-body [align='left'], .post-body [align='right'] { float: none !important; }
+    .post-body [style*='float'] { float: none !important; }
     .post-body p { margin: 0 0 1em; }
     .post-body a { color: var(--purple); }
     .post-body a:hover { text-decoration: underline; }
@@ -170,6 +257,30 @@ const ld = JSON.stringify({
     .pimg.fl { float: left;  clear: both; margin: 12px 34px 20px 0; }
     .pimg.fr { float: right; clear: both; margin: 12px 0 20px 34px; }
     .pimg.center { clear: both; margin: 24px auto; }
+    /* Speaker portraits: consistent 4:5 crop regardless of source size */
+    .pimg.w-port img, .pimg.w-small img, .media-cols .mc-img img {
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    /* ── Two-column media block: text beside a fixed-width portrait ── */
+    .media-cols {
+      clear: both;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 240px;
+      gap: 20px 34px;
+      align-items: start;
+      margin: 18px 0 24px;
+    }
+    .media-cols.mc-left { grid-template-columns: 240px minmax(0, 1fr); }
+    .media-cols > .mc-img { margin: 0; grid-row: 1; }
+    .media-cols > .mc-body { grid-row: 1; min-width: 0; }
+    .mc-right > .mc-body { grid-column: 1; }
+    .mc-right > .mc-img  { grid-column: 2; }
+    .mc-left  > .mc-img  { grid-column: 1; }
+    .mc-left  > .mc-body { grid-column: 2; }
+    .mc-img figcaption { padding-top: 8px; }
     .pimg.center.w-port  { width: min(70%, 320px); }
     .pimg.center.w-small { width: min(70%, 340px); }
     /* Lists, tables, quotes create their own box next to a float —
@@ -195,6 +306,15 @@ const ld = JSON.stringify({
         margin: 16px auto;
       }
       .pimg-row { grid-template-columns: 1fr; }
+      /* media blocks stack: photo on top (centered), text below, full width */
+      .media-cols, .media-cols.mc-left { grid-template-columns: 1fr; }
+      .media-cols > .mc-img,
+      .mc-left > .mc-img, .mc-right > .mc-img {
+        grid-column: 1; grid-row: 1;
+        width: 100%; max-width: 320px;
+        justify-self: center;
+      }
+      .mc-left > .mc-body, .mc-right > .mc-body { grid-column: 1; grid-row: 2; }
     }
     .post-body iframe {
       max-width: 100%;
