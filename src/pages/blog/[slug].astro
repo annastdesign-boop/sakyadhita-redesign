@@ -293,11 +293,20 @@ const ld = JSON.stringify({
         margin: 16px auto;
       }
     }
+    /* Videos: full column width, 16:9. Inline width/height attributes
+       from Blogger are stripped at render, so size comes from here. */
     .post-body iframe {
-      max-width: 100%;
+      display: block;
+      clear: both;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      border: 0;
       border-radius: var(--r-md);
-      margin: 14px auto; display: block;
+      margin: 22px 0;
     }
+    /* legacy <center> wrappers shouldn't constrain the embed */
+    .post-body center { display: block; }
     .post-body table { max-width: 100%; }
     .post-body h1, .post-body h2, .post-body h3, .post-body h4 {
       font-family: var(--font-title); color: var(--ink);
