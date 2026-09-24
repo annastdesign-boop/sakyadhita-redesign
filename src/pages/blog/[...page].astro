@@ -6,6 +6,7 @@
  * Images stay on Blogger's CDN so they cost no Netlify bandwidth.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import { CATEGORIES, categoriesFor, categoryLabel } from '../../lib/blogCategories'
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const modules = import.meta.glob('../../content/blog/*.json', { eager: true })
@@ -58,6 +59,33 @@ const title = isFirst
     </div>
   </section>
 
+  <section class="blog-tools">
+    <div class="shell">
+      <form class="bt-bar" id="bt-form" role="search" onsubmit="return false">
+        <label class="bt-search">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input id="bt-q" type="search" placeholder="Search posts…" aria-label="Search blog posts" autocomplete="off" />
+        </label>
+        <label class="bt-sort">
+          <span>Sort</span>
+          <select id="bt-sort" aria-label="Sort posts">
+            <option value="new">Newest first</option>
+            <option value="old">Oldest first</option>
+          </select>
+        </label>
+      </form>
+      <div class="bt-cats" id="bt-cats" role="group" aria-label="Filter by category">
+        <button type="button" class="opt is-on" data-cat="">All</button>
+        {CATEGORIES.map((c) => <button type="button" class="opt" data-cat={c.id}>{c.label}</button>)}
+      </div>
+      <div class="bt-status" id="bt-status" hidden>
+        <span id="bt-count"></span>
+        <button type="button" class="bt-clear" id="bt-clear">Clear filters</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="bt-default">
   {
     feature && (
       <section class="blog-feature-wrap">
@@ -83,12 +111,13 @@ const title = isFirst
 
   <section class="blog-list-wrap">
     <div class="shell">
+      <div class="blog-list" id="bt-results" hidden></div>
       <div class="blog-list">
         {
           rows.map((p: any) => (
             <article class="blog-row">
               <div class="br-text">
-                {p.labels?.length > 0 && <div class="br-label">{p.labels[0]}</div>}
+                <div class="br-label">{categoryLabel(categoriesFor(p)[0])}</div>
                 <h3><a href={`/blog/${p.slug}/`}>{p.title}</a></h3>
                 <p class="br-excerpt">{p.excerpt}</p>
                 <div class="post-meta">
@@ -140,8 +169,127 @@ const title = isFirst
       </nav>
     </div>
   </section>
+  </div>
+
+  <script type="application/json" id="bt-cat-json" set:html={JSON.stringify(Object.fromEntries(CATEGORIES.map((c) => [c.id, c.label])))} />
+  <script>
+    const CATS = JSON.parse(document.getElementById('bt-cat-json')?.textContent || '{}')
+    const q = document.getElementById('bt-q') as HTMLInputElement
+    const sortEl = document.getElementById('bt-sort') as HTMLSelectElement
+    const cats = document.getElementById('bt-cats')!
+    const status = document.getElementById('bt-status')!
+    const countEl = document.getElementById('bt-count')!
+    const clearBtn = document.getElementById('bt-clear')!
+    const results = document.getElementById('bt-results')!
+    const dflt = document.getElementById('bt-default')!
+    let index: any[] | null = null
+    let loading: Promise<any[]> | null = null
+    const state = { q: '', cat: '', sort: 'new' }
+
+    const params = new URLSearchParams(location.search)
+    state.q = params.get('q') || ''
+    state.cat = params.get('cat') || ''
+    state.sort = params.get('sort') === 'old' ? 'old' : 'new'
+    q.value = state.q
+    sortEl.value = state.sort
+
+    const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    const esc = (t: string) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c] as string)
+
+    function load() {
+      if (index) return Promise.resolve(index)
+      if (!loading) loading = fetch('/blog/index.json').then((r) => r.json()).then((d) => (index = d))
+      return loading
+    }
+    function active() { return !!(state.q.trim() || state.cat || state.sort === 'old') }
+    function paintCats() {
+      cats.querySelectorAll('.opt').forEach((b) => b.classList.toggle('is-on', (b as HTMLElement).dataset.cat === state.cat))
+    }
+    function syncUrl() {
+      const p = new URLSearchParams()
+      if (state.q.trim()) p.set('q', state.q.trim())
+      if (state.cat) p.set('cat', state.cat)
+      if (state.sort === 'old') p.set('sort', 'old')
+      const qs = p.toString()
+      history.replaceState(null, '', (active() ? '/blog/' : location.pathname) + (qs ? '?' + qs : ''))
+    }
+    function row(p: any) {
+      const thumb = p.thumb ? `<img src="${esc(p.thumb)}" alt="" loading="lazy" />` : '<span class="ph"></span>'
+      return `<article class="blog-row">
+        <div class="br-text">
+          <div class="br-label">${esc(CATS[p.cats[0]] || '')}</div>
+          <h3><a href="/blog/${esc(p.slug)}/">${esc(p.title)}</a></h3>
+          <p class="br-excerpt">${esc(p.excerpt)}</p>
+          <div class="post-meta"><span>${fmt(p.date)}</span><span class="dot">·</span><span>${p.minutes} min read</span></div>
+        </div>
+        <a class="br-pic" href="/blog/${esc(p.slug)}/" aria-hidden="true" tabindex="-1">${thumb}</a>
+      </article>`
+    }
+    async function render() {
+      paintCats(); syncUrl()
+      if (!active()) { results.hidden = true; results.innerHTML = ''; dflt.hidden = false; status.hidden = true; return }
+      const all = await load()
+      const needle = state.q.trim().toLowerCase()
+      let list = all.filter((p) => (!state.cat || p.cats.includes(state.cat)) && (!needle || (p.title + ' ' + p.excerpt).toLowerCase().includes(needle)))
+      if (state.sort === 'old') list = [...list].reverse()
+      results.innerHTML = list.length ? list.map(row).join('') : '<p class="bt-empty">No posts match. Try another word or category.</p>'
+      countEl.textContent = `${list.length} ${list.length === 1 ? 'post' : 'posts'}`
+      results.hidden = false; dflt.hidden = true; status.hidden = false
+    }
+    let t: any
+    q.addEventListener('input', () => { state.q = q.value; clearTimeout(t); t = setTimeout(render, 150) })
+    sortEl.addEventListener('change', () => { state.sort = sortEl.value; render() })
+    cats.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest('.opt') as HTMLElement | null
+      if (!b) return
+      state.cat = b.dataset.cat || ''
+      render()
+    })
+    clearBtn.addEventListener('click', () => { state.q = ''; state.cat = ''; state.sort = 'new'; q.value = ''; sortEl.value = 'new'; render() })
+    if (active()) render()
+  </script>
 
   <style is:global>
+    /* Search / sort / category bar */
+    .blog-tools { padding: 0 0 10px; }
+    .bt-bar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .bt-search {
+      flex: 1 1 260px; display: flex; align-items: center; gap: 10px;
+      border: 1px solid var(--border); background: #fff; border-radius: 10px;
+      padding: 0 14px; color: var(--ink-subtle);
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .bt-search:focus-within { border-color: var(--purple); box-shadow: 0 0 0 4px rgba(119,59,250,.12); }
+    .bt-search svg { width: 18px; height: 18px; flex: none; }
+    .bt-search input {
+      flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
+      padding: 12px 0; font: inherit; font-size: 14.5px; color: var(--ink);
+    }
+    .bt-sort { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); }
+    .bt-sort select {
+      border: 1px solid var(--border); background: #fff; border-radius: 10px;
+      padding: 11px 12px; font: inherit; font-size: 14px; color: var(--ink); outline: 0;
+    }
+    .bt-sort select:focus { border-color: var(--purple); }
+    .bt-cats { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .bt-cats .opt {
+      font-family: var(--font-ui); font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em;
+      color: var(--ink-2); padding: 7px 14px; border-radius: var(--r-pill);
+      background: transparent; border: 1px solid var(--border); cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .bt-cats .opt:hover { border-color: var(--purple); color: var(--purple); }
+    .bt-cats .opt.is-on { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .bt-status {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-top: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--border-soft);
+      font-family: var(--font-num); font-weight: 600; font-size: 12px;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-subtle);
+    }
+    .bt-clear { border: 0; background: none; font: inherit; color: var(--purple); cursor: pointer; letter-spacing: inherit; text-transform: inherit; }
+    .bt-clear:hover { text-decoration: underline; }
+    .bt-empty { padding: 32px 0; color: var(--ink-2); }
+
     /* Feature — headline left, large image right (kept on Blogger CDN) */
     .blog-feature-wrap { padding: 8px 0 26px; }
     .blog-feature {
@@ -232,6 +380,7 @@ const title = isFirst
        stretches. */
     @media (min-width: 1200px) {
       .hero-compact .shell,
+      .blog-tools .shell,
       .blog-feature-wrap .shell,
       .blog-list-wrap .shell {
         width: calc(100% - 600px);
