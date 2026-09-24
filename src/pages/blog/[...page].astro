@@ -66,13 +66,6 @@ const title = isFirst
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           <input id="bt-q" type="search" placeholder="Search posts…" aria-label="Search blog posts" autocomplete="off" />
         </label>
-        <label class="bt-sort">
-          <span>Sort</span>
-          <select id="bt-sort" aria-label="Sort posts">
-            <option value="new">Newest first</option>
-            <option value="old">Oldest first</option>
-          </select>
-        </label>
       </form>
       <div class="bt-cats" id="bt-cats" role="group" aria-label="Filter by category">
         <button type="button" class="opt is-on" data-cat="">All</button>
@@ -82,6 +75,7 @@ const title = isFirst
         <span id="bt-count"></span>
         <button type="button" class="bt-clear" id="bt-clear">Clear filters</button>
       </div>
+      <div class="blog-list bt-results" id="bt-results" hidden></div>
     </div>
   </section>
 
@@ -111,7 +105,6 @@ const title = isFirst
 
   <section class="blog-list-wrap">
     <div class="shell">
-      <div class="blog-list" id="bt-results" hidden></div>
       <div class="blog-list">
         {
           rows.map((p: any) => (
@@ -175,7 +168,6 @@ const title = isFirst
   <script>
     const CATS = JSON.parse(document.getElementById('bt-cat-json')?.textContent || '{}')
     const q = document.getElementById('bt-q') as HTMLInputElement
-    const sortEl = document.getElementById('bt-sort') as HTMLSelectElement
     const cats = document.getElementById('bt-cats')!
     const status = document.getElementById('bt-status')!
     const countEl = document.getElementById('bt-count')!
@@ -184,14 +176,12 @@ const title = isFirst
     const dflt = document.getElementById('bt-default')!
     let index: any[] | null = null
     let loading: Promise<any[]> | null = null
-    const state = { q: '', cat: '', sort: 'new' }
+    const state = { q: '', cat: '' }
 
     const params = new URLSearchParams(location.search)
     state.q = params.get('q') || ''
     state.cat = params.get('cat') || ''
-    state.sort = params.get('sort') === 'old' ? 'old' : 'new'
     q.value = state.q
-    sortEl.value = state.sort
 
     const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
     const esc = (t: string) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c] as string)
@@ -201,7 +191,7 @@ const title = isFirst
       if (!loading) loading = fetch('/blog/index.json').then((r) => r.json()).then((d) => (index = d))
       return loading
     }
-    function active() { return !!(state.q.trim() || state.cat || state.sort === 'old') }
+    function active() { return !!(state.q.trim() || state.cat) }
     function paintCats() {
       cats.querySelectorAll('.opt').forEach((b) => b.classList.toggle('is-on', (b as HTMLElement).dataset.cat === state.cat))
     }
@@ -209,7 +199,6 @@ const title = isFirst
       const p = new URLSearchParams()
       if (state.q.trim()) p.set('q', state.q.trim())
       if (state.cat) p.set('cat', state.cat)
-      if (state.sort === 'old') p.set('sort', 'old')
       const qs = p.toString()
       history.replaceState(null, '', (active() ? '/blog/' : location.pathname) + (qs ? '?' + qs : ''))
     }
@@ -230,22 +219,20 @@ const title = isFirst
       if (!active()) { results.hidden = true; results.innerHTML = ''; dflt.hidden = false; status.hidden = true; return }
       const all = await load()
       const needle = state.q.trim().toLowerCase()
-      let list = all.filter((p) => (!state.cat || p.cats.includes(state.cat)) && (!needle || (p.title + ' ' + p.excerpt).toLowerCase().includes(needle)))
-      if (state.sort === 'old') list = [...list].reverse()
+      const list = all.filter((p) => (!state.cat || p.cats.includes(state.cat)) && (!needle || (p.title + ' ' + p.excerpt).toLowerCase().includes(needle)))
       results.innerHTML = list.length ? list.map(row).join('') : '<p class="bt-empty">No posts match. Try another word or category.</p>'
       countEl.textContent = `${list.length} ${list.length === 1 ? 'post' : 'posts'}`
       results.hidden = false; dflt.hidden = true; status.hidden = false
     }
     let t: any
     q.addEventListener('input', () => { state.q = q.value; clearTimeout(t); t = setTimeout(render, 150) })
-    sortEl.addEventListener('change', () => { state.sort = sortEl.value; render() })
     cats.addEventListener('click', (e) => {
       const b = (e.target as HTMLElement).closest('.opt') as HTMLElement | null
       if (!b) return
       state.cat = b.dataset.cat || ''
       render()
     })
-    clearBtn.addEventListener('click', () => { state.q = ''; state.cat = ''; state.sort = 'new'; q.value = ''; sortEl.value = 'new'; render() })
+    clearBtn.addEventListener('click', () => { state.q = ''; state.cat = ''; q.value = ''; render() })
     if (active()) render()
   </script>
 
@@ -265,12 +252,6 @@ const title = isFirst
       flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
       padding: 12px 0; font: inherit; font-size: 14.5px; color: var(--ink);
     }
-    .bt-sort { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); }
-    .bt-sort select {
-      border: 1px solid var(--border); background: #fff; border-radius: 10px;
-      padding: 11px 12px; font: inherit; font-size: 14px; color: var(--ink); outline: 0;
-    }
-    .bt-sort select:focus { border-color: var(--purple); }
     .bt-cats { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
     .bt-cats .opt {
       font-family: var(--font-ui); font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em;
@@ -289,6 +270,7 @@ const title = isFirst
     .bt-clear { border: 0; background: none; font: inherit; color: var(--purple); cursor: pointer; letter-spacing: inherit; text-transform: inherit; }
     .bt-clear:hover { text-decoration: underline; }
     .bt-empty { padding: 32px 0; color: var(--ink-2); }
+    .bt-results { padding-bottom: 40px; }
 
     /* Feature — headline left, large image right (kept on Blogger CDN) */
     .blog-feature-wrap { padding: 8px 0 26px; }
