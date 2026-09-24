@@ -29,8 +29,32 @@ import { parse } from 'node-html-parser'
  * images, and 2-up rows are left untouched. Inline width/height/align
  * attributes from Blogger are stripped here (and neutralized in CSS).
  */
+/** Old-site URLs that appear in imported posts → pages on this site. */
+function rewriteOldSiteUrl(href: string): string {
+  const site = /^https?:\/\/(?:www\.)?sakyadhita\.org/i
+  if (!site.test(href)) return href
+  const path = href.replace(site, '')
+  let m = path.match(/^\/conferences\/(\d+)(?:st|nd|rd|th)-si-con(?:\.html|\/.*)?$/i)
+  if (m) return `/conferences/${m[1]}/`
+  if (/^\/(?:resources\/|home\/)?newsletters\.html$/i.test(path)) return '/newsletters/'
+  if (/^\/resources\/publications\.html$/i.test(path)) return '/publications/'
+  if (path === '' || path === '/') return '/'
+  return href
+}
+
 function layoutPost(html: string): string {
   const root = parse(html)
+
+  // links to the old sakyadhita.org pages now point at our own pages
+  for (const a of root.querySelectorAll('a[href]')) {
+    const href = a.getAttribute('href') || ''
+    const next = rewriteOldSiteUrl(href)
+    if (next !== href) {
+      a.setAttribute('href', next)
+      a.removeAttribute('target') // internal link: same tab
+      a.removeAttribute('rel')
+    }
+  }
 
   // strip legacy inline presentation attributes
   for (const el of root.querySelectorAll('[width],[height],[align],[border]')) {
@@ -46,8 +70,13 @@ function layoutPost(html: string): string {
   for (const fig of root.querySelectorAll('figure')) {
     const cls = fig.getAttribute('class') || ''
     const floated = /\bfl\b|\bfr\b/.test(cls)
-    const upright = /w-port|w-small|w-sq/.test(cls)
-    if (!floated || !upright) continue
+    if (!floated) continue
+    // landscape images are too wide to inset in a ~72ch column (the text
+    // beside them collapses to a sliver) — run them full width instead
+    if (cls.includes('w-land')) {
+      fig.setAttribute('class', 'pimg full')
+      continue
+    }
 
     // collect the text run that follows, up to the next figure/heading/row
     // (walk the parent's childNodes by index — text nodes have no nextSibling)
@@ -250,15 +279,18 @@ const ld = JSON.stringify({
     .pimg.fl { float: left;  clear: both; margin: 12px 34px 20px 0; }
     .pimg.fr { float: right; clear: both; margin: 12px 0 20px 34px; }
     .pimg.center { clear: both; margin: 24px auto; }
-    /* Speaker portraits: consistent 4:5 crop regardless of source size */
-    .pimg.w-port img, .pimg.w-small img {
-      aspect-ratio: 4 / 5;
+    /* Consistent crops regardless of source size: portraits 4:5,
+       square and small images 1:1 */
+    .pimg.w-port img, .pimg.w-small img, .pimg.w-sq img {
       object-fit: cover;
       object-position: top center;
     }
+    .pimg.w-port img { aspect-ratio: 4 / 5; }
+    .pimg.w-sq img, .pimg.w-small img { aspect-ratio: 1 / 1; }
 
     /* ── Magazine runaround: fixed-width portrait floats in the text ── */
     .pimg.mag { width: 240px; }
+    .pimg.mag.w-small { width: 200px; }
     .pimg.mag.fl { float: left;  clear: both; margin: 6px 34px 16px 0; }
     .pimg.mag.fr { float: right; clear: both; margin: 6px 0 16px 34px; }
     .pimg.mag figcaption { padding-top: 8px; }
