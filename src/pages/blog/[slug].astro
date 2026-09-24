@@ -60,6 +60,14 @@ function layoutPost(html: string): string {
   // text that was deliberately coloured (orange/teal/green titles) becomes
   // brand purple, neutral greys/blacks and link-blues simply inherit.
   const NEUTRAL = /^(black|white|gray|grey|transparent|inherit|#0{3,6}|#f{3,6}|#[0-9a-f]{6})$/i
+  // Blogger sizes that were really sub-headings (large / ≥19px / ≥14pt)
+  const isLarge = (v: string) => {
+    v = v.trim().toLowerCase()
+    if (/^(large|x-large|xx-large|larger)$/.test(v)) return true
+    const px = v.match(/^([\d.]+)px$/); if (px) return parseFloat(px[1]) >= 19
+    const pt = v.match(/^([\d.]+)pt$/); if (pt) return parseFloat(pt[1]) >= 14
+    return false
+  }
   const isNeutral = (c: string) => {
     c = c.trim().toLowerCase()
     if (/^(black|white|gray|grey|transparent|inherit|blue|navy|red)$/.test(c)) return true
@@ -75,20 +83,29 @@ function layoutPost(html: string): string {
   for (const el of root.querySelectorAll('[style]')) {
     const decls = (el.getAttribute('style') || '').split(';').map((d) => d.trim()).filter(Boolean)
     let accent = false
+    let large = false
     const kept = decls.filter((d) => {
       const [prop, ...rest] = d.split(':')
       const name = prop.trim().toLowerCase(), val = rest.join(':').trim()
       if (name === 'color') { if (!isNeutral(val)) accent = true; return false }
       if (name === 'background' || name === 'background-color') return false
+      // typography comes from the design system, not from Blogger
+      if (name === 'font-size') { if (isLarge(val)) large = true; return false }
+      if (name === 'font-family' || name === 'line-height' || name === 'font' || name === 'letter-spacing') return false
+      if (name.startsWith('mso-')) return false // Word paste junk
       return true
     })
     if (kept.length) el.setAttribute('style', kept.join('; '))
     else el.removeAttribute('style')
     if (accent) el.classList.add('hl')
+    if (large) el.classList.add('lg')
   }
-  for (const f of root.querySelectorAll('font[color]')) {
-    if (!isNeutral(f.getAttribute('color') || '')) f.classList.add('hl')
-    f.removeAttribute('color')
+  for (const f of root.querySelectorAll('font')) {
+    const color = f.getAttribute('color')
+    if (color && !isNeutral(color)) f.classList.add('hl')
+    const size = parseInt(f.getAttribute('size') || '', 10)
+    if (size >= 4) f.classList.add('lg')
+    f.removeAttribute('color'); f.removeAttribute('size'); f.removeAttribute('face')
   }
 
   // strip legacy inline presentation attributes
@@ -282,6 +299,10 @@ const ld = JSON.stringify({
     .post-body p { margin: 0 0 1em; }
     .post-body a { color: var(--purple); }
     .post-body .hl { color: var(--purple); }
+    .post-body .lg {
+      font-family: var(--font-title); font-weight: 700;
+      font-size: 20px; line-height: 1.3; color: var(--ink);
+    }
     .post-body a:hover { text-decoration: underline; }
     .post-body img {
       max-width: 100%; height: auto;
