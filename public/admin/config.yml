@@ -1078,6 +1078,12 @@ collections:
         required: false
         summary: "{{fields.outlet}} — {{fields.headline}}"
         fields:
+          - name: kind
+            label: "Type"
+            widget: select
+            required: false
+            options: [{ label: "Press article (card)", value: "press" }, { label: "Sakyadhita blog post (compact list)", value: "blog" }]
+            default: press
           - { name: outlet, label: "Outlet (e.g. TRICYCLE)", widget: string, required: false }
           - { name: date, label: Date, widget: string, required: false }
           - { name: headline, label: Headline, widget: string, required: false }
