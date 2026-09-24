@@ -89,8 +89,6 @@ const shortLoc = (x: Conf) => x.loc.split('·').pop()!.split(',')[0].trim()
 
 const heroUrl = c.heroImg ?? c.photos?.find((p) => p.f)?.f ?? ''
 const coverageItems: any[] = c.coverage ? (Array.isArray(c.coverage) ? c.coverage : [c.coverage]) : []
-const pressItems = coverageItems.filter((x) => x.kind !== 'blog')
-const blogItems = coverageItems.filter((x) => x.kind === 'blog')
 const isExternal = (href: string) => /^https?:\/\//i.test(href || '')
 const prevConfs = list.filter((x) => !x.upcoming && x.n !== c.n).slice(0, 3)
 const prevThumb = (x: Conf) => x.thumb ?? x.photos?.find((p) => p.f)?.f ?? x.heroImg ?? ''
@@ -385,55 +383,32 @@ const MAT_COLORS = [
     }
 
     {
-      !c.upcoming && !c.hideCoverage && pressItems.length + blogItems.length > 0 && (
+      !c.upcoming && !c.hideCoverage && coverageItems.length > 0 && (
         <section>
           <div class="panel-head">
             <span class="label">Media coverage</span>
           </div>
-          {pressItems.length > 0 && (
-            <div class="coverage-list">
-              {pressItems.map((cv: any) => (
-                <article class="h-card-row">
-                  <div
-                    class="thumb"
-                    style={cv.img ? `background-image:url('${cv.img}');` : 'background: linear-gradient(135deg, var(--lavender), var(--coral-2));'}
-                  />
-                  <div class="body">
-                    <div class="top-row">
-                      <span class="outlet-tag">{cv.outlet}</span>
-                      <span class="date">{cv.date}</span>
-                    </div>
-                    <div class="headline">{cv.headline}</div>
-                    <p class="excerpt">{cv.excerpt}</p>
-                    <a class="read-link" href={cv.href} target={isExternal(cv.href) ? '_blank' : undefined} rel={isExternal(cv.href) ? 'noopener noreferrer' : undefined}>
-                      Read coverage ↗
-                    </a>
+          <div class="coverage-list">
+            {coverageItems.map((cv: any) => (
+              <article class="h-card-row">
+                <div
+                  class="thumb"
+                  style={cv.img ? `background-image:url('${cv.img}');` : 'background: linear-gradient(135deg, var(--lavender), var(--coral-2));'}
+                />
+                <div class="body">
+                  <div class="top-row">
+                    <span class="outlet-tag">{cv.outlet}</span>
+                    <span class="date">{cv.date}</span>
                   </div>
-                </article>
-              ))}
-            </div>
-          )}
-          {blogItems.length > 0 && (
-            <div class="blog-links">
-              <div class="blog-links-head">From the Sakyadhita blog</div>
-              <ul>
-                {blogItems.map((cv: any) => (
-                  <li>
-                    <a class="bl-row" href={cv.href}>
-                      <span
-                        class="bl-thumb"
-                        style={cv.img ? `background-image:url('${cv.img}');` : 'background: linear-gradient(135deg, var(--lavender), var(--coral-2));'}
-                      />
-                      <span class="bl-body">
-                        <span class="bl-title">{cv.headline}</span>
-                        <span class="bl-date">{cv.date}</span>
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+                  <div class="headline">{cv.headline}</div>
+                  <p class="excerpt">{cv.excerpt}</p>
+                  <a class="read-link" href={cv.href} target={isExternal(cv.href) ? '_blank' : undefined} rel={isExternal(cv.href) ? 'noopener noreferrer' : undefined}>
+                    {cv.kind === 'blog' ? 'Read on the blog →' : 'Read coverage ↗'}
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
       )
     }    {
@@ -1340,28 +1315,6 @@ const MAT_COLORS = [
   }
 
   .coverage-list { display: flex; flex-direction: column; gap: 16px; }
-  .blog-links { margin-top: 18px; }
-  .coverage-list + .blog-links { margin-top: 26px; }
-  .blog-links-head {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--ink-subtle);
-    margin-bottom: 10px;
-  }
-  .blog-links ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-  .blog-links li + li { border-top: 1px solid var(--border-soft); }
-  .bl-row {
-    display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: center;
-    padding: 10px 0; text-decoration: none; color: inherit;
-  }
-  .bl-thumb {
-    width: 64px; height: 48px; border-radius: 8px;
-    background-size: cover; background-position: center;
-    background-color: var(--bg-subtle);
-  }
-  .bl-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-  .bl-title { font-family: var(--font-title); font-weight: 700; font-size: 15.5px; line-height: 1.25; color: var(--ink); }
-  .bl-row:hover .bl-title { color: var(--purple); }
-  .bl-date { font-family: var(--font-num); font-weight: 600; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-subtle); }
   .h-card-row {
     display: grid;
     grid-template-columns: 200px 1fr auto;
