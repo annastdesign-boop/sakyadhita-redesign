@@ -227,13 +227,17 @@ const title = isFirst
     .pg-dots { color: var(--ink-subtle); padding: 0 2px; }
     .pg-spacer { width: 1px; }
 
-    /* Desktop: 300px side margins for the whole blog page */
+    /* Desktop: 300px side margins up to a 1440px screen; beyond that the
+       container stays at its 1440px width (840px) and only the background
+       stretches. */
     @media (min-width: 1200px) {
       .hero-compact .shell,
       .blog-feature-wrap .shell,
       .blog-list-wrap .shell {
-        max-width: none;
-        padding: 0 300px;
+        width: calc(100% - 600px);
+        max-width: 840px;
+        padding: 0;
+        margin: 0 auto;
       }
     }
 
