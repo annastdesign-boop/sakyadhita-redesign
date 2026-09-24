@@ -56,6 +56,41 @@ function layoutPost(html: string): string {
     }
   }
 
+  // Imported inline colors/backgrounds fight the design system. Strip them;
+  // text that was deliberately coloured (orange/teal/green titles) becomes
+  // brand purple, neutral greys/blacks and link-blues simply inherit.
+  const NEUTRAL = /^(black|white|gray|grey|transparent|inherit|#0{3,6}|#f{3,6}|#[0-9a-f]{6})$/i
+  const isNeutral = (c: string) => {
+    c = c.trim().toLowerCase()
+    if (/^(black|white|gray|grey|transparent|inherit|blue|navy|red)$/.test(c)) return true
+    const m = c.match(/^#([0-9a-f]{6})$/)
+    if (m) {
+      const r = parseInt(m[1].slice(0, 2), 16), g = parseInt(m[1].slice(2, 4), 16), b = parseInt(m[1].slice(4, 6), 16)
+      const spread = Math.max(r, g, b) - Math.min(r, g, b)
+      if (spread < 24) return true                 // grey/black/white
+      if (b > r + 40 && b > g + 20) return true    // link blues
+    }
+    return /^rgba?\(/.test(c)
+  }
+  for (const el of root.querySelectorAll('[style]')) {
+    const decls = (el.getAttribute('style') || '').split(';').map((d) => d.trim()).filter(Boolean)
+    let accent = false
+    const kept = decls.filter((d) => {
+      const [prop, ...rest] = d.split(':')
+      const name = prop.trim().toLowerCase(), val = rest.join(':').trim()
+      if (name === 'color') { if (!isNeutral(val)) accent = true; return false }
+      if (name === 'background' || name === 'background-color') return false
+      return true
+    })
+    if (kept.length) el.setAttribute('style', kept.join('; '))
+    else el.removeAttribute('style')
+    if (accent) el.classList.add('hl')
+  }
+  for (const f of root.querySelectorAll('font[color]')) {
+    if (!isNeutral(f.getAttribute('color') || '')) f.classList.add('hl')
+    f.removeAttribute('color')
+  }
+
   // strip legacy inline presentation attributes
   for (const el of root.querySelectorAll('[width],[height],[align],[border]')) {
     el.removeAttribute('width')
@@ -246,6 +281,7 @@ const ld = JSON.stringify({
     .post-body [style*='float'] { float: none !important; }
     .post-body p { margin: 0 0 1em; }
     .post-body a { color: var(--purple); }
+    .post-body .hl { color: var(--purple); }
     .post-body a:hover { text-decoration: underline; }
     .post-body img {
       max-width: 100%; height: auto;
