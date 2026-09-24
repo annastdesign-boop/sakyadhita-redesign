@@ -311,6 +311,9 @@ const ld = JSON.stringify({
       align-items: start;
     }
     .pimg-row .pimg { margin: 0; }
+    .pimg-row .pimg img { width: 100%; }
+    .pimg-row .pimg.w-port img { object-position: center; }
+    .pimg-row figcaption { padding-top: 8px; }
     .post-body::after { content: ""; display: block; clear: both; }
     @media (max-width: 700px) {
       .pimg.fl, .pimg.fr {
